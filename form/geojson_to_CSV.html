@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convertisseur GeoJSON vers CSV</title>
+  </head>
+  <body>
+    <h1>Convertisseur GeoJSON vers CSV</h1>
+
+    <a href="../index.php">convertir le geojson</a>
+    <br />
+
+    <!-- Formulaire pour charger un fichier GeoJSON -->
+    <form id="geojson-form">
+      <label for="geojson-file">Choisissez un fichier GeoJSON :</label>
+      <input type="file" id="geojson-file" accept=".geojson,application/geo+json" />
+      <button type="submit">Convertir en CSV</button>
+    </form>
+
+    <pre id="geojson-output"></pre>
+    <!-- Pour afficher un aperçu des données GeoJSON -->
+
+    <script>
+      // Fonction pour convertir GeoJSON en CSV
+      function convertGeoJsonToCsv(geoJsonData) {
+        const features = geoJsonData.features;
+        if (!features || features.length === 0) return "";
+
+        // Préparer les en-têtes
+        const headers = [
+          "ID",
+          "Type",
+          "PartNumber",
+          "CoordinateNumber",
+          "Longitude",
+          "Latitude",
+        ].join(",");
+
+        // Mapper les valeurs des propriétés en lignes CSV
+        const rows = features.flatMap((feature) => {
+          const id = feature.id || "";
+          const geometry = feature.geometry;
+          const type = geometry.type;
+
+          if (type === "Point") {
+            const [longitude, latitude] = geometry.coordinates;
+            return [
+              id,
+              type,
+              "",
+              "", // Pas de coordonnées multiples
+              longitude,
+              latitude,
+            ].join(",");
+          }
+
+          if (type === "LineString") {
+            return geometry.coordinates.map((coord, index) => {
+              const [longitude, latitude] = coord;
+              return [
+                id,
+                type,
+                "", // Pas de parties multiples
+                index + 1, // Numéro de la coordonnée dans la ligne
+                longitude,
+                latitude,
+              ].join(",");
+            });
+          }
+
+          if (type === "Polygon") {
+            return geometry.coordinates.flatMap((ring, ringIndex) => {
+              return ring.map((coord, coordIndex) => {
+                const [longitude, latitude] = coord;
+                return [
+                  id,
+                  type,
+                  ringIndex + 1, // Numéro de l'anneau dans le polygone
+                  coordIndex + 1, // Numéro de la coordonnée dans l'anneau
+                  longitude,
+                  latitude,
+                ].join(",");
+              });
+            });
+          }
+
+          if (type === "MultiPoint") {
+            return geometry.coordinates.map((coord, index) => {
+              const [longitude, latitude] = coord;
+              return [
+                id,
+                type,
+                "", // Pas de parties multiples
+                index + 1, // Numéro du point dans le MultiPoint
+                longitude,
+                latitude,
+              ].join(",");
+            });
+          }
+
+          if (type === "MultiLineString") {
+            return geometry.coordinates.flatMap((line, lineIndex) => {
+              return line.map((coord, coordIndex) => {
+                const [longitude, latitude] = coord;
+                return [
+                  id,
+                  type,
+                  lineIndex + 1, // Numéro de la ligne dans le MultiLineString
+                  coordIndex + 1, // Numéro de la coordonnée dans la ligne
+                  longitude,
+                  latitude,
+                ].join(",");
+              });
+            });
+          }
+
+          if (type === "MultiPolygon") {
+            return geometry.coordinates.flatMap((polygon, polygonIndex) => {
+              return polygon.flatMap((ring, ringIndex) => {
+                return ring.map((coord, coordIndex) => {
+                  const [longitude, latitude] = coord;
+                  return [
+                    id,
+                    type,
+                    polygonIndex + 1, // Numéro du polygone dans le MultiPolygon
+                    ringIndex + 1, // Numéro de l'anneau dans le polygone
+                    coordIndex + 1, // Numéro de la coordonnée dans l'anneau
+                    longitude,
+                    latitude,
+                  ].join(",");
+                });
+              });
+            });
+          }
+
+          // Géométrie non supportée
+          console.warn("Type de géométrie non supporté :", type);
+          return [];
+        });
+
+        // Combiner les en-têtes et les lignes
+        const csvData = [headers, ...rows].join("\n");
+
+        return csvData;
+      }
+
+      // Fonction pour télécharger le fichier CSV
+      function downloadCsv(csvData, filename) {
+        const csvBlob = new Blob([csvData], { type: "text/csv" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(csvBlob);
+        link.download = filename;
+        link.click();
+      }
+
+      // Gérer l'événement de soumission du formulaire
+      document.getElementById("geojson-form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Empêcher la soumission normale du formulaire
+
+        const fileInput = document.getElementById("geojson-file");
+        const file = fileInput.files[0]; // Obtenir le fichier sélectionné
+
+        if (!file) {
+          alert("Veuillez sélectionner un fichier GeoJSON.");
+          return;
+        }
+
+        // Extraire le nom de fichier sans extension
+        const filenameWithoutExtension = file.name.split(".").slice(0, -1).join(".");
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          try {
+            // Lire le contenu du fichier GeoJSON
+            const geoJsonData = JSON.parse(e.target.result);
+
+            // Afficher un aperçu des données GeoJSON dans la console
+            console.log("GeoJSON Data:", geoJsonData);
+            document.getElementById("geojson-output").textContent = JSON.stringify(
+              geoJsonData,
+              null,
+              2
+            );
+
+            // Convertir le GeoJSON en CSV
+            const csv = convertGeoJsonToCsv(geoJsonData);
+
+            // Télécharger le CSV avec le même nom que le fichier GeoJSON
+            downloadCsv(csv, filenameWithoutExtension + ".csv");
+          } catch (error) {
+            alert("Erreur lors de la conversion : " + error.message);
+          }
+        };
+
+        reader.readAsText(file); // Lire le fichier comme texte
+      });
+    </script>
+  </body>
+</html>

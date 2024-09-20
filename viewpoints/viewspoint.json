@@ -1,0 +1,145 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.481938, 43.280674]
+      },
+      "properties": {
+        "name": "Les fours à chaux"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.592325, 43.166669]
+      },
+      "properties": {
+        "name": "La chapelle Notre-Dame de la Garde de la Ciotat"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.3718, 43.223274]
+      },
+      "properties": {
+        "name": "Le massif de Marseilleveyre"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.606978, 43.163966]
+      },
+      "properties": {
+        "name": "Le Mugel et le bec de l'Aigle"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.494069, 43.204103]
+      },
+      "properties": {
+        "name": "Belvédère-En-Vau"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.459125, 43.222109]
+      },
+      "properties": {
+        "name": "Le mont Puget"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.443016, 43.229912]
+      },
+      "properties": {
+        "name": "Le domaine de Luminy"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.390682, 43.224642]
+      },
+      "properties": {
+        "name": "La fontaine de Voire"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.345779, 43.215723]
+      },
+      "properties": {
+        "name": "Les Goudes"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.355712, 43.210751]
+      },
+      "properties": {
+        "name": "Le sémaphore de Callelongue"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.373552, 43.233373]
+      },
+      "properties": {
+        "name": "La campagne Pastré"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.392515, 43.230534]
+      },
+      "properties": {
+        "name": "Le vallon de la Jarre"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.310839, 43.283352]
+      },
+      "properties": {
+        "name": "Le fort de Ratonneau"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.319024, 43.28364]
+      },
+      "properties": {
+        "name": "L’hôpital Caroline"
+      }
+    }
+  ]
+}
