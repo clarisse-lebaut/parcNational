@@ -23,6 +23,7 @@
         <section>
             <h2>Overflow</h2>
             <p>Grid de tous les sentiers récupérer dans la base de données</p>
+            <p>il faut rendre chaque item cliquable pour acceder à la page détails d'un seul sentier</p>
         </section>
     </main>
     <footer></footer>
