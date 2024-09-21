@@ -8,8 +8,20 @@ $connectBDDInstance = new ConnectBDD();
 $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO aux fonctions
-$trails = getAllTrails($connectBDD);
+$trails = get_all_trails($connectBDD);
 $trailsDifficulty = get_trails_difficulty($connectBDD);
+
+// Récupérer l'ID depuis l'URL
+$trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// Récupérer le sentier correspondant à l'ID
+$trail = null;
+if ($trail_id > 0) {
+    $trail = get_trails_id($connectBDD, $trail_id);
+    $trail_time = get_trails_time($connectBDD, $trail_id);
+    $trail_lenght = get_trails_km($connectBDD, $trail_id);
+    $trail_description = get_trails_description($connectBDD, $trail_id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -22,23 +34,21 @@ $trailsDifficulty = get_trails_difficulty($connectBDD);
 <body>
     <header></header>
     <main>
-        <h1>Titre : Détail < Nom du sentier ></h1>
+        <h1><?php echo $trail ? htmlspecialchars($trail['name']) : "Sentier non trouvé"; ?></h1>
 
         <section>
-            <h1>Hero</h1>
-            <p>image du sentier selon id de de l'url</p>
-            <img src="" alt="">
             <div class="hero_trail">
-                <img src="" alt="image du <nom du sentier>">
+                <h1>Hero</h1>
+                <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
             </div>
             <div class="details_trail">
                 <div>
-                    <p>temps</p>
                     <img src="../assets/icon/time.svg" alt="icon time">
+                    <p><?php echo ($trail['time']) ?></p>
                 </div>
                 <div>
-                    <p>longeur</p>
                     <img src="../assets/icon/hiking.svg" alt="icon length">
+                    <p><?php echo ($trail['length_km']) ?></p>
                 </div>
                 <div>
                     <p>difficuluté : condition selon la base de données</p>
@@ -53,7 +63,7 @@ $trailsDifficulty = get_trails_difficulty($connectBDD);
 
         <section>
             <h2>Détails du sentier</h2>
-            <p>Faire une requête pour récupérer la description du sentier</p>
+            <p><?php echo($trail['description']) ?></p>
         </section>
 
         <section>

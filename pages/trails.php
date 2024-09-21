@@ -8,7 +8,7 @@ $connectBDDInstance = new ConnectBDD();
 $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO à la fonction getAllTrails
-$trails = getAllTrails($connectBDD);
+$trails = get_all_trails($connectBDD);
 ?>
 
 <!DOCTYPE html>
