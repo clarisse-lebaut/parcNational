@@ -136,7 +136,7 @@ if ($trail_id > 0) {
                 <div class="slider_elements">
                     <?php foreach ($trails as $trail): ?>
                         <div class="card">
-                            <a href="">
+                            <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
                                 <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>
