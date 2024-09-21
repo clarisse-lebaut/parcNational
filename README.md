@@ -11,8 +11,9 @@ Sur site voour pourrez découvir les éléments majeurs qui font de ce parc le r
 
 - [Informations générales](#📢-informations-générales)
 
-  - [Thème et vision de ce projet](#vision-de-ce-projet)
-  - [Contexte de réalisation](#contexte)
+  - [Vision du projet](#vision-du-projet)
+  - [Objectif du projet](#objectif-du-projet)
+  - [Gestion et productivité](#gestion-et-productivité)
 
 - [Technologies](#💻-les-technologies)
 
@@ -28,15 +29,43 @@ Sur site voour pourrez découvir les éléments majeurs qui font de ce parc le r
 
 # 📢 Informations générales
 
-## Vision de ce projet
+### <i>Vision du projet</i>
 
-Expliquer contexte de réalisation de ce projet
+Dans le cadre d'un projet de groupe à La Plateforme_, cinq semaines nous ont été donnée pour réaliser ce projet.
+
+Consigne : Passionné par la nature et les technologies, vous entreprenez de développer une application web innovante. Cette plateforme vise à améliorer la gestion du parc et à sensibiliser les visiteurs sur l'importance de préserver cet environnement exceptionnel.
+
+Le Parc National des Calanques de Marseille est un joyau naturel qui attire des milliers de visiteurs chaque année. Ses falaises abruptes, ses eaux cristallines et sa biodiversité unique font la fierté des Marseillais et enchantent les touristes du monde entier. Cependant, cet afflux de visiteurs commence à peser lourdement sur l'écosystème fragile du parc, menaçant la faune et la flore locale. Face à cette situation, vous décidez de prendre les choses en main. Passionné par la nature et les technologies, vous entreprenez de développer une application web innovante. Cette plateforme vise à améliorer la gestion du parc et à sensibiliser les visiteurs sur l'importance de préserver cet dû environnement exceptionnel.
+
+### <i>Objectif du projet</i>
+
+Développer une application web pour gérer les visiteurs, les sentiers, les
+réservations de campings et les ressources naturelles du parc.
+
+Mettre en place une base de données SQL pour stocker les informations
+relatives aux visiteurs, aux sentiers, aux réservations et aux ressources
+naturelles.
+
+Implémenter des tests unitaires pour chaque module de l'application
+afin d'assurer sa fiabilité et sa robustesse.
+
+### <i>Gestion et productivité</i>
+
+A l'aide de divers outils de gestion, nous avons mis en place un suivi de projet. 
+
+Trello nous a permis d'élaborer une organisation, une répartitions des tâches et un suivi de production. Nous avons pu mettre en commun des ressources tel que la base de données, la maquettes et le détails des fonctionnalitées. 
+
+A l’aide de GitHub, nous avons pu mettre en place une collaboration efficace dans la gestion du code. Une répartition par page et par fonctionnalité rend les merge plus efficace et garrantis une bonne productivité.
+
+Au travers d'une démarche rigoureuse, nous avons créer une maquette détaillée pour visualiser l'interface utilisateur et les fonctionnalités prévues avec le logiciel Figma en parrallèle du développement de la base de donnée et de l'élaboration du chemin utilisateurs.
+
+Les modèles conceptuel (MCD) et logique (MLD) structurent notre base de données de manière claire et précise. L'objectif principal était de construire une base de données robuste afin de garantir une utilisation et une réalisation efficaces du site.
 
 <br>
 
 # 💻 Les technologies
 
-## Langages
+### <i>Langages</i>
 
 - PHP
 
@@ -52,7 +81,7 @@ Expliquer contexte de réalisation de ce projet
 
 <br>
 
-## Outils
+### <i>Outils</i>
 
 - Trello
 
@@ -63,13 +92,13 @@ Expliquer contexte de réalisation de ce projet
 - GitHub
 
 
-## Framework
+### <i>Framework</i>
 
 - Leaflet
 
 - Full Calendar
 
-## Test unitaire
+### <i>Test unitaire</i>
 
 - PHP Unit
 
@@ -77,14 +106,14 @@ Expliquer contexte de réalisation de ce projet
 
 # 📁 Ressources
 
-## Charte graphique
+### <i>Charte graphique</i>
 
 - récupérer en ligne
 - idée de la nature
 
 ![image charte graphique](./assets/readme/color.png)
 
-## Bases de données
+### <i>Bases de données</i>
 
 - expliquer la base de données
 
