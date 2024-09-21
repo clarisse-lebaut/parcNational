@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="./pages/trails.php">Les Sentiers</a>
+    <a href="./pages/details_trails.php">Détails d'un sentier</a>
 </body>
 </html>
