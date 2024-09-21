@@ -21,6 +21,8 @@ if ($trail_id > 0) {
     $trail_time = get_trails_time($connectBDD, $trail_id);
     $trail_lenght = get_trails_km($connectBDD, $trail_id);
     $trail_description = get_trails_description($connectBDD, $trail_id);
+    $trail_difficulty = get_trails_difficulty($connectBDD, $trail_id);
+    $trail_state = get_trails_status($connectBDD, $trail_id);
 }
 ?>
 
@@ -29,7 +31,7 @@ if ($trail_id > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trails</title>
+    <title>Details Trails</title>
 </head>
 <body>
     <header></header>
@@ -51,12 +53,52 @@ if ($trail_id > 0) {
                     <p><?php echo ($trail['length_km']) ?></p>
                 </div>
                 <div>
-                    <p>difficuluté : condition selon la base de données</p>
-                    <img src="../assets/icon/" alt="icon difficulty">
+                    <?php
+                        $image_path = "";
+                        $difficulty_from_db = $trail['difficulty'];
+
+                        switch ($difficulty_from_db) {
+                            case "Facile":
+                                $image_path = "../assets/icon/shoes-green.svg";
+                                break;
+                            case "Moyen":
+                                $image_path = "../assets/icon/shoes-orange.svg"; // Peut-être une autre image ?
+                                break;
+                            case "Difficile":
+                                $image_path = "../assets/icon/shoes-red.svg"; // Peut-être une autre image ?
+                                break;
+                            default:
+                                // Image par défaut si difficulté inconnue
+                                $image_path = "../assets/icon/shoes-default.svg";
+                                break;
+                        }
+                    ?>
+                    <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['difficulty']) ?>">
+                    <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
+                </div>
                 </div>
                 <div>
-                    <p>état : condition selon la base de données</p>
-                    <img src="" alt="icon status">
+                    <?php
+                        $image_path = "";
+                        $status_from_db = $trail['status'];
+
+                        switch ($difficulty_from_db) {
+                            case "active":
+                                $image_path = "../assets/icon/circle-green.svg";
+                                break;
+                            case "work":
+                                $image_path = "../assets/icon/circle-orange.svg"; // Peut-être une autre image ?
+                                break;
+                            case "inactive":
+                                $image_path = "../assets/icon/circle-red.svg"; // Peut-être une autre image ?
+                                break;
+                            default:
+                                // Image par défaut si difficulté inconnue
+                                $image_path = "../assets/icon/circle-green.svg";
+                                break;
+                        }
+                    ?>
+                    <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['status'] ?? 'Statut inconnu'); ?>">
                 </div>
             </div>
         </section>
