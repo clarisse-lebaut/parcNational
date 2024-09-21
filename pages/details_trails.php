@@ -62,10 +62,10 @@ if ($trail_id > 0) {
                                 $image_path = "../assets/icon/shoes-green.svg";
                                 break;
                             case "Moyen":
-                                $image_path = "../assets/icon/shoes-orange.svg"; // Peut-être une autre image ?
+                                $image_path = "../assets/icon/shoes-orange.svg";
                                 break;
                             case "Difficile":
-                                $image_path = "../assets/icon/shoes-red.svg"; // Peut-être une autre image ?
+                                $image_path = "../assets/icon/shoes-red.svg";
                                 break;
                             default:
                                 // Image par défaut si difficulté inconnue
