@@ -17,6 +17,7 @@ $trails = get_trails_all($connectBDD);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
+    <script src="../scripts/filter.js" defer></script>
 </head>
 <body>
     <header></header>
@@ -34,8 +35,70 @@ $trails = get_trails_all($connectBDD);
         </section>
 
         <section>
-            <h2>Filtre</h2>
-            <p>Insérer la fonction pour le filtre en JavaScript</p>
+            <style>
+                .filter{
+                    display : flex;
+                    flex-direction : row;
+                    align-items: center;
+                    gap: 20px;
+                }
+            </style>
+
+            <div class="filter">
+                <!-- difficulté -->
+                <button class="filter-btn" data-filter="easy">Facile</button>
+                <button class="filter-btn" data-filter="medium">Moyen</button>
+                <button class="filter-btn" data-filter="hard">Difficile</button>
+                
+                <!-- km -->
+                <button class="filter-btn">km ordre croissant</button>
+                <button class="filter-btn">km ordre décroissant</button>           
+                <div class="search-km">
+                    <label for="km">Nombre de km</label>
+                    <select name="km" id="lenght">
+                        <option value="">-- distance</option>
+                        <option value="">1km</option>
+                        <option value="">2km</option>
+                        <option value="">3km</option>
+                        <option value="">4km</option>
+                        <option value="">5km</option>
+                        <option value="">6km</option>
+                        <option value="">7km</option>
+                        <option value="">8km</option>
+                        <option value="">9km</option>
+                        <option value="">10km</option>
+                        <option value="">11km</option>
+                        <option value="">12km</option>
+                    </select>
+                </div>
+                
+                <!-- temps -->
+                <button class="filter-button">temps ordre croissant</button>
+                <button class="filter-button">temps ordre décroissant</button>
+                <div class="search-time">
+                    <label for="km">Temps de marche</label>
+                    <select name="time" id="time">
+                        <option value="">--temps</option>
+                        <option value="">1h</option>
+                        <option value="">2h</option>
+                        <option value="">3h</option>
+                        <option value="">4h</option>
+                        <option value="">5h</option>
+                        <option value="">6h</option>
+                        <option value="">7h</option>
+                        <option value="">8h</option>
+                        <option value="">9h</option>
+                        <option value="">10h</option>
+                        <option value="">11h</option>
+                        <option value="">12h</option>
+                    </select>
+                </div>
+                
+                <!-- satus -->
+                <button class="filter-btn" data-filter="active">Ouvert</button>
+                <button class="filter-btn" data-filter="work">En travau</button>
+                <button class="filter-btn" data-filter="hard">Fermé</button>
+            </div>
         </section>
 
         <section>
