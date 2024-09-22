@@ -51,16 +51,14 @@ $trails = getAllTrails($connectBDD);
                         <div class="card_details">
                             <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
                             <p><?php echo htmlspecialchars($trail['time']); ?></p>
+                            <p><?php echo htmlspecialchars($trail['status']); ?></p>
+                            <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
                         </div>
-                        <!-- mettre des icônes -->
                         <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
                         <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
                     </div>
-                    <!-- <p><?php echo htmlspecialchars($trail['trail_id']); ?></p> -->
-                    <!-- <p><?php echo htmlspecialchars($trail['description']); ?></p>
-                    <p><?php echo htmlspecialchars($trail['status']); ?></p> -->
-                    <!-- <p><?php echo htmlspecialchars($trail['infos']); ?></p>
-                    <p><?php echo htmlspecialchars($trail['acces']); ?></p>  -->
+                    <p><?php echo htmlspecialchars($trail['description']); ?></p>
+                    <p><?php echo htmlspecialchars($trail['acces']); ?></p> 
                 <?php endforeach; ?>
         </section>
     </main>
