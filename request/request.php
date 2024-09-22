@@ -61,4 +61,11 @@ function get_trails_status($connectBDD, $state) : bool{
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function get_trails_landmarks($connectBDD){
+    $sql = "SELECT * FROM landmarks_trails";
+    $stmt = $connectBDD->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>

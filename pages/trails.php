@@ -41,26 +41,20 @@ $trails = get_all_trails($connectBDD);
         <section>
             <h2>Overflow</h2>
                 <?php foreach ($trails as $trail): ?>
-                    <div class="card">
+                    <div class="card_trails">
                         <div class="card_top">
                             <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
                                 <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>
                         </div>
-                        <div class="card_details">
+                        <div class="card_trails_details">
                             <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
                             <p><?php echo htmlspecialchars($trail['time']); ?></p>
                         </div>
-                        <!-- mettre des icônes -->
                         <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
                         <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
                     </div>
-                    <!-- <p><?php echo htmlspecialchars($trail['trail_id']); ?></p> -->
-                    <!-- <p><?php echo htmlspecialchars($trail['description']); ?></p>
-                    <p><?php echo htmlspecialchars($trail['status']); ?></p> -->
-                    <!-- <p><?php echo htmlspecialchars($trail['infos']); ?></p>
-                    <p><?php echo htmlspecialchars($trail['acces']); ?></p>  -->
                 <?php endforeach; ?>
         </section>
     </main>

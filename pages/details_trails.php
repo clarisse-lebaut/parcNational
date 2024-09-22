@@ -9,7 +9,6 @@ $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO aux fonctions
 $trails = get_all_trails($connectBDD);
-$trailsDifficulty = get_trails_difficulty($connectBDD);
 
 // Récupérer l'ID depuis l'URL
 $trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -24,6 +23,10 @@ if ($trail_id > 0) {
     $trail_difficulty = get_trails_difficulty($connectBDD, $trail_id);
     $trail_state = get_trails_status($connectBDD, $trail_id);
 }
+
+// $landmark = null;
+// $trail_landmark = get_trails_landmarks($connectBDD, $landmark);
+$landmarks = get_trails_landmarks($connectBDD); // Récupérer tous les landmarks
 ?>
 
 <!DOCTYPE html>
@@ -113,10 +116,14 @@ if ($trail_id > 0) {
             <p>Intégrer la map interactive</p>
         </section>
 
-        <section>
-            <h2>Points de vues</h2>
-            <p>Faire une requête pour récupérer les points de vues prés de ce sentiers</p>
-        </section>
+    <section>
+        <h2>Points de vue</h2>
+            <?php foreach ($landmarks as $landmark): ?>
+                <div class="card_landmarks">
+                    <p><?php echo htmlspecialchars($landmark['landmark_id'], ENT_QUOTES, 'UTF-8'); ?></p>
+                </div>
+            <?php endforeach; ?>
+    </section>
 
         <section>
             <style>
@@ -135,7 +142,7 @@ if ($trail_id > 0) {
             <div class="slider">
                 <div class="slider_elements">
                     <?php foreach ($trails as $trail): ?>
-                        <div class="card">
+                        <div class="card_trails">
                             <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
                                 <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
