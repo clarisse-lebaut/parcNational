@@ -1,5 +1,5 @@
 <?php
-function getAllTrails($connectBDD): array {
+function get_trails_all($connectBDD): array {
     $requeteSQL = "SELECT * from trails";
     $getAllData = $connectBDD->prepare($requeteSQL);
     $getAllData->execute();
