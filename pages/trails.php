@@ -39,7 +39,15 @@ $trails = getAllTrails($connectBDD);
         </section>
 
         <section>
+            <style>
+                .overflow{
+                    height: 750px;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                }
+            </style>
             <h2>Overflow</h2>
+            <div class="overflow">
                 <?php foreach ($trails as $trail): ?>
                     <div class="card">
                         <div class="card_top">
@@ -49,10 +57,18 @@ $trails = getAllTrails($connectBDD);
                             </a>
                         </div>
                         <div class="card_details">
+                            
                             <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
                             <p><?php echo htmlspecialchars($trail['time']); ?></p>
-                            <p><?php echo htmlspecialchars($trail['status']); ?></p>
                             <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
+                            <!-- Pour la ligne status = le risque que le paramètre dans la base de donnée
+                             soit nul provoque une erreur =
+                             il faut donc mettre un opérateur de fusion pour éviter les problèmes de sécurité
+                             
+                             //? ENT_QUOTES est une constante utilisée avec la fonction htmlspecialchars() en PHP 
+                             spécifie le type de guillemets à convertir en entités HTML.
+                              -->
+                            <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
                         </div>
                         <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
                         <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
@@ -60,6 +76,7 @@ $trails = getAllTrails($connectBDD);
                     <p><?php echo htmlspecialchars($trail['description']); ?></p>
                     <p><?php echo htmlspecialchars($trail['acces']); ?></p> 
                 <?php endforeach; ?>
+            </div>
         </section>
     </main>
     <footer></footer>
