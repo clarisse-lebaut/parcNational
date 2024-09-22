@@ -57,18 +57,95 @@ $trails = getAllTrails($connectBDD);
                             </a>
                         </div>
                         <div class="card_details">
-                            
-                            <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
-                            <p><?php echo htmlspecialchars($trail['time']); ?></p>
-                            <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
-                            <!-- Pour la ligne status = le risque que le paramètre dans la base de donnée
-                             soit nul provoque une erreur =
-                             il faut donc mettre un opérateur de fusion pour éviter les problèmes de sécurité
-                             
-                             //? ENT_QUOTES est une constante utilisée avec la fonction htmlspecialchars() en PHP 
-                             spécifie le type de guillemets à convertir en entités HTML.
-                              -->
-                            <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                            <div>
+                                <img src="../assets/icon/hiking.svg" alt="icon lenght">
+                                <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
+                            </div>
+                            <div>
+                                <img src="../assets/icon/time.svg" alt="icon time">
+                                <p><?php echo htmlspecialchars($trail['time']); ?></p>
+
+                            </div>
+                            <div>
+                                <?php
+                                    $image_path ="";
+                                    $difficulty = $trail['difficulty'];
+                                    $easy = "shoes-green.svg";
+                                    $medium = "shoes-orange.svg";
+                                    $hard = "shoes-red.svg";
+                                    $default = "shoes-default.svg";
+
+                                    $alt_text = '';
+                                    if ($easy) {
+                                        $alt_text = 'icon green shoes';
+                                    } elseif ($medium) {
+                                        $alt_text = 'icon orange shoes';
+                                    } else {
+                                        $alt_text = 'icon red shoes';
+                                    }
+
+                                    switch ($difficulty) {
+                                        case 'Facile':
+                                            $image_path = "../assets/icon/$easy";
+                                            break;
+                                        case 'Moyen':
+                                            $image_path = "../assets/icon/$medium";
+                                            break;
+                                        case 'Difficile':
+                                            $image_path = "../assets/icon/$hard";
+                                            break;
+                                        default:
+                                            $image_path = "../assets/icon/$default";
+                                            break;
+                                    }
+                                ?>
+                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
+                                <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
+                            </div>
+                            <div>
+                                <?php
+                                    $image_path = "";
+                                    $status = $trail['status'];
+                                    $active = "circle-green.svg";
+                                    $work = "circle-orange.svg";
+                                    $inactive = "circle-red.svg";
+
+                                    $alt_text = '';
+                                    if ($active){
+                                        $alt_text = 'icon green circle';
+                                    } elseif ($work){
+                                        $alt_text = 'icon orange circle';
+                                    } elseif ($inactive) {
+                                        $alt_text = 'icon red circle';
+                                    } else {
+                                        $alt_text = 'no info available';
+                                    }
+
+                                    switch ($status) {
+                                        case 'active':
+                                            $image_path = "../assets/icon/$active";
+                                            break;
+                                        case 'work' : 
+                                            $image_path = "../assets/icon/$work";
+                                            break;
+                                        case 'inactive':
+                                            $image_path = "../assets/icon/$inactive";
+                                            break;
+                                        default:
+                                            $image_path = "../assets/icon/$active";
+                                            break;
+                                    }
+                                ?>
+                                <!-- Pour la ligne status = le risque que le paramètre dans la base de donnée
+                                 soit nul provoque une erreur =
+                                 il faut donc mettre un opérateur de fusion pour éviter les problèmes de sécurité
+                                 
+                                 //? ENT_QUOTES est une constante utilisée avec la fonction htmlspecialchars() en PHP 
+                                 spécifie le type de guillemets à convertir en entités HTML.
+                                  -->
+                                <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
+                            </div>
                         </div>
                         <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
                         <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
