@@ -22,11 +22,8 @@ if ($trail_id > 0) {
     $trail_description = get_trails_description($connectBDD, $trail_id);
     $trail_difficulty = get_trails_difficulty($connectBDD, $trail_id);
     $trail_state = get_trails_status($connectBDD, $trail_id);
+    $landmarks = get_trails_landmarks($connectBDD, $trail_id);
 }
-
-// $landmark = null;
-// $trail_landmark = get_trails_landmarks($connectBDD, $landmark);
-$landmarks = get_trails_landmarks($connectBDD); // Récupérer tous les landmarks
 ?>
 
 <!DOCTYPE html>
@@ -119,10 +116,10 @@ $landmarks = get_trails_landmarks($connectBDD); // Récupérer tous les landmark
     <section>
         <h2>Points de vue</h2>
             <?php foreach ($landmarks as $landmark): ?>
-                <div class="card_landmarks">
-                    <p><?php echo htmlspecialchars($landmark['landmark_id'], ENT_QUOTES, 'UTF-8'); ?></p>
-                </div>
-            <?php endforeach; ?>
+            <div class="card_landmarks">
+                <p><?php echo htmlspecialchars($landmark['name'], ENT_QUOTES, 'UTF-8'); ?></p>
+            </div>
+        <?php endforeach; ?>
     </section>
 
         <section>

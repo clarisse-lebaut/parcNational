@@ -1,7 +1,6 @@
 <!-- 
 //! quand tu vas tout réunir, il te suffit simplement de récupérer tout de la table
 //? une fois que tu as tout récupérer il faut que tu ajoute les paramètre avec le WHERE
-
 -->
 
 <?php
@@ -61,10 +60,17 @@ function get_trails_status($connectBDD, $state) : bool{
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_trails_landmarks($connectBDD){
-    $sql = "SELECT * FROM landmarks_trails";
+function get_trails_landmarks($connectBDD, $trail_id) {
+    $sql = "SELECT lt.landmark_id, l.name 
+        FROM landmarks_trails lt
+        JOIN landmarks l ON lt.landmark_id = l.landmark_id
+        WHERE lt.trail_id = :trail_id
+    ";
+    
     $stmt = $connectBDD->prepare($sql);
+    $stmt->bindParam(':trail_id', $trail_id, PDO::PARAM_INT);
     $stmt->execute();
+    
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
