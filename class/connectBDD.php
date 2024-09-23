@@ -11,7 +11,6 @@ class ConnectBDD
 
             $connectBDD = new PDO($dsn, $username, $password);
             $connectBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo 'Connexion réussie';
             return $connectBDD;
 
         } catch (PDOException $e) {

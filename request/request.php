@@ -1,5 +1,9 @@
 <?php
-function get_trails_all($connectBDD): array {
+// Instancier la classe ConnectBDD et obtenir la connexion PDO
+$connectBDDInstance = new ConnectBDD();
+$connectBDD = $connectBDDInstance->connectBDD();
+
+function get_trails_all($connectBDD) {
     $requeteSQL = "SELECT * from trails";
     $getAllData = $connectBDD->prepare($requeteSQL);
     $getAllData->execute();
@@ -7,24 +11,32 @@ function get_trails_all($connectBDD): array {
     return $trails;
 }
 
-//* Requête pour le filtre des sentiers
-
-function get_data_difficulty($connectBDD) {
-    $difficulties = ["Facile", "Moyen", "Difficile"];
-    
-    // Création dynamique des placeholders
-    $placeholders = implode(',', array_fill(0, count($difficulties), '?'));
-
-    // Requête SQL
-    $sql = "SELECT * FROM trails WHERE difficulty IN ($placeholders)";
+//* Requêtes pour le filtre des sentiers
+// Fonction pour récupérer les sentiers avec la difficulté "Facile"
+function get_data_difficulty($connectBDD, $difficulty) {
+    // Requête SQL pour récupérer uniquement les sentiers avec la difficulté spécifiée
+    $sql = "SELECT * FROM trails WHERE difficulty = ?";
     $stmt = $connectBDD->prepare($sql);
-    $stmt->execute($difficulties);
-    
-    // Renvoi des résultats sous forme de tableau
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    try {
+        $stmt->execute([$difficulty]);
+
+        // Récupérer les résultats
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Si aucune donnée n'est trouvée, renvoie un message d'erreur au format JSON
+        if (empty($results)) {
+            return json_encode(['error' => 'Aucun sentier trouvé.']);
+        }
+        
+        // Retourne les résultats en format JSON
+        return json_encode($results);
+
+    } catch (Exception $e) {
+        // Renvoie une erreur en format JSON
+        return json_encode(['error' => 'Une erreur est survenue : ' . $e->getMessage()]);
+    }
 }
-
-
 
 
 function get_data_status(){
