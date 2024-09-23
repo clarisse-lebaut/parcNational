@@ -17,7 +17,6 @@ $trails = get_trails_all($connectBDD);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
-    <script src="../scripts/filter.js" defer></script>
 </head>
 <body>
     <header></header>
@@ -40,19 +39,20 @@ $trails = get_trails_all($connectBDD);
                     display : flex;
                     flex-direction : row;
                     align-items: center;
-                    gap: 20px;
+                    gap: 10px;
                 }
             </style>
 
             <div class="filter">
+                <button class="filter-btn">Reset</button>
                 <!-- difficulté -->
-                <button class="filter-btn" data-filter="easy">Facile</button>
-                <button class="filter-btn" data-filter="medium">Moyen</button>
-                <button class="filter-btn" data-filter="hard">Difficile</button>
+                <button class="filter-btn" data-filter="Facile">Facile</button>
+                <button class="filter-btn" data-filter="Moyen">Moyen</button>
+                <button class="filter-btn" data-filter="Difficile">Difficile</button>
                 
                 <!-- km -->
-                <button class="filter-btn">km ordre croissant</button>
-                <button class="filter-btn">km ordre décroissant</button>           
+                <button class="filter-btn" data-filter="km-up">km ordre croissant</button>
+                <button class="filter-btn" data-filter="km-down">km ordre décroissant</button>           
                 <div class="search-km">
                     <label for="km">Nombre de km</label>
                     <select name="km" id="lenght">
@@ -73,8 +73,8 @@ $trails = get_trails_all($connectBDD);
                 </div>
                 
                 <!-- temps -->
-                <button class="filter-button">temps ordre croissant</button>
-                <button class="filter-button">temps ordre décroissant</button>
+                <button class="filter-btn" data-filter="time-up">temps ordre croissant</button>
+                <button class="filter-btn" data-filter="time-down">temps ordre décroissant</button>
                 <div class="search-time">
                     <label for="km">Temps de marche</label>
                     <select name="time" id="time">
@@ -96,9 +96,84 @@ $trails = get_trails_all($connectBDD);
                 
                 <!-- satus -->
                 <button class="filter-btn" data-filter="active">Ouvert</button>
-                <button class="filter-btn" data-filter="work">En travau</button>
+                <button class="filter-btn" data-filter="work">En travaux</button>
                 <button class="filter-btn" data-filter="hard">Fermé</button>
             </div>
+        </section>
+
+        <section>
+            <!-- <h1>TEST FILTRE</h1>
+            <p>On essaie déjà de juste récupérer les valeurs définies dans la requête</p>
+            <?php
+            // Appel à la fonction pour récupérer les résultats
+            $data = get_data_difficulty($connectBDD);
+            
+            // Affichage de l'une des valeurs (par exemple, première difficulté)
+            // OK en fait la j'accède avec l'index à la valeur correspondante à la ligne dans la base de données
+            if (!empty($data)) {
+                echo '<p>' . htmlspecialchars($data[9]['difficulty']) . '</p>';
+            } else {
+                echo '<p>Aucune donnée trouvée</p>';
+            }
+            ?> -->
+            <script>
+                function click() {
+                    const buttons = document.getElementsByClassName('filter-btn');
+
+                    for (let i = 0; i < buttons.length; i++) {
+                        buttons[i].addEventListener('click', function () {
+                            const difficulty = buttons[i].textContent;
+
+                            switch (difficulty) {
+                                // effacer toos les filtres
+                                case 'Reset':
+                                    alert('Tout remettre à 0');
+                                    break;
+                                // boutons des difficulté
+                                case 'Facile':
+                                    alert('Facile est cliqué');
+                                    break;
+                                case 'Moyen':
+                                    alert('Moyen est cliqué');
+                                    break;
+                                case 'Difficile':
+                                    alert('Difficile est cliqué');
+                                    break;
+                                // boutons des status
+                                case 'Ouvert':
+                                    alert('Sentier ouvert');
+                                    break;
+                                case 'En travaux':
+                                    alert('Sentier en travaux');
+                                    break;
+                                case 'Fermé':
+                                    alert('Sentier fermé');
+                                    break;
+                                // boutons pour les kms
+                                    // ordre croissant et décroissant
+                                case 'km ordre croissant':
+                                    alert('Ordre croissant des kilomètres');
+                                    break;
+                                case 'km ordre décroissant':
+                                    alert('Ordre décroissant des kilomètres');
+                                    break;
+                                    // select par km
+
+                                // bouton pour le temps de marche
+                                case 'temps ordre croissant':
+                                    alert('Ordre croissant du temps de marche');
+                                    break;
+                                case 'temps ordre décroissant':
+                                    alert('Ordre décroissant du temps de marche');
+                                    break;
+                                default:
+                                    break;
+                            }
+                        });
+                    }
+                };
+                click();
+            </script>
         </section>
 
         <section>
@@ -110,7 +185,7 @@ $trails = get_trails_all($connectBDD);
                 }
             </style>
             <h2>Overflow</h2>
-            <div class="overflow">
+            <div id="overflow" class="overflow">
                 <?php foreach ($trails as $trail): ?>
                     <div class="card">
                         <div class="card_top">
@@ -199,13 +274,6 @@ $trails = get_trails_all($connectBDD);
                                             break;
                                     }
                                 ?>
-                                <!-- Pour la ligne status = le risque que le paramètre dans la base de donnée
-                                 soit nul provoque une erreur =
-                                 il faut donc mettre un opérateur de fusion pour éviter les problèmes de sécurité
-                                 
-                                 //? ENT_QUOTES est une constante utilisée avec la fonction htmlspecialchars() en PHP 
-                                 spécifie le type de guillemets à convertir en entités HTML.
-                                  -->
                                 <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
                                 <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
                             </div>
