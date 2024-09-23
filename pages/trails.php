@@ -44,13 +44,13 @@ $trails = get_trails_all($connectBDD);
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Difficulté</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">
-                        <input type="checkbox" id="tag-facile" name="tag" value="Facile">
+                        <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
                         <label for="facile">Facile</label><br>
 
-                        <input type="checkbox" id="tag-moyen" name="tag" value="Moyen">
+                        <input class="difficulty" type="checkbox" id="tag-moyen" name="tag" value="Moyen">
                         <label for="moyen">Moyen</label><br>
 
-                        <input type="checkbox" id="tag-difficile" name="tag" value="Difficile">
+                        <input class="difficulty" type="checkbox" id="tag-difficile" name="tag" value="Difficile">
                         <label for="difficile">Difficile</label><br>
                     </div>
                 </div>
@@ -58,13 +58,13 @@ $trails = get_trails_all($connectBDD);
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Etats</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">
-                        <input type="checkbox" id="active" name="tag" value="Ouvert">
+                        <input class="status" type="checkbox" id="active" name="tag" value="Ouvert">
                         <label for="active">Ouvert</label><br>
 
-                        <input type="checkbox" id="work" name="tag" value="En travaux">
+                        <input class="status" type="checkbox" id="work" name="tag" value="En travaux">
                         <label for="work">En travaux</label><br>
 
-                        <input type="checkbox" id="inactive" name="tag" value="Fermé">
+                        <input class="status" type="checkbox" id="inactive" name="tag" value="Fermé">
                         <label for="inactive">Fermé</label><br>
                     </div>
                 </div>
@@ -91,6 +91,7 @@ $trails = get_trails_all($connectBDD);
                     </div>
                 </div>
                 <button id="filter-btn" class="filter-btn">Afficher les résulats</button>
+                <button id="remove-filter" class="filter-btn">Retirer tous les filtres</button>
             </div>
         </section>
 
@@ -110,7 +111,7 @@ $trails = get_trails_all($connectBDD);
                 }
             </style>
             <h2>Nos Sentiers</h2>
-            <div class="overflow">
+            <div id="overflow" class="overflow">
                 <?php foreach ($trails as $trail): ?>
                     <div class="card">
                         <div class="card_top">

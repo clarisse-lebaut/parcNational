@@ -131,4 +131,39 @@ function get_data_time($connectBDD, $time){
         return json_encode(['error' => 'Une erreur est survenue : ' . $th->getMessage()]);
     } 
 }
+
+function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
+    // Construire la requête SQL de base
+    $query = "SELECT * FROM trails WHERE 1=1"; // 1=1 pour simplifier l'ajout de conditions
+    $params = []; // Pour stocker les valeurs des paramètres
+
+    // Ajouter des conditions pour la difficulté
+    if ($difficulty) {
+        $query .= " AND difficulty = :difficulty";
+        $params[':difficulty'] = $difficulty;
+    }
+
+    // Ajouter des conditions pour la longueur
+    if ($km) {
+        $query .= " AND length = :length";
+        $params[':length'] = $km;
+    }
+
+    // Ajouter des conditions pour le statut
+    if ($status) {
+        $query .= " AND status = :status";
+        $params[':status'] = $status;
+    }
+
+    // Ajouter des conditions pour le temps
+    if ($time) {
+        $query .= " AND time = :time";
+        $params[':time'] = $time;
+    }
+
+    // Préparer et exécuter la requête
+    $stmt = $connectBDD->prepare($query);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC); // Renvoyer les résultats
+}
 ?>

@@ -1,19 +1,78 @@
-// Récupérer les cases à cocher et le bouton de filtrage
 const filterButton = document.getElementById("filter-btn");
 filterButton.addEventListener("click", function () {
+  const checkboxes = document.getElementsByName("tag");
+  const selectedDifficulties = [];
+  const selectedStatuses = [];
+  const selectedLengths = [];
+  const selectedTimes = [];
+
   // Vérifie quelles cases sont cochées
-  const facileChecked = document.getElementById("facile").checked;
-  const moyenChecked = document.getElementById("moyen").checked;
-  const difficileChecked = document.getElementById("difficile").checked;
+  checkboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
+      // Distinguer les types de filtres par classe
+      if (checkbox.classList.contains("difficulty")) {
+        selectedDifficulties.push(checkbox.value);
+      }
+      else if (checkbox.classList.contains("status")) {
+        selectedStatuses.push(checkbox.value);
+      }
+      else if (checkbox.classList.contains("length")) {
+        selectedLengths.push(checkbox.value);
+      }
+      else if (checkbox.classList.contains("time")) {
+        selectedTimes.push(checkbox.value);
+      }
+    }
+  });
 
-  // Afficher les valeurs cochées dans la console
-  console.log("Facile:", facileChecked);
-  console.log("Moyen:", moyenChecked);
-  console.log("Difficile:", difficileChecked);
+  // Créer une chaîne de requête
+  const queryParams = [];
+  if (selectedDifficulties.length > 0) {
+    queryParams.push(`difficulty=${encodeURIComponent(selectedDifficulties.join(","))}`);
+  }
+  if (selectedStatuses.length > 0) {
+    queryParams.push(`status=${encodeURIComponent(selectedStatuses.join(","))}`);
+  }
+  if (selectedLengths.length > 0) {
+    queryParams.push(`length_km=${encodeURIComponent(selectedLengths.join(","))}`);
+  }
+  if (selectedTimes.length > 0) {
+    queryParams.push(`time=${encodeURIComponent(selectedTimes.join(","))}`);
+  }
 
-  // Ici, tu peux ajouter ton code pour appliquer les filtres selon les cases cochées.
+  const queryString = queryParams.join("&");
+
+  fetch(`../data/data_all.php?${queryString}`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok: " + response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      updateTrailDisplay(data);
+    })
+    .catch((error) => console.error("Erreur:", error));
 });
 
+//* ----- ICI ON EST BON -----
+function updateTrailDisplay(data) {
+  const resultsContainer = document.getElementById("overflow");
+  resultsContainer.innerHTML = ""; // Vider le conteneur des résultats précédents
+
+  if (data) {
+    data.forEach((item) => {
+      // Assurez-vous que les données sont au bon format
+      const div = document.createElement("div");
+      div.textContent = `Difficulté: ${item.difficulty}, Longueur: ${item.length} km, Statut: ${item.status}, Temps: ${item.time}`;
+      resultsContainer.appendChild(div);
+    });
+  } else {
+    resultsContainer.textContent = "Aucune donnée disponible pour ce filtre.";
+  }
+}
+
+//* ----- ICI ON EST BON -----
 const checkboxes = document.getElementsByName("tag");
 // Boucle sur chaque checkbox pour ajouter un event listener
 checkboxes.forEach(function (checkbox) {

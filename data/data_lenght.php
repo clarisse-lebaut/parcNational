@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Content-Type: application/json; charset=utf-8'); // Indique que le contenu est du JSON
     
     // Récupérer la difficulté depuis les paramètres GET
-    $km = $_GET['length_km'] ?? 0;
+    $km = $_GET['length_km'] ?? 2;
 
     // Appeler la fonction avec la difficulté
     $data = get_data_length($connectBDD, $km);
