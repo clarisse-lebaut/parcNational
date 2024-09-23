@@ -1,0 +1,37 @@
+/*HEADER */
+.fc-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.fc-toolbar-title {
+    padding-left: 10px !important;
+    font-size: 20px !important;
+    color: #d38d8d !important;
+}
+
+/* Boutons des vues (Mois, Semaine, Jour) */
+.fc-dayGridMonth-button {
+    background-color: #FFB6C1 !important; 
+}
+.fc-timeGridWeek-button {
+    background-color: #FF69B4 !important; 
+}
+.fc-timeGridDay-button {
+    background-color: #FF1493 !important; 
+}
+.fc-dayGridMonth-button,.fc-timeGridWeek-button,.fc-timeGridDay-button, .fc-prev-button, .fc-next-button, .fc-today-button {
+    border: none !important;
+    padding: 8px 16px !important;
+}
+
+/* boutons navigation (<,>, aujourd'hui) */
+.fc-prev-button, .fc-next-button, .fc-today-button {
+    background-color: #9370DB !important;
+    border-radius: 5px !important;
+    margin: 4px !important;
+}
+
+.fc-prev-button, .fc-next-button {
+    background-color: #9a8fe8 !important; 
+}
