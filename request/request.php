@@ -70,7 +70,7 @@ function get_data_length($connectBDD, $km){
     $epsilon = 0.5;
 
     // Requête SQL pour récupérer les sentiers dont la longueur est proche du km donné
-    $sql = "SELECT * FROM trails WHERE lenght_km BETWEEN ? AND ?";
+    $sql = "SELECT * FROM trails WHERE length_km BETWEEN ? AND ?";
     $stmt = $connectBDD->prepare($sql);
 
     try {
@@ -98,18 +98,18 @@ function get_data_length($connectBDD, $km){
 }
 
 
-function get_data_time(){
+function get_data_time($connectBDD, $time){
     // Convertir l'heure fournie en datetime pour manipuler plus facilement
-    $hour = new DateTime($hour);
+    $time = new DateTime($time);
 
     // Définir une tolérance de 30 minutes avant et après l'heure donnée
-    $minTime = clone $hour;
+    $minTime = clone $time;
     $minTime->modify('-30 minutes');
-    $maxTime = clone $hour;
+    $maxTime = clone $time;
     $maxTime->modify('+30 minutes');
 
     // Requête SQL pour récupérer les sentiers dont l'heure est comprise dans l'intervalle
-    $sql = "SELECT * FROM trails WHERE time_column BETWEEN ? AND ?";
+    $sql = "SELECT * FROM trails WHERE time BETWEEN ? AND ?";
     $stmt = $connectBDD->prepare($sql);
 
     try {

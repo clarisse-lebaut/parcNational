@@ -199,13 +199,6 @@ $trails = get_trails_all($connectBDD);
                                             break;
                                     }
                                 ?>
-                                <!-- Pour la ligne status = le risque que le paramètre dans la base de donnée
-                                 soit nul provoque une erreur =
-                                 il faut donc mettre un opérateur de fusion pour éviter les problèmes de sécurité
-                                 
-                                 //? ENT_QUOTES est une constante utilisée avec la fonction htmlspecialchars() en PHP 
-                                 spécifie le type de guillemets à convertir en entités HTML.
-                                  -->
                                 <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
                                 <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
                             </div>
