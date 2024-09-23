@@ -39,7 +39,29 @@ function get_data_difficulty($connectBDD, $difficulty) {
 }
 
 
-function get_data_status(){
+function get_data_status($connectBDD, $status){
+// Requête SQL pour récupérer uniquement les sentiers avec la difficulté spécifiée
+    $sql = "SELECT * FROM trails WHERE status = ?";
+    $stmt = $connectBDD->prepare($sql);
+
+    try {
+        $stmt->execute([$status]);
+
+        // Récupérer les résultats
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Si aucune donnée n'est trouvée, renvoie un message d'erreur au format JSON
+        if (empty($results)) {
+            return json_encode(['error' => 'Aucun sentier trouvé.']);
+        }
+        
+        // Retourne les résultats en format JSON
+        return json_encode($results);
+
+    } catch (Exception $e) {
+        // Renvoie une erreur en format JSON
+        return json_encode(['error' => 'Une erreur est survenue : ' . $e->getMessage()]);
+    }
     
 }
 

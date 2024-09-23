@@ -3,10 +3,10 @@ function click() {
 
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
-      const difficulty = buttons[i].getAttribute("data-filter");
+      const status = buttons[i].getAttribute("data-filter-status");
 
-      if (difficulty) {
-        fetch(`../scripts/data_trails.php?difficulty=${difficulty}`)
+      if (status) {
+        fetch(`../scripts/data_status.php?status=${status}`)
           .then((response) => response.json())
           .then((data) => {
             updateTrailDisplay(data);
@@ -17,7 +17,6 @@ function click() {
         overflow.innerHTML = ""; // Ou réafficher tous les sentiers
       }
     });
-    
   }
 }
 

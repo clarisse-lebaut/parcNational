@@ -17,7 +17,8 @@ $trails = get_trails_all($connectBDD);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
-    <script src="../scripts/filter.js" defer></script>
+    <script src="../scripts/filter_difficulty.js" defer></script>
+    <script src="../scripts/filter_status.js" defer></script>
 </head>
 <body>
     <header></header>
@@ -47,9 +48,9 @@ $trails = get_trails_all($connectBDD);
             <div class="filter">
                 <button class="filter-btn">Reset</button>
                 <!-- difficulté -->
-                <button class="filter-btn" data-filter="Facile">Facile</button>
-                <button class="filter-btn" data-filter="Moyen">Moyen</button>
-                <button class="filter-btn" data-filter="Difficile">Difficile</button>
+                <button class="filter-btn" data-filter-difficulty="Facile">Facile</button>
+                <button class="filter-btn" data-filter-difficulty="Moyen">Moyen</button>
+                <button class="filter-btn" data-filter-difficulty="Difficile">Difficile</button>
                 
                 <!-- km -->
                 <button class="filter-btn" data-filter="km-up">km ordre croissant</button>
@@ -96,9 +97,9 @@ $trails = get_trails_all($connectBDD);
                 </div>
                 
                 <!-- satus -->
-                <button class="filter-btn" data-filter="active">Ouvert</button>
-                <button class="filter-btn" data-filter="work">En travaux</button>
-                <button class="filter-btn" data-filter="inactive">Fermé</button>
+                <button class="filter-btn" data-filter-status="active">Ouvert</button>
+                <button class="filter-btn" data-filter-status="work">En travaux</button>
+                <button class="filter-btn" data-filter-status="inactive">Fermé</button>
             </div>
         </section>
 
