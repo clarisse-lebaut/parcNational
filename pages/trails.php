@@ -47,10 +47,16 @@ $trails = get_trails_all($connectBDD);
 
             <div class="filter">
                 <button class="filter-btn">Reset</button>
+                
                 <!-- difficulté -->
                 <button class="filter-btn" data-filter-difficulty="Facile">Facile</button>
                 <button class="filter-btn" data-filter-difficulty="Moyen">Moyen</button>
                 <button class="filter-btn" data-filter-difficulty="Difficile">Difficile</button>
+
+                <!-- satus -->
+                <button class="filter-btn" data-filter-status="active">Ouvert</button>
+                <button class="filter-btn" data-filter-status="work">En travaux</button>
+                <button class="filter-btn" data-filter-status="inactive">Fermé</button>
                 
                 <!-- km -->
                 <button class="filter-btn" data-filter="km-up">km ordre croissant</button>
@@ -75,8 +81,8 @@ $trails = get_trails_all($connectBDD);
                 </div>
                 
                 <!-- temps -->
-                <button class="filter-btn" data-filter="time-up">temps ordre croissant</button>
-                <button class="filter-btn" data-filter="time-down">temps ordre décroissant</button>
+                <button class="filter-btn" data-filter-time="time-up">temps ordre croissant</button>
+                <button class="filter-btn" data-filter-time="time-down">temps ordre décroissant</button>
                 <div class="search-time">
                     <label for="km">Temps de marche</label>
                     <select name="time" id="time">
@@ -95,11 +101,6 @@ $trails = get_trails_all($connectBDD);
                         <option value="">12h</option>
                     </select>
                 </div>
-                
-                <!-- satus -->
-                <button class="filter-btn" data-filter-status="active">Ouvert</button>
-                <button class="filter-btn" data-filter-status="work">En travaux</button>
-                <button class="filter-btn" data-filter-status="inactive">Fermé</button>
             </div>
         </section>
 
