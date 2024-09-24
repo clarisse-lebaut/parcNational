@@ -8,7 +8,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Charger les données GeoJSON depuis le serveur
-fetch("./getdata_map.php") // Remplacer par le chemin correct de ton fichier PHP
+fetch("../data/data_map.php") // Remplacer par le chemin correct de ton fichier PHP
   .then((response) => response.json())
   .then((data) => {
     // Ajouter le polygone sur la carte avec les données GeoJSON
