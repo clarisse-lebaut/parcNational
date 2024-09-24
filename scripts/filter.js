@@ -52,22 +52,115 @@ filterButton.addEventListener("click", function () {
     .catch((error) => console.error("Erreur:", error));
 });
 
+//* ----- FONCTION POUR FAIRE APPARAITRE LES DONNEE DANS LA DIV -----
 function updateTrailDisplay(data) {
   const resultsContainer = document.getElementById("overflow");
   resultsContainer.innerHTML = ""; // Vider le conteneur des résultats précédents
 
   if (data && data.length > 0) {
     data.forEach((item) => {
-      const div = document.createElement("div");
-      div.textContent = `Difficulté: ${item.difficulty}, Longueur: ${item.length_km} km, Statut: ${item.status},Temps: ${item.time}`;
-      resultsContainer.appendChild(div);
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <div class="card_top">
+          <a href="">
+            <p>${item.name}</p>
+            <img src="../${item.image}" alt="${item.name}" width="200">
+          </a>
+        </div>
+        <div class="card_details">
+          <div>
+            <img src="../assets/icon/hiking.svg" alt="icon length">
+            <p>${item.length_km} km</p>
+          </div>
+          <div>
+            <img src="../assets/icon/time.svg" alt="icon time">
+            <p>${item.time}</p>
+          </div>
+          <div>
+            <img src="../assets/icon/${getDifficultyIcon(item.difficulty)}" alt="${getDifficultyAlt(
+        item.difficulty
+      )}">
+            <p>${item.difficulty}</p>
+          </div>
+          <div>
+            <p>${item.status}</p>
+            <img src="../assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(
+        item.status
+      )}">
+          </div>
+        </div>
+        <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
+        <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
+        <p>${item.description}</p>
+        <p>${item.acces}</p>
+      `;
+
+      resultsContainer.appendChild(card);
     });
   } else {
     resultsContainer.textContent = "Aucune donnée disponible pour ce filtre.";
   }
 }
 
-//* ----- ICI ON EST BON -----
+// Fonction pour obtenir l'icône de difficulté
+function getDifficultyIcon(difficulty) {
+  switch (difficulty) {
+    case "Facile":
+      return "shoes-green.svg";
+    case "Moyen":
+      return "shoes-orange.svg";
+    case "Difficile":
+      return "shoes-red.svg";
+    default:
+      return "shoes-default.svg";
+  }
+}
+
+// Fonction pour obtenir le texte alternatif de difficulté
+function getDifficultyAlt(difficulty) {
+  switch (difficulty) {
+    case "Facile":
+      return "icon green shoes";
+    case "Moyen":
+      return "icon orange shoes";
+    case "Difficile":
+      return "icon red shoes";
+    default:
+      return "icon default shoes";
+  }
+}
+
+// Fonction pour obtenir l'icône de statut
+function getStatusIcon(status) {
+  switch (status) {
+    case "active":
+      return "circle-green.svg";
+    case "work":
+      return "circle-orange.svg";
+    case "inactive":
+      return "circle-red.svg";
+    default:
+      return "circle-default.svg";
+  }
+}
+
+// Fonction pour obtenir le texte alternatif de statut
+function getStatusAlt(status) {
+  switch (status) {
+    case "active":
+      return "icon green circle";
+    case "work":
+      return "icon orange circle";
+    case "inactive":
+      return "icon red circle";
+    default:
+      return "no info available";
+  }
+}
+
+//* ----- FONCTION POUR FAIRE APPARAITRE ET RETIRER LES TAG -----
 const checkboxes = document.getElementsByName("tag");
 // Boucle sur chaque checkbox pour ajouter un event listener
 checkboxes.forEach(function (checkbox) {
