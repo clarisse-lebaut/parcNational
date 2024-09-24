@@ -18,6 +18,7 @@ $trails = get_trails_all($connectBDD);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
     <link rel="stylesheet" href="../assets/style/filter.css">
+    <link rel="stylesheet" href="../assets/style/trails.css">
     <script src="../assets/script/filter.js" defer></script>
 </head>
 <body>
@@ -72,14 +73,7 @@ $trails = get_trails_all($connectBDD);
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Longueur du sentier</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">  
-                            <!-- Boucle pour afficher toutes les distances -->
-                        <style>
-                            .order-options,
-                            .distance-options{
-                                display:flex;
-                                flex-direction: column;
-                            }
-                        </style>
+                        <!-- Boucle pour afficher toutes les distances -->
                         <div class="distance-options">
                             <label><input class="length" type="checkbox" id="1km" name="tag" value="1">1km</label>
                             <label><input class="length" type="checkbox" id="2km" name="tag" value="2">2km</label>
@@ -100,13 +94,6 @@ $trails = get_trails_all($connectBDD);
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Temps de marche</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">  
-                        <style>
-                            .order-options,
-                            .distance-options{
-                                display:flex;
-                                flex-direction: column;
-                            }
-                        </style>
                         <!-- Boucle pour afficher toutes les distances -->
                         <div class="distance-options">
                             <label><input class="time" type="checkbox" id="1:00:00" name="tag" value="1:00:00">1h</label>
@@ -137,13 +124,6 @@ $trails = get_trails_all($connectBDD);
         </section>
 
         <section>
-            <style>
-                .overflow{
-                    height: 750px;
-                    overflow: scroll;
-                    overflow-x: hidden;
-                }
-            </style>
             <h2>Nos Sentiers</h2>
             <div id="overflow" class="overflow">
                 <?php foreach ($trails as $trail): ?>

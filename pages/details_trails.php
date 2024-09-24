@@ -37,6 +37,7 @@ if ($trail_id > 0) {
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" defer></script>
     <!-- réalisé -->
     <script src="../assets/script/map.js" defer></script>
+    <link rel="stylesheet" href="../assets/style/details_trails.css">
     <link rel="stylesheet" href="../assets/style/map.css">
 </head>
 <body>
@@ -130,18 +131,6 @@ if ($trail_id > 0) {
     </section>
 
         <section>
-            <style>
-                .slider_elements{
-                    display : flex;
-                    flex-direction : row;
-                    justify-content : center;
-                    align-items : center;
-                    gap : 20px;
-                    overflow : scroll;
-                    overflow-y : hidden;
-                    height : 300px;                     
-                }
-            </style>
             <h2>Slider des autres sentiers</h2>
             <div class="slider">
                 <div class="slider_elements">
