@@ -299,13 +299,4 @@ function get_mapLandmarks_data($connectBDD) {
 
     return $geojson;  // Retourner le GeoJSON
 }
-
-
-
-
-
-
-
-
-
 ?>
