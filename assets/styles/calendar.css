@@ -10,7 +10,18 @@
     color: #d38d8d !important;
 }
 
-/* Boutons des vues (Mois, Semaine, Jour) */
+.fc-day-today {/* aujourd'hui */
+    background-color: #e6d2e3 !important; 
+    color: #000000 !important;
+}
+
+.fc-col-header-cell {/* lundi,mardi... */
+    background-color: #8cacb0 !important; 
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* Boutons des vues */
 .fc-dayGridMonth-button {
     background-color: #FFB6C1 !important; 
 }
