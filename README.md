@@ -14,4 +14,6 @@
 - l'image du sentier
 - les détails avec des conditions pour les icons
 - la description
+- liste des points de vue visible depuis ce sentier
+- map avec l'aspect du sentier et les différents point du vue
 - slider pour un accés aux autres sentiers
