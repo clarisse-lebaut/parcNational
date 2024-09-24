@@ -9,6 +9,6 @@
     <a href="./pages/trails.php">Les Sentiers</a>
     <a href="./pages/details_trails.php">Détails d'un sentier</a>
     <a href="./script/map.php">Récup map</a>
-    <a href="./script/map_trails.php">Récup un sentier</a>
+    <a href="./script/map_trail.php">Récup un sentier</a>
 </body>
 </html>
