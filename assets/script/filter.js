@@ -53,7 +53,7 @@ function applyFilters() {
 
   const queryString = queryParams.join("&");
 
-  fetch(`../data/data_all.php?${queryString}`)
+  fetch(`../data/data_filter_trails.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -218,7 +218,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("../data/data_all.php")
+    fetch("../data/data_filter_trails.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");
