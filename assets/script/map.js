@@ -93,8 +93,10 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
               offset: L.point(0, -20), // Adjust position of the popup
               closeButton: false,
             }).setLatLng(layer.getLatLng()).setContent(`
+              <div>
                 <img src="../${imageUrl}" alt="${feature.properties.name}" width="250px"/>
                 <p>${namePoi}</p>
+              </div>  
               `);
 
             map.openPopup(imagePopup); // Ouvrir l'image avec le pop-up au passage de la souris
