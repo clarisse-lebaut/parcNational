@@ -10,10 +10,12 @@
 - grid des sentiers cliquable pour avoir le détails
 
 ### Détails page d'un seul sentier : 
-- le titre
+- le titre du sentier
 - l'image du sentier
 - les détails avec des conditions pour les icons
 - la description
+- les informations
+- les accées au sentier
 - liste des points de vue visible depuis ce sentier
-- map avec l'aspect du sentier et les différents point du vue
+- map avec l'aspect du sentier et les différents point du vue disponible
 - slider pour un accés aux autres sentiers
