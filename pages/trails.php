@@ -125,7 +125,6 @@ $trails = get_trails_all($connectBDD);
                         </div>
                     </div>
                 </div>
-                <button id="filter-btn" class="filter-btn">Afficher les résulats</button>
                 <button id="remove-filter" class="filter-btn">Retirer tous les filtres</button>
             </div>
         </section>

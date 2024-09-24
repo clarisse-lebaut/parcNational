@@ -1,6 +1,14 @@
-const filterButton = document.getElementById("filter-btn");
-filterButton.addEventListener("click", function () {
-  const checkboxes = document.getElementsByName("tag");
+//* Attache un event listener 'change' à chaque case à cocher
+const checkboxes = document.getElementsByName("tag");
+checkboxes.forEach(function (checkbox) {
+  checkbox.addEventListener("change", function () {
+    applyFilters(); // Applique le filtre dès qu'une case est cochée ou décochée
+    manageTagDisplay(checkbox); // Gérer l'affichage des tags
+  });
+});
+
+//* Fonction pour appliquer les filtres en temps réel
+function applyFilters() {
   const selectedDifficulties = [];
   const selectedStatuses = [];
   const selectedLengths = [];
@@ -50,9 +58,38 @@ filterButton.addEventListener("click", function () {
       updateTrailDisplay(data);
     })
     .catch((error) => console.error("Erreur:", error));
-});
+}
 
-//* ----- FONCTION POUR FAIRE APPARAITRE LES DONNEE DANS LA DIV -----
+//* Fonction pour gérer l'affichage des tags en fonction des cases cochées
+function manageTagDisplay(checkbox) {
+  const tag = document.getElementById("active-filter");
+
+  if (checkbox.checked) {
+    // Si la case est cochée, créer un tag
+    const card = document.createElement("div");
+    card.className = "tags";
+    card.id = `tag-${checkbox.value}`; // Assigner un ID unique basé sur la valeur de la checkbox
+    card.innerHTML = `
+      <p>${checkbox.value}</p>
+      <img class="close-tag" src='../assets/icon/cross.svg'/>
+    `;
+    tag.appendChild(card);
+    // Ajouter un event listener pour l'icône de fermeture (croix)
+    card.querySelector(".close-tag").addEventListener("click", function () {
+      card.remove(); // Supprimer le tag entier lorsqu'on clique sur la croix
+      checkbox.checked = false; // Décocher la case correspondante
+      applyFilters(); // Appliquer les filtres après suppression du tag
+    });
+  } else {
+    // Supprimer le tag correspondant quand la checkbox est décochée
+    const tagToRemove = document.getElementById(`tag-${checkbox.value}`);
+    if (tagToRemove) {
+      tagToRemove.remove();
+    }
+  }
+}
+
+//* Fonction pour afficher les données filtrées dans la div
 function updateTrailDisplay(data) {
   const resultsContainer = document.getElementById("overflow");
   resultsContainer.innerHTML = ""; // Vider le conteneur des résultats précédents
@@ -159,36 +196,3 @@ function getStatusAlt(status) {
       return "no info available";
   }
 }
-
-//* ----- FONCTION POUR FAIRE APPARAITRE ET RETIRER LES TAG -----
-const checkboxes = document.getElementsByName("tag");
-// Boucle sur chaque checkbox pour ajouter un event listener
-checkboxes.forEach(function (checkbox) {
-  // Ajoute un listener sur chaque checkbox
-  checkbox.addEventListener("click", function () {
-    const tag = document.getElementById("active-filter");
-
-    if (checkbox.checked) {
-      // Si la case est cochée, créer un tag
-      const card = document.createElement("div");
-      card.className = "tags";
-      card.id = `tag-${checkbox.value}`; // Assigner un ID unique basé sur la valeur de la checkbox
-      card.innerHTML = `
-        <p>${checkbox.value}</p>
-        <img class="close-tag" src='../assets/icon/cross.svg'/>
-      `;
-      tag.appendChild(card);
-      // Ajouter un event listener pour l'icône de fermeture (croix)
-      card.querySelector(".close-tag").addEventListener("click", function () {
-        card.remove(); // Supprimer le tag entier lorsqu'on clique sur la croix
-        checkbox.checked = false; // Décocher la case correspondante
-      });
-    } else {
-      // Supprimer le tag correspondant quand la checkbox est décochée
-      const tagToRemove = document.getElementById(`tag-${checkbox.value}`);
-      if (tagToRemove) {
-        tagToRemove.remove();
-      }
-    }
-  });
-});
