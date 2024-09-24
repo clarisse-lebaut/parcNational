@@ -7,6 +7,12 @@ checkboxes.forEach(function (checkbox) {
   });
 });
 
+//* Fonction pour récupérer l'ID de l'URL
+function getUrlId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("id");
+}
+
 //* Fonction pour appliquer les filtres en temps réel
 function applyFilters() {
   const selectedDifficulties = [];
@@ -101,7 +107,7 @@ function updateTrailDisplay(data) {
 
       card.innerHTML = `
         <div class="card_top">
-          <a href="">
+          <a href="../pages/details_trails.php?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
             <img src="../${item.image}" alt="${item.name}" width="200">
           </a>
