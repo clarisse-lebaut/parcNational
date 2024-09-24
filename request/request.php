@@ -145,6 +145,8 @@ function get_mapTrails_data($connectBDD) {
     error_reporting(E_ALL);
 
     header('Content-Type: application/json');
+
+    // Requête SQL pour récupérer tous les sentiers
     $sql = "SELECT t.trail_id, t.name, pg.part_number, pg.coordinate_number, pg.longitude, pg.latitude
             FROM trails t
             JOIN position_geographic pg ON t.trail_id = pg.trail_id
@@ -153,7 +155,7 @@ function get_mapTrails_data($connectBDD) {
     $stmt = $connectBDD->prepare($sql);
     $stmt->execute();
 
-    // Structure pour contenir chaque sentier
+    // Structure pour contenir tous les sentiers
     $trails = [];
     $currentTrailId = null;
     $currentLineString = [];
@@ -169,7 +171,6 @@ function get_mapTrails_data($connectBDD) {
                 $trails[$currentTrailId]['linestrings'][] = $currentLineString;
             }
             $currentLineString = [];
-            $currentTrailId = $trailId; // Changer de sentier
         }
 
         // Si nous changeons de partie, ajoutons la ligne courante au sentier
@@ -188,6 +189,7 @@ function get_mapTrails_data($connectBDD) {
         // Stocker les informations du sentier
         if (!isset($trails[$trailId])) {
             $trails[$trailId] = [
+                'trail_id' => $trailId, // Ajouter l'ID du sentier
                 'name' => $row['name'],
                 'linestrings' => []
             ];
@@ -199,7 +201,7 @@ function get_mapTrails_data($connectBDD) {
         $trails[$currentTrailId]['linestrings'][] = $currentLineString;
     }
 
-    // Créer le GeoJSON avec des MultiLineString pour chaque sentier
+    // Créer le GeoJSON
     $geojson = [
         'type' => 'FeatureCollection',
         'features' => []
@@ -213,13 +215,17 @@ function get_mapTrails_data($connectBDD) {
                 'coordinates' => $trail['linestrings']
             ],
             'properties' => [
-                'name' => $trail['name']
+                'name' => $trail['name'],
+                'trail_id' => $trail['trail_id']  // Ajouter l'ID du sentier ici
             ]
         ];
     }
 
-    return $geojson;  // Ne pas oublier de retourner le GeoJSON
+    return $geojson;  // Retourner le GeoJSON
 }
+
+
+
 
 
 
