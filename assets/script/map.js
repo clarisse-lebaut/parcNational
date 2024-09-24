@@ -32,7 +32,9 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
       // Filtrer les sentiers selon l'ID
       const filteredTrail = {
         type: "FeatureCollection",
-        features: trailData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
+        features: trailData.features.filter(
+          (feature) => feature.properties.trail_id == trailId
+        ), // Filtrer par trail_id
       };
 
       // Vérifier si le sentier filtré n'est pas vide
@@ -52,7 +54,9 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
     // Filtrer les landmarks selon l'ID de sentier
     const filteredLandmarks = {
       type: "FeatureCollection",
-      features: landmarksData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
+      features: landmarksData.features.filter(
+        (feature) => feature.properties.trail_id == trailId
+      ), // Filtrer par trail_id
     };
 
     // Vérifier si des landmarks filtrés existent
@@ -60,7 +64,30 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
       // Ajouter les points d'intérêt filtrés à la carte
       L.geoJSON(filteredLandmarks, {
         onEachFeature: function (feature, layer) {
-          layer.bindPopup(feature.properties.name); // Ajouter une popup avec le nom du landmark
+          // Bind a popup with the landmark name (when clicked)
+          layer.bindPopup(feature.properties.name);
+
+          // Image URL associated with the landmark (you may have this data in your GeoJSON)
+          var imageUrl = feature.properties.image; // Assuming 'image_url' property exists
+          var namePoi = feature.properties.name;
+
+          // Add hover event to show image
+          layer.on("mouseover", function () {
+            var imagePopup = L.popup({
+              offset: L.point(0, -20), // Adjust position of the popup
+              closeButton: false,
+            }).setLatLng(layer.getLatLng()).setContent(`
+                <img src="../${imageUrl}" alt="${feature.properties.name}" width="250px"/>
+                <p>${namePoi}</p>
+              `);
+
+            map.openPopup(imagePopup); // Ouvrir l'image avec le pop-up au passage de la souris
+          });
+
+          // Fermer l'image quand la souris n'est plus dessus
+          layer.on("mouseout", function () {
+            map.closePopup();
+          });
         },
       }).addTo(map);
     } else {

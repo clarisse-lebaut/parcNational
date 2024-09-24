@@ -275,8 +275,8 @@ function get_mapLandmarks_data($connectBDD) {
 
     header('Content-Type: application/json');
 
-    // Récupérer tous les points d'intérêt avec l'ID du sentier
-    $sql = "SELECT lt.landmark_id, l.name, lt.trail_id, l.longitude, l.latitude 
+    // Récupérer tous les points d'intérêt + ID du sentier
+    $sql = "SELECT lt.landmark_id, l.name, lt.trail_id, l.longitude, l.latitude, l.image 
             FROM landmarks l
             JOIN landmarks_trails lt ON l.landmark_id = lt.landmark_id";
 
@@ -294,7 +294,8 @@ function get_mapLandmarks_data($connectBDD) {
             'properties' => [
                 'landmark_id' => $poi['landmark_id'],
                 'trail_id' => $poi['trail_id'], // Inclure l'ID du sentier
-                'name' => $poi['name']
+                'name' => $poi['name'],
+                'image' => $poi['image']
             ]
         ];
     }
