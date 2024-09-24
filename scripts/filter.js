@@ -196,3 +196,37 @@ function getStatusAlt(status) {
       return "no info available";
   }
 }
+
+function removeAll() {
+  const remove = document.getElementById("remove-filter");
+  remove.addEventListener("click", function () {
+    // Supprimer les tags et décocher les cases
+    checkboxes.forEach(function (checkbox) {
+      if (checkbox.checked) {
+        checkbox.checked = false;
+        const tagToRemove = document.getElementById(`tag-${checkbox.value}`);
+        if (tagToRemove) {
+          tagToRemove.remove();
+        }
+      }
+    });
+
+    // Récupérer toutes les données et les afficher
+    fetch("../data/data_all.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Erreur lors de la récupération des données");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        updateTrailDisplay(data); // Met à jour l'affichage avec toutes les données
+      })
+      .catch((error) => {
+        console.error("Erreur:", error);
+      });
+  });
+}
+
+// Appelle la fonction pour la configurer
+removeAll();
