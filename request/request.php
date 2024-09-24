@@ -224,6 +224,46 @@ function get_mapTrails_data($connectBDD) {
     return $geojson;  // Retourner le GeoJSON
 }
 
+function get_mapLandmarks_data($connectBDD) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    header('Content-Type: application/json');
+
+    // Récupérer tous les points d'intérêt avec l'ID du sentier
+    $sql = "SELECT lt.landmark_id, l.name, lt.trail_id, l.longitude, l.latitude 
+            FROM landmarks l
+            JOIN landmarks_trails lt ON l.landmark_id = lt.landmark_id";
+
+    $stmt = $connectBDD->prepare($sql);
+    $stmt->execute();
+
+    $pois = [];
+    while ($poi = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $pois[] = [
+            'type' => 'Feature',
+            'geometry' => [
+                'type' => 'Point',
+                'coordinates' => [(float)$poi['longitude'], (float)$poi['latitude']]
+            ],
+            'properties' => [
+                'landmark_id' => $poi['landmark_id'],
+                'trail_id' => $poi['trail_id'], // Inclure l'ID du sentier
+                'name' => $poi['name']
+            ]
+        ];
+    }
+
+    // Créer le GeoJSON
+    $geojson = [
+        'type' => 'FeatureCollection',
+        'features' => $pois
+    ];
+
+    return $geojson;  // Retourner le GeoJSON
+}
+
 
 
 
