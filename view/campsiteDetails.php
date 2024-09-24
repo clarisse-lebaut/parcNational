@@ -1,36 +1,78 @@
 <?php
-include_once '../model/ConnectBDD.php';
+require_once __DIR__ . '/../model/CampsiteModel.php';
 
-// Créer une instance de connexion
-$connect = new ConnectBDD();
-$bdd = $connect->connectBDD(); // Connexion à la base de données
+$campsiteModel = new CampsiteModel();
 
-// Vérifie que la connexion est réussie
-if ($bdd) {
-    // Récupérer l'ID du camping depuis l'URL
-    $campsite_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// Récupérer l'ID du camping depuis l'URL puis ses details grace au model
+$campsite_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-    if ($campsite_id > 0) {
-        // Requête SQL pour récupérer les détails du camping
-        $sql = "SELECT * FROM campsite WHERE campsite_id = :id";
-        $stmt = $bdd->prepare($sql);
-        $stmt->bindParam(':id', $campsite_id, PDO::PARAM_INT);
-        $stmt->execute();
-        
-        if ($stmt->rowCount() > 0) {
-            $camping = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo "<h1>" . $camping['name'] . "</h1>";
-            echo "<img src='/" . $camping['image'] . "' alt='" . $camping['name'] . "'>";
-            echo "<p>" . $camping['description'] . "</p>";
-            echo "<p>Adresse : " . $camping['address'] . ", " . $camping['city'] . " " . $camping['zipcode'] . "</p>";
-            echo "<p>Status : " . $camping['status'] . "</p>";
-        } else {
-            echo "Camping introuvable.";
-        }
-    } else {
-        echo "ID de camping non valide.";
-    }
+if ($campsite_id > 0) {
+    $campsite = $campsiteModel->getCampsiteById($campsite_id);
 } else {
-    echo "Erreur de connexion à la base de données.";
+    $campsite = null;
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Camping</title>
+    <link rel="stylesheet" href="../assets/styles/campsiteDetails.css">
+</head>
+<body>
+    <div class="campsite-details-container">
+        <?php if ($campsite): ?>
+            <!-- ROW TITRE -->
+            <div class="campsite-details-row">
+                <h1 class="campsite-details-title"><?= htmlspecialchars($campsite['name']); ?></h1>
+            </div>
+
+            <!-- ROW IMG -->
+            <div class="campsite-details-row">
+                <img class="campsite-details-img" src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
+            </div>
+
+            <!-- ROW ICONES -->
+            <div class="campsite-details-row campsite-details-rowicon <?= ($campsite['status'] === 'Ouvert') ? 'status-open' : 'status-closed'; ?>">
+                <p>
+                    <?php if ($campsite['status'] === 'Ouvert'): ?>
+                        <span class="status-icon">&#x1F7E2;</span> 
+                        Ouvert
+                    <?php else: ?>
+                        <span class="status-icon">&#x1F534;</span> 
+                        Fermé
+                    <?php endif; ?>
+                </p>
+            </div>
+
+            <!-- ROW ADRESSE ET DISPO -->
+            <div class="campsite-details-row">
+                <div class="campsite-details-info">
+                    <div class="campsite-details-rowicon">
+                        <p>Adresse : <?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>
+                    </div>
+                    <div class="campsite-details-info-dispo">
+                       CALDENDRIER DES DISPO
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW DESCRIPTION -->
+            <div class="campsite-details-row">
+                <div class="campsite-details-description">
+                    <p><?= htmlspecialchars($campsite['description']); ?></p>
+                </div>
+            </div>
+
+            <!-- ROW BOUTON RESERVER -->
+            <div class="campsite-details-row">
+                <a href="#" class="campsite-details-btn">Faire une réservation</a>
+            </div>
+        <?php else: ?>
+            <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
