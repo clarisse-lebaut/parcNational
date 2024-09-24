@@ -21,10 +21,10 @@ const trailId = urlParams.get("id");
 // Utiliser Promise.all pour charger plusieurs fichiers GeoJSON
 Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.json())))
   .then((geojsonDataArray) => {
-    // Ajouter le premier fichier (data_map.php) à la carte (contours)
+    //* Ajouter le premier fichier (data_map.php) à la carte (contours)
     L.geoJSON(geojsonDataArray[0]).addTo(map);
 
-    // Boucler sur le second fichier (data_map_trails.php) pour récupérer uniquement le sentier spécifique
+    //* Boucler sur le second fichier (data_map_trails.php) pour récupérer uniquement le sentier spécifique
     const trailData = geojsonDataArray[1];
 
     // Vérifier si le sentier est présent dans le GeoJSON
@@ -32,15 +32,33 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
       // Filtrer les sentiers selon l'ID
       const filteredTrail = {
         type: "FeatureCollection",
-        features: trailData.features.filter(
-          (feature) => feature.properties.trail_id == trailId
-        ), // Filtrer par trail_id
+        features: trailData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
       };
 
       // Vérifier si le sentier filtré n'est pas vide
       if (filteredTrail.features.length > 0) {
-        // Ajouter le sentier filtré à la carte
-        L.geoJSON(filteredTrail).addTo(map);
+        // Ajouter le sentier filtré à la carte avec un popup au hover
+        L.geoJSON(filteredTrail, {
+          onEachFeature: function (feature, layer) {
+            // Créer un contenu pour le popup (nom du sentier par exemple)
+            let popupContent = `
+              <div>
+                <p><strong>Nom du sentier :</strong> ${feature.properties.name}</p>
+              </div>
+            `;
+
+            // Ajout d'un événement au survol (mouseover) pour afficher le popup
+            layer.on("mouseover", function () {
+              // Affiche un popup temporaire au survol
+              layer.bindPopup(popupContent).openPopup();
+            });
+
+            // Optionnel : fermer le popup quand la souris quitte le sentier
+            layer.on("mouseout", function () {
+              layer.closePopup();
+            });
+          },
+        }).addTo(map);
       } else {
         console.error("Aucun sentier trouvé pour l'ID spécifié dans le GeoJSON.");
       }
@@ -48,15 +66,13 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
       console.error("Aucun sentier trouvé dans le GeoJSON.");
     }
 
-    // Boucler sur le troisième fichier (data_landmarks.php) pour récupérer les points d'intérêt
-    const landmarksData = geojsonDataArray[2];
+    //* Récupérer les données du fichier landmarks (data_map_landmarks.php)
+    const landmarksData = geojsonDataArray[2]; // Récupération des données landmarks
 
     // Filtrer les landmarks selon l'ID de sentier
     const filteredLandmarks = {
       type: "FeatureCollection",
-      features: landmarksData.features.filter(
-        (feature) => feature.properties.trail_id == trailId
-      ), // Filtrer par trail_id
+      features: landmarksData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
     };
 
     // Vérifier si des landmarks filtrés existent
