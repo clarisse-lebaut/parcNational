@@ -56,7 +56,7 @@ function get_trails_access($connectBDD, $access) {
     return executeQuery($connectBDD, $sql, [':acces' => $access]);
 }
 function get_trails_landmarks($connectBDD, $trail_id) {
-    $sql = "SELECT lt.landmark_id, l.name 
+    $sql = "SELECT lt.landmark_id, l.name, l.description, l.location 
             FROM landmarks_trails lt
             JOIN landmarks l ON lt.landmark_id = l.landmark_id
             WHERE lt.trail_id = :trail_id";

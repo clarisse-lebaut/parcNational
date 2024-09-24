@@ -123,24 +123,26 @@ if ($trail_id > 0) {
             <div id="map"></div>
         </section>
 
-    <section>
-        <h2>Points de vue</h2>
-            <?php foreach ($landmarks as $landmark): ?>
-            <div class="card_landmarks">
-                <p><?php echo htmlspecialchars($landmark['name'], ENT_QUOTES, 'UTF-8'); ?></p>
-            </div>
-        <?php endforeach; ?>
-    </section>
+        <section>
+            <h2>Points de vue</h2>
+                <?php foreach ($landmarks as $landmark): ?>
+                <div class="card_landmarks">
+                    <p><?php echo htmlspecialchars($landmark['name'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?php echo htmlspecialchars($landmark['location'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p><?php echo htmlspecialchars($landmark['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                </div>
+            <?php endforeach; ?>
+        </section>
 
-    <section>
-        <h2>Informations sur le sentier</h2>
-        <p><?php echo htmlspecialchars($trail['infos']); ?></p>
-    </section>
+        <section>
+            <h2>Informations sur le sentier</h2>
+            <p><?php echo htmlspecialchars($trail['infos']); ?></p>
+        </section>
 
-    <section>
-        <h2>Accéder au sentier</h2>
-        <p><?php echo htmlspecialchars($trail['acces']); ?></p>
-    </section>
+        <section>
+            <h2>Accéder au sentier</h2>
+            <p><?php echo htmlspecialchars($trail['acces']); ?></p>
+        </section>
 
         <section>
             <h2>Slider des autres sentiers</h2>
