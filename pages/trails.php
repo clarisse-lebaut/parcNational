@@ -8,6 +8,7 @@ $connectBDDInstance = new ConnectBDD();
 $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO à la fonction getAllTrails
+$trails = get_trails_all($connectBDD);
 $trails = get_all_trails($connectBDD);
 ?>
 
@@ -17,14 +18,18 @@ $trails = get_all_trails($connectBDD);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
+    <link rel="stylesheet" href="../assets/style/filter.css">
+    <script src="../scripts/filter.js" defer></script>
 </head>
 <body>
     <header></header>
     <main>
-        <h1>Titre : Les Sentiers</h1>
+        <h1>Les Sentiers</h1>
+    </head>
+    <body>
 
         <section>
-            <h2>Présentation de la page</h2>
+            <h2>Titre pour le paragrpahe de présentation de la page</h2>
             <p>
                 Site naturel remarquable, le Parc national des Calanques – situé entre Marseille et Cassis – regorge d’endroits 
                 d’exception. Arpenter les chemins est le meilleur moyen de découvrir les multiples facettes de ce parc national. 
@@ -34,12 +39,114 @@ $trails = get_all_trails($connectBDD);
         </section>
 
         <section>
-            <h2>Filtre</h2>
-            <p>Insérer la fonction pour le filtre en JavaScript</p>
+            <div class="filter">
+                <p>Filtrer par :</p>
+                <!-- Filtre pour les difficulté -->
+                <div class="dropdown">
+                    <button class="dropdown-btn"><div>Difficulté</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <div class="dropdown-content">
+                        <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
+                        <label for="facile">Facile</label><br>
+
+                        <input class="difficulty" type="checkbox" id="tag-moyen" name="tag" value="Moyen">
+                        <label for="moyen">Moyen</label><br>
+
+                        <input class="difficulty" type="checkbox" id="tag-difficile" name="tag" value="Difficile">
+                        <label for="difficile">Difficile</label><br>
+                    </div>
+                </div>
+                <!-- Filtre pour les états du sentier-->
+                <div class="dropdown">
+                    <button class="dropdown-btn"><div>Etats</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <div class="dropdown-content">
+                        <input class="status" type="checkbox" id="active" name="tag" value="active">
+                        <label for="active">Ouvert</label><br>
+
+                        <input class="status" type="checkbox" id="work" name="tag" value="work">
+                        <label for="work">En travaux</label><br>
+
+                        <input class="status" type="checkbox" id="inactive" name="tag" value="inactive">
+                        <label for="inactive">Fermé</label><br>
+                    </div>
+                </div>
+                <!-- Filtre pour les km-->
+                <div class="dropdown">
+                    <button class="dropdown-btn"><div>Longueur du sentier</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <div class="dropdown-content">  
+                            <!-- Boucle pour afficher toutes les distances -->
+                        <style>
+                            .order-options,
+                            .distance-options{
+                                display:flex;
+                                flex-direction: column;
+                            }
+                        </style>
+                        <div class="distance-options">
+                            <label><input class="length" type="checkbox" id="1km" name="tag" value="1">1km</label>
+                            <label><input class="length" type="checkbox" id="2km" name="tag" value="2">2km</label>
+                            <label><input class="length" type="checkbox" id="3km" name="tag" value="3">3km</label>
+                            <label><input class="length" type="checkbox" id="4km" name="tag" value="4">4km</label>
+                            <label><input class="length" type="checkbox" id="5km" name="tag" value="5">5km</label>
+                            <label><input class="length" type="checkbox" id="6km" name="tag" value="6">6km</label>
+                            <label><input class="length" type="checkbox" id="7km" name="tag" value="7">7km</label>
+                            <label><input class="length" type="checkbox" id="8km" name="tag" value="8">8km</label>
+                            <label><input class="length" type="checkbox" id="9km" name="tag" value="9">9km</label>
+                            <label><input class="length" type="checkbox" id="10km" name="tag" value="10">10km</label>
+                            <label><input class="length" type="checkbox" id="11km" name="tag" value="11">11km</label>
+                            <label><input class="length" type="checkbox" id="12km" name="tag" value="12">12km</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Filtre pour le temps de marche -->
+                <div class="dropdown">
+                    <button class="dropdown-btn"><div>Temps de marche</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <div class="dropdown-content">  
+                        <style>
+                            .order-options,
+                            .distance-options{
+                                display:flex;
+                                flex-direction: column;
+                            }
+                        </style>
+                        <!-- Boucle pour afficher toutes les distances -->
+                        <div class="distance-options">
+                            <label><input class="time" type="checkbox" id="1:00:00" name="tag" value="1:00:00">1h</label>
+                            <label><input class="time" type="checkbox" id="2:00:00" name="tag" value="2:00:00">2h</label>
+                            <label><input class="time" type="checkbox" id="3:00:00" name="tag" value="3:00:00">3h</label>
+                            <label><input class="time" type="checkbox" id="4:00:00" name="tag" value="4:00:00">4h</label>
+                            <label><input class="time" type="checkbox" id="5:00:00" name="tag" value="5:00:00">5h</label>
+                            <label><input class="time" type="checkbox" id="6:00:00" name="tag" value="6:00:00">6h</label>
+                            <label><input class="time" type="checkbox" id="7:00:00" name="tag" value="7:00:00">7h</label>
+                            <label><input class="time" type="checkbox" id="8:00:00" name="tag" value="8:00:00" >8h</label>
+                            <label><input class="time" type="checkbox" id="9:00:00" name="tag" value="9:00:00">9h</label>
+                            <label><input class="time" type="checkbox" id="10:00:00" name="tag" value="10:00:00">10h</label>
+                            <label><input class="time" type="checkbox" id="11:00:00" name="tag" value="11:00:00">11h</label>
+                            <label><input class="time" type="checkbox" id="12:00:00" name="tag" value="12:00:00">12h</label>
+                            <!-- Répéter pour les autres distances -->
+                        </div>
+                    </div>
+                </div>
+                <button id="remove-filter" class="filter-btn">Retirer tous les filtres</button>
+            </div>
         </section>
 
         <section>
-            <h2>Overflow</h2>
+            <p>Filtre actif :</p>
+            <div id="active-filter" class="active-filter">
+                <div class="filter-check"></div>
+            </div>
+        </section>
+
+        <section>
+            <style>
+                .overflow{
+                    height: 750px;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                }
+            </style>
+            <h2>Nos Sentiers</h2>
+            <div id="overflow" class="overflow">
                 <?php foreach ($trails as $trail): ?>
                     <div class="card_trails">
                         <div class="card_top">
@@ -48,14 +155,97 @@ $trails = get_all_trails($connectBDD);
                                 <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>
                         </div>
-                        <div class="card_trails_details">
-                            <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
-                            <p><?php echo htmlspecialchars($trail['time']); ?></p>
+                        <div class="card_details">
+                            <div>
+                                <img src="../assets/icon/hiking.svg" alt="icon lenght">
+                                <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
+                            </div>
+                            <div>
+                                <img src="../assets/icon/time.svg" alt="icon time">
+                                <p><?php echo htmlspecialchars($trail['time']); ?></p>
+
+                            </div>
+                            <div>
+                                <?php
+                                    $image_path ="";
+                                    $difficulty = $trail['difficulty'];
+                                    $easy = "shoes-green.svg";
+                                    $medium = "shoes-orange.svg";
+                                    $hard = "shoes-red.svg";
+                                    $default = "shoes-default.svg";
+
+                                    $alt_text = '';
+                                    if ($easy) {
+                                        $alt_text = 'icon green shoes';
+                                    } elseif ($medium) {
+                                        $alt_text = 'icon orange shoes';
+                                    } else {
+                                        $alt_text = 'icon red shoes';
+                                    }
+
+                                    switch ($difficulty) {
+                                        case 'Facile':
+                                            $image_path = "../assets/icon/$easy";
+                                            break;
+                                        case 'Moyen':
+                                            $image_path = "../assets/icon/$medium";
+                                            break;
+                                        case 'Difficile':
+                                            $image_path = "../assets/icon/$hard";
+                                            break;
+                                        default:
+                                            $image_path = "../assets/icon/$default";
+                                            break;
+                                    }
+                                ?>
+                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
+                                <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
+                            </div>
+                            <div>
+                                <?php
+                                    $image_path = "";
+                                    $status = $trail['status'];
+                                    $active = "circle-green.svg";
+                                    $work = "circle-orange.svg";
+                                    $inactive = "circle-red.svg";
+
+                                    $alt_text = '';
+                                    if ($active){
+                                        $alt_text = 'icon green circle';
+                                    } elseif ($work){
+                                        $alt_text = 'icon orange circle';
+                                    } elseif ($inactive) {
+                                        $alt_text = 'icon red circle';
+                                    } else {
+                                        $alt_text = 'no info available';
+                                    }
+
+                                    switch ($status) {
+                                        case 'active':
+                                            $image_path = "../assets/icon/$active";
+                                            break;
+                                        case 'work' : 
+                                            $image_path = "../assets/icon/$work";
+                                            break;
+                                        case 'inactive':
+                                            $image_path = "../assets/icon/$inactive";
+                                            break;
+                                        default:
+                                            $image_path = "../assets/icon/$active";
+                                            break;
+                                    }
+                                ?>
+                                <p><?php echo htmlspecialchars($trail['status'] ?? '', ENT_QUOTES, 'UTF-8'); ?></p>
+                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
+                            </div>
                         </div>
                         <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
                         <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
                     </div>
+                    <p><?php echo htmlspecialchars($trail['description']); ?></p>
+                    <p><?php echo htmlspecialchars($trail['acces']); ?></p> 
                 <?php endforeach; ?>
+            </div>
         </section>
     </main>
     <footer></footer>
