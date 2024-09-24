@@ -32,6 +32,12 @@ if ($trail_id > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details Trails</title>
+    <!-- pour la carte leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" defer></script>
+    <!-- réalisé -->
+    <script src="../assets/script/map.js" defer></script>
+    <link rel="stylesheet" href="../assets/style/map.css">
 </head>
 <body>
     <header></header>
@@ -111,6 +117,7 @@ if ($trail_id > 0) {
         <section>
             <h2>Map</h2>
             <p>Intégrer la map interactive</p>
+            <div id="map"></div>
         </section>
 
     <section>
