@@ -22,6 +22,8 @@ if ($trail_id > 0) {
     $trail_description = get_trails_description($connectBDD, $trail_id);
     $trail_difficulty = get_trails_difficulty($connectBDD, $trail_id);
     $trail_state = get_trails_status($connectBDD, $trail_id);
+    $trail_infos = get_trails_info($connectBDD, $trail_id);
+    $trail_access = get_trails_access($connectBDD, $trail_id);
     $landmarks = get_trails_landmarks($connectBDD, $trail_id);
 }
 ?>
@@ -128,6 +130,16 @@ if ($trail_id > 0) {
                 <p><?php echo htmlspecialchars($landmark['name'], ENT_QUOTES, 'UTF-8'); ?></p>
             </div>
         <?php endforeach; ?>
+    </section>
+
+    <section>
+        <h2>Informations sur le sentier</h2>
+        <p><?php echo htmlspecialchars($trail['infos']); ?></p>
+    </section>
+
+    <section>
+        <h2>Accéder au sentier</h2>
+        <p><?php echo htmlspecialchars($trail['acces']); ?></p>
     </section>
 
         <section>

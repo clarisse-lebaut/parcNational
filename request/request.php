@@ -47,6 +47,14 @@ function get_trails_status($connectBDD, $state) {
     $sql = "SELECT * FROM trails WHERE status = :status";
     return executeQuery($connectBDD, $sql, [':status' => $state]);
 }
+function get_trails_info($connectBDD, $news) {
+    $sql = "SELECT * FROM trails WHERE infos = :infos";
+    return executeQuery($connectBDD, $sql, [':infos' => $news]);
+}
+function get_trails_access($connectBDD, $access) {
+    $sql = "SELECT * FROM trails WHERE acces = :acces";
+    return executeQuery($connectBDD, $sql, [':acces' => $access]);
+}
 function get_trails_landmarks($connectBDD, $trail_id) {
     $sql = "SELECT lt.landmark_id, l.name 
             FROM landmarks_trails lt
