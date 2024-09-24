@@ -31,7 +31,7 @@ function getGeoJson()
     $pdo = $database->connectBDD();
     
     $sql = "SELECT part_number, coordinate_number, longitude, latitude
-            FROM position_geographique
+            FROM position_geographic
             ORDER BY part_number, coordinate_number";
 
     $stmt = $pdo->query($sql);
