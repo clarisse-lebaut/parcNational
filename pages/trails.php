@@ -58,36 +58,71 @@ $trails = get_trails_all($connectBDD);
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Etats</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">
-                        <input class="status" type="checkbox" id="active" name="tag" value="Ouvert">
+                        <input class="status" type="checkbox" id="active" name="tag" value="active">
                         <label for="active">Ouvert</label><br>
 
-                        <input class="status" type="checkbox" id="work" name="tag" value="En travaux">
+                        <input class="status" type="checkbox" id="work" name="tag" value="work">
                         <label for="work">En travaux</label><br>
 
-                        <input class="status" type="checkbox" id="inactive" name="tag" value="Fermé">
+                        <input class="status" type="checkbox" id="inactive" name="tag" value="inactive">
                         <label for="inactive">Fermé</label><br>
                     </div>
                 </div>
                 <!-- Filtre pour les km-->
                 <div class="dropdown">
-                    <button class="dropdown-btn"><div>Longueurs du sentier</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
-                    <div class="dropdown-content">
-                        <input type="checkbox" id="asc-km" name="tag" value="ASC">
-                        <label for="asc">Ordre croissant</label>
-
-                        <input type="checkbox" id="desc-km" name="tag" value="DESC">
-                        <label for="asc">Ordre décroissant</label>
+                    <button class="dropdown-btn"><div>Longueur du sentier</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <div class="dropdown-content">  
+                            <!-- Boucle pour afficher toutes les distances -->
+                        <style>
+                            .order-options,
+                            .distance-options{
+                                display:flex;
+                                flex-direction: column;
+                            }
+                        </style>
+                        <div class="distance-options">
+                            <label><input class="length" type="checkbox" id="1km" name="tag" value="1">1km</label>
+                            <label><input class="length" type="checkbox" id="2km" name="tag" value="2">2km</label>
+                            <label><input class="length" type="checkbox" id="3km" name="tag" value="3">3km</label>
+                            <label><input class="length" type="checkbox" id="4km" name="tag" value="4">4km</label>
+                            <label><input class="length" type="checkbox" id="5km" name="tag" value="5">5km</label>
+                            <label><input class="length" type="checkbox" id="6km" name="tag" value="6">6km</label>
+                            <label><input class="length" type="checkbox" id="7km" name="tag" value="7">7km</label>
+                            <label><input class="length" type="checkbox" id="8km" name="tag" value="8">8km</label>
+                            <label><input class="length" type="checkbox" id="9km" name="tag" value="9">9km</label>
+                            <label><input class="length" type="checkbox" id="10km" name="tag" value="10">10km</label>
+                            <label><input class="length" type="checkbox" id="11km" name="tag" value="11">11km</label>
+                            <label><input class="length" type="checkbox" id="12km" name="tag" value="12">12km</label>
+                        </div>
                     </div>
                 </div>
                 <!-- Filtre pour le temps de marche -->
                 <div class="dropdown">
                     <button class="dropdown-btn"><div>Temps de marche</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
-                    <div class="dropdown-content">
-                        <input type="checkbox" id="asc-time" name="tag" value="ASC">
-                        <label for="asc">Ordre croissant</label>
-
-                        <input type="checkbox" id="desc-time" name="tag" value="DESC">
-                        <label for="asc">Ordre décroissant</label>
+                    <div class="dropdown-content">  
+                        <style>
+                            .order-options,
+                            .distance-options{
+                                display:flex;
+                                flex-direction: column;
+                            }
+                        </style>
+                        <!-- Boucle pour afficher toutes les distances -->
+                        <div class="distance-options">
+                            <label><input class="time" type="checkbox" id="1:00:00" name="tag" value="1:00:00">1h</label>
+                            <label><input class="time" type="checkbox" id="2:00:00" name="tag" value="2:00:00">2h</label>
+                            <label><input class="time" type="checkbox" id="3:00:00" name="tag" value="3:00:00">3h</label>
+                            <label><input class="time" type="checkbox" id="4:00:00" name="tag" value="4:00:00">4h</label>
+                            <label><input class="time" type="checkbox" id="5:00:00" name="tag" value="5:00:00">5h</label>
+                            <label><input class="time" type="checkbox" id="6:00:00" name="tag" value="6:00:00">6h</label>
+                            <label><input class="time" type="checkbox" id="7:00:00" name="tag" value="7:00:00">7h</label>
+                            <label><input class="time" type="checkbox" id="8:00:00" name="tag" value="8:00:00" >8h</label>
+                            <label><input class="time" type="checkbox" id="9:00:00" name="tag" value="9:00:00">9h</label>
+                            <label><input class="time" type="checkbox" id="10:00:00" name="tag" value="10:00:00">10h</label>
+                            <label><input class="time" type="checkbox" id="11:00:00" name="tag" value="11:00:00">11h</label>
+                            <label><input class="time" type="checkbox" id="12:00:00" name="tag" value="12:00:00">12h</label>
+                            <!-- Répéter pour les autres distances -->
+                        </div>
                     </div>
                 </div>
                 <button id="filter-btn" class="filter-btn">Afficher les résulats</button>

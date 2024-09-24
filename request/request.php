@@ -38,7 +38,6 @@ function get_data_difficulty($connectBDD, $difficulty) {
     }
 }
 
-
 function get_data_status($connectBDD, $status){
     // Requête SQL pour récupérer uniquement les sentiers selon le satut
     $sql = "SELECT * FROM trails WHERE status = ?";
@@ -143,10 +142,11 @@ function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
         $params[':difficulty'] = $difficulty;
     }
 
-    // Ajouter des conditions pour la longueur
+    // Ajouter des conditions pour la longueur (proximité de 0.5 km)
     if ($km) {
-        $query .= " AND length = :length";
-        $params[':length'] = $km;
+        $query .= " AND length_km BETWEEN :length_km_min AND :length_km_max";
+        $params[':length_km_min'] = $km - 0.5; // 0.5 km moins
+        $params[':length_km_max'] = $km + 0.5; // 0.5 km plus
     }
 
     // Ajouter des conditions pour le statut
@@ -155,10 +155,17 @@ function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
         $params[':status'] = $status;
     }
 
-    // Ajouter des conditions pour le temps
+    // Ajouter des conditions pour le temps (proximité de 0.5 heure)
     if ($time) {
-        $query .= " AND time = :time";
-        $params[':time'] = $time;
+        // Convertir le temps en heures décimales
+        list($hours, $minutes) = explode(':', $time);
+        $timeInHours = (int)$hours + ((int)$minutes / 60);
+
+        $query .= " AND (CAST(SUBSTRING_INDEX(time, ':', 1) AS UNSIGNED) + 
+                          (CAST(SUBSTRING_INDEX(time, ':', -1) AS UNSIGNED) / 60)) 
+                          BETWEEN :time_min AND :time_max";
+        $params[':time_min'] = $timeInHours - 0.5; // 0.5 heure moins
+        $params[':time_max'] = $timeInHours + 0.5; // 0.5 heure plus
     }
 
     // Préparer et exécuter la requête
@@ -166,4 +173,6 @@ function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Renvoyer les résultats
 }
+
+
 ?>

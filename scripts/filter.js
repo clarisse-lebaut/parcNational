@@ -12,14 +12,11 @@ filterButton.addEventListener("click", function () {
       // Distinguer les types de filtres par classe
       if (checkbox.classList.contains("difficulty")) {
         selectedDifficulties.push(checkbox.value);
-      }
-      else if (checkbox.classList.contains("status")) {
+      } else if (checkbox.classList.contains("status")) {
         selectedStatuses.push(checkbox.value);
-      }
-      else if (checkbox.classList.contains("length")) {
+      } else if (checkbox.classList.contains("length")) {
         selectedLengths.push(checkbox.value);
-      }
-      else if (checkbox.classList.contains("time")) {
+      } else if (checkbox.classList.contains("time")) {
         selectedTimes.push(checkbox.value);
       }
     }
@@ -55,16 +52,14 @@ filterButton.addEventListener("click", function () {
     .catch((error) => console.error("Erreur:", error));
 });
 
-//* ----- ICI ON EST BON -----
 function updateTrailDisplay(data) {
   const resultsContainer = document.getElementById("overflow");
   resultsContainer.innerHTML = ""; // Vider le conteneur des résultats précédents
 
-  if (data) {
+  if (data && data.length > 0) {
     data.forEach((item) => {
-      // Assurez-vous que les données sont au bon format
       const div = document.createElement("div");
-      div.textContent = `Difficulté: ${item.difficulty}, Longueur: ${item.length} km, Statut: ${item.status}, Temps: ${item.time}`;
+      div.textContent = `Difficulté: ${item.difficulty}, Longueur: ${item.length_km} km, Statut: ${item.status},Temps: ${item.time}`;
       resultsContainer.appendChild(div);
     });
   } else {
