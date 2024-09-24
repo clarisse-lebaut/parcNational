@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 color: '#32CD32',    
                 allDay: true,
                 rendering: 'background',
-                duration: { days: 185 }, // La période de fermeture dure 185 jours
+                duration: { days: 185 }, 
                 recurrenceRule: { freq: 'yearly' }
             },
 
