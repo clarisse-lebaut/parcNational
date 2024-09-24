@@ -1,0 +1,83 @@
+.campsite-details-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.campsite-details-row {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.campsite-details-title {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.campsite-details-img {
+    width: 50%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto; 
+}
+
+.campsite-details-rowicon {
+    background-color: #dff0d8;
+    color: #5b7b8f;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.campsite-details-description {
+    font-size: 1.2em;
+    line-height: 1.6;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.campsite-details-info {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.campsite-details-info-address,
+.campsite-details-info-extra {
+    width: 45%;
+    font-size: 1.1em;
+}
+
+.campsite-details-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2c4f75;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.campsite-details-btn:hover {
+    background-color: #1f3a56;
+}
+
+.campsite-details-error {
+    color: red;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+
+.campsite-details-info-address { background-color: #83b384;}
+.campsite-details-info-dispo { background-color: #b1d2b1;}
+
