@@ -9,7 +9,6 @@ $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO à la fonction getAllTrails
 $trails = get_trails_all($connectBDD);
-$trails = get_all_trails($connectBDD);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@ $trails = get_all_trails($connectBDD);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
     <link rel="stylesheet" href="../assets/style/filter.css">
-    <script src="../scripts/filter.js" defer></script>
+    <script src="../assets/script/filter.js" defer></script>
 </head>
 <body>
     <header></header>

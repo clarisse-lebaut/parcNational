@@ -8,7 +8,7 @@ $connectBDDInstance = new ConnectBDD();
 $connectBDD = $connectBDDInstance->connectBDD();
 
 // Passer la connexion PDO aux fonctions
-$trails = get_all_trails($connectBDD);
+$trails = get_trails_all($connectBDD);
 
 // Récupérer l'ID depuis l'URL
 $trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
