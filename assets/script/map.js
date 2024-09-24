@@ -8,7 +8,11 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(map);
 
 // Liste des fichiers GeoJSON
-var geojsonFiles = ["../data/data_map.php", "../data/data_map_trails.php"];
+var geojsonFiles = [
+  "../data/data_map.php",
+  "../data/data_map_trails.php",
+  "../data/data_map_landmarks.php",
+];
 
 // Récupérer l'ID du sentier depuis l'URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -40,6 +44,27 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
       }
     } else {
       console.error("Aucun sentier trouvé dans le GeoJSON.");
+    }
+
+    // Boucler sur le troisième fichier (data_landmarks.php) pour récupérer les points d'intérêt
+    const landmarksData = geojsonDataArray[2];
+
+    // Filtrer les landmarks selon l'ID de sentier
+    const filteredLandmarks = {
+      type: "FeatureCollection",
+      features: landmarksData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
+    };
+
+    // Vérifier si des landmarks filtrés existent
+    if (filteredLandmarks.features.length > 0) {
+      // Ajouter les points d'intérêt filtrés à la carte
+      L.geoJSON(filteredLandmarks, {
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup(feature.properties.name); // Ajouter une popup avec le nom du landmark
+        },
+      }).addTo(map);
+    } else {
+      console.error("Aucun point d'intérêt trouvé pour l'ID de sentier spécifié dans le GeoJSON.");
     }
   })
   .catch((error) => console.error("Erreur lors du chargement des GeoJSON:", error));
