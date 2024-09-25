@@ -22,9 +22,9 @@ if ($campsite_id > 0) {
 
 <body>
     <?php if ($campsite): ?>
-        <div class="campsite-info">
+        <div class="calendar-info">
             <h1><?= htmlspecialchars($campsite['name']); ?></h1>
-            <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="campsite-img">
+            <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
         </div>
     <?php else: ?>
         <p class="error">Erreur : Camping introuvable.</p>
@@ -37,6 +37,7 @@ if ($campsite_id > 0) {
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
 
     <script src="../assets/javascript/calendar.js"></script>
 </body>
