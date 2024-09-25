@@ -1,4 +1,4 @@
-/*HEADER */
+/* HEADER */
 .fc-toolbar {
     display: flex;
     flex-direction: row;
@@ -10,12 +10,12 @@
     color: #d38d8d !important;
 }
 
-.fc-day-today {/* aujourd'hui */
+.fc-day-today { /* aujourd'hui */
     background-color: #e6d2e3 !important; 
     color: #000000 !important;
 }
 
-.fc-col-header-cell {/* lundi,mardi.. */
+.fc-col-header-cell { /* lundi,mardi.. */
     background-color: #8cacb0 !important; 
     color: #ffffff !important;
     font-weight: bold !important;
@@ -31,7 +31,7 @@
 .fc-timeGridDay-button {
     background-color: #FF1493 !important; 
 }
-.fc-dayGridMonth-button,.fc-timeGridWeek-button,.fc-timeGridDay-button, .fc-prev-button, .fc-next-button, .fc-today-button {
+.fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button, .fc-prev-button, .fc-next-button, .fc-today-button {
     border: none !important;
     padding: 8px 16px !important;
 }
@@ -47,8 +47,8 @@
     background-color: #9a8fe8 !important; 
 }
 
-.calendar-info { background-color: #8cacb0 !important; 
-
+.calendar-info { 
+    background-color: #8cacb0 !important; 
 }
 .calendar-img {
     width: 50% !important;
