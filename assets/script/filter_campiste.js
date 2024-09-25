@@ -5,3 +5,9 @@ buttons.forEach(function (btn) {
     manageTagDisplay(btn); // Appeler la fonction principale ici avec le bouton cliqué
   });
 });
+
+//* Fonction pour récupérer l'ID de l'URL
+function getUrlId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("id");
+}
