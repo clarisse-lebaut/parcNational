@@ -15,12 +15,9 @@
             <hr>
             <div class="filter">
                 <p>Filtres : </p>
-                <div class="dropdown">
-                    <button class="dropdown-btn"><div>Prix</div><img src="../assets/icon/arrow-drop-down.svg" alt="icon arrow for dropdown"></button>
-                    <div class="dropdown-content">
-                        <label for="tag"><input type="checkbox" class="tag" name="tag" value="asc">du - cher au + cher</label>
-                        <label for="tag"><input type="checkbox" class="tag" name="tag" value="desc">du + cher au - cher</label>
-                    </div>
+                <div class="price-container">
+                    <button class="tag">du - cher au + cher</button>
+                    <button class="tag">du + cher au - cher</button>
                 </div>
                 <div class="switch-container">
                     <label>
