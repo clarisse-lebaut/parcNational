@@ -1,0 +1,74 @@
+/* *Style pour l'ensemble du filtre présent en haut de la page */
+.filter,
+.active-filter,
+.tags {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* *Style pour le dropdown des prix des camping, uniquement par ordre croissant et decroissant */
+/* ?pour plus tard : Est-ce qu'on essairait pas d'implanter une sorte de curseur pour les gammes de prix ? */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+/* Aspect global du bouton */
+.dropdown-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+/* Style de la liste déroulante (invisible par défaut) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+}
+/* Affichage de la liste au survol du bouton */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* *Switch bouton pour les campping ouvert et fermé */
+.switch-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.checkbox {
+  display: none;
+}
+.btn-switch {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: lightgray;
+  border-radius: 16px;
+}
+.btn-switch::before {
+  content: "";
+  background-color: gray;
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  top: 2.5px;
+  left: 4px;
+}
+.btn-switch:hover {
+  cursor: pointer;
+}
+.checkbox:checked + .btn-switch::before {
+  left: 32px;
+  background-color: green;
+}

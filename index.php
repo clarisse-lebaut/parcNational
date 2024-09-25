@@ -7,5 +7,6 @@
 </head>
 <body>
     <a href="./pages/ressources.php">Les ressources</a>
+    <a href="./pages/campsite.php">Les campings</a>
 </body>
 </html>
