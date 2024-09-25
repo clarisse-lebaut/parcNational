@@ -1,5 +1,15 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
+include_once '../request/request.php';
+
+// Instancier la classe ConnectBDD et obtenir la connexion PDO
+$pdo = new ConnectBDD();
+$connectBDD = $pdo->connectBDD();
+
+// Passer la connexion PDO à la fonction getAllTrails
+$data = get_news($connectBDD);
+?>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +22,7 @@
     <main>
         <h1>Parc National des Calanques</h1>
         <h2>Décrouvrez Marseille et ses merveilles</h2>
-        <img src="../assets/img/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
+        <img src="../assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
         <p>Présentation du site</p>
         <section>
             <h1>Catégories</h1>
@@ -20,43 +30,45 @@
                 .container-category{
                     display:flex;
                     flex-direction:row;
-                    align-items:center;
                     justify-content:center;
                     gap:10px;
+                    width: 100%;
                 }
-                .card-home > img{
-                    object-fit:cover;
+                .pic{
+                    width: 150px;
                 }
             </style>
             <div class="container-category">
                 <div class="card-home">
                     <a href="#">
                         <p>Les calanques</p>
-                        <img src="../assets/img/calanques.jpg" alt="image de présentation des calanques" width="200px">
+                        <div class="container-pic">
+                            <img class="pic" src="../assets/img/category_home/calanques.jpg" alt="image de présentation des calanques">
+                        </div>
                     </a>
                 </div>
-                <div>
+                <div class="card-home">
                     <a href="#">
                         <p>Les ressources</p>
-                        <img src="../assets/img/ressources.png" alt="image de présentation des ressources" width="200px">
+                        <img class="pic" src="../assets/img/category_home/ressources.png" alt="image de présentation des ressources">
                     </a>
                 </div>
-                <div>
+                <div class="card-home">
                     <a href="#">
                         <p>Les sentiers</p>
-                        <img src="../assets/img/trails.jpg" alt="image de présentation des trails" width="200px">
+                        <img class="pic" src="../assets/img/category_home/trails.jpg" alt="image de présentation des trails">
                     </a>
                 </div>
-                <div>
+                <div class="card-home">
                     <a href="#">
                         <p>Les campings</p>
-                        <img src="../assets/img/campsite.png" alt="image de présentation des campsite" width="200px">
+                        <img class="pic" src="../assets/img/category_home/campsite.png" alt="image de présentation des campsite">
                     </a>
                 </div>
-                <div>
+                <div class="card-home">
                     <a href="#">
                         <p>La carte</p>
-                        <img src="../assets/img/map.png" alt="image de présentation des map" width="200px">
+                        <img class="pic" src="../assets/img/category_home/map.png" alt="image de présentation des map">
                     </a>
                 </div>
             </div>
@@ -65,9 +77,12 @@
             <h1>Actualités</h1>
             <div class="grid-container">
                 <!-- faire une boucle qui récupére toute les actualités dans la base de donnée  -->
-                <?php 
-                
-                ?>
+                <?php foreach($data as $datas){; ?>
+                    <p><?php echo htmlspecialchars($datas['title']); ?></p>
+                    <p><?php echo htmlspecialchars($datas['published_date']); ?></p>
+                    <p><?php echo htmlspecialchars($datas['published_time']); ?></p>
+                    <img class="pic" src="../<?php echo htmlspecialchars($datas['picture']); ?>" />
+                <?php }?>
             </div>
         </section>
     </main>
