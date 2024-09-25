@@ -1,15 +1,3 @@
-<?php
-include_once '../request/request.php';
-
-// Instancier la classe ConnectBDD et obtenir la connexion PDO
-$pdo = new ConnectBDD();
-$connectBDD = $pdo->connectBDD();
-
-// Passer la connexion PDO à la fonction getAllTrails
-$data = get_news($connectBDD);
-?>
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +9,10 @@ $data = get_news($connectBDD);
     </header>
     <main>
         <h1>Parc National des Calanques</h1>
-        <h2>Décrouvrez Marseille et ses merveilles</h2>
+        <h2>Décrouvrir Marseille et ses merveilles</h2>
         <img src="../assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
         <p>Présentation du site</p>
+
         <section>
             <h1>Catégories</h1>
             <style>
@@ -73,18 +62,25 @@ $data = get_news($connectBDD);
                 </div>
             </div>
         </section>
+
         <section>
             <h1>Actualités</h1>
             <div class="grid-container">
-                <!-- faire une boucle qui récupére toute les actualités dans la base de donnée  -->
-                <?php foreach($data as $datas){; ?>
-                    <p><?php echo htmlspecialchars($datas['title']); ?></p>
-                    <p><?php echo htmlspecialchars($datas['published_date']); ?></p>
-                    <p><?php echo htmlspecialchars($datas['published_time']); ?></p>
-                    <img class="pic" src="../<?php echo htmlspecialchars($datas['picture']); ?>" />
-                <?php }?>
+                <?php if (!empty($news)): ?>
+                    <?php foreach($news as $datas): ?>
+                        <div class="news-item"> <!-- Un conteneur pour chaque actualité -->
+                            <p><?php echo htmlspecialchars($datas['title']); ?></p>
+                            <p><?php echo htmlspecialchars($datas['published_date']); ?></p>
+                            <p><?php echo htmlspecialchars($datas['published_time']); ?></p>
+                            <img class="pic" src="../<?php echo htmlspecialchars($datas['picture']); ?>" alt="Image de l'actualité" />
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p>Aucune actualité à afficher.</p>
+                <?php endif; ?>
             </div>
         </section>
+
     </main>
     <footer>
         <p>Faire le footer</p>

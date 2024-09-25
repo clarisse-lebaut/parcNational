@@ -2,17 +2,17 @@
 
 class ConnectBDD
 {
-    public function connectBDD()
+    public $bdd;
+
+    function __construct()
     {
         try {
             $dsn = "mysql:host=localhost;dbname=nationalpark;charset=utf8";
             $username = "root";
             $password = "";
 
-            $connectBDD = new PDO($dsn, $username, $password);
-            $connectBDD->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $connectBDD;
-
+            $this->bdd = new PDO($dsn, $username, $password);
+            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo 'Erreur PDO : ' . $e->getMessage();
             die();
