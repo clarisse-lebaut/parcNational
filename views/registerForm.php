@@ -9,6 +9,13 @@
 </head>
 <body>
   <div class="container mt-5">
+    <?php
+    if(isset ($error)){
+      echo '<div class="alert alert-danger">';
+      echo $error;
+      echo '</div>';
+    }
+    ?>
     <form method="post" action="/parcNational/registerForm">
       <div class="row g-3">
         <!-- Lastname -->

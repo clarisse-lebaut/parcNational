@@ -1,7 +1,7 @@
 <?php
 class Model
 {
-    public $pdo;//jest lacznikiem miedzy interfejsem i baza danych
+    public $pdo;//It is a connector between the interface and the database
     public $table;
 
     public function __construct($table)

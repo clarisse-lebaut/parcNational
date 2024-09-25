@@ -9,11 +9,12 @@ class RegisterController extends Controller{
     }
 
     public function registerSaveForm(){
-        var_dump($_POST);
         if($_POST['password'] === $_POST['repeatpassword']){
-            $user = new User('users');
+            $user = new User('users');// Create a new user in users table
             $user->saveUser($_POST);
+            $this->redirect('login');
+        }else{
+            $this->render('registerForm', ['error' => 'The password and repeatpassword are not the same']); 
         }
     }
-    
 }
