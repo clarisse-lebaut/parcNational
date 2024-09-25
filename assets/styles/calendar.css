@@ -46,3 +46,13 @@
 .fc-prev-button, .fc-next-button {
     background-color: #9a8fe8 !important; 
 }
+
+.calendar-info { background-color: #8cacb0 !important; 
+
+}
+.calendar-img {
+    width: 50% !important;
+    height: auto !important;
+    max-height: 500px !important;
+    object-fit: cover !important;
+}
