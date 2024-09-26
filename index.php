@@ -1,46 +1,26 @@
-<!-- <?php
-// Tableau de routes
-$routes = [
-    'Home' => [
-        'controller' => 'HomeController',
-        'method' => 'Home',
-    ]
-];
+<?php
+include_once './config/config_routes.php';
 
-//$routes['login'];
-//Removal of the string 'parkNational' from the link
-$url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);
-$urlArray = explode('?', $url);
+// Ici on va faire une sorte de router
 
-//? var_dump($urlArray);
+//* On va faire des routes de ce type 
+//http://localhost/MyBasics-API/fullstack-php-js-natif/index.php?p=home
+//* Ensuite on fera une réécriture de ça dans le htaccess 
+// pour avoir juste http://localhost/MyBasics-API/fullstack-php-js-natif/home
 
-if(isset($routes[$urlArray[0]])){
-    $className = $routes[$urlArray[0]]['controller'];
-    $methodName = $routes[$urlArray[0]]['method'];
+$page = isset($_GET['p']) ? $_GET['p'] : '';
+function loadPage($page): void
+{
+    switch ($page) {
+        case "";
+        case 'home';            
+            include_once CONTROLLER . 'HomeController.php';
+            break;
 
-    //? var_dump($methodName);
-    require_once 'controller/' . $className . '.php';
-
-    $object = new $className; 
-    $object->{$methodName}();
-    //? var_dump($object);
-    
-}else{
-    echo 'Error 404 : Page introuvable';
-    //? var_dump("pas d'adresse");
+        default:
+            echo "error 404";
+            break;
+    }
 }
 
-//? var_dump($url);
-?> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="./view/Home.php">Voir la page d'accueil</a>
-</body>
-</html>
+loadPage($page);

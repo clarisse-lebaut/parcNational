@@ -1,0 +1,11 @@
+# Ce htaccess est valable pour APACHE
+#-------------------------------------------
+
+# On démarre le moteur de réécriture d'URL
+RewriteEngine On
+
+# On ajoute une condition pour dire que si il sagit d'un chemin de fichier (comme vers le css par exemple), on ne réécrit pas l'url
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# On réécrit l'URL avec un regex (le $1 renvoi au premier groupe d'écriture, soit les parametres)
+RewriteRule ^(.+)$ index.php?p=$1 

@@ -1,7 +1,10 @@
 <?php
+//* permte de faire apparaitre le chemin du dossier dans lequel je suis actuellement.
+// echo getcwd(); 
+
 // Inclure les fichiers nécessaires
-include_once '../class/ConnectBDD.php';
-include_once '../model/News.php';
+include 'class/connectBDD.php';
+include 'model/News.php';
 
 class HomeController {
     //* Propriété pour les instances
@@ -18,7 +21,7 @@ class HomeController {
     //* Méthode pour afficher les actualitées
     public function display_all_news(){
         $news = $this->newsModel->get_news($this->bdd);
-        include '../view/Home.php';
+        include_once VIEW . 'Home.php';
     }
 }
 
