@@ -12,6 +12,7 @@ class LoginController extends Controller{
 
     public function loginSaveForm(){
         $user = new User('users');
+        var_dump($_POST);
         $dbUser = $user->getUserByEmail($_POST['email']);
         if($dbUser != false){
             if(password_verify($_POST['password'], $dbUser['password'])){
@@ -36,6 +37,7 @@ class LoginController extends Controller{
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
         $google_redirect_url = 'http://localhost/parcNational/google-login';
+        //App performs a user browser redirect sending an authorization to google request with this below parameters
         $params = [
             'response_type' => 'code',
             'client_id' => $google_client_id,
@@ -56,7 +58,7 @@ class LoginController extends Controller{
             'code' => $_GET['code'],
             'client_id' => $google_client_id,
             'client_secret' => $google_client_secret,
-            'redirect_url' => $google_redirect_url,
+            'redirect_uri' => $google_redirect_url,
             'grant_type' => 'authorization_code'//We tell Google that we want an authorization code
         ];
         //Request configuration
@@ -66,12 +68,43 @@ class LoginController extends Controller{
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curl);
-        var_dump(curl_error($curl));
         curl_close($curl);
-       
+        if ($response === false) {
+            $error = curl_error($curl);
+            $this->render('login', ['error' => $error]);
+            return;
+        }
+        $responseData = json_decode($response);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, 'https://www.googleapis.com/oauth2/v3/userinfo');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $responseData->access_token]);
+        $response = curl_exec($curl);
+        var_dump($response);
+        $responseData = json_decode($response);
+        var_dump($responseData);
 
+        $userObject = new User('users');
+        $user = $userObject->getByGoogleId($responseData->sub);
+        if($user){
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['user_role'] = $user['role'];
+            if($user['role'] != 1){
+                $this->redirect('homePageAdmin');
+            }else{
+                $this->redirect('');
+            }
+            
+        }else{
+            $userObject->saveUserFromGoogle($responseData);
+            $newUser = $userObject->getByGoogleId($responseData->sub);
+            $_SESSION['user_id'] = $newUser['user_id'];
+            $this->redirect('');
+        }
+        
+        
     }
-
+    
     public function logout(){
         unset($_SESSION['user_id']);
         unset($_SESSION['user_role']);

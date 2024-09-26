@@ -19,4 +19,18 @@ class User extends Model{
         $stmt->execute([$email]);
         return $stmt->fetch();
     }
+    public function saveUserFromGoogle($data){
+        var_dump($data);
+        $sql = ' INSERT INTO users (role, lastname, firstname, mail, google_id) values (?,?,?,?,?)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([1, $data->family_name, $data->given_name, $data->email, $data->sub]);//names from google
+
+    }
+    public function getByGoogleId($googleId){
+        $sql = 'SELECT * FROM users WHERE google_id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$googleId]);
+        return $stmt->fetch();
+    }
+
 }

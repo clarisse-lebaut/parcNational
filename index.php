@@ -1,5 +1,6 @@
 <?php
 session_start();
+session_regenerate_id(true);//Session Fixation(Security)
 
 $routes = [
     //The login displays the login page, then selects the Controller and the method
@@ -41,6 +42,18 @@ $routes = [
     'google-login' => [
         'controller' => 'LoginController',
         'method' => 'getDataFromGoogle',
+    ],
+    'ip-form' => [
+        'controller' => 'IpController',
+        'method' => 'displayForm',
+    ],
+    'ip-save' => [
+        'controller' => 'IpController',
+        'method' => 'saveIp',
+    ],
+    'ip-block' => [
+        'controller' => 'IpController',
+        'method' => 'getBlockIp'
     ]
 ];
 
