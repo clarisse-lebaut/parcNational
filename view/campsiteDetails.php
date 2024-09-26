@@ -29,10 +29,14 @@ if ($campsite_id > 0) {
                 <h1 class="campsite-details-title"><?= htmlspecialchars($campsite['name']); ?></h1>
             </div>
 
-            <!-- ROW IMG -->
+            <!-- ROW IMG & ADRESSE -->
             <div class="campsite-details-row">
                 <img class="campsite-details-img" src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
+                <div class="campsite-details-adress">
+                <span class="location-icon">&#x1F4CD;</span> 
+                <p><?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>
             </div>
+        </div>
 
             <!-- ROW ICONES -->
             <div class="campsite-details-row campsite-details-rowicon <?= ($campsite['status'] === 'Ouvert') ? 'status-open' : 'status-closed'; ?>">
@@ -45,19 +49,12 @@ if ($campsite_id > 0) {
                         Fermé
                     <?php endif; ?>
                 </p>
+                <div class="campsite-price">
+                    <span class="price-icon">€</span> 
+                    <?= number_format($campsite['price_per_night'], 2); ?> / nuit
+                </div> 
             </div>
 
-            <!-- ROW ADRESSE ET DISPO -->
-            <div class="campsite-details-row">
-                <div class="campsite-details-info">
-                    <div class="campsite-details-rowicon">
-                        <p>Adresse : <?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>
-                    </div>
-                    <div class="campsite-details-info-dispo">
-                       CALDENDRIER DES DISPO
-                    </div>
-                </div>
-            </div>
 
             <!-- ROW DESCRIPTION -->
             <div class="campsite-details-row">
@@ -68,7 +65,7 @@ if ($campsite_id > 0) {
 
             <!-- ROW BOUTON RESERVER -->
             <div class="campsite-details-row">
-             <a href="../view/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Faire une réservation</a>
+             <a href="../view/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
             </div>
         <?php else: ?>
             <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>
