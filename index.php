@@ -1,26 +1,30 @@
 <?php
-echo getcwd();
-echo "<br>";
+// session_start();
 
-include_once './config/config_routes.php';
+$routes = [
+    '' => [
+        'controller' => 'HomeController', 
+        'method' => 'home',
+    ],
+    '' => [
+        'controller' => 'HomeController', 
+        'method' => 'news',
+    ]
+];
 
-$page = $_GET['p']; // Pas de valeur par défa
+//* Removal of the string 'parkNational' from the link
+$url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);
+$urlArray = explode('?', $url);
+var_dump($urlArray);
 
-function loadPage($page): void
-{
-    switch ($page) {
-        case 'home':            
-            include_once CONTROLLER . 'HomeController.php';
-            break;
-            
-            default:
-            echo "error 404";
-            break;
-        }
-    }
-    
-// Vérifiez la valeur de $page
-echo "Page demandée : " . htmlspecialchars($page);
-echo "<br>";
+if(isset($routes[$urlArray[0]])){
+    $className = $routes[$urlArray[0]]['controller'];
+    $methodName = $routes[$urlArray[0]]['method'];
+    require_once 'controllers/' . $className . '.php';
+    $object = new $className; 
+    $object->{$methodName}();
+}else{
+    var_dump("pas d'adresse");
+}
 
-loadPage($page);
+?>

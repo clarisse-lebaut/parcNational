@@ -1,5 +1,5 @@
 <?php 
-require_once '../config/connectBDD.php';
+// require_once 'ConnectBDD.php';
 
 class News {
     private $id;
