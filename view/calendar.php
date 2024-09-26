@@ -14,6 +14,7 @@ if ($campsite_id > 0) {
 <html lang="fr">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Réservation - <?= $campsite ? htmlspecialchars($campsite['name']) : 'Camping'; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.global.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/timegrid.min.css" />
@@ -21,36 +22,54 @@ if ($campsite_id > 0) {
 </head>
 
 <body>
-    <?php if ($campsite): ?>
-        <h1><?= htmlspecialchars($campsite['name']); ?></h1>
-        <div class="calendar-info">
-            <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
-        </div>
-    <?php else: ?>
-        <p class="error">Erreur : Camping introuvable.</p>
-    <?php endif; ?>
+    <main>
+        <section>
+            <?php if ($campsite): ?>
+                <h1><?= htmlspecialchars($campsite['name']); ?></h1>
+                <div class="calendar-info" data-price-per-night="<?= htmlspecialchars($campsite['price_per_night']); ?>">
+                    <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
+                </div>
+            <?php else: ?>
+                <p class="error">Erreur : Camping introuvable.</p>
+            <?php endif; ?>
+        </section>
 
-    <h2>Calendrier des Réservations</h2>
+    <div class="calendar-form-container">
+        <section class="reservation-section">
+        <h2>Réserver ce camping</h2>
+            <form action="#" method="POST">
+                <div class="date-fields">
+                    <div class="date-field">
+                        <label for="start_date">Du</label>
+                        <input type="text" id="start_date" name="start_date" readonly required>
+                    </div>
 
-    <div class="reservation-form">
-        <h3>Réserver ce camping</h3>
-        <form action="#" method="POST">
-            <input type="hidden" name="campsite_id" value="<?= htmlspecialchars($campsite_id); ?>">
+                    <div class="date-field">
+                        <label for="end_date">au</label>
+                        <input type="text" id="end_date" name="end_date" readonly required>
+                    </div>
+                </div>
 
-            <label for="start_date">Du</label>
-            <input type="text" id="start_date" name="start_date" readonly required>
+                <div class="persons-field">
+                    <label for="num_persons">Nombre de personnes </label>
+                    <input type="number" id="num_persons" name="num_persons" min="1" max="10" required>
+                </div>
 
-            <label for="end_date">au</label>
-            <input type="text" id="end_date" name="end_date" readonly required>
+            </form>
 
-            <label for="num_persons">Nombre de personnes:</label>
-            <input type="number" id="num_persons" name="num_persons" min="1" max="10" required>
+            <div id="calendar-price-resa">
+                <p>Prix total: <span id="total-price">0</span> €</p>
+            </div>
+        </section>   
 
-            <input type="submit" value="Réserver">
-        </form>
+        <section>
+                <div id="calendar"></div>
+        </section> 
     </div>
 
-    <div id="calendar"></div>
+     <input type="submit" value="RÉSERVER">
+
+    </main>
 
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>

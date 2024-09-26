@@ -1,7 +1,29 @@
-#calendar {
-     max-width: 400px; 
-    }
-/* HEADER */
+#calendar {max-width: 400px; }
+.reservation-section { max-width: 40%;}
+
+.calendar-form-container {
+        display: flex;
+        justify-content: center; 
+        gap: 20px; 
+        margin: 20px 0; 
+}
+
+.date-fields {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px; 
+}
+    
+.date-field {
+        display: flex;
+        flex-direction: column;
+        width: 30%; 
+}
+    
+
+.persons-field {margin-bottom: 20px;}
+    
+/* calendar header */
 .fc-toolbar {
     display: flex;
     flex-direction: row;
@@ -10,7 +32,7 @@
 .fc-toolbar-title {
     padding-left: 10px !important;
     font-size: 20px !important;
-    color: #d38d8d !important;
+    color: #000000 !important;
 }
 
 .fc-day-today { /* aujourd'hui */
@@ -23,39 +45,28 @@
     color: #ffffff !important;
     font-weight: bold !important;
 }
-
-/* Boutons des vues */
-.fc-dayGridMonth-button {
-    background-color: #FFB6C1 !important; 
-}
-.fc-timeGridWeek-button {
-    background-color: #FF69B4 !important; 
-}
-.fc-timeGridDay-button {
-    background-color: #FF1493 !important; 
-}
-.fc-dayGridMonth-button, .fc-timeGridWeek-button, .fc-timeGridDay-button, .fc-prev-button, .fc-next-button, .fc-today-button {
+.fc-prev-button, .fc-next-button, .fc-today-button {
     border: none !important;
     padding: 8px 16px !important;
 }
 
 /* boutons navigation (<,>, aujourd'hui) */
 .fc-prev-button, .fc-next-button, .fc-today-button {
-    background-color: #9370DB !important;
+    background-color: #8cacb0 !important;
     border-radius: 5px !important;
     margin: 4px !important;
 }
 
 .fc-prev-button, .fc-next-button {
-    background-color: #9a8fe8 !important; 
+    background-color: #b5d1dc !important; 
 }
 
 .calendar-info { 
     background-color: #8cacb0 !important; 
 }
 .calendar-img {
-    width: 50% !important;
+    width: 15% !important;
     height: auto !important;
-    max-height: 500px !important;
+    max-height: 80px !important;
     object-fit: cover !important;
 }
