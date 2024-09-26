@@ -1,9 +1,11 @@
 <?php
 //* permte de faire apparaitre le chemin du dossier dans lequel je suis actuellement.
-// echo getcwd(); 
+echo getcwd(); 
 
-// Inclure les fichiers nécessaires
-include 'class/connectBDD.php';
+// Inclure les fichiers de configuration dans chaque controllers
+include 'config/connectBDD.php';
+include 'config/config_routes.php';
+// Inclure le modèle necessaire pour le bon focntionnement
 include 'model/News.php';
 
 class HomeController {
@@ -21,7 +23,7 @@ class HomeController {
     //* Méthode pour afficher les actualitées
     public function display_all_news(){
         $news = $this->newsModel->get_news($this->bdd);
-        include_once VIEW . 'Home.php';
+        include_once VIEW . 'home.php';
     }
 }
 

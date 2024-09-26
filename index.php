@@ -1,26 +1,26 @@
 <?php
+echo getcwd();
+echo "<br>";
+
 include_once './config/config_routes.php';
 
-// Ici on va faire une sorte de router
+$page = $_GET['p']; // Pas de valeur par défa
 
-//* On va faire des routes de ce type 
-//http://localhost/MyBasics-API/fullstack-php-js-natif/index.php?p=home
-//* Ensuite on fera une réécriture de ça dans le htaccess 
-// pour avoir juste http://localhost/MyBasics-API/fullstack-php-js-natif/home
-
-$page = isset($_GET['p']) ? $_GET['p'] : '';
 function loadPage($page): void
 {
     switch ($page) {
-        case "";
-        case 'home';            
+        case 'home':            
             include_once CONTROLLER . 'HomeController.php';
             break;
-
-        default:
+            
+            default:
             echo "error 404";
             break;
+        }
     }
-}
+    
+// Vérifiez la valeur de $page
+echo "Page demandée : " . htmlspecialchars($page);
+echo "<br>";
 
 loadPage($page);
