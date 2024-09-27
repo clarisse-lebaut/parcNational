@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../controllers/campsiteController.php';
+require_once __DIR__ . '/../controllers/CampsiteController.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 
 $campsiteModel = new CampsiteModel();
