@@ -81,7 +81,9 @@
 
     </main>
     <footer>
-        <p>Faire le footer</p>
+    <header>
+        <?php include "components/_footer.php"; ?>
+    </header>
     </footer>
 </body>
 </html>
