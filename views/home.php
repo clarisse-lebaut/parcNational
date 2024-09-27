@@ -10,7 +10,7 @@
     <main>
         <h1>Parc National des Calanques</h1>
         <h2>Décrouvrir Marseille et ses merveilles</h2>
-        <img src="../assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
+        <img src="/parcNational/assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
         <p>Présentation du site</p>
 
         <section>
@@ -31,33 +31,31 @@
                 <div class="card-home">
                     <a href="#">
                         <p>Les calanques</p>
-                        <div class="container-pic">
-                            <img class="pic" src="assets/img/category_home/calanques.jpg" alt="image de présentation des calanques">
-                        </div>
+                        <img class="pic" src="/parcNational/assets/img/category_home/calanques.jpg" alt="image de présentation des calanques">
                     </a>
                 </div>
                 <div class="card-home">
                     <a href="#">
                         <p>Les ressources</p>
-                        <img class="pic" src="assets/img/category_home/ressources.png" alt="image de présentation des ressources">
+                        <img class="pic" src="/parcNational/assets/img/category_home/ressources.png" alt="image de présentation des ressources">
                     </a>
                 </div>
                 <div class="card-home">
                     <a href="#">
                         <p>Les sentiers</p>
-                        <img class="pic" src="assets/img/category_home/trails.jpg" alt="image de présentation des trails">
+                        <img class="pic" src="/parcNational/assets/img/category_home/trails.jpg" alt="image de présentation des trails">
                     </a>
                 </div>
                 <div class="card-home">
                     <a href="#">
                         <p>Les campings</p>
-                        <img class="pic" src="assets/img/category_home/campsite.png" alt="image de présentation des campsite">
+                        <img class="pic" src="/parcNational/assets/img/category_home/campsite.png" alt="image de présentation des campsite">
                     </a>
                 </div>
                 <div class="card-home">
                     <a href="#">
                         <p>La carte</p>
-                        <img class="pic" src="assets/img/category_home/map.png" alt="image de présentation des map">
+                        <img class="pic" src="/parcNational/assets/img/category_home/map.png" alt="image de présentation des map">
                     </a>
                 </div>
             </div>
@@ -72,7 +70,7 @@
                             <p><?php echo htmlspecialchars($datas['title']); ?></p>
                             <p><?php echo htmlspecialchars($datas['published_date']); ?></p>
                             <p><?php echo htmlspecialchars($datas['published_time']); ?></p>
-                            <img class="pic" src="<?php echo htmlspecialchars($datas['picture']); ?>" alt="Image de l'actualité" />
+                            <img class="pic" src="/parcNational/<?php echo htmlspecialchars($datas['picture']); ?>" alt="Image de l'actualité" />
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>

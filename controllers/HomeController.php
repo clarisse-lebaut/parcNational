@@ -4,7 +4,7 @@ require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
 require_once __DIR__ . '/../models/News.php';
 
-class HomeController extends Controller{
+class HomeController extends Controller {
     
     private $newsModel;
     private $bdd;
@@ -24,7 +24,7 @@ class HomeController extends Controller{
         // Récupérer les news en utilisant le modèle
         $news = $this->newsModel->get_news($this->bdd);
         // Afficher la vue 'news' avec les données récupérées
-        $this->render('home', ['home' => $news]);
+        $this->render('home', ['news' => $news]);
     }
 
     public function getDatabaseConnection(){
