@@ -5,9 +5,7 @@
 </head>
 <body>
     <header>
-        <p>Faire la navabar</p>
-        <a href="about">A propos</a>
-        <a href="trails">Les Sentiers</a>
+        <?php include "components/_header.php"; ?>
     </header>
     <main>
         <h1>Parc National des Calanques</h1>

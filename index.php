@@ -4,6 +4,10 @@ $routes = [
         'controller' => 'HomeController', 
         'method' => 'news',
     ],
+        'home' => [
+        'controller' => 'HomeController', 
+        'method' => 'news',
+    ],
     'about' => [
         'controller' => 'AboutController',
         'method' => 'about',
