@@ -12,8 +12,8 @@ public function get_all_trails($bdd) {
 
 //* Requêtes pour les détails d'un seul sentier
 // Fonction générique pour exécuter des requêtes
-function executeQuery($connectBDD, $sql, $params = [], $fetchAll = false) {
-    $stmt = $connectBDD->prepare($sql);
+public function executeQuery($bdd, $sql, $params = [], $fetchAll = false) {
+    $stmt = $bdd->prepare($sql);
     foreach ($params as $key => &$val) {
         $stmt->bindParam($key, $val);
     }
@@ -21,50 +21,50 @@ function executeQuery($connectBDD, $sql, $params = [], $fetchAll = false) {
     return $fetchAll ? $stmt->fetchAll(PDO::FETCH_ASSOC) : $stmt->fetch(PDO::FETCH_ASSOC);
 }
 // Différentes requête pour récupérer les données une à une et les définirs
-function get_trails_id($connectBDD, $id): array {
+public function get_trails_id($bdd, $id): array {
     $sql = "SELECT * FROM trails WHERE trail_id = :id";
-    return executeQuery($connectBDD, $sql, [':id' => $id]);
+    return $this->executeQuery($bdd, $sql, [':id' => $id]);
 }
-function get_trails_time($connectBDD, $time) {
+public function get_trails_time($bdd, $time) {
     $sql = "SELECT * FROM trails WHERE time = :time";
-    return executeQuery($connectBDD, $sql, [':time' => $time]);
+    return $this->executeQuery($bdd, $sql, [':time' => $time]);
 }
-function get_trails_km($connectBDD, $km) {
+public function get_trails_km($bdd, $km) {
     $sql = "SELECT * FROM trails WHERE length_km = :length_km";
-    return executeQuery($connectBDD, $sql, [':length_km' => $km]);
+    return $this->executeQuery($bdd, $sql, [':length_km' => $km]);
 }
-function get_trails_description($connectBDD, $description) {
+public function get_trails_description($bdd, $description) {
     $sql = "SELECT * FROM trails WHERE description = :description";
-    return executeQuery($connectBDD, $sql, [':description' => $description]);
+    return $this->executeQuery($bdd, $sql, [':description' => $description]);
 }
-function get_trails_difficulty($connectBDD, $difficulty): array {
+public function get_trails_difficulty($bdd, $difficulty): array {
     $sql = "SELECT * FROM trails WHERE difficulty = :difficulty";
-    return executeQuery($connectBDD, $sql, [':difficulty' => $difficulty], true);
+    return $this->executeQuery($bdd, $sql, [':difficulty' => $difficulty], true);
 }
-function get_trails_status($connectBDD, $state) {
+public function get_trails_status($bdd, $state) {
     $sql = "SELECT * FROM trails WHERE status = :status";
-    return executeQuery($connectBDD, $sql, [':status' => $state]);
+    return $this->executeQuery($bdd, $sql, [':status' => $state]);
 }
-function get_trails_info($connectBDD, $news) {
+public function get_trails_info($bdd, $news) {
     $sql = "SELECT * FROM trails WHERE infos = :infos";
-    return executeQuery($connectBDD, $sql, [':infos' => $news]);
+    return $this->executeQuery($bdd, $sql, [':infos' => $news]);
 }
-function get_trails_access($connectBDD, $access) {
+public function get_trails_access($bdd, $access) {
     $sql = "SELECT * FROM trails WHERE acces = :acces";
-    return executeQuery($connectBDD, $sql, [':acces' => $access]);
+    return $this->executeQuery($bdd, $sql, [':acces' => $access]);
 }
-function get_trails_landmarks($connectBDD, $trail_id) {
+public function get_trails_landmarks($bdd, $trail_id) {
     $sql = "SELECT lt.landmark_id, l.name, l.description, l.location 
             FROM landmarks_trails lt
             JOIN landmarks l ON lt.landmark_id = l.landmark_id
-            WHERE lt.trail_id = :trail_id";
-    
-    return executeQuery($connectBDD, $sql, [':trail_id' => $trail_id], true);
+            WHERE lt.trail_id = :trail_id";    
+    return $this->executeQuery($bdd, $sql, [':trail_id' => $trail_id], true);
 }
+
 
 //* Requêtes pour le filtre des sentiers
 // Fonction pour récupérer la difficuluté, les kilomètres, les status et le temps des sentiers
-function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
+public function get_all_data($bdd, $difficulty, $km, $status, $time) {
     // Construire la requête SQL de base
     $query = "SELECT * FROM trails WHERE 1=1"; // 1=1 pour simplifier l'ajout de conditions
     $params = []; // Pour stocker les valeurs des paramètres
@@ -102,14 +102,14 @@ function get_all_data($connectBDD, $difficulty, $km, $status, $time) {
     }
 
     // Préparer et exécuter la requête
-    $stmt = $connectBDD->prepare($query);
+    $stmt = $bdd->prepare($query);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Renvoyer les résultats
 }
 
 //* Requêtes pour la map et les différentes données
 // Fonction pour récupérer les bordures de la zone du parc
-function get_map_data($connectBDD){
+public function get_map_data($bdd){
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -118,7 +118,7 @@ function get_map_data($connectBDD){
     $sql = "SELECT part_number, coordinate_number, mystery_number, longitude, latitude
             FROM map
             ORDER BY part_number, coordinate_number, mystery_number";
-    $stmt = $connectBDD->prepare($sql);
+    $stmt = $bdd->prepare($sql);
     $stmt->execute();  // Exécuter la requête
 
     // Structure pour contenir tous les multipolygones
@@ -180,7 +180,7 @@ function get_map_data($connectBDD){
 }
 // Fonction pour récupérer uniquement les sentiers des maps
 // il y a tous les sentiers dans un fichier data.php
-function get_mapTrails_data($connectBDD) {
+public function get_mapTrails_data($bdd) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -193,7 +193,7 @@ function get_mapTrails_data($connectBDD) {
             JOIN position_geographic pg ON t.trail_id = pg.trail_id
             ORDER BY t.trail_id, pg.part_number, pg.coordinate_number";
 
-    $stmt = $connectBDD->prepare($sql);
+    $stmt = $bdd->prepare($sql);
     $stmt->execute();
 
     // Structure pour contenir tous les sentiers
@@ -266,7 +266,7 @@ function get_mapTrails_data($connectBDD) {
 }
 // Fonction pour récupérer uniquement les point de vues des maps
 // il y a tous les point de vues dans un fichier data.php
-function get_mapLandmarks_data($connectBDD) {
+public function get_mapLandmarks_data($bdd) {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -278,7 +278,7 @@ function get_mapLandmarks_data($connectBDD) {
             FROM landmarks l
             JOIN landmarks_trails lt ON l.landmark_id = lt.landmark_id";
 
-    $stmt = $connectBDD->prepare($sql);
+    $stmt = $bdd->prepare($sql);
     $stmt->execute();
 
     $pois = [];

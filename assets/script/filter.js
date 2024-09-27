@@ -53,7 +53,7 @@ function applyFilters() {
 
   const queryString = queryParams.join("&");
 
-  fetch(`../data/data_filter_trails.php?${queryString}`)
+  fetch(`/parcNational/data/data_filter_trails.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -77,7 +77,7 @@ function manageTagDisplay(checkbox) {
     card.id = `tag-${checkbox.value}`; // Assigner un ID unique basé sur la valeur de la checkbox
     card.innerHTML = `
       <p>${checkbox.value}</p>
-      <img class="close-tag" src='/parcNational/assets/icon/cross.svg'/>
+      <img class="close-tag" src='assets/icon/cross.svg'/>
     `;
     tag.appendChild(card);
     // Ajouter un event listener pour l'icône de fermeture (croix)
@@ -107,35 +107,35 @@ function updateTrailDisplay(data) {
 
       card.innerHTML = `
         <div class="card_top">
-          <a href="../views/details_trails.php?id=${encodeURIComponent(item.trail_id)}">
+          <a href="details_trails.php?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
-            <img src="../${item.image}" alt="${item.name}" width="200">
+            <img src="${item.image}" alt="${item.name}" width="200">
           </a>
         </div>
         <div class="card_details">
           <div>
-            <img src="../assets/icon/hiking.svg" alt="icon length">
+            <img src="assets/icon/hiking.svg" alt="icon length">
             <p>${item.length_km} km</p>
           </div>
           <div>
-            <img src="../assets/icon/time.svg" alt="icon time">
+            <img src="assets/icon/time.svg" alt="icon time">
             <p>${item.time}</p>
           </div>
           <div>
-            <img src="../assets/icon/${getDifficultyIcon(item.difficulty)}" alt="${getDifficultyAlt(
+            <img src="assets/icon/${getDifficultyIcon(item.difficulty)}" alt="${getDifficultyAlt(
         item.difficulty
       )}">
             <p>${item.difficulty}</p>
           </div>
           <div>
             <p>${item.status}</p>
-            <img src="../assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(
+            <img src="assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(
         item.status
       )}">
           </div>
         </div>
-        <button><img src="../assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
-        <button><img src="../assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
+        <button><img src="assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
+        <button><img src="assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
         <p>${item.description}</p>
         <p>${item.acces}</p>
       `;
@@ -218,7 +218,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("../data/data_filter_trails.php")
+    fetch("/parcNational/data/data_filter_trails.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");

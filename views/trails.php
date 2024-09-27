@@ -15,7 +15,8 @@
 
     <main>
         <section>
-            <h2>Nos sentiers</h2>
+            <h2>Nos Sentiers</h2>
+            <img src="assets/img/category_home/trails.jpg" alt="" width="200px">
             <p>
                 Site naturel remarquable, le Parc national des Calanques – situé entre Marseille et Cassis – regorge d’endroits 
                 d’exception. Arpenter les chemins est le meilleur moyen de découvrir les multiples facettes de ce parc national. 
@@ -115,7 +116,7 @@
                 <?php foreach ($trails as $trail): ?>
                     <div class="card_trails">
                         <div class="card_top">
-                            <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
+                            <a href="details_trails?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
                                 <img src="/parcNational/<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>

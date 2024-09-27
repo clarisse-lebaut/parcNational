@@ -1,33 +1,3 @@
-<?php
-
-include '../class/connectBDD.php';
-include '../request/request.php';
-
-// Instancier la classe ConnectBDD et obtenir la connexion PDO
-$connectBDDInstance = new ConnectBDD();
-$connectBDD = $connectBDDInstance->connectBDD();
-
-// Passer la connexion PDO aux fonctions
-$trails = get_trails_all($connectBDD);
-
-// Récupérer l'ID depuis l'URL
-$trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// Récupérer le sentier correspondant à l'ID
-$trail = null;
-if ($trail_id > 0) {
-    $trail = get_trails_id($connectBDD, $trail_id);
-    $trail_time = get_trails_time($connectBDD, $trail_id);
-    $trail_lenght = get_trails_km($connectBDD, $trail_id);
-    $trail_description = get_trails_description($connectBDD, $trail_id);
-    $trail_difficulty = get_trails_difficulty($connectBDD, $trail_id);
-    $trail_state = get_trails_status($connectBDD, $trail_id);
-    $trail_infos = get_trails_info($connectBDD, $trail_id);
-    $trail_access = get_trails_access($connectBDD, $trail_id);
-    $landmarks = get_trails_landmarks($connectBDD, $trail_id);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -119,7 +89,6 @@ if ($trail_id > 0) {
 
         <section>
             <h2>Map</h2>
-            <p>Intégrer la map interactive</p>
             <div id="map"></div>
         </section>
 

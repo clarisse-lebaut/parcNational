@@ -1,10 +1,13 @@
 <?php 
-include '../class/connectBDD.php';
-include '../request/request.php';
+include '../config/connectBDD.php';
+include '../controllers/TrailsController.php';
 
 // Instancier la classe ConnectBDD et obtenir la connexion PDO
 $connectBDDInstance = new ConnectBDD();
-$connectBDD = $connectBDDInstance->connectBDD();
+$connectBDD = $connectBDDInstance->bdd;
+
+// Instancier la classe Trails et obtenir les données des sentiers
+$trailsModel = new Trails($connectBDD); // Passer la connexion à Trails
 
 // Si ce fichier est appelé directement, afficher les résultats
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -17,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $time = isset($_GET['time']) ? htmlspecialchars($_GET['time']) : ''; // Nettoyer le temps
 
     // Récupérer les données en fonction des paramètres
-    $data = get_all_data($connectBDD, $difficulty, $km, $status, $time);
+    $data = $trailsModel->get_all_data($connectBDD, $difficulty, $km, $status, $time); // Appel correct ici
     
     // Renvoyer les données combinées au format JSON
     echo json_encode($data);

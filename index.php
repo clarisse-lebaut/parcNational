@@ -15,6 +15,10 @@ $routes = [
     'trails' => [
         'controller' => 'TrailsController',
         'method' => 'trails',
+    ],
+    'details_trails' => [
+        'controller' => 'TrailsController',
+        'method' => 'details_trails',
     ]
 ];
 
