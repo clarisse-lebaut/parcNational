@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
-require_once __DIR__ . '/Controller.php';  // Inclure le fichier Controller
+require_once __DIR__ . '/Controller.php';  
 
 class CampsiteController extends Controller {
 
