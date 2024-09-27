@@ -10,7 +10,7 @@
     <main>
         <h1>Parc National des Calanques</h1>
         <h2>Décrouvrir Marseille et ses merveilles</h2>
-        <img src="assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
+        <img src="../assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
         <p>Présentation du site</p>
 
         <section>

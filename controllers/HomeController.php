@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Controller.php';
+require_once __DIR__ . '/../config/connectBDD.php';
 require_once __DIR__ . '/../models/News.php';
 
 class HomeController extends Controller{
@@ -18,16 +19,19 @@ class HomeController extends Controller{
         $this->bdd = $this->getDatabaseConnection(); // Méthode à créer si elle n'existe pas
     }
 
-    // Méthode pour la page d'accueil
-    public function home(){
-        $this->render('home');
-    }
-
-    // Méthode pour afficher toutes les news
-    public function display_all_news(){
+    // Méthode pour afficher toutes les news dans la page home
+    public function news(){ 
         // Récupérer les news en utilisant le modèle
         $news = $this->newsModel->get_news($this->bdd);
         // Afficher la vue 'news' avec les données récupérées
-        $this->render('news', ['news' => $news]);
+        $this->render('home', ['home' => $news]);
     }
+
+    public function getDatabaseConnection(){
+    // Instancier la classe ConnectBDD
+    $connectBDD = new ConnectBDD();
+    // Retourner l'objet PDO
+    return $connectBDD->bdd;
+    }
+
 }

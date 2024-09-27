@@ -4,10 +4,6 @@
 $routes = [
     '' => [
         'controller' => 'HomeController', 
-        'method' => 'home',
-    ],
-    '' => [
-        'controller' => 'HomeController', 
         'method' => 'news',
     ]
 ];
@@ -15,7 +11,7 @@ $routes = [
 //* Removal of the string 'parkNational' from the link
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);
 $urlArray = explode('?', $url);
-var_dump($urlArray);
+//? var_dump($urlArray);
 
 if(isset($routes[$urlArray[0]])){
     $className = $routes[$urlArray[0]]['controller'];
@@ -24,7 +20,8 @@ if(isset($routes[$urlArray[0]])){
     $object = new $className; 
     $object->{$methodName}();
 }else{
-    var_dump("pas d'adresse");
+    echo "error 404";
+    //? var_dump("pas d'adresse");
 }
 
 ?>
