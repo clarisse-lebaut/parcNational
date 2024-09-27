@@ -43,7 +43,7 @@
                 </div>
                 <!-- Filtre pour les états du sentier-->
                 <div class="dropdown">
-                    <button class="dropdown-btn"><div>Etats</div><img src="/parcNational//assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <button class="dropdown-btn"><div>Etats</div><img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">
                         <input class="status" type="checkbox" id="active" name="tag" value="active">
                         <label for="active">Ouvert</label><br>
@@ -78,7 +78,7 @@
                 </div>
                 <!-- Filtre pour le temps de marche -->
                 <div class="dropdown">
-                    <button class="dropdown-btn"><div>Temps de marche</div><img src="/parcNational//assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
+                    <button class="dropdown-btn"><div>Temps de marche</div><img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down"></button>
                     <div class="dropdown-content">  
                         <!-- Boucle pour afficher toutes les distances -->
                         <div class="distance-options">
@@ -117,7 +117,7 @@
                         <div class="card_top">
                             <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
-                                <img src="/<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
+                                <img src="/parcNational/<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>
                         </div>
                         <div class="card_details">
@@ -126,7 +126,7 @@
                                 <p><?php echo htmlspecialchars($trail['length_km']); ?></p>
                             </div>
                             <div>
-                                <img src="/parcNational//assets/icon/time.svg" alt="icon time">
+                                <img src="/parcNational/assets/icon/time.svg" alt="icon time">
                                 <p><?php echo htmlspecialchars($trail['time']); ?></p>
 
                             </div>
@@ -134,10 +134,10 @@
                                 <?php
                                     $image_path ="";
                                     $difficulty = $trail['difficulty'];
-                                    $easy = "shoes-green.svg";
-                                    $medium = "shoes-orange.svg";
-                                    $hard = "shoes-red.svg";
-                                    $default = "shoes-default.svg";
+                                    $easy = "/parcNational/assets/icon/shoes-green.svg";
+                                    $medium = "/parcNational/assets/icon/shoes-orange.svg";
+                                    $hard = "/parcNational/assets/icon/shoes-red.svg";
+                                    $default = "/parcNational/assets/icon/shoes-default.svg";
 
                                     $alt_text = '';
                                     if ($easy) {
@@ -150,16 +150,16 @@
 
                                     switch ($difficulty) {
                                         case 'Facile':
-                                            $image_path = "/parcNational//assets/icon/$easy";
+                                            $image_path = "$easy";
                                             break;
                                         case 'Moyen':
-                                            $image_path = "/parcNational//assets/icon/$medium";
+                                            $image_path = "$medium";
                                             break;
                                         case 'Difficile':
-                                            $image_path = "/parcNational//assets/icon/$hard";
+                                            $image_path = "$hard";
                                             break;
                                         default:
-                                            $image_path = "/parcNational//assets/icon/$default";
+                                            $image_path = "$default";
                                             break;
                                     }
                                 ?>
@@ -187,16 +187,16 @@
 
                                     switch ($status) {
                                         case 'active':
-                                            $image_path = "/parcNational//assets/icon/$active";
+                                            $image_path = "/parcNational/assets/icon/$active";
                                             break;
                                         case 'work' : 
-                                            $image_path = "/parcNational//assets/icon/$work";
+                                            $image_path = "/parcNational/assets/icon/$work";
                                             break;
                                         case 'inactive':
-                                            $image_path = "/parcNational//assets/icon/$inactive";
+                                            $image_path = "/parcNational/assets/icon/$inactive";
                                             break;
                                         default:
-                                            $image_path = "/parcNational//assets/icon/$active";
+                                            $image_path = "/parcNational/assets/icon/$active";
                                             break;
                                     }
                                 ?>
@@ -204,8 +204,8 @@
                                 <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
                             </div>
                         </div>
-                        <button><img src="/parcNational//assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
-                        <button><img src="/parcNational//assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
+                        <button><img src="/parcNational/assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
+                        <button><img src="/parcNational/assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
                     </div>
                     <p><?php echo htmlspecialchars($trail['description']); ?></p>
                     <p><?php echo htmlspecialchars($trail['acces']); ?></p> 

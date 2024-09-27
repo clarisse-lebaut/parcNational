@@ -77,7 +77,7 @@ function manageTagDisplay(checkbox) {
     card.id = `tag-${checkbox.value}`; // Assigner un ID unique basé sur la valeur de la checkbox
     card.innerHTML = `
       <p>${checkbox.value}</p>
-      <img class="close-tag" src='../assets/icon/cross.svg'/>
+      <img class="close-tag" src='/parcNational/assets/icon/cross.svg'/>
     `;
     tag.appendChild(card);
     // Ajouter un event listener pour l'icône de fermeture (croix)
@@ -107,7 +107,7 @@ function updateTrailDisplay(data) {
 
       card.innerHTML = `
         <div class="card_top">
-          <a href="../pages/details_trails.php?id=${encodeURIComponent(item.trail_id)}">
+          <a href="../views/details_trails.php?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
             <img src="../${item.image}" alt="${item.name}" width="200">
           </a>
