@@ -1,7 +1,8 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
+require_once __DIR__ . '/Controller.php';  // Inclure le fichier Controller
 
-class CampsiteController {
+class CampsiteController extends Controller {
 
     private $campsiteModel;
 
@@ -13,7 +14,7 @@ class CampsiteController {
     public function getAllCampsites() {
         $campsites = $this->campsiteModel->getAllCampsites();
         if ($campsites) {
-            return $campsites;  // tableau de campings
+            $this->render('campsites', ['campsites' => $campsites]);
         } else {
             return [];
         }
@@ -23,7 +24,7 @@ class CampsiteController {
     public function getCampsiteById($campsite_id) {
         $campsite = $this->campsiteModel->getCampsiteById($campsite_id);
         if ($campsite) {
-            return $campsite;  // 1 seul camping
+            $this->render('campsiteDetails', ['campsite' => $campsite]);
         } else {
             return null;
         }
