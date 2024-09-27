@@ -1,0 +1,11 @@
+.overflow {
+  height: 750px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.order-options,
+.distance-options {
+  display: flex;
+  flex-direction: column;
+}

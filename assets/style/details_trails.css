@@ -1,0 +1,10 @@
+.slider_elements {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  overflow: scroll;
+  overflow-y: hidden;
+  height: 300px;
+}
