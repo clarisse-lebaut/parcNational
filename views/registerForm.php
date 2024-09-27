@@ -16,7 +16,7 @@
       echo '</div>';
     }
     ?>
-    <form method="post" action="/parcNational/registerForm">
+    <form method="post" action="/parcNational/register-form">
       <div class="row g-3">
         <!-- Lastname -->
         <div class="col-md-6">

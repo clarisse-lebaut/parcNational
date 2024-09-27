@@ -104,9 +104,9 @@ class LoginController extends Controller{
         
         
     }
-    public function loginUsingFacebook(){//ta metoda ie uruchomi kiedy fb przekieruje nas spowrotem do nas
-        $facebook_client_id = '3791602837821452';
-        $facebook_client_secret = '8a4de4f4eff05528f18801e6bdb75e76';
+    public function loginUsingFacebook(){//// This method will be triggered when Facebook redirects back to us
+        $facebook_client_id = $_ENV['FACEBOOK_CLIENT_ID'];
+        $facebook_client_secret = $_ENV['FACEBOOK_CLIENT_SECRET'];
         $facebook_redirect_url = 'http://localhost/parcNational/facebook-login';
 
         $params = [
@@ -115,7 +115,7 @@ class LoginController extends Controller{
             'client_secret' => $facebook_client_secret,
             'redirect_uri' => $facebook_redirect_url
         ];
-        //Request configuration PObieramy klucz do pobrania danych
+        //Request configuration We retrieve the key to fetch the data
         $curl = curl_init();//Initialises sending the request that allows PHP to communicate with external services using protocols like HTTP or HTTPS
         curl_setopt($curl, CURLOPT_URL, 'https://graph.facebook.com/oauth/access_token');
         curl_setopt($curl, CURLOPT_POST, true);
@@ -124,9 +124,9 @@ class LoginController extends Controller{
         $response = curl_exec($curl);
         curl_close($curl);
         $responseData = json_decode($response);
-        // Pobranie danych 
+        // Data download 
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, 'https://graph.facebook.com/me?fields=name,email,picture');//sciezka z dokumentacji fb
+        curl_setopt($curl, CURLOPT_URL, 'https://graph.facebook.com/me?fields=name,email,picture');//FB documentations link
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $responseData->access_token]);
         $response = curl_exec($curl);
@@ -162,10 +162,3 @@ class LoginController extends Controller{
         $this->redirect('');
     }
 }
-//National Parc
-//http://localhost/parcNational/facebook-login---Valid OAuth Redirect URI musi być bardziej specyficzny i powinien zawierać pełny adres endpointu obsługującego logowanie
-//http://localhost redirects are automatically allowed while in development mode only and do not need to be added here.
-
-//http://localhost/parcNational/ --- Ten adres będzie używany jako główny URL Twojej aplikacji i może być wykorzystany przez Facebooka do różnych celów, np. podczas weryfikacji Twojej aplikacji czy przy integracji innych funkcji.
-//AppleId : 3791602837821452
-//App secret : 8a4de4f4eff05528f18801e6bdb75e76

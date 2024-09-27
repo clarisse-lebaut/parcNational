@@ -19,7 +19,7 @@ $routes = [
         'method' => 'homePage',
     ],
     //Save register form
-    'registerForm' => [
+    'register-form' => [
         'controller' => 'RegisterController',
         'method' => 'registerSaveForm',
     ],
