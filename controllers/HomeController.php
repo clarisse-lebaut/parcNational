@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
 require_once __DIR__ . '/../models/News.php';

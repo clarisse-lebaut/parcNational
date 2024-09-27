@@ -3,12 +3,11 @@ require_once __DIR__ . '/../config/connectBDD.php';
 
 class Trails {
 //* Requêtes pour le données sur les sentiers
-function get_trails_all($connectBDD) {
-    $requeteSQL = "SELECT * from trails";
-    $getAllData = $connectBDD->prepare($requeteSQL);
-    $getAllData->execute();
-    $trails = $getAllData->fetchAll(PDO::FETCH_ASSOC);
-    return $trails;
+public function get_all_trails($bdd) {
+    $sql = "SELECT * from trails";
+    $stmt = $bdd->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 //* Requêtes pour les détails d'un seul sentier
