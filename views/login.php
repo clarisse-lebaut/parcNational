@@ -27,12 +27,17 @@
   <div class="col-auto">
     <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
   </div>
-  <h5 class= 'm-3'><a href=" registerForm.php">Don't have an account yet? Go to the register page.</h5>
+  <h5 class= 'm-3'><a href="register">Don't have an account yet? Go to the register page.</h5>
   
 </form>
 <a href="/parcNational/login-using-google" class="google-login-btn m-3">
         <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
         Connect with Google
     </a>
+    <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=3791602837821452&redirect_uri=http://localhost/parcNational/facebook-login&scope=email,public_profile">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" width="20" height="20">
+    Connect with Facebook
+</a>
+
 </body>
 </html>

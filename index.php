@@ -54,7 +54,12 @@ $routes = [
     'ip-block' => [
         'controller' => 'IpController',
         'method' => 'getBlockIp'
+    ],
+    'facebook-login' =>[
+        'controller' => 'Logincontroller',
+        'method' => 'loginUsingFacebook',
     ]
+    
 ];
 
 //$routes['login'];

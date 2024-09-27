@@ -21,6 +21,9 @@ class IpController extends Controller {
     
     }
     public function getBlockIp(){
+        $blockIp = new BlockIp('block_ips');
+        $blockedIps = $blockIp->getAll();
+        $this->render('listBlockedIps', ['blockedIps' => $blockedIps]);
 
     }
 }

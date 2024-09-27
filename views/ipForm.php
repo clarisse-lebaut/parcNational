@@ -7,7 +7,7 @@
 </head>
 <body>
     <form method="post" action="/parcNational/ip-save">
-        <input name='ip' placeholder=' id ' type='text'/>
+        <input name="ip" placeholder=' Enter IP ' type='text'/>
         <button type='submit'>Add IP</button>
     </form>
 

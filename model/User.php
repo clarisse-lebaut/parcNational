@@ -32,5 +32,19 @@ class User extends Model{
         $stmt->execute([$googleId]);
         return $stmt->fetch();
     }
+    public function saveUserFromFacebook($data){
+        $name = $data->name;//obiekt
+        $nameArray = explode(' ', $name);//explode uzywa sie do zmiany string na tablice 
+        $sql = 'INSERT INTO users(role, mail, firstname, lastname, facebook_id) values(?,?,?,?,?)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([1, $data->email, $nameArray[0], $nameArray[1], $data->id]);//dane z json_decode ktory zwraca obiekt a nie tablice i dlatego tak sie do niego odwolujemy
 
+    }
+
+    public function getByFacebookId($facebookId){
+        $sql = 'SELECT * FROM users WHERE facebook_id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$facebookId]);
+        return $stmt->fetch();
+    }
 }
