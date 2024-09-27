@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../model/CampsiteModel.php';
+require_once __DIR__ . '/../models/CampsiteModel.php';
 
 $campsiteModel = new CampsiteModel();
 
