@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../model/CampsiteModel.php';
+require_once __DIR__ . '/../models/CampsiteModel.php';
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 if ($campsite_id > 0) {
