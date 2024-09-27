@@ -107,7 +107,7 @@ function updateTrailDisplay(data) {
 
       card.innerHTML = `
         <div class="card_top">
-          <a href="details_trails.php?id=${encodeURIComponent(item.trail_id)}">
+          <a href="details_trails?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
             <img src="${item.image}" alt="${item.name}" width="200">
           </a>
@@ -129,9 +129,7 @@ function updateTrailDisplay(data) {
           </div>
           <div>
             <p>${item.status}</p>
-            <img src="assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(
-        item.status
-      )}">
+            <img src="assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(item.status)}">
           </div>
         </div>
         <button><img src="assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
