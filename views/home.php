@@ -6,6 +6,7 @@
 <body>
     <header>
         <p>Faire la navabar</p>
+        <a href="about">A propos</a>
     </header>
     <main>
         <h1>Parc National des Calanques</h1>

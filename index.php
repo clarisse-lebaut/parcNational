@@ -5,6 +5,10 @@ $routes = [
     '' => [
         'controller' => 'HomeController', 
         'method' => 'news',
+    ],
+    'about' => [
+        'controller' => 'AboutController',
+        'method' => 'about',
     ]
 ];
 
