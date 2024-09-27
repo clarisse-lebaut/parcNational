@@ -16,28 +16,31 @@
     ?>
     <h1> Connection</h1>
     <form method='post' action="/parcNational/loginForm" class="row g-3">
-  <div class="col-auto">
-    <label for="inputEmail2" class="visually-hidden">Email</label>
-    <input type="email" name='email' class="form-control" id="inputEmail2" placeholder=Email>
-  </div>
-  <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Password</label>
-    <input type="password" name='password' class="form-control" id="inputPassword2" placeholder="Password">
-  </div>
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
-  </div>
-  <h5 class= 'm-3'><a href="register">Don't have an account yet? Go to the register page.</h5>
-  
-</form>
-<a href="/parcNational/login-using-google" class="google-login-btn m-3">
-        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
-        Connect with Google
+      <div class="col-auto">
+        <label for="inputEmail2" class="visually-hidden">Email</label>
+        <input type="email" name='email' class="form-control" id="inputEmail2" placeholder=Email>
+      </div>
+      <div class="col-auto">
+        <label for="inputPassword2" class="visually-hidden">Password</label>
+        <input type="password" name='password' class="form-control" id="inputPassword2" placeholder="Password">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+      </div>
+      <h5 class= 'm-3'><a href="register">Don't have an account yet? Go to the register page.</h5>
+    </form>
+    <a href="/parcNational/login-using-google" class="google-login-btn m-3">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
+      Connect with Google
     </a>
-    <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=3791602837821452&redirect_uri=http://localhost/parcNational/facebook-login&scope=email,public_profile">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" width="20" height="20">
-    Connect with Facebook
-</a>
-
+    <?php
+      require 'vendor/autoload.php';
+      $clientId = $_ENV['FACEBOOK_CLIENT_ID'] ?? 'default_client_id';
+      $redirectUri = $_ENV['FACEBOOK_REDIRECT_URI'] ?? 'default_redirect_uri';
+    ?>
+    <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=<?php echo htmlspecialchars($clientId); ?>&redirect_uri=<?php echo urlencode($redirectUri); ?>&scope=email,public_profile">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" width="20" height="20">
+      Connect with Facebook
+    </a>
 </body>
 </html>

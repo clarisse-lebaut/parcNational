@@ -1,7 +1,10 @@
 <?php
 session_start();
 session_regenerate_id(true);//Session Fixation(Security)
+require 'vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 $routes = [
     //The login displays the login page, then selects the Controller and the method
     'login' => [
@@ -62,7 +65,7 @@ $routes = [
     
 ];
 
-//$routes['login'];
+$routes['login'];
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
 

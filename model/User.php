@@ -34,10 +34,10 @@ class User extends Model{
     }
     public function saveUserFromFacebook($data){
         $name = $data->name;//obiekt
-        $nameArray = explode(' ', $name);//explode uzywa sie do zmiany string na tablice 
+        $nameArray = explode(' ', $name);//The explode function is used to convert a string into an array.
         $sql = 'INSERT INTO users(role, mail, firstname, lastname, facebook_id) values(?,?,?,?,?)';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([1, $data->email, $nameArray[0], $nameArray[1], $data->id]);//dane z json_decode ktory zwraca obiekt a nie tablice i dlatego tak sie do niego odwolujemy
+        $stmt->execute([1, $data->email, $nameArray[0], $nameArray[1], $data->id]);//The data from json_decode returns an object, not an array, which is why we refer to it in this way.
 
     }
 

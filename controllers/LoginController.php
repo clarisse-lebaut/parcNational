@@ -5,6 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
+
 class LoginController extends Controller{
     public function login(){
         $this->render('login');
@@ -30,7 +31,6 @@ class LoginController extends Controller{
         }else{
             $this->render('login', ['error' => 'Data incorrect']);
         }
-        
     }
 
     public function loginUsingGoogle(){
@@ -49,6 +49,7 @@ class LoginController extends Controller{
         ];
         header('Location: https://accounts.google.com/o/oauth2/auth?' . http_build_query($params));// converts an associative array into a link (a string with GET parameters)
     }
+
     public function getDataFromGoogle(){
         //phpinfo();
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
@@ -101,9 +102,8 @@ class LoginController extends Controller{
             $_SESSION['user_id'] = $newUser['user_id'];
             $this->redirect('');
         }
-        
-        
     }
+
     public function loginUsingFacebook(){//// This method will be triggered when Facebook redirects back to us
         $facebook_client_id = $_ENV['FACEBOOK_CLIENT_ID'];
         $facebook_client_secret = $_ENV['FACEBOOK_CLIENT_SECRET'];
@@ -115,6 +115,7 @@ class LoginController extends Controller{
             'client_secret' => $facebook_client_secret,
             'redirect_uri' => $facebook_redirect_url
         ];
+
         //Request configuration We retrieve the key to fetch the data
         $curl = curl_init();//Initialises sending the request that allows PHP to communicate with external services using protocols like HTTP or HTTPS
         curl_setopt($curl, CURLOPT_URL, 'https://graph.facebook.com/oauth/access_token');
@@ -124,6 +125,7 @@ class LoginController extends Controller{
         $response = curl_exec($curl);
         curl_close($curl);
         $responseData = json_decode($response);
+
         // Data download 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, 'https://graph.facebook.com/me?fields=name,email,picture');//FB documentations link
@@ -133,7 +135,6 @@ class LoginController extends Controller{
         curl_close($curl);
         $responseData = json_decode($response);
         var_dump($responseData);
-
 
         $userObject = new User('users');
         $user = $userObject->getByFacebookId($responseData->id);
@@ -146,14 +147,12 @@ class LoginController extends Controller{
                 $this->redirect('');
             }
         }else{
-
             $userObject->saveUserFromFacebook($responseData);
             $newUser = $userObject->getByFacebookId($responseData->id);
             $_SESSION['id'] = $newUser['user_id'];
             $_SESSION['user_role'] = $newUser['role'];
             $this->redirect('');
         }
-
     }
     
     public function logout(){
