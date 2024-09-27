@@ -65,7 +65,7 @@ if ($campsite_id > 0) {
 
             <!-- ROW BOUTON RESERVER -->
             <div class="campsite-details-row">
-             <a href="../view/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
+             <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
             </div>
         <?php else: ?>
             <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>
