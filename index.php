@@ -1,6 +1,4 @@
 <?php
-// session_start();
-
 $routes = [
     '' => [
         'controller' => 'HomeController', 
@@ -9,6 +7,10 @@ $routes = [
     'about' => [
         'controller' => 'AboutController',
         'method' => 'about',
+    ],
+    'trails' => [
+        'controller' => 'TrailsController',
+        'method' => 'trails',
     ]
 ];
 

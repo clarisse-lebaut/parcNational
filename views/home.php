@@ -7,6 +7,7 @@
     <header>
         <p>Faire la navabar</p>
         <a href="about">A propos</a>
+        <a href="trails">Les Sentiers</a>
     </header>
     <main>
         <h1>Parc National des Calanques</h1>
