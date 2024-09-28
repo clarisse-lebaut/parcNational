@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="assets/style/map.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <?php include "components/_header.php"; ?>
+    </header>
     <main>
         <h1><?php echo $trail ? htmlspecialchars($trail['name']) : "Sentier non trouvé"; ?></h1>
 
@@ -129,6 +131,8 @@
             </div>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <?php include "components/_footer.php"; ?>
+    </footer>
 </body>
 </html>
