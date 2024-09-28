@@ -17,11 +17,11 @@ class CampsiteModel extends connectBDD {
         return $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    // 2. Récupérer tous les campings
     public function getAllCampsites() {
         $query = $this->db->prepare('SELECT * FROM campsite');
         $query->execute();
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     // 3. Créer un nouveau camping

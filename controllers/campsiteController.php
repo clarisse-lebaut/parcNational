@@ -1,25 +1,20 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
-require_once __DIR__ . '/Controller.php';  
+require_once __DIR__ . '/../controllers/Controller.php';  
 
-class CampsiteController extends Controller {
+class CampsiteController {
 
     private $campsiteModel;
 
-    public function __construct() {
-        $this->campsiteModel = new CampsiteModel(); 
+    public function __construct(CampsiteModel $campsiteModel) {
+        $this->campsiteModel = $campsiteModel; 
     }
 
     // 1. Récupérer tous les campings
     public function getAllCampsites() {
-        $campsites = $this->campsiteModel->getAllCampsites();
-        if ($campsites) {
-            $this->render('campsites', ['campsites' => $campsites]);
-        } else {
-            return [];
-        }
+        return $this->campsiteModel->getAllCampsites();
     }
-
+    
     // 2. Récupérer un camping par ID
     public function getCampsiteById($campsite_id) {
         $campsite = $this->campsiteModel->getCampsiteById($campsite_id);
