@@ -68,7 +68,6 @@ class TrailsController extends Controller {
         ]);
     }
 
-
     //* Fonction pour avoir la connexion à la base de donnée
     public function getDatabaseConnection(){
     // Instancier la classe ConnectBDD

@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" defer></script>
     <!-- réalisé -->
-    <script src="../assets/script/map.js" defer></script>
-    <link rel="stylesheet" href="../assets/style/details_trails.css">
-    <link rel="stylesheet" href="../assets/style/map.css">
+    <script src="assets/script/map.js" defer></script>
+    <link rel="stylesheet" href="assets/style/details_trails.css">
+    <link rel="stylesheet" href="assets/style/map.css">
 </head>
 <body>
     <header></header>
@@ -20,15 +20,15 @@
         <section>
             <div class="hero_trail">
                 <h1>Hero</h1>
-                <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
+                <img src="<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
             </div>
             <div class="details_trail">
                 <div>
-                    <img src="../assets/icon/time.svg" alt="icon time">
+                    <img src="assets/icon/time.svg" alt="icon time">
                     <p><?php echo ($trail['time']) ?></p>
                 </div>
                 <div>
-                    <img src="../assets/icon/hiking.svg" alt="icon length">
+                    <img src="assets/icon/hiking.svg" alt="icon length">
                     <p><?php echo ($trail['length_km']) ?></p>
                 </div>
                 <div>
@@ -38,17 +38,17 @@
 
                         switch ($difficulty_from_db) {
                             case "Facile":
-                                $image_path = "../assets/icon/shoes-green.svg";
+                                $image_path = "assets/icon/shoes-green.svg";
                                 break;
                             case "Moyen":
-                                $image_path = "../assets/icon/shoes-orange.svg";
+                                $image_path = "assets/icon/shoes-orange.svg";
                                 break;
                             case "Difficile":
-                                $image_path = "../assets/icon/shoes-red.svg";
+                                $image_path = "assets/icon/shoes-red.svg";
                                 break;
                             default:
                                 // Image par défaut si difficulté inconnue
-                                $image_path = "../assets/icon/shoes-default.svg";
+                                $image_path = "assets/icon/shoes-default.svg";
                                 break;
                         }
                     ?>
@@ -63,17 +63,17 @@
 
                         switch ($difficulty_from_db) {
                             case "active":
-                                $image_path = "../assets/icon/circle-green.svg";
+                                $image_path = "assets/icon/circle-green.svg";
                                 break;
                             case "work":
-                                $image_path = "../assets/icon/circle-orange.svg"; // Peut-être une autre image ?
+                                $image_path = "assets/icon/circle-orange.svg"; // Peut-être une autre image ?
                                 break;
                             case "inactive":
-                                $image_path = "../assets/icon/circle-red.svg"; // Peut-être une autre image ?
+                                $image_path = "assets/icon/circle-red.svg"; // Peut-être une autre image ?
                                 break;
                             default:
                                 // Image par défaut si difficulté inconnue
-                                $image_path = "../assets/icon/circle-green.svg";
+                                $image_path = "assets/icon/circle-green.svg";
                                 break;
                         }
                     ?>
@@ -119,9 +119,9 @@
                 <div class="slider_elements">
                     <?php foreach ($trails as $trail): ?>
                         <div class="card_trails">
-                            <a href="./details_trails.php?id=<?php echo urlencode($trail['trail_id']); ?>">
+                            <a href="details_trails?id=<?php echo urlencode($trail['trail_id']); ?>">
                                 <p><?php echo htmlspecialchars($trail['name']); ?></p>
-                                <img src="../<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
+                                <img src="<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
                             </a>
                         </div>
                     <?php endforeach; ?>

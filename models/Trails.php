@@ -178,6 +178,7 @@ public function get_map_data($bdd){
 
     return $geojson;  // Ne pas oublier de retourner le GeoJSON
 }
+
 // Fonction pour récupérer uniquement les sentiers des maps
 // il y a tous les sentiers dans un fichier data.php
 public function get_mapTrails_data($bdd) {
