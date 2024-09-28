@@ -205,8 +205,10 @@
                                 <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($alt_text) ?>">
                             </div>
                         </div>
-                        <button><img src="/parcNational/assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
-                        <button><img src="/parcNational/assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
+                        <?php if (isset($_SESSION['user'])): ?>
+                            <button><img src="/parcNational/assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
+                            <button><img src="/parcNational/assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
+                        <?php endif;?>
                     </div>
                     <p><?php echo htmlspecialchars($trail['description']); ?></p>
                     <p><?php echo htmlspecialchars($trail['acces']); ?></p> 
