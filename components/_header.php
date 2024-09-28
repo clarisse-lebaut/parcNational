@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="assets/style/_header.css">
-<link rel="stylesheet" href="assets/style/global.css">
+<link rel="stylesheet" href="assets/style/_global.css">
+
 <nav class="nav-header">
     <ul class="ul-header">
         <li><a href="home">Accueil</a></li>
