@@ -9,7 +9,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 
 // Liste des fichiers GeoJSON
 var geojsonFiles = [
-  "/parcNational/data_map.php",
+  "/parcNational/data/data_map.php",
   "/parcNational/data/data_map_trails.php",
   "/parcNational/data/data_map_landmarks.php",
 ];
@@ -19,17 +19,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const trailId = urlParams.get("id");
 
 // Utiliser Promise.all pour charger plusieurs fichiers GeoJSON
-// Utiliser Promise.all pour charger plusieurs fichiers GeoJSON
-Promise.all(
-  geojsonFiles.map((url) => {
-    return fetch(url).then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status} for URL: ${url}`);
-      }
-      return response.json();
-    });
-  })
-)
+Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.json())))
   .then((geojsonDataArray) => {
     //* Ajouter le premier fichier (data_map.php) à la carte (contours)
     L.geoJSON(geojsonDataArray[0]).addTo(map);
@@ -104,7 +94,7 @@ Promise.all(
               closeButton: false,
             }).setLatLng(layer.getLatLng()).setContent(`
               <div>
-                <img src="${imageUrl}" alt="${feature.properties.name}" width="250px"/>
+                <img src="../${imageUrl}" alt="${feature.properties.name}" width="250px"/>
                 <p>${namePoi}</p>
               </div>  
               `);
