@@ -1,6 +1,6 @@
 <?php 
 include '../config/connectBDD.php';
-include '../models/Trails.php';
+include '../controllers/TrailsController.php';
 
 //! Instancier la classe ConnectBDD et obtenir la connexion PDO
 $connectBDDInstance = new ConnectBDD();
