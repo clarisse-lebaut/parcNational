@@ -1,11 +1,12 @@
 <?php
-require_once __DIR__ . '/../controllers/CampsiteController.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
+require_once __DIR__ . '/../controllers/CampsiteController.php';
 
+// Créez les objets
 $campsiteModel = new CampsiteModel();
 $campsiteController = new CampsiteController($campsiteModel);
 
-// méthodes
+// Récupérez les campings
 $campsites = $campsiteController->getAllCampsites();
 ?>
 
@@ -19,30 +20,27 @@ $campsites = $campsiteController->getAllCampsites();
 </head>
 <body>
     <h1>Séjournez dans un camping près des Calanques</h1>
-    <div class="campsite-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consectetur nulla sed sem aliquam porttitor. Proin ipsum eros, ullamcorper eu massa elementum.
-            Nunc quis elit dapibus, interdum lorem non, bibendum enim. Sed vitae ex non risus accumsan fermentum a a lacus. Pellentesque sit amet ullamcorper lorem.
-            Tortor arcu accumsan orci, non ornare sapien dolor eget tellus. Ut justo ex, pretium a purus ut, imperdiet imperdiet justo.
-    </div>
+    <div class="campsite-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
 
     <?php if (!empty($campsites)): ?>
         <div class="camping-grid">
             <?php foreach ($campsites as $campsite): ?>
                 <div class="camping-item">
-                    <a href="campsiteDetails.php?id=<?= htmlspecialchars($campsite['campsite_id'] ?? ''); ?>">
-                        <img src="../<?= htmlspecialchars($campsite['image'] ?? ''); ?>" alt="Image de <?= htmlspecialchars($campsite['name'] ?? ''); ?>">
+                    <a href="campsiteDetails.php?id=<?= htmlspecialchars($campsite['campsite_id']); ?>">
+                        <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
                     </a>
 
-                    <a href="campsiteDetails.php?id=<?= htmlspecialchars($campsite['campsite_id'] ?? ''); ?>" class="campsite-name">
-                        <?= htmlspecialchars($campsite['name'] ?? ''); ?>
+                    <a href="campsiteDetails.php?id=<?= htmlspecialchars($campsite['campsite_id']); ?>" class="campsite-name">
+                        <?= htmlspecialchars($campsite['name']); ?>
                     </a>
                     
                     <p>
                         <?php
-                        $description = htmlspecialchars($campsite['description'] ?? '');
+                        $description = htmlspecialchars($campsite['description']);
                         if (strlen($description) > 100) {
                             echo '<span class="short-text">' . substr($description, 0, 100) . '...</span>';
                             echo '<span class="long-text">' . substr($description, 100) . '</span>';
-                            echo '<span class="show-more" data-id="' . htmlspecialchars($campsite['campsite_id'] ?? '') . '">Voir plus</span>';
+                            echo '<span class="show-more" data-id="' . htmlspecialchars($campsite['campsite_id']) . '">Voir plus</span>';
                         } else {
                             echo $description;
                         }
