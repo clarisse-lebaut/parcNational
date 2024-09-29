@@ -21,11 +21,11 @@
             </div>    
         </nav>
         <section class="data-admin">
-            <p>Adresse mail de l'admin :</p>
+            <p>Adresse mail de l'admin : récupérer l'adresse mail</p>
             <button>Modifier</button>
         </section>
         <section class="data-admin">
-            <p>Mot de passe : *****</p>
+            <p>Mot de passe : *********</p>
             <button>Modifier</button>
         </section>
     </header>
@@ -36,7 +36,7 @@
                 <a href="manage_admin">
                     <p>Gérer les adminstrateurs</p>
                     <img src="assets/icon/admin.svg" alt="icon admin">
-                    <div>Nombre</div>
+                    <div><?php echo htmlspecialchars($total_users); ?></div>
                 </a>
             </div>
             <div>
@@ -50,7 +50,7 @@
                 <a href="manage_visitor">
                     <p>Gérer les visiteurs</p>
                     <img src="assets/icon/visitor.svg" alt="icon visitors">
-                    <div>Nombre</div>
+                    <div>??</div>
                 </a>
             </div>
         </section>
@@ -63,6 +63,17 @@
                         <div>
                             <img src="assets/icon/hiking.svg" alt="icon trails">
                             <div><?php echo htmlspecialchars($total_trails); ?></div>
+                            <div>
+                                <?php if (!empty($last_trails)): ?>
+                                    <ul>
+                                        <?php foreach ($last_trails as $trail): ?>
+                                            <li><?php echo htmlspecialchars($trail['name']); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <p>Aucun sentier trouvé.</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -71,7 +82,18 @@
                         <p>Gérer les campings</p>
                         <div>
                             <img src="assets/icon/campsite.svg" alt="icon campsite">
-                            <div>information</div>
+                            <div><?php echo htmlspecialchars($total_campsites); ?></div>
+                            <div>
+                                <?php if (!empty($last_campsites)): ?>
+                                    <ul>
+                                        <?php foreach ($last_campsites as $campsites): ?>
+                                            <li><?php echo htmlspecialchars($campsites['name']); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <p>Aucun camping trouvé.</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -80,7 +102,18 @@
                         <p>Gérer les ressources</p>
                         <div>
                             <img src="assets/icon/ressources.svg" alt="icon ressources">
-                            <div>information</div>
+                            <div><?php echo htmlspecialchars($total_ressources); ?></div>
+                            <div>
+                                <?php if (!empty($last_ressources)): ?>
+                                    <ul>
+                                        <?php foreach ($last_ressources as $ressources): ?>
+                                            <li><?php echo htmlspecialchars($ressources['name']); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <p>Aucune ressources trouvé.</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -89,7 +122,18 @@
                         <p>Gérer les rapport</p>
                         <div>
                             <img src="assets/icon/rapport.svg" alt="icon rapport">
-                            <div>information</div>
+                            <div><?php echo htmlspecialchars($total_rapports); ?></div>
+                            <div>
+                                <?php if (!empty($last_rapports)): ?>
+                                    <ul>
+                                        <?php foreach ($last_rapports as $rapports): ?>
+                                            <li><?php echo htmlspecialchars($rapports['name']); ?></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php else: ?>
+                                    <p>Aucun rapports trouvé.</p>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -98,7 +142,7 @@
                 <a href="manage_ship">
                     <div>
                         <p>Gérer les abonnements</p>
-                        <div class="all_ship">information</div>
+                        <div class="all_ship">informations</div>
                     </div>
                 </a>
             </section>
