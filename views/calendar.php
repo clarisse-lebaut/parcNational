@@ -26,9 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'];
     $user_id = 1;
 
-    header("Location: payment.php?campsite_id=$campsite_id&start_date=$start_date&end_date=$end_date&num_persons=$num_persons&price=$price");
-    exit;
-}
+    header("Location: payment.php?campsite_id=$campsite_id&start_date=$start_date&end_date=$end_date&num_persons=$num_persons&price=$price");    exit;}
 ?>
 
 <!DOCTYPE html>
@@ -60,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Réserver ce camping</h2>
             <form action="payment.php" method="POST">
                 <div class="date-fields">
+                <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
+                
                     <div class="date-field">
                         <label for="start_date">Du</label>
                         <input type="text" id="start_date" name="start_date" readonly required>
