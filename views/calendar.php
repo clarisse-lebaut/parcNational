@@ -1,12 +1,33 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
+require_once __DIR__ . '/../controllers/ReservationController.php';
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
+$status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
+$message = '';
+
+if ($status === 'success') {
+    $message = "Paiement réussi ! Votre réservation a été confirmée.";
+} elseif ($status === 'cancel') {
+    $message = "Le paiement a été annulé. Vous pouvez réessayer.";
+}
+
 if ($campsite_id > 0) {
     $campsiteModel = new CampsiteModel();
     $campsite = $campsiteModel->getCampsiteById($campsite_id);
 } else {
     $campsite = null;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $num_persons = $_POST['num_persons'];
+    $price = $_POST['price'];
+    $user_id = 1;
+
+    header("Location: payment.php?campsite_id=$campsite_id&start_date=$start_date&end_date=$end_date&num_persons=$num_persons&price=$price");
+    exit;
 }
 ?>
 
@@ -37,7 +58,7 @@ if ($campsite_id > 0) {
     <div class="calendar-form-container">
         <section class="reservation-section">
         <h2>Réserver ce camping</h2>
-            <form action="#" method="POST">
+            <form action="payment.php" method="POST">
                 <div class="date-fields">
                     <div class="date-field">
                         <label for="start_date">Du</label>
@@ -55,19 +76,25 @@ if ($campsite_id > 0) {
                     <input type="number" id="num_persons" name="num_persons" min="1" max="10" required>
                 </div>
 
-            </form>
-
+            <input type="hidden" name="price" id="calculated_price" value="0">
             <div id="calendar-price-resa">
                 <p>Prix total: <span id="total-price">0</span> €</p>
             </div>
-        </section>   
+
+            <input type="submit" value="PAYER">
+         </form>
+        </section>
+
+        <?php if (!empty($message)): ?>
+            <div class="reservation-message">
+                <p><?= htmlspecialchars($message); ?></p>
+            </div>
+        <?php endif; ?>
 
         <section>
                 <div id="calendar"></div>
-        </section> 
+        </section>
     </div>
-
-     <input type="submit" value="RÉSERVER">
 
     </main>
 
