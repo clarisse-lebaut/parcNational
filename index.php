@@ -1,4 +1,11 @@
 <?php
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => 'localhost', // or your domain
+    'httponly' => true, // Prevent JavaScript from accessing session cookies
+    'samesite' => 'Strict' // Prevent CSRF
+]);
 session_start();
 session_regenerate_id(true);//Session Fixation(Security)
 require 'vendor/autoload.php';
@@ -65,7 +72,7 @@ $routes = [
     
 ];
 
-$routes['login'];
+//$routes['login'];
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
 
