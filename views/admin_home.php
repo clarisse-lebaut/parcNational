@@ -40,11 +40,11 @@
                 </a>
             </div>
             <div>
-                <a href="manage_users">
+                <!-- <a href="manage_users"> -->
                     <p>Gérer les utilisateurs</p>
                     <img src="assets/icon/users.svg" alt="icon user">
-                    <div>Nombre</div>
-                </a>
+                    <div><?php echo htmlspecialchars($total_users); ?></div>
+                <!-- </a> -->
             </div>
             <div>
                 <a href="manage_visitor">
@@ -62,7 +62,7 @@
                         <p>Gérer les sentiers</p>
                         <div>
                             <img src="assets/icon/hiking.svg" alt="icon trails">
-                            <div>information</div>
+                            <div><?php echo htmlspecialchars($total_trails); ?></div>
                         </div>
                     </a>
                 </div>

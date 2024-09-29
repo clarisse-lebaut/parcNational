@@ -22,7 +22,7 @@ $routes = [
     ],
     'admin_home' => [
         'controller' => 'AdminController',
-        'method' => 'all_data',
+        'method' => 'home',
     ]
     
 ];
