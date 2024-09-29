@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../class/connectBDD.php';
+require_once __DIR__ . '/../config/connectBDD.php';
 
 class ReservationModel extends connectBDD {
 

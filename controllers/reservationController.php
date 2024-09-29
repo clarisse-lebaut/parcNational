@@ -18,7 +18,7 @@ class ReservationController extends Controller {
             $this->render('reservationError', ['message' => 'Erreur lors de la création de la réservation.']);
         }
     }
-
+    
     // 2. Récupérer réservations par user
     public function getReservationsByUser($user_id) {
         $reservations = $this->reservationModel->getReservationsByUser($user_id);
