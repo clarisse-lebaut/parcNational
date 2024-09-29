@@ -1,0 +1,2 @@
+# ignorer le script avec lequel je fetch la météo
+.env
