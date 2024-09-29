@@ -1,0 +1,15 @@
+{
+    "name": "maily/parc-national",
+    "require": {
+        "stripe/stripe-php": "^15.10"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.3"
+    },
+    "authors": [
+        {
+            "name": "maily-vannobel",
+            "email": "maily.vannobel@laplateforme.io"
+        }
+    ]
+}
