@@ -2,8 +2,12 @@
 require 'vendor/autoload.php';
 require_once __DIR__ . '/../config/connectBDD.php';
 
-\Stripe\Stripe::setApiKey('sk_test_51Q49ysE0rTiVkRV3XcXRXsR5xzk7zRx5xEK1l13ssOlLyUWyizU82QprOKh8einZGRAG0BXeTJZfP9UkGZLI6z2v00GO8Ymzke');
+use Dotenv\Dotenv;
 
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+\Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 $campsite_id = isset($_POST['campsite_id']) ? intval($_POST['campsite_id']) : 0;
 $price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
 
