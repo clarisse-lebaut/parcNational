@@ -19,7 +19,12 @@ $routes = [
     'details_trails' => [
         'controller' => 'TrailsController',
         'method' => 'details_trails',
+    ],
+    'admin_home' => [
+        'controller' => 'AdminController',
+        'method' => 'all_data',
     ]
+    
 ];
 
 //* Removal of the string 'parkNational' from the link

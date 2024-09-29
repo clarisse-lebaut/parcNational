@@ -1,0 +1,60 @@
+.body {
+  margin: 0;
+  height: 100vh;
+}
+.nav-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-admin > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.name-admin {
+  font-size: 25px;
+}
+.data-admin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.data-person {
+  background-color: gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+}
+.data-person > div {
+  background-color: aquamarine;
+}
+.data-subject {
+  background-color: lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.data-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+.data-page > div {
+  background-color: aqua;
+}
+.ship {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.all_ship {
+  text-align: center;
+}
