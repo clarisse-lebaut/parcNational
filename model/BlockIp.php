@@ -5,10 +5,10 @@ class BlockIp extends Model{
     public function __construct($table){
         parent::__construct($table);
     }
-    public function isIpBlocked($ip){
+    public function isIpBlocked(){
         $sql = 'SELECT COUNT(*) FROM block_ips WHERE ip = ?';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$ip]);
+        $stmt->execute([$_SERVER['REMOTE_ADDR']]);
         return $stmt->fetchColumn() > 0;
     }
     

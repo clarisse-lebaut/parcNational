@@ -6,7 +6,7 @@ require_once __DIR__ . '/../model/BlockIp.php';
 class IpController extends Controller {
     public function displayForm(){
         $this->render('ipForm');
-    }/////////////////
+    }
     public function saveIp(){
         $ip = $_POST['ip'];
 

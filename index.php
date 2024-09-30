@@ -81,6 +81,15 @@ if(isset($routes[$urlArray[0]])){
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
    // var_dump($methodName);
+    require_once 'model/BlockIp.php';
+    $blockIp = new BlockIp('block_ips');
+    if($blockIp->isIpBlocked()){
+        echo 'Your Ip is blocked';
+        return;
+    }
+    require_once 'model/Log.php';
+    $log = new Log('logs');
+    $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
     $object = new $className; 
