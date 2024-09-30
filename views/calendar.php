@@ -3,16 +3,7 @@ require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/ReservationController.php';
 require_once __DIR__ . '/../controllers/PaymentController.php';
 
-
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
-$status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
-$message = '';
-
-if ($status === 'success') {
-    $message = "Paiement réussi ! Votre réservation a été confirmée.";
-} elseif ($status === 'cancel') {
-    $message = "Le paiement a été annulé. Vous pouvez réessayer.";
-}
 
 if ($campsite_id > 0) {
     $campsiteModel = new CampsiteModel();
@@ -26,9 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $end_date = $_POST['end_date'];
     $num_persons = $_POST['num_persons'];
     $price = $_POST['price'];
-    $user_id = 1;
+    $user_id = 1; 
 
-    header("Location: payment.php?campsite_id=$campsite_id&start_date=$start_date&end_date=$end_date&num_persons=$num_persons&price=$price");    exit;}
+    // appel paymentController; gérer la session stripe
+    $paymentController = new PaymentController();
+    $paymentController->createCheckoutSession($campsite_id, $price);
+}
 ?>
 
 <!DOCTYPE html>
