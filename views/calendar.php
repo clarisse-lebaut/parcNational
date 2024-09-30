@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/ReservationController.php';
+require_once __DIR__ . '/../controllers/PaymentController.php';
+
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 $status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
