@@ -1,0 +1,51 @@
+body {
+  height: 100vh;
+  overflow: hidden; /* Empêche le défilement de la page entière */
+}
+
+/* *DASHBOARDS WITH CARD - BENTO */
+/* 3 cards on top */
+.data-trails {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px 0 10px;
+}
+.data-trails > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 150%;
+  padding: 15px;
+
+  box-shadow: lightgray 0 0 10px 1px;
+  border-radius: 10px;
+}
+.data-trails > div:hover {
+  background-color: #c5ff95;
+  cursor: pointer;
+}
+.data-trails > div > img {
+  width: 50px;
+}
+
+
+/* Section tableau avec défilement */
+.board-trails {
+  height: 50vh; /* Fixe une hauteur spécifique pour la section tableau */
+  overflow-y: auto; /* Active le défilement vertical uniquement dans cette section */
+  margin: 20px; /* Espace autour de la section tableau, ajustez-le si nécessaire */
+}
+
+table {
+  width: 100%; /* Le tableau occupe toute la largeur disponible */
+  border-collapse: collapse; /* Pour fusionner les bordures */
+}
+
+thead, tbody, td {
+  border: solid black 1px;
+  text-align: center;
+}

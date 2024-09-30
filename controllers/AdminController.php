@@ -60,10 +60,6 @@ class AdminController extends Controller {
             echo "Erreur lors de la récupération des données.";
         }
     }
-
-
-
-    
     
     // Fonction pour établir la connexion à la base de données
     public function getDatabaseConnection(){

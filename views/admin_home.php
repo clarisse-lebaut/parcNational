@@ -5,31 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Home</title>
     <link rel="stylesheet" href="asset.style/_global.css">
+    <link rel="stylesheet" href="assets/style/_header-admin.css">
     <link rel="stylesheet" href="assets/style/admin_home.css">
 </head>
 
 <body>
     <header>
-        <nav class="nav-admin">
-            <div class="name-admin">
-                <img class="pic-nav-admin" src="assets/icon/users.svg" alt="avatar admin">
-                <p>Bonjour, nomdel'admin !</p>
-            </div>
-            <div class="icon-admin">
-                <a href="admin_home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>
-                <a href="home"><img class="pic-nav-admin" src="assets/icon/off.svg" alt="icon off"></a>
-            </div>    
-        </nav>
-        <section class="data-admin">
-            <div>
-                <p>Adresse mail de l'admin : récupérer l'adresse mail</p>
-                <button><img src="assets/icon/edit.svg" alt="icon edit"></button>
-            </div>
-            <div>
-                <p>Mot de passe : *********</p>
-                <button><img src="assets/icon/edit.svg" alt="icon edit"></button>
-            </div>
-        </section>
+        <?php include 'components/_header-admin.php'?>
     </header>
     <main>
         <section class="data-person">
