@@ -16,4 +16,8 @@
         <?php endif; ?>
         <li><a href="about">A propos</a></li>
     </ul>
+
+    <div class="weather-container">
+        <?php include "_weather.php" ?>
+    </div>
 </nav>
