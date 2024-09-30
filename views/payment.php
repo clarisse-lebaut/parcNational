@@ -31,7 +31,13 @@ if ($campsite_id > 0 && $price > 0) {
     ]);
 
     header("Location: " . $checkout_session->url);
-    exit;
+    exit();
 } else {
-    echo "Erreur : ID du camping ou prix invalide.";
+    if ($paymentSuccess) {
+        header("Location: /parcNational/views/calendar.php?campsite_id=$campsite_id&status=success");
+        exit();
+    } else {
+        header("Location: /parcNational/views/calendar.php?campsite_id=$campsite_id&status=cancel");
+        exit();
+    }
 }
