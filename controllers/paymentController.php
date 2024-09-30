@@ -29,8 +29,8 @@ class PaymentController {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/parcNational/views/calendar.php?campsite_id=' . $campsite_id . '&status=success',
-                'cancel_url' => 'http://localhost/parcNational/views/calendar.php?campsite_id=' . $campsite_id . '&status=cancel',
+                'success_url' => 'http://localhost/parcNational/views/reservationHistory.php',
+                'cancel_url' => 'http://localhost/parcNational/views/reservationHistory.php',
             ]);
 
             header("Location: " . $checkout_session->url);
