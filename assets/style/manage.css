@@ -5,14 +5,14 @@ body {
 
 /* *DASHBOARDS WITH CARD - BENTO */
 /* 3 cards on top */
-.data-trails {
+.data {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 20px;
   padding: 0 10px 0 10px;
 }
-.data-trails > div {
+.data > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,17 +24,17 @@ body {
   box-shadow: lightgray 0 0 10px 1px;
   border-radius: 10px;
 }
-.data-trails > div:hover {
+.data > div:hover {
   background-color: #c5ff95;
   cursor: pointer;
 }
-.data-trails > div > img {
+.data > div > img {
   width: 50px;
 }
 
 
 /* Section tableau avec défilement */
-.board-trails {
+.board {
   height: 50vh; /* Fixe une hauteur spécifique pour la section tableau */
   overflow-y: auto; /* Active le défilement vertical uniquement dans cette section */
   margin: 20px; /* Espace autour de la section tableau, ajustez-le si nécessaire */

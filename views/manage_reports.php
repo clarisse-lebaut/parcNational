@@ -13,19 +13,19 @@
     <main>
         <section class="data">
             <div>
-                <p>Total de sentier enregistrer</p>
-                <img src="assets/icon/hiking.svg" alt="icon hiking">
-                <div><?php echo htmlspecialchars($total_trails); ?></div>
+                <p>Total de rapports enregistrer</p>
+                <img src="assets/icon/file-blank.svg" alt="icon files">
+                <div><?php echo htmlspecialchars($total_reports); ?></div>
             </div>
 
             <div>
-                <p>Dernier sentier ajouter</p>
-                <img src="assets/icon/trails.svg" alt="icon trails">
-                <div><?php echo htmlspecialchars($name_trail); ?></div>
+                <p>Dernier rapports ajouter</p>
+                <img src="assets/icon/file-fill.svg" alt="icon fill file">
+                <div><?php echo htmlspecialchars($name_report); ?></div>
             </div>
 
             <div>
-                <a href="add">Ajouter un sentier</a>
+                <a href="add">Ajouter un rapports</a>
                 <img src="assets/icon/add.svg" alt="icon visitors">
             </div>    
         </section>
@@ -35,22 +35,16 @@
                 <thead>
                     <tr>
                         <td>Nom</td>
-                        <td>Difficulté</td>
-                        <td>Longueur</td>
-                        <td>Temps</td>
-                        <td>État</td>
+                        <td>Description</td>
                         <td>Éditer</td>
                         <td>Supprimer</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($trails as $trail): ?>
+                    <?php foreach ($reports as $report): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($trail['name']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['difficulty']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['length_km']); ?> km</td>
-                            <td><?php echo htmlspecialchars($trail['time']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['status']); ?></td>
+                            <td><?php echo htmlspecialchars($report['name']); ?></td>
+                            <td><?php echo htmlspecialchars($report['description']); ?></td>
                             <td><button><img src="assets/icon/edit.svg" alt="icon edit"></button></td>
                             <td><button><img src="assets/icon/delete.svg" alt="icon delete"></button></td>
                         </tr>

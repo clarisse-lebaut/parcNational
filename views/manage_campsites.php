@@ -13,19 +13,19 @@
     <main>
         <section class="data">
             <div>
-                <p>Total de sentier enregistrer</p>
-                <img src="assets/icon/hiking.svg" alt="icon hiking">
-                <div><?php echo htmlspecialchars($total_trails); ?></div>
+                <p>Total de campings enregistrer</p>
+                <img src="assets/icon/campsites.svg" alt="icon campiste">
+                <div><?php echo htmlspecialchars($total_campsites); ?></div>
             </div>
 
             <div>
-                <p>Dernier sentier ajouter</p>
-                <img src="assets/icon/trails.svg" alt="icon trails">
-                <div><?php echo htmlspecialchars($name_trail); ?></div>
+                <p>Dernier camping ajouter</p>
+                <img src="assets/icon/campsite.svg" alt="icon trails">
+                <div><?php echo htmlspecialchars($name_campsites); ?></div>
             </div>
 
             <div>
-                <a href="add">Ajouter un sentier</a>
+                <a href="add">Ajouter un camping</a>
                 <img src="assets/icon/add.svg" alt="icon visitors">
             </div>    
         </section>
@@ -35,22 +35,20 @@
                 <thead>
                     <tr>
                         <td>Nom</td>
-                        <td>Difficulté</td>
-                        <td>Longueur</td>
-                        <td>Temps</td>
-                        <td>État</td>
+                        <td>Ville</td>
+                        <td>Adresse</td>
+                        <td>Code postal</td>
                         <td>Éditer</td>
                         <td>Supprimer</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($trails as $trail): ?>
+                    <?php foreach ($campsites as $campsite): ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($trail['name']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['difficulty']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['length_km']); ?> km</td>
-                            <td><?php echo htmlspecialchars($trail['time']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['status']); ?></td>
+                            <td><?php echo htmlspecialchars($campsite['name']); ?></td>
+                            <td><?php echo htmlspecialchars($campsite['city']); ?></td>
+                            <td><?php echo htmlspecialchars($campsite['address']); ?> km</td>
+                            <td><?php echo htmlspecialchars($campsite['zipcode']); ?></td>
                             <td><button><img src="assets/icon/edit.svg" alt="icon edit"></button></td>
                             <td><button><img src="assets/icon/delete.svg" alt="icon delete"></button></td>
                         </tr>

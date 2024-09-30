@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="four">
-                    <a href="manage_rapports">Gérer les rapport</a>
+                    <a href="manage_reports">Gérer les rapport</a>
                     <img src="assets/icon/rapport.svg" alt="icon rapport">
                     <div><?php echo htmlspecialchars($total_rapports); ?></div>
                 </div>
