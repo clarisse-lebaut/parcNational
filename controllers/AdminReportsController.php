@@ -31,6 +31,10 @@ class AdminReportsController extends Controller {
         }
     }
 
+    public function createReports(){
+        $this->render('create_reports');
+    }
+
     public function getDatabaseConnection(){
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;

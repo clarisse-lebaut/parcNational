@@ -25,7 +25,7 @@
             </div>
 
             <div>
-                <a href="add">Ajouter un camping</a>
+                <a href="create_campsite">Ajouter un camping</a>
                 <img src="assets/icon/add.svg" alt="icon visitors">
             </div>    
         </section>

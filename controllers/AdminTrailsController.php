@@ -31,6 +31,10 @@ class AdminTrailsController extends Controller {
         }
     }
 
+    public function createTrails(){
+        $this->render('create_trails');
+    }
+
     public function getDatabaseConnection(){
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;

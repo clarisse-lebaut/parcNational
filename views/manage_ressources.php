@@ -25,7 +25,7 @@
             </div>
 
             <div>
-                <a href="add">Ajouter une ressources naturel</a>
+                <a href="create_ressources">Ajouter une ressources naturel</a>
                 <img src="assets/icon/add.svg" alt="icon visitors">
             </div>    
         </section>

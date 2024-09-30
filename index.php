@@ -39,7 +39,23 @@ $routes = [
     'manage_reports' => [
         'controller' => 'AdminReportsController',
         'method' => 'manageReports',
-    ]     
+    ],
+    'create_trails' => [
+        'controller' => 'AdminTrailsController',
+        'method' => 'createTrails',
+    ],
+    'create_campsite' => [
+        'controller' => 'AdminCampsitesController',
+        'method' => 'createCampsites',
+    ],
+    'create_ressources' => [
+        'controller' => 'AdminRessourcesController',
+        'method' => 'createRessources',
+    ],
+    'create_reports' => [
+        'controller' => 'AdminReportsController',
+        'method' => 'createReports',
+    ]   
 ];
 
 //* Removal of the string 'parkNational' from the link

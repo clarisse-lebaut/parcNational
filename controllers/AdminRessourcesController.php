@@ -30,6 +30,10 @@ class AdminRessourcesController extends Controller {
             echo "Erreur lors de la récupération des données.";
         }
     }
+    
+    public function createRessources(){
+        $this->render('create_ressources');
+    }
 
     public function getDatabaseConnection(){
         $connectBDD = new ConnectBDD();

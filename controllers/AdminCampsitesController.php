@@ -31,6 +31,10 @@ class AdminCampsitesController extends Controller {
         }
     }
 
+    public function createCampsites(){
+        $this->render('create_campsites');
+    }
+
     public function getDatabaseConnection(){
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
