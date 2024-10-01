@@ -10,33 +10,24 @@ class ReservationController extends Controller {
         $this->reservationModel = new ReservationModel(); 
     }
 
-    // 1. Créer réservation
+    // Créer réservation
     public function createReservation($user_id, $campsite_id, $start_date, $end_date, $price) {
         if ($this->reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price)) {
-            $this->render('reservationSuccess', ['message' => 'La réservation a été créée avec succès.']);
+            $message = 'La réservation a été créée avec succès.';
         } else {
-            $this->render('reservationError', ['message' => 'Erreur lors de la création de la réservation.']);
+            $message = 'Erreur lors de la création de la réservation.';
         }
+        
+        // Rediriger vers l'historique avec un message de confirmation ou d'erreur
+        $this->render('reservationHistory', [
+            'reservations' => $this->reservationModel->getReservationsByUser($user_id),
+            'message' => $message
+        ]);
     }
-    
-    // 2. Récupérer réservations par user
+
+    // Récupérer toutes les réservations d'un utilisateur
     public function getReservationsByUser($user_id) {
         $reservations = $this->reservationModel->getReservationsByUser($user_id);
-        $this->render('reservationList', ['reservations' => $reservations]);
-    }
-
-    // 3. Récupérer une réservation par ID
-    public function getReservationById($reservation_id) {
-        $reservation = $this->reservationModel->getReservationById($reservation_id);
-        $this->render('reservationDetail', ['reservation' => $reservation]);
-    }
-
-    // 4. Modifier statut
-    public function updateReservationStatus($reservation_id, $status) {
-        if ($this->reservationModel->updateReservationStatus($reservation_id, $status)) {
-            $this->render('reservationStatusUpdate', ['message' => 'Le statut de la réservation a été mis à jour.']);
-        } else {
-            $this->render('reservationError', ['message' => 'Erreur lors de la mise à jour du statut.']);
-        }
+        $this->render('reservationHistory', ['reservations' => $reservations]);
     }
 }
