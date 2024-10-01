@@ -13,8 +13,14 @@ class PaymentController {
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
     }
 
-    public function createCheckoutSession($campsite_id, $price) {
+    public function createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons) {
         try {
+            session_start();
+            $_SESSION['start_date'] = $start_date;
+            $_SESSION['end_date'] = $end_date;
+            $_SESSION['num_persons'] = $num_persons;
+            $_SESSION['price'] = $price;
+
             // Créer une session Stripe Checkout
             $checkout_session = Session::create([
                 'payment_method_types' => ['card'],
@@ -29,8 +35,8 @@ class PaymentController {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/parcNational/views/reservationHistory.php',
-                'cancel_url' => 'http://localhost/parcNational/views/reservationHistory.php',
+                'success_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=success',
+                'cancel_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=cancel',
             ]);
 
             header("Location: " . $checkout_session->url);
