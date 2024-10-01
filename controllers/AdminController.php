@@ -16,6 +16,7 @@ class AdminController extends Controller {
     // Fonction qui permet d'afficher la page d'accueil de l'admin
     public function home(){
         // Récupérer le nombre total d'utilisateurs
+        $adminCount = $this->model->count_admin($this->bdd);
         $userCount = $this->model->count_users($this->bdd);
         
         // Récupérer le nombre d'élément total dans chacune des colonnes
@@ -24,19 +25,13 @@ class AdminController extends Controller {
         $ressourcesCount = $this->model->count_ressources($this->bdd);
         $rapportsCount = $this->model->count_rapports($this->bdd);
 
-        // Récupérer les derniers éléments entrée dans la base de données
-        $lastTrails = $this->model->last_trails($this->bdd);
-        $lastCampsites = $this->model->last_campsites($this->bdd);
-        $lastRessources = $this->model->last_ressources($this->bdd);
-        $lastRapports = $this->model->last_rapports($this->bdd);
-
-
         // Vérifier si les nombres ont été récupérés avec succès
         if ($userCount !== false && $trailsCount !== false) {
             // Passer les totaux à la vue admin_home
             $this->render('admin_home', [
                 // Assurez-vous que cela correspond à votre structure
-                'total_users' => $userCount['total'], 
+                'total_users' => $userCount['total'],
+                'total_admin' =>$adminCount['total'], 
                 
                 // Nouveau total de sentiers
                 'total_trails' => $trailsCount['total'], 
@@ -47,14 +42,6 @@ class AdminController extends Controller {
                 // Nouveau total des ressources
                 'total_rapports' => $rapportsCount['total'],
 
-                // Nouveau total des ressources
-                'last_trails' => $lastTrails,
-                // Nouveau total des ressources
-                'last_campsites' => $lastCampsites,
-                // Nouveau total des ressources
-                'last_ressources' => $lastRessources,
-                // Nouveau total des ressources
-                'last_rapports' => $lastRapports
             ]);
         } else {
             echo "Erreur lors de la récupération des données.";

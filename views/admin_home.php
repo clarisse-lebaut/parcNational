@@ -18,7 +18,7 @@
             <div>
                 <a href="manage_admin">Gérer les adminstrateurs</a>
                 <img src="assets/icon/admin.svg" alt="icon admin">
-                <div><?php echo htmlspecialchars($total_users); ?></div>
+                <div><?php echo htmlspecialchars($total_admin); ?></div>
             </div>
             <div>
                 <a href="manage_users">Gérer les utilisateurs</a>
