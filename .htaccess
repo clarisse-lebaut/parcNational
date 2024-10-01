@@ -6,6 +6,9 @@
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
 
+    # Exception pour reservationHistory.php (ou d'autres fichiers spécifiques)
+    RewriteCond %{REQUEST_URI} !^/parcNational/views/reservationHistory.php$
+
     # Réécrire toutes les autres requêtes vers index.php
     RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>
