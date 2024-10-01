@@ -1,50 +1,63 @@
 <?php
+require_once __DIR__ . '/../controllers/PaymentController.php';
+require_once __DIR__ . '/../models/CampsiteModel.php';
 
-require_once __DIR__ . '/../vendor/autoload.php';
+$campsite_id = isset($_POST['campsite_id']) ? intval($_POST['campsite_id']) : 0;
+$start_date = isset($_POST['start_date']) ? $_POST['start_date'] : '';
+$end_date = isset($_POST['end_date']) ? $_POST['end_date'] : '';
+$num_persons = isset($_POST['num_persons']) ? intval($_POST['num_persons']) : 0;
+$price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
+$promo_code = isset($_POST['promo_code']) ? $_POST['promo_code'] : '';
 
-use Stripe\Stripe;
-use Stripe\Checkout\Session;
+$campsiteModel = new CampsiteModel();
+$campsite = $campsiteModel->getCampsiteById($campsite_id);
 
-class PaymentController {
+if ($promo_code === 'PROMO10') {// test code promo
+    $price *= 0.9; 
+}
 
-    public function __construct() {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
-        Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-    }
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
+    // Création de la session Stripe avec le PaymentController
+    $paymentController = new PaymentController();
+    $paymentController->createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons);
+} else {
+    ?>
 
-    public function createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons) {
-        try {
-            session_start();
-            $_SESSION['start_date'] = $start_date;
-            $_SESSION['end_date'] = $end_date;
-            $_SESSION['num_persons'] = $num_persons;
-            $_SESSION['price'] = $price;
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Confirmation de Paiement</title>
+    </head>
+    <body>
+        <h1>Récapitulatif de la commande</h1>
 
-            // session stripe
-            $checkout_session = Session::create([
-                'payment_method_types' => ['card'],
-                'line_items' => [[
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'product_data' => [
-                            'name' => 'Réservation Camping #' . $campsite_id,
-                        ],
-                        'unit_amount' => $price * 100, // Prix en centimes
-                    ],
-                    'quantity' => 1,
-                ]],
-                'mode' => 'payment',
-                'success_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=success',
-                'cancel_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=cancel',
-            ]);
+        <?php if ($campsite): ?>
+            <p>Camping: <?= htmlspecialchars($campsite['name']); ?></p>
+            <p>Date de début: <?= htmlspecialchars($start_date); ?></p>
+            <p>Date de fin: <?= htmlspecialchars($end_date); ?></p>
+            <p>Nombre de personnes: <?= htmlspecialchars($num_persons); ?></p>
+            <p>Prix total: <?= htmlspecialchars($price); ?> €</p>
 
-            header("Location: " . $checkout_session->url);
-            exit();
+            <h2>Ajouter un code promo</h2>
+            <form action="payment.php" method="POST">
+                <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
+                <input type="hidden" name="start_date" value="<?= htmlspecialchars($start_date); ?>">
+                <input type="hidden" name="end_date" value="<?= htmlspecialchars($end_date); ?>">
+                <input type="hidden" name="num_persons" value="<?= htmlspecialchars($num_persons); ?>">
+                <input type="hidden" name="price" value="<?= htmlspecialchars($price); ?>">
 
-        } catch (Exception $e) {
-            error_log("Erreur lors de la création de la session Stripe: " . $e->getMessage());
-            echo "Une erreur s'est produite lors du paiement.";
-        }
-    }
+                <label for="promo_code">Code promo (optionnel):</label>
+                <input type="text" id="promo_code" name="promo_code" value="<?= htmlspecialchars($promo_code); ?>">
+
+                <input type="submit" name="confirm_payment" value="Confirmer et payer">
+            </form>
+        <?php else: ?>
+            <p>Erreur : camping introuvable.</p>
+        <?php endif; ?>
+    </body>
+    </html>
+
+<?php
 }
