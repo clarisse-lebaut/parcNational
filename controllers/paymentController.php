@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../models/ReservationModel.php';
 
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
@@ -15,13 +16,14 @@ class PaymentController {
 
     public function createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons) {
         try {
-            session_start();
-            $_SESSION['start_date'] = $start_date;
-            $_SESSION['end_date'] = $end_date;
-            $_SESSION['num_persons'] = $num_persons;
-            $_SESSION['price'] = $price;
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
+            }
+            $reservationModel = new ReservationModel();
+            $user_id = 1; 
+            $reservation_id = $reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price, "en attente"); // réservation par défaut "en attente"
+            $_SESSION['reservation_id'] = $reservation_id;
 
-            // Créer une session Stripe Checkout
             $checkout_session = Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -46,5 +48,10 @@ class PaymentController {
             error_log("Erreur lors de la création de la session Stripe: " . $e->getMessage());
             echo "Une erreur s'est produite lors du paiement.";
         }
+    }
+
+    public function confirmReservation($reservation_id) {
+        $reservationModel = new ReservationModel();
+        return $reservationModel->updateReservationStatus($reservation_id, "confirmée");
     }
 }
