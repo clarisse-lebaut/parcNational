@@ -119,7 +119,7 @@ if(isset($routes[$urlArray[0]])){
     require_once 'controllers/' . $className . '.php';
 
     $object = new $className; 
-   // var_dump($object);
+    //var_dump($object);
 
     $object->{$methodName}();
     

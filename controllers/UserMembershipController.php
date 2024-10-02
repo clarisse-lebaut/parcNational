@@ -41,12 +41,18 @@ class UserMembershipController extends Controller{
 
     public function subscribe6Months(){
         if(isset($_SESSION['user_id'])){
-            $today = new DateTime();
-            $endDate = new DateTime();
-            $endDate->modify('+6 months');
             $membership = new Membership('membership');
-            $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
-            $this->createCheckoutSession(6, 50);
+            $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
+            if($activeMembership){
+                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']);
+            }else{
+                $today = new DateTime();
+                $endDate = new DateTime();
+                $endDate->modify('+6 months');
+                $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
+                $this->createCheckoutSession(6, 50);
+            }
+            
         }else{
             $this->redirect('login');
         }
@@ -54,12 +60,17 @@ class UserMembershipController extends Controller{
 
     public function subscribe12Months(){
         if(isset($_SESSION['user_id'])){
+            $membership = new Membership('membership');
+            $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
+            if($activeMembership){
+                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']);
+            }else{
             $today = new DateTime();
             $endDate = new DateTime();
             $endDate->modify('+12 months');
-            $membership = new Membership('membership');
             $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
             $this->createCheckoutSession(12, 90);
+        }
         }else{
             $this->redirect('login');
         }
