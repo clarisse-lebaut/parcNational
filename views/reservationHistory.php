@@ -2,53 +2,35 @@
 require_once __DIR__ . '/../models/ReservationModel.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); 
+}
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 $status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
 $message = '';
-$user_id = 1; // À remplacer par l'ID réel de l'utilisateur
+$user_id = 1;
 
 $reservationModel = new ReservationModel();
 $campsiteModel = new CampsiteModel();
 
-// Si le paiement est un succès, ajouter la réservation
-if ($status === 'success' && !isset($_SESSION['reservation_added'])) {
-    $start_date = isset($_SESSION['start_date']) ? $_SESSION['start_date'] : '';
-    $end_date = isset($_SESSION['end_date']) ? $_SESSION['end_date'] : '';
-    $price = isset($_SESSION['price']) ? $_SESSION['price'] : 0;
-    $num_persons = isset($_SESSION['num_persons']) ? $_SESSION['num_persons'] : 0;
+// si paiement reussi; statut "confirmé"
+if ($status === 'success' && isset($_SESSION['reservation_id'])) {
+    $reservation_id = $_SESSION['reservation_id'];
+    $reservationModel->updateReservationStatus($reservation_id, "confirmée");
+    unset($_SESSION['reservation_id']); // Nettoyage de la session après confirmation
 
-    // Récupérer les informations du camping
-    $campsite = $campsiteModel->getCampsiteById($campsite_id);
-    $campsite_name = $campsite ? $campsite['name'] : 'Nom du camping inconnu';
-
-    if ($start_date && $end_date && $price > 0) {
-        if ($reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price)) {
-            // Marquer la réservation comme ajoutée pour éviter la duplication
-            $_SESSION['reservation_added'] = true;
-            $message = "Paiement réussi ! Votre réservation a été confirmée.";
-            $recap = [
-                'Camping' => $campsite_name, // Ajout du nom du camping
-                'Date de début' => $start_date,
-                'Date de fin' => $end_date,
-                'Nombre de personnes' => $num_persons,
-                'Prix total' => $price
-            ];
-
-            // Redirection après ajout pour éviter les doublons
-            header('Location: reservationHistory.php?status=confirmed');
-            exit(); // Assurez-vous que la redirection se fait bien
-        } else {
-            $message = "Erreur lors de l'ajout de la réservation.";
-        }
-    } else {
-        $message = "Erreur : Informations de réservation manquantes.";
-} 
+    $reservation = $reservationModel->getReservationById($reservation_id);
+    $message = "Paiement réussi ! Votre réservation a été confirmée.";
+    $recap = [
+        'Camping' => $reservation['campsite_name'],
+        'Date de début' => $reservation['start_date'],
+        'Date de fin' => $reservation['end_date'],
+        'Nombre de personnes' => $reservation['num_persons'],
+        'Prix total' => $reservation['price']
+    ];
 } elseif ($status === 'cancel') {
     $message = "Le paiement a été annulé. Vous pouvez réessayer.";
-} elseif ($status === 'confirmed') {
-    $message = "Votre réservation a été confirmée et enregistrée.";
 }
 
 // Récupérer l'historique des réservations
@@ -69,14 +51,15 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
             <p><?= htmlspecialchars($message); ?></p>
 
             <?php if (isset($recap)): ?>
-                <h2>Récapitulatif de la commande</h2>
+                <h2>Récapitulatif de la commande confirmée</h2>
                 <ul>
                     <?php foreach ($recap as $key => $value): ?>
-                        <li><strong><?= htmlspecialchars($key); ?>:</strong> <?= htmlspecialchars($value); ?></li>
+                        <li><strong><?= htmlspecialchars($key); ?>:</strong> 
+                            <?= isset($value) ? htmlspecialchars($value) : 'Non disponible'; ?>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
-
             <h2>Vos réservations</h2>
 
             <?php if (!empty($reservations)): ?>
@@ -94,12 +77,12 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                     <tbody>
                         <?php foreach ($reservations as $reservation): ?>
                             <tr>
-                                <td><?= htmlspecialchars($reservation['campsite_name']); ?></td>
-                                <td><?= htmlspecialchars($reservation['start_date']); ?></td>
-                                <td><?= htmlspecialchars($reservation['end_date']); ?></td>
-                                <td><?= htmlspecialchars($reservation['price']); ?> €</td>
-                                <td><?= htmlspecialchars($reservation['reservation_date']); ?></td>
-                                <td><?= htmlspecialchars($reservation['status']); ?></td>
+                                <td><?= isset($reservation['campsite_name']) ? htmlspecialchars($reservation['campsite_name']) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['start_date']) ? htmlspecialchars($reservation['start_date']) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['end_date']) ? htmlspecialchars($reservation['end_date']) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['price']) ? htmlspecialchars($reservation['price']) : 'Non disponible'; ?> €</td>
+                                <td><?= isset($reservation['reservation_date']) ? htmlspecialchars($reservation['reservation_date']) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['status']) ? htmlspecialchars($reservation['status']) : 'Non disponible'; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
