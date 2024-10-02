@@ -33,7 +33,7 @@ class User extends Model{
         return $stmt->fetch();
     }
     public function saveUserFromFacebook($data){
-        $name = $data->name;//obiekt
+        $name = $data->name;
         $nameArray = explode(' ', $name);//The explode function is used to convert a string into an array.
         $sql = 'INSERT INTO users(role, mail, firstname, lastname, facebook_id) values(?,?,?,?,?)';
         $stmt = $this->pdo->prepare($sql);

@@ -2,12 +2,11 @@
 session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
-    'domain' => 'localhost', // or your domain
-    'httponly' => true, // Prevent JavaScript from accessing session cookies
-    'samesite' => 'Strict' // Prevent CSRF
+    'domain' => 'localhost', 
+    'httponly' => true, 
 ]);
 session_start();
-session_regenerate_id(true);//Session Fixation(Security)
+session_regenerate_id(true);
 require 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -68,11 +67,38 @@ $routes = [
     'facebook-login' =>[
         'controller' => 'Logincontroller',
         'method' => 'loginUsingFacebook',
-    ]
+    ],
+    'add-membership' =>[
+        'controller' => 'UserMembershipController',
+        'method' => 'addMember',
+    ],
+    'subscribe-3-months' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'subscribe3Months',
+    ],
+    'subscribe-6-months' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'subscribe6Months',
+    ],
+    'subscribe-12-months' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'subscribe12Months',
+    ],
+    'payment-success' =>[
+        'controller' => 'PaymentStatusController',
+        'method' => 'paymentSuccess',
+    ],
+    'payment-failed' =>[
+        'controller' => 'PaymentStatusController',
+        'method' => 'paymentFailed',
+    ],
+    'user-membership' =>[
+        'controller' => 'UserMembershipController',
+        'method' => 'viewMembership',
+    ],
     
 ];
 
-//$routes['login'];
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
 

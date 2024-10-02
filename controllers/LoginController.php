@@ -13,7 +13,6 @@ class LoginController extends Controller{
 
     public function loginSaveForm(){
         $user = new User('users');
-        var_dump($_POST);
         $dbUser = $user->getUserByEmail($_POST['email']);
         if($dbUser != false){
             if(password_verify($_POST['password'], $dbUser['password'])){
@@ -81,9 +80,8 @@ class LoginController extends Controller{
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $responseData->access_token]);
         $response = curl_exec($curl);
-        var_dump($response);
+  
         $responseData = json_decode($response);
-        var_dump($responseData);
 
         $userObject = new User('users');
         $user = $userObject->getByGoogleId($responseData->sub);
@@ -134,14 +132,13 @@ class LoginController extends Controller{
         $response = curl_exec($curl);
         curl_close($curl);
         $responseData = json_decode($response);
-        var_dump($responseData);
 
         $userObject = new User('users');
         $user = $userObject->getByFacebookId($responseData->id);
         if($user){
-            $_SESSION['id'] = $user['user_id'];
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_role'] = $user['role'];
-            if($user['user_role'] != 1){
+            if($user['role'] != 1){
                 $this->redirect('homePageAdmin');
             }else{
                 $this->redirect('');
@@ -149,7 +146,7 @@ class LoginController extends Controller{
         }else{
             $userObject->saveUserFromFacebook($responseData);
             $newUser = $userObject->getByFacebookId($responseData->id);
-            $_SESSION['id'] = $newUser['user_id'];
+            $_SESSION['user_id'] = $newUser['user_id'];
             $_SESSION['user_role'] = $newUser['role'];
             $this->redirect('');
         }

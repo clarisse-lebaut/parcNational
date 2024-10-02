@@ -31,7 +31,7 @@
     </form>
     <a href="/parcNational/login-using-google" class="google-login-btn m-3">
       <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
-      Connectez-vous avec Facebook
+      Connectez-vous avec Google
     </a>
     <?php
       require 'vendor/autoload.php';
