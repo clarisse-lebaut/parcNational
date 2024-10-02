@@ -4,7 +4,7 @@ $routes = [
         'controller' => 'HomeController', 
         'method' => 'news',
     ],
-        'home' => [
+    'home' => [
         'controller' => 'HomeController', 
         'method' => 'news',
     ],
@@ -40,6 +40,14 @@ $routes = [
         'controller' => 'AdminReportsController',
         'method' => 'manageReports',
     ],
+    'manage_users' => [
+        'controller' => 'AdminUsersController',
+        'method' => 'manageUsers',
+    ],
+    'manage_admin' => [
+        'controller' => 'AdminAdminController',
+        'method' => 'manageAdmin',
+    ],
     'create_trails' => [
         'controller' => 'AdminTrailsController',
         'method' => 'createTrails',
@@ -55,7 +63,11 @@ $routes = [
     'create_reports' => [
         'controller' => 'AdminReportsController',
         'method' => 'createReports',
-    ]   
+    ],
+    'create_admin' => [
+        'controller' => 'AdminAdminController',
+        'method' => 'createAdmin',
+    ]
 ];
 
 //* Removal of the string 'parkNational' from the link
