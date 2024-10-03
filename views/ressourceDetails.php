@@ -34,49 +34,46 @@ if ($ressource_id > 0) {
                 <img class="ressource-details-img" src="../<?= htmlspecialchars($ressource['image']); ?>" alt="Image de <?= htmlspecialchars($ressource['name']); ?>">
                 <div class="ressource-details-type">
                     <?php if ($ressource['type'] === 'Faune Terrestre'): ?>
-                        <img src="../assets/icons/faune_terrestre_icon.png" alt="Icône Faune Terrestre">
+                        <span class="type-icon">&#x1F98C;</span>  
                     <?php elseif ($ressource['type'] === 'Faune Marine'): ?>
-                        <img src="../assets/icons/faune_marine_icon.png" alt="Icône Faune Marine">
+                        <span class="type-icon">&#x1F420;</span>  
                     <?php elseif ($ressource['type'] === 'Flore Terrestre'): ?>
-                        <img src="../assets/icons/flore_terrestre_icon.png" alt="Icône Flore Terrestre">
+                        <span class="type-icon">&#x1F333;</span>  
                     <?php elseif ($ressource['type'] === 'Flore Marine'): ?>
-                        <img src="../assets/icons/flore_marine_icon.png" alt="Icône Flore Marine">
+                        <span class="type-icon">&#x1FAB8;</span>  
                     <?php endif; ?>
                     <p>Type : <?= htmlspecialchars($ressource['type']); ?></p>
                 </div>
             </div>
 
-            <!-- ROW DESCRIPTION -->
-            <div class="ressource-details-row">
+            <!-- SECTION PRINCIPALE -->
+            <div class="ressource-details-main">
+                <!-- ROW DESCRIPTION -->
                 <div class="ressource-details-description">
                     <p><?= htmlspecialchars($ressource['description']); ?></p>
                 </div>
-            </div>
 
-            <!-- ROW PRECAUTIONS -->
-            <?php if (!empty($ressource['precautions'])): ?>
-                <div class="ressource-details-row">
+                <!-- ROW PRECAUTIONS -->
+                <?php if (!empty($ressource['precautions'])): ?>
                     <div class="ressource-details-precautions">
                         <h3>Précautions</h3>
                         <p><?= htmlspecialchars($ressource['precautions']); ?></p>
                     </div>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <!--ENJEU DE CONSERVATION -->
-            <div class="conservation-bar-container">
-                <div class="conservation-bar">
-                    <div class="conservation-bar-fill" id="conservation-level-bar" data-level="<?= htmlspecialchars($ressource['level']); ?>"></div>
-                </div>
-                <div class="conservation-levels">
-                    <span>Faible</span>
-                    <span>Moyen</span>
-                    <span>Fort</span>
-                    <span>Très fort</span>
+                <!--ENJEU DE CONSERVATION -->
+                <div class="conservation-bar-container">
+                    <div class="conservation-bar">
+                        <div class="conservation-bar-fill" id="conservation-level-bar" data-level="<?= htmlspecialchars($ressource['level']); ?>"></div>
+                    </div>
+                    <div class="conservation-levels">
+                        <span>Faible</span>
+                        <span>Moyen</span>
+                        <span>Fort</span>
+                        <span>Très fort</span>
+                    </div>
                 </div>
             </div>
-
-            <p>Niveau de conservation : <?= htmlspecialchars($ressource['level']); ?></p>
 
         <?php else: ?>
             <p class="ressource-details-error">Ressource naturelle introuvable ou ID de ressource non valide.</p>

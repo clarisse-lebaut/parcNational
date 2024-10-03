@@ -36,16 +36,31 @@
     margin-top: 10px;
 }
 
+.ressource-details-main {/* SECTION PRINCIPALE */
+    padding: 1% 10%;  
+}
+
 .ressource-details-description {
     font-size: 1.2em;
     line-height: 1.5;
-    padding: 1% 10%;
+    margin-bottom: 20px;
+}
+
+.ressource-details-precautions h3 {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.ressource-details-precautions p {
+    font-size: 1.1em;
+    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 /* Conservation Bar */
 .conservation-bar-container {
-    text-align: center;
     margin-bottom: 20px;
+    width: 50%;
 }
 
 .conservation-bar {
