@@ -19,10 +19,11 @@ $ressources = $ressourceController->getAllRessources();
     <link rel="stylesheet" href="../assets/styles/ressource.css">
 </head>
 <body>
-    <header>
-        <h1>Ressources Naturelles des Calanques</h1>
+<header>
+<?php include __DIR__ . '/../components/_header.php'; ?>
     </header>
-    <main>
+        <main>
+                <h1>Ressources Naturelles des Calanques</h1>
         <section>
             <?php if (!empty($ressources)): ?>
                 <div class="ressource-grid">
