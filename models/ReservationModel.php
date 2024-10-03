@@ -41,4 +41,29 @@ class ReservationModel extends connectBDD {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function cancelReservation($reservation_id) {
+        $query = $this->db->prepare('SELECT start_date FROM reservations WHERE reservation_id = :reservation_id');
+        $query->bindParam(':reservation_id', $reservation_id);
+        $query->execute();
+        $reservation = $query->fetch(PDO::FETCH_ASSOC);
+    
+        if ($reservation) {
+            $start_date = new DateTime($reservation['start_date']);
+            $current_date = new DateTime();
+            $interval = $current_date->diff($start_date)->days;
+    
+            // annulation possible que 7j avant
+            if ($interval >= 7) {
+                $query = $this->db->prepare('UPDATE reservations SET status = "annulée" WHERE reservation_id = :reservation_id');
+                $query->bindParam(':reservation_id', $reservation_id);
+                return $query->execute();
+            } else {
+                return false; 
+            }
+        }
+    
+        return false; // Réservation introuvable
+    }
+    
 }

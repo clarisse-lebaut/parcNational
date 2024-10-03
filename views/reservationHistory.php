@@ -14,7 +14,7 @@ $user_id = 1;
 $reservationModel = new ReservationModel();
 $campsiteModel = new CampsiteModel();
 
-// si paiement reussi; statut "confirmé"
+// Si paiement réussi, statut "confirmé"
 if ($status === 'success' && isset($_SESSION['reservation_id'])) {
     $reservation_id = $_SESSION['reservation_id'];
     $reservationModel->updateReservationStatus($reservation_id, "confirmée");
@@ -33,10 +33,20 @@ if ($status === 'success' && isset($_SESSION['reservation_id'])) {
     $message = "Le paiement a été annulé. Vous pouvez réessayer.";
 }
 
+// annulation de la réservation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservation'])) {
+    $reservation_id = intval($_POST['reservation_id']);
+    
+    if ($reservationModel->cancelReservation($reservation_id)) {
+        $message = "Réservation annulée avec succès.";
+    } else {
+        $message = "Impossible d'annuler la réservation. Vous ne pouvez annuler que 7 jours avant la date de début.";
+    }
+}
+
 // Récupérer l'historique des réservations
 $reservations = $reservationModel->getReservationsByUser($user_id);
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -83,6 +93,14 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                                 <td><?= isset($reservation['price']) ? htmlspecialchars($reservation['price']) : 'Non disponible'; ?> €</td>
                                 <td><?= isset($reservation['reservation_date']) ? htmlspecialchars($reservation['reservation_date']) : 'Non disponible'; ?></td>
                                 <td><?= isset($reservation['status']) ? htmlspecialchars($reservation['status']) : 'Non disponible'; ?></td>
+                                <td>
+                                    <?php if ($reservation['status'] !== 'annulée'): ?>
+                                        <form action="reservationHistory.php" method="POST">
+                                            <input type="hidden" name="reservation_id" value="<?= $reservation['reservation_id']; ?>">
+                                            <button type="submit" name="cancel_reservation">Annuler</button>
+                                        </form>
+                                    <?php endif; ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
