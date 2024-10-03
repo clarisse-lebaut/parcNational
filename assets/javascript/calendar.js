@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { 
     let calendarEl = document.getElementById('calendar');
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -57,6 +57,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         events: events,
         selectable: true,
+        validRange: function(nowDate) {
+            let today = new Date();
+            return {
+                start: today, 
+            };
+        },
+
         select: function(info) {
             document.getElementById('start_date').value = info.startStr;
             document.getElementById('end_date').value = info.endStr;
@@ -67,6 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
 
             calculateTotalPrice();
+        },
+
+        // empêche de selectionner 2 jours après aujourd'hui
+        selectAllow: function(selectInfo) {
+            let today = new Date();
+            let twoDaysLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
+
+            return selectInfo.start <= twoDaysLater;
+
         }
     });
 
