@@ -14,8 +14,8 @@
             padding: 30px;
             border: 1px solid black;
             background: linear-gradient(to right, #ADD8E6, #E6E6FA);
-            font-family: 'Poppins', sans-serif; /* Użycie czcionki Poppins */
-            line-height: 1.6; /* Ustawienie odstępu między liniami */
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
             color: #2F4F4F;
             }
         h1{
@@ -105,9 +105,9 @@
         exclusifs, dont une réduction de 20 % sur une variété d'activités passionnantes.<br>
         Que vous soyez amateur d'aventure ou à la recherche de détente,
         l'adhésion vous ouvre les portes à des offres exceptionnelles, telles que :<br>
-        <strong>Via Ferrata :</strong> Pour ceux qui aiment l'escalade et les sensations fortes, explorez les magnifiques falaises des Calanques en toute sécurité.<br>
-        <strong>Location de kayaks : </strong> Naviguez à travers les eaux cristallines et découvrez des criques isolées et des plages secrètes.<br>
-        <strong>Croisières autour des Calanques :</strong> Embarquez pour une aventure maritime inoubliable autour des plus beaux paysages côtiers de la région.<br><br>
+        <strong>Via Ferrata :</strong><strong>Via Ferrata :</strong> Pour ceux qui aiment l'escalade et les sensations fortes, explorez les magnifiques falaises des Calanques en toute sécurité. <a href="https://example.com/via-ferrata" target="_blank">Cliquez ici pour en savoir plus.</a><br><br>
+        <strong>Location de kayaks : </strong> Naviguez à travers les eaux cristallines et découvrez des criques isolées et des plages secrètes.<a href="https://cassis-kayak-marseille.fr/" target="_blank">Cliquez ici pour en savoir plus.</a><br><br>
+        <strong>Croisières autour des Calanques :</strong> Embarquez pour une aventure maritime inoubliable autour des plus beaux paysages côtiers de la région.<a href="https://www.croisieres-marseille-calanques.com/" target="_blank">Cliquez ici pour en savoir plus.</a><br><br>
         <strong>Choisissez parmi nos abonnements adaptés à tous les besoins :</strong><br><br>
         Abo 3 mois : Pour une découverte courte mais intense du parc.<br>
         Abo 6 mois : Idéal pour ceux qui souhaitent explorer les Calanques tout au long de l'année.<br>

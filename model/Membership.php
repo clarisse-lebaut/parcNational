@@ -6,13 +6,15 @@ class Membership extends Model{
     public function __construct($table){
         parent::__construct($table);
     }
-    public function saveNewMembership($startDate, $endDate, $user_id, $status = 'active'){
-        $sql = 'INSERT INTO membership(delivery_date, expiry_date, user_id, status) VALUES(?,?,?, ?)';
+    public function saveNewMembership($user_id, $name, $startDate, $endDate, $email = null, $status = 'active', ){
+        $randomID = bin2hex(random_bytes(4));
+        $sql = 'INSERT INTO membership( user_id, lastname, delivery_date, expiry_date, mail, random_id, status) VALUES(?,?,?,?,?,?,?)';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$startDate, $endDate, $user_id, $status]);
+        $stmt->execute([$user_id, $name, $startDate, $endDate, $email, $randomID, $status]);
         if ($stmt->errorCode() !== '00000') {
             error_log("Erreur d'enregistrement de l'adhésion: " . implode(', ', $stmt->errorInfo()));
         }
+        return $randomID;
     }
     public function getMembershipByUserId($user_id){
         $sql = " SELECT * FROM membership WHERE user_id = ? AND status = 'active' LIMIT 1 ";

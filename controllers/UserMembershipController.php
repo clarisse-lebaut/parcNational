@@ -3,9 +3,9 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
-
 require_once ('Controller.php');
 require_once __DIR__ . '/../model/Membership.php';
+require_once __DIR__ . '/../model/User.php';
 
 class UserMembershipController extends Controller{
     public function __construct() {
@@ -17,7 +17,7 @@ class UserMembershipController extends Controller{
     public function addMember(){
         $this->render('addMembership');
     }
-
+    
     public function subscribe3Months(){
         if(isset($_SESSION['user_id'])){
             $membership = new Membership('membership');
@@ -29,9 +29,23 @@ class UserMembershipController extends Controller{
                 $today = new DateTime();
                 $endDate = new DateTime();
                 $endDate->modify('+3 months');
-
-                $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
-                $this->createCheckoutSession(3, 30);
+                $userId = $_SESSION['user_id'];
+                $userModel = new User('users');
+                $user = $userModel->getById($userId);
+                if($user){
+                    $userEmail = $user['mail'];
+                    $name = $user['lastname'];
+                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
+                    
+                    $_SESSION['user_email'] = $userEmail;
+                    $_SESSION['random_id'] = $randomID;
+                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
+                    $_SESSION['name'] = $name;
+                    //$this->sendConfirmationEmail($userEmail, $randomID, $endDate->format('Y-m-d'), $name);
+                    $this->createCheckoutSession(3, 30);
+                }else{
+                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
+                }
             }
             
         }else{
@@ -52,7 +66,6 @@ class UserMembershipController extends Controller{
                 $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
                 $this->createCheckoutSession(6, 50);
             }
-            
         }else{
             $this->redirect('login');
         }
@@ -75,7 +88,7 @@ class UserMembershipController extends Controller{
             $this->redirect('login');
         }
     }
-
+    
     public function createCheckoutSession($membershipMonths, $price) {
         try {
             // Créer une session Stripe Checkout
@@ -104,11 +117,11 @@ class UserMembershipController extends Controller{
             echo "Une erreur s'est produite lors du paiement.";
         }
     }
+
     public function viewMembership() {
         if (isset($_SESSION['user_id'])) {
             $membership = new Membership('membership');
             $currentMembership = $membership->getMembershipByUserId($_SESSION['user_id']);
-            
             if ($currentMembership) {
                 $this->render('userMembership', ['membership' => $currentMembership]);
             } else {

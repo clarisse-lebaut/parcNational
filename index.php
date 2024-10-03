@@ -101,8 +101,6 @@ $routes = [
 
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
-
-var_dump($urlArray);
 if(isset($routes[$urlArray[0]])){
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
