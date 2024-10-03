@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 $status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
 $message = '';
-$user_id = 1;
+$user_id = 1; // ID utilisateur statique pour cet exemple, modifiez-le selon votre application
 
 $reservationModel = new ReservationModel();
 $campsiteModel = new CampsiteModel();
@@ -24,8 +24,8 @@ if ($status === 'success' && isset($_SESSION['reservation_id'])) {
     $message = "Paiement réussi ! Votre réservation a été confirmée.";
     $recap = [
         'Camping' => $reservation['campsite_name'],
-        'Date de début' => $reservation['start_date'],
-        'Date de fin' => $reservation['end_date'],
+        'Date de début' => date('Y-m-d', strtotime($reservation['start_date'])), // Format date sans heure
+        'Date de fin' => date('Y-m-d', strtotime($reservation['end_date'])),     // Format date sans heure
         'Nombre de personnes' => $reservation['num_persons'],
         'Prix total' => $reservation['price']
     ];
@@ -33,8 +33,8 @@ if ($status === 'success' && isset($_SESSION['reservation_id'])) {
     $message = "Le paiement a été annulé. Vous pouvez réessayer.";
 }
 
-// annulation de la réservation
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservation'])) {
+// Annulation de la réservation
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cancel_reservation'])) {
     $reservation_id = intval($_POST['reservation_id']);
     
     if ($reservationModel->cancelReservation($reservation_id)) {
@@ -47,14 +47,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reservation'])) {
 // Récupérer l'historique des réservations
 $reservations = $reservationModel->getReservationsByUser($user_id);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historique des Réservations</title>
+    <link rel="stylesheet" href="../assets/styles/reservationHistory.css">
 </head>
 <body>
+    <header>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
+    </header>
+    
     <main>
         <section>
             <h1>Historique des Réservations</h1>
@@ -70,6 +76,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
+
             <h2>Vos réservations</h2>
 
             <?php if (!empty($reservations)): ?>
@@ -88,19 +95,16 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                         <?php foreach ($reservations as $reservation): ?>
                             <tr>
                                 <td><?= isset($reservation['campsite_name']) ? htmlspecialchars($reservation['campsite_name']) : 'Non disponible'; ?></td>
-                                <td><?= isset($reservation['start_date']) ? htmlspecialchars($reservation['start_date']) : 'Non disponible'; ?></td>
-                                <td><?= isset($reservation['end_date']) ? htmlspecialchars($reservation['end_date']) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['start_date']) ? date('Y-m-d', strtotime($reservation['start_date'])) : 'Non disponible'; ?></td>
+                                <td><?= isset($reservation['end_date']) ? date('Y-m-d', strtotime($reservation['end_date'])) : 'Non disponible'; ?></td>
                                 <td><?= isset($reservation['price']) ? htmlspecialchars($reservation['price']) : 'Non disponible'; ?> €</td>
                                 <td><?= isset($reservation['reservation_date']) ? htmlspecialchars($reservation['reservation_date']) : 'Non disponible'; ?></td>
                                 <td><?= isset($reservation['status']) ? htmlspecialchars($reservation['status']) : 'Non disponible'; ?></td>
                                 <td>
-                                    <?php if ($reservation['status'] !== 'annulée'): ?>
-                                        <form action="reservationHistory.php" method="POST">
-                                            <input type="hidden" name="reservation_id" value="<?= $reservation['reservation_id']; ?>">
-                                            <button type="submit" name="cancel_reservation">Annuler</button>
-                                        </form>
-                                    <?php endif; ?>
-                                </td>
+    <?php if ($reservation['status'] !== 'annulée'): ?>
+        <button type="button" class="cancel-btn" data-reservation-id="<?= $reservation['reservation_id']; ?>">Annuler</button>
+    <?php endif; ?>
+</td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -110,5 +114,9 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
             <?php endif; ?>
         </section>
     </main>
+
+    <footer>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
+    </footer>
 </body>
 </html>

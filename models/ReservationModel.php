@@ -36,12 +36,17 @@ class ReservationModel extends connectBDD {
     }
 
     public function getReservationById($reservation_id) {
-        $query = $this->db->prepare('SELECT * FROM reservations WHERE reservation_id = :reservation_id');
+        $query = $this->db->prepare(
+            'SELECT r.*, c.name AS campsite_name 
+             FROM reservations r
+             JOIN campsite c ON r.campsite_id = c.campsite_id
+             WHERE r.reservation_id = :reservation_id'
+        );
         $query->bindParam(':reservation_id', $reservation_id);
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
     }
-
+        
     public function cancelReservation($reservation_id) {
         $query = $this->db->prepare('SELECT start_date FROM reservations WHERE reservation_id = :reservation_id');
         $query->bindParam(':reservation_id', $reservation_id);
