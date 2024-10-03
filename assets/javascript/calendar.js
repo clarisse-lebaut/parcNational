@@ -76,14 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
             calculateTotalPrice();
         },
 
-        // empêche de selectionner 2 jours après aujourd'hui
-        selectAllow: function(selectInfo) {
-            let today = new Date();
-            let twoDaysLater = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 2);
-
-            return selectInfo.start <= twoDaysLater;
-
-        }
     });
 
     calendar.render();
