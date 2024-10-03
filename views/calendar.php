@@ -37,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
+    <header>
+        <?php include "components/_header.php"; ?>
+    </header>
     <main>
         <section>
             <?php if ($campsite): ?>
@@ -93,7 +96,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     </main>
+    
+    <footer>
+        <?php include "components/_footer.php"; ?>
+    </footer>
 
+    <!-- SCRIPTS -->
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
