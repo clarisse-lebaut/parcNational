@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <header>
-        <?php include "components/_header.php"; ?>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
     </header>
     <main>
         <section>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
     
     <footer>
-        <?php include "components/_footer.php"; ?>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
 
     <!-- SCRIPTS -->
