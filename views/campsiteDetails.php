@@ -22,6 +22,10 @@ if ($campsite_id > 0) {
     <link rel="stylesheet" href="../assets/styles/campsiteDetails.css">
 </head>
 <body>
+    <header>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
+</header>
+
     <div class="campsite-details-container">
         <?php if ($campsite): ?>
             <!-- ROW TITRE -->
@@ -71,5 +75,10 @@ if ($campsite_id > 0) {
             <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>
         <?php endif; ?>
     </div>
+
+    <footer>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
+    </footer>
+
 </body>
 </html>

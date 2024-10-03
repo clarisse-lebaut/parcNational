@@ -19,6 +19,10 @@ $campsites = $campsiteController->getAllCampsites();
     <link rel="stylesheet" href="../assets/styles/campsite.css">
 </head>
 <body>
+    <header>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
+    </header>
+
     <h1>Séjournez dans un camping près des Calanques</h1>
     <div class="campsite-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
 
@@ -55,6 +59,10 @@ $campsites = $campsiteController->getAllCampsites();
     <?php else: ?>
         <p>Aucun camping trouvé.</p>
     <?php endif; ?>
+
+    <footer>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
+    </footer>
 
     <script src="../assets/javascript/campsite.js"></script>
 </body>
