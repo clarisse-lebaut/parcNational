@@ -2,20 +2,20 @@
 require_once __DIR__ . '/../controllers/PaymentController.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start(); 
 }
 
-// Vérification si une requête Ajax est envoyée pour appliquer un code promo
+// verification code promo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promo_code'])) {
     $promo_code = $_POST['promo_code'];
     $price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
 
     $response = ['success' => false];
 
-    // Exemple de validation du code promo
     if ($promo_code === 'PROMO10') {
-        $new_price = $price * 0.9; // Appliquer une réduction de 10%
+        $new_price = $price * 0.9; 
         $response['success'] = true;
         $response['new_price'] = $new_price;
     }
@@ -59,6 +59,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
         <script src="/assets/javascript/payment.js" defer></script>
     </head>
     <body>
+        <header>
+        </header>
+        <main>
         <h1>Récapitulatif de la commande</h1>
 
         <?php if ($campsite): ?>
@@ -72,8 +75,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
             <form id="promo-form" method="POST">
                 <label for="promo_code">Code promo :</label>
                 <input type="text" id="promo_code" name="promo_code">
-                <button type="button" id="apply-promo">Appliquer</button> 
+                <button type="button" id="apply-promo">Appliquer</button>
                 <input type="hidden" id="final_price" name="price" value="<?= htmlspecialchars($price); ?>">
+                <p id="promo_error" style="color: red;"></p> <!-- Zone d'affichage pour les erreurs -->
             </form>
 
             <h2>Paiement</h2>
@@ -88,7 +92,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
         <?php else: ?>
             <p>Erreur : camping introuvable.</p>
         <?php endif; ?>
+
+        </main>
+        <footer>
+        </footer>
+
     </body>
     </html>
 <?php
-}  
+}
