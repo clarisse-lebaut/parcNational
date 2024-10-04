@@ -5,12 +5,14 @@ session_set_cookie_params([
     'domain' => 'localhost', 
     'httponly' => true, 
 ]);
+
 session_start();
 session_regenerate_id(true);
 require 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
 $routes = [
     //The login displays the login page, then selects the Controller and the method
     'login' => [
@@ -62,7 +64,7 @@ $routes = [
     ],
     'ip-block' => [
         'controller' => 'IpController',
-        'method' => 'getBlockIp'
+        'method' => 'getBlockIp',
     ],
     'facebook-login' =>[
         'controller' => 'Logincontroller',
@@ -96,8 +98,24 @@ $routes = [
         'controller' => 'UserMembershipController',
         'method' => 'viewMembership',
     ],
-    
-];
+    'admin-memberships' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'viewMemberships',
+    ],
+    'admin-memberships-add' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'addMembership',
+    ],
+    'admin-memberships-edit' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'editMembership',
+    ],
+    'admin-memberships-delete' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'deleteMembership',
+    ],
+        
+    ];
 
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
@@ -105,6 +123,7 @@ if(isset($routes[$urlArray[0]])){
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
    // var_dump($methodName);
+
     require_once 'model/BlockIp.php';
     $blockIp = new BlockIp('block_ips');
     if($blockIp->isIpBlocked()){
@@ -117,12 +136,8 @@ if(isset($routes[$urlArray[0]])){
     require_once 'controllers/' . $className . '.php';
 
     $object = new $className; 
-    //var_dump($object);
-
     $object->{$methodName}();
     
 }else{
     var_dump("pas d'adresse");
 }
-
-//var_dump($url);

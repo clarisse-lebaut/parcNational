@@ -13,7 +13,7 @@ class UserMembershipController extends Controller{
         $dotenv->load();
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
     }
-
+    
     public function addMember(){
         $this->render('addMembership');
     }
@@ -33,15 +33,13 @@ class UserMembershipController extends Controller{
                 $userModel = new User('users');
                 $user = $userModel->getById($userId);
                 if($user){
-                    $userEmail = $user['mail'];
+                    $userEmail = $user['email'];
                     $name = $user['lastname'];
                     $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
-                    
-                    $_SESSION['user_email'] = $userEmail;
+                    $_SESSION['mail'] = $userEmail;
                     $_SESSION['random_id'] = $randomID;
                     $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
-                    $_SESSION['name'] = $name;
-                    //$this->sendConfirmationEmail($userEmail, $randomID, $endDate->format('Y-m-d'), $name);
+                    $_SESSION['lastname'] = $name;
                     $this->createCheckoutSession(3, 30);
                 }else{
                     $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
@@ -63,9 +61,23 @@ class UserMembershipController extends Controller{
                 $today = new DateTime();
                 $endDate = new DateTime();
                 $endDate->modify('+6 months');
-                $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
-                $this->createCheckoutSession(6, 50);
+                $userId = $_SESSION['user_id'];
+                $userModel = new User('users');
+                $user = $userModel->getById($userId);
+                if($user){
+                    $userEmail = $user['mail'];
+                    $name = $user['lastname'];
+                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
+                    $_SESSION['mail'] = $userEmail;
+                    $_SESSION['random_id'] = $randomID;
+                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
+                    $_SESSION['lastname'] = $name;
+                    $this->createCheckoutSession(6, 50);
+                }else{
+                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
+                }
             }
+            
         }else{
             $this->redirect('login');
         }
@@ -75,20 +87,34 @@ class UserMembershipController extends Controller{
         if(isset($_SESSION['user_id'])){
             $membership = new Membership('membership');
             $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
-            if($activeMembership){
-                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']);
+            if ($activeMembership) {
+                // Information about already existing abo
+                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']); 
             }else{
-            $today = new DateTime();
-            $endDate = new DateTime();
-            $endDate->modify('+12 months');
-            $membership->saveNewMembership($today->format('Y-m-d'), $endDate->format('Y-m-d'), $_SESSION['user_id']);
-            $this->createCheckoutSession(12, 90);
-        }
+                $today = new DateTime();
+                $endDate = new DateTime();
+                $endDate->modify('+12 months');
+                $userId = $_SESSION['user_id'];
+                $userModel = new User('users');
+                $user = $userModel->getById($userId);
+                if($user){
+                    $userEmail = $user['mail'];
+                    $name = $user['lastname'];
+                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
+                    $_SESSION['mail'] = $userEmail;
+                    $_SESSION['random_id'] = $randomID;
+                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
+                    $_SESSION['lastname'] = $name;
+                    $this->createCheckoutSession(12, 90);
+                }else{
+                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
+                }
+            }
+            
         }else{
             $this->redirect('login');
         }
     }
-    
     public function createCheckoutSession($membershipMonths, $price) {
         try {
             // Créer une session Stripe Checkout

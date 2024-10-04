@@ -15,13 +15,13 @@ class PaymentStatusController extends Controller{
     }
 
     public function paymentSuccess() {
-        if (isset($_SESSION['user_email'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['name'])) {
-            $userEmail = $_SESSION['user_email'];
+        if (isset($_SESSION['mail'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['lastname'])) {
+            $userEmail = $_SESSION['mail'];
             $randomID = $_SESSION['random_id'];
             $expiryDate = $_SESSION['expiry_date'];
-            $name = $_SESSION['name'];
+            $name = $_SESSION['lastname'];
             $this->sendConfirmationEmail($userEmail, $randomID, $expiryDate, $name);
-            unset($_SESSION['user_email'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['name']);
+            unset($_SESSION['mail'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['lastname']);
             $message = "Votre paiement a été effectué avec succès.";
             $this->render('paymentSuccess', ['message' => $message]);
         } else {

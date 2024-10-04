@@ -17,7 +17,6 @@
             font-family: 'Poppins', sans-serif; 
             line-height: 1.6; 
             color: #2F4F4F;
-
         }
     </style>    
 </head>
@@ -50,6 +49,6 @@
     <?php else: ?>
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
-
+    <h4><a href="http://localhost/parcNational/">retour vers home page</h4>
 </body>
 </html>
