@@ -2,76 +2,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="assets/style/_global.css">
+    <link rel="stylesheet" href="assets/style/home.css">
 </head>
 <body>
-    <header>
-        <?php include "components/_header.php"; ?>
-    </header>
     <main>
-        <h1>Parc National des Calanques</h1>
-        <h2>Décrouvrir Marseille et ses merveilles</h2>
-        <img src="/parcNational/assets/img/category_home/hero.jpg" alt="Bandeau du site du Parc National des Calanques" width="200px">
-        <p>Présentation du site</p>
+        <div>
+            <div class="hero-container">
+                <div><?php include "components/_header.php"; ?></div>
+                <div class="text-overlay">
+                    <h1>Parc National des Calanques</h1>
+                    <h2>Découvrir Marseille et ses merveilles</h2>
+                </div>
+            </div>
+        </div>
+        
+        <section class="presentation"> 
+            <h3 class="presentation-title">Bonjour et bienvenue sur Parc'Appli, votre compagnon idéal pour explorer les plus beaux sentiers de randonnée et de camping des Calanques Marseillaises !</h3>
+            <div>
+                <p>Notre plateforme vous permet de vous connecter et de créer un compte personnalisé pour une expérience sur mesure.</p>
+                <p>En tant qu'utilisateur enregistré, vous aurez la possibilité de :</p>
+            </div>
+            <article>
+                <div>
+                    <li>Sauvegarder et favoriser vos sentiers préférés afin de les retrouver facilement pour de futures aventures.</li>
+                </div>
+                <div>
+                    <li>Accéder à une page dédiée aux ressources, où vous trouverez toutes les informations pratiques pour planifier vos 
+                    excursions en toute sérénité.</li>
+                </div>
+                <div>
+                    <li>Explorer les campings à proximité des sentiers, et même vous abonner pour recevoir des mises à jour et 
+                    des recommandations sur les meilleurs spots où planter votre tente.</li>
+                </div>
+                <div>
+                    <li>Consulter les détails des sentiers : distance, durée, difficulté et bien plus encore ! 
+                    Vous aurez aussi accès à des points d'intérêttout au long du parcours, illustrés par des images pour mieux préparer vos découvertes.
+                    </li>
+                </div>
+            </article>
+            <div>
+                <p>Rejoignez notre communauté de passionnés de plein air et commencez à planifier vos prochaines aventures dès aujourd'hui.</p>
+                <p>Que vous soyez randonneur occasionnel ou aventurier chevronné, Parc'Appli est là pour vous guider pas à pas vers des moments inoubliables en pleine nature.</p>
+            </div>
+        </section>
 
         <section>
-            <h1>Catégories</h1>
-            <style>
-                .container-category{
-                    display:flex;
-                    flex-direction:row;
-                    justify-content:center;
-                    gap:10px;
-                    width: 100%;
-                }
-                .pic{
-                    width: 150px;
-                }
-            </style>
+            <h2>Catégories</h2>
+            <hr>
             <div class="container-category">
+
                 <div class="card-home">
                     <a href="#">
-                        <p>Les calanques</p>
-                        <img class="pic" src="/parcNational/assets/img/category_home/calanques.jpg" alt="image de présentation des calanques">
+                        <div class="card-title">
+                            <p>Les Calanques</p>
+                        </div>
                     </a>
                 </div>
+
                 <div class="card-home">
                     <a href="#">
-                        <p>Les ressources</p>
-                        <img class="pic" src="/parcNational/assets/img/category_home/ressources.png" alt="image de présentation des ressources">
+                        <div class="card-title">
+                            <p>Les Ressources</p>
+                        </div>
                     </a>
                 </div>
+
                 <div class="card-home">
-                    <a href="#">
-                        <p>Les sentiers</p>
-                        <img class="pic" src="/parcNational/assets/img/category_home/trails.jpg" alt="image de présentation des trails">
+                    <a href="trails">
+                        <div class="card-title">
+                            <p>Les Sentiers</p>
+                        </div>
                     </a>
                 </div>
+
                 <div class="card-home">
                     <a href="#">
-                        <p>Les campings</p>
-                        <img class="pic" src="/parcNational/assets/img/category_home/campsite.png" alt="image de présentation des campsite">
+                        <div class="card-title">
+                            <p>Les Campings</p>
+                        </div>
                     </a>
                 </div>
+
                 <div class="card-home">
                     <a href="#">
-                        <p>La carte</p>
-                        <img class="pic" src="/parcNational/assets/img/category_home/map.png" alt="image de présentation des map">
+                        <div class="card-title">
+                            <p>La Carte</p>
+                        </div>
                     </a>
                 </div>
             </div>
         </section>
 
         <section>
-            <h1>Actualités</h1>
-            <div class="grid-container">
+            <h2>Actualités</h2>
+            <hr>
+            <div class="news-container">
                 <?php if (!empty($news)): ?>
                     <?php foreach($news as $datas): ?>
-                        <div class="news-item"> <!-- Un conteneur pour chaque actualité -->
-                            <p><?php echo htmlspecialchars($datas['title']); ?></p>
-                            <p><?php echo htmlspecialchars($datas['published_date']); ?></p>
-                            <p><?php echo htmlspecialchars($datas['published_time']); ?></p>
-                            <img class="pic" src="/parcNational/<?php echo htmlspecialchars($datas['picture']); ?>" alt="Image de l'actualité" />
-                        </div>
+                        <article class="news-item"> <!-- Un conteneur pour chaque actualité -->
+                            <img class="news-pic" src="/parcNational/<?php echo htmlspecialchars($datas['picture']); ?>" alt="Image de l'actualité" />
+                            <p class="news-title"><?php echo htmlspecialchars($datas['title']); ?></p>
+                            <div class="news-datetime">
+                                <time class="news-date" datetime="<?php echo htmlspecialchars($datas['published_date']); ?>">le <i><?php echo htmlspecialchars($datas['published_date']); ?></i></time>
+                                <time class="news-time" datetime="<?php echo htmlspecialchars($datas['published_time']); ?>">à <i><?php echo htmlspecialchars($datas['published_time']); ?></i></time>
+                            </div>
+                        </article>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <p>Aucune actualité à afficher.</p>

@@ -1,12 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
+
 body {
   margin: 0;
+  background-color: #f8f8f8;
 }
 
+:root {
+  /* groupe de coleur */
+  --lightgreen: #c5ff95;
+  --lightblue: #5debd7;
+  --lmblue: #1679ab5a;
+  --mediumblue: #1679ab;
+  --darkblue: #074173;
+  --font-Dekko: "Dekko", cursive;
+  --font-Patrick: "Patrick Hand SC", cursive;
+  --font-Assistant: "Assistant", sans-serif;
+}
 
+h1 {
+  color: var(--darkblue);
+  font-size: 35px;
+  text-align: center;
+  font-family: var(--font-Patrick);
+}
+
+h2 {
+  color: var(--mediumblue);
+  font-family: var(--font-Dekko);
+}
+
+h3 {
+  font-family: var(--font-Assistant);
+  text-align: center;
+}
+
+hr {
+  border: none; /* Supprime la bordure par défaut */
+  height: 0.5px; /* Définit l'épaisseur */
+  background-color: black; /* Définit la couleur */
+  width: 50%; /* Définit la largeur */
+  margin: 5px auto; /* Centrage de la ligne */
+}
+
+p {
+  font-family: var(--font-Assistant);
+}
+
+li {
+  list-style: none;
+  font-family: var(--font-Assistant);
+}
+a {
+  text-decoration: none;
+  color: black;
+}
 /* 
 #074173 --> bleu foncé
 #1679AB --> bleu médian
 #5DEBD7 --> bleu clair
 #C5FF95 --> vert clair
-
 */
