@@ -8,7 +8,7 @@
 </style>
 
 <nav class="nav-header">
-    <img class="logo-header" src="assets/img/logo-pncal.jpg" alt="Logo du Parc Nationnal des Calanques">
+    <img class="logo-header" src="assets/img/logo-pncal.svg" alt="Logo du Parc Nationnal des Calanques">
     <ul class="ul-header">
         <li><a href="home">Accueil</a></li>
         <li><a href="coves">Les Calanques</a></li>
