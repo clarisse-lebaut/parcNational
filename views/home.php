@@ -10,10 +10,10 @@
         <div>
             <div class="hero-container">
                 <div><?php include "components/_header.php"; ?></div>
-                <div class="text-overlay">
+                <hgroup class="text-overlay">
                     <h1>Parc National des Calanques</h1>
                     <h2>Découvrir Marseille et ses merveilles</h2>
-                </div>
+                </hgroup>
             </div>
         </div>
         
