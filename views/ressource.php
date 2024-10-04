@@ -6,7 +6,6 @@ require_once __DIR__ . '/../controllers/ressourceController.php';
 $ressourceModel = new RessourceModel();
 $ressourceController = new RessourceController($ressourceModel);
 
-// Récupérez les ressources naturelles
 $ressources = $ressourceController->getAllRessources();
 ?>
 
@@ -17,6 +16,7 @@ $ressources = $ressourceController->getAllRessources();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ressources Naturelles</title>
     <link rel="stylesheet" href="../assets/styles/ressource.css">
+    <link rel="stylesheet" href="../assets/styles/_global.css">
 </head>
 <body>
 <header>

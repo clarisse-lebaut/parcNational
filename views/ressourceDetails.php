@@ -20,6 +20,7 @@ if ($ressource_id > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de la Ressource Naturelle</title>
     <link rel="stylesheet" href="../assets/styles/ressourceDetails.css">
+    <link rel="stylesheet" href="../assets/styles/_global.css">
 </head>
 <body>
     <div class="ressource-details-container">

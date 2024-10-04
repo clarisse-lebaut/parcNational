@@ -7,9 +7,9 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
-$status = isset($_GET['status']) ? $_GET['status'] : ''; // Récupérer le statut du paiement
+$status = isset($_GET['status']) ? $_GET['status'] : '';
 $message = '';
-$user_id = 1; // ID utilisateur statique pour cet exemple, modifiez-le selon votre application
+$user_id = 1; // user statique pour l'instant
 
 $reservationModel = new ReservationModel();
 $campsiteModel = new CampsiteModel();
@@ -18,14 +18,14 @@ $campsiteModel = new CampsiteModel();
 if ($status === 'success' && isset($_SESSION['reservation_id'])) {
     $reservation_id = $_SESSION['reservation_id'];
     $reservationModel->updateReservationStatus($reservation_id, "confirmée");
-    unset($_SESSION['reservation_id']); // Nettoyage de la session après confirmation
+    unset($_SESSION['reservation_id']);
 
     $reservation = $reservationModel->getReservationById($reservation_id);
     $message = "Paiement réussi ! Votre réservation a été confirmée.";
     $recap = [
         'Camping' => $reservation['campsite_name'],
-        'Date de début' => date('Y-m-d', strtotime($reservation['start_date'])), // Format date sans heure
-        'Date de fin' => date('Y-m-d', strtotime($reservation['end_date'])),     // Format date sans heure
+        'Date de début' => date('Y-m-d', strtotime($reservation['start_date'])), 
+        'Date de fin' => date('Y-m-d', strtotime($reservation['end_date'])),     
         'Nombre de personnes' => $reservation['num_persons'],
         'Prix total' => $reservation['price']
     ];
@@ -53,7 +53,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historique des Réservations</title>
+    <title>Mes Réservations</title>
     <link rel="stylesheet" href="../assets/styles/reservationHistory.css">
 </head>
 <body>
@@ -67,7 +67,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
             <p><?= htmlspecialchars($message); ?></p>
 
             <?php if (isset($recap)): ?>
-                <h2>Récapitulatif de la commande confirmée</h2>
+                <h2>Récapitulatif de la réservation</h2>
                 <ul>
                     <?php foreach ($recap as $key => $value): ?>
                         <li><strong><?= htmlspecialchars($key); ?>:</strong> 
@@ -77,7 +77,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                 </ul>
             <?php endif; ?>
 
-            <h2>Vos réservations</h2>
+            <h2>Mes réservations</h2>
 
             <?php if (!empty($reservations)): ?>
                 <table>

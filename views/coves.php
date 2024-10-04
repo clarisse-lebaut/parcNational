@@ -15,6 +15,7 @@ $calanques = $coveController->getAllCoves();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calanques</title>
     <link rel="stylesheet" href="../assets/styles/coves.css">
+    <link rel="stylesheet" href="../assets/styles/_global.css">
 </head>
 <body>
     <header>
