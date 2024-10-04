@@ -13,31 +13,31 @@ $calanques = $coveController->getAllCoves();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calanques</title>
+    <title>Calanques de Marseille</title>
     <link rel="stylesheet" href="../assets/styles/coves.css">
     <link rel="stylesheet" href="../assets/styles/_global.css">
 </head>
 <body>
     <header>
-    </header>
-        <h1>Les Calanques de Marseille</h1>
+         <?php include __DIR__ . '/../components/_header.php'; ?>
+     </header>
 
-    <main>
+        <main>
+            <h1>Les Calanques de Marseille</h1>
         <section>
             <?php if (!empty($calanques)): ?>
-                <div class="calanques-grid">
+                <div class="coves-grid">
                     <?php foreach ($calanques as $calanque): ?>
-                        <div class="calanque-item">
+                        <div class="coves-item">
                             <?php if (!empty($calanque['image'])): ?>
-                                <img src="../<?= htmlspecialchars($calanque['image']); ?>" alt="Image de <?= htmlspecialchars($calanque['name']); ?>">
+                                <img src="../<?= htmlspecialchars($calanque['image']); ?>" alt="Image de <?= htmlspecialchars($calanque['name']); ?>" class="coves-image">
                             <?php endif; ?>
 
-                            <h2><?= htmlspecialchars($calanque['name']); ?></h2>
+                            <h2 class="coves-title"><?= htmlspecialchars($calanque['name']); ?></h2>
 
-                            <p><?= htmlspecialchars($calanque['location']); ?></p>
+                            <p class="coves-location"><?= htmlspecialchars($calanque['location']); ?></p>
 
-                            <p><?= htmlspecialchars($calanque['description']); ?></p>
-
+                            <p class="coves-description"><?= htmlspecialchars($calanque['description']); ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>
