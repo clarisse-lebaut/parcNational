@@ -103,39 +103,51 @@ function updateTrailDisplay(data) {
   if (data && data.length > 0) {
     data.forEach((item) => {
       const card = document.createElement("div");
-      card.className = "card";
+      card.className = "card_trails";
 
       card.innerHTML = `
         <div class="card_top">
           <a href="details_trails?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
-            <img src="${item.image}" alt="${item.name}" width="200">
+            <img class="pic-trails" src="${item.image}" alt="${item.name}" width="200">
           </a>
         </div>
         <div class="card_details">
-          <div>
+          
+          <div class="lenght_trails">
             <img src="assets/icon/hiking.svg" alt="icon length">
             <p>${item.length_km} km</p>
           </div>
-          <div>
+          
+          <div class="time_trails">
             <img src="assets/icon/time.svg" alt="icon time">
             <p>${item.time}</p>
           </div>
-          <div>
+          
+          <div class="difficulty_trails">
             <img src="assets/icon/${getDifficultyIcon(item.difficulty)}" alt="${getDifficultyAlt(
         item.difficulty
       )}">
             <p>${item.difficulty}</p>
           </div>
-          <div>
-            <p>${item.status}</p>
+
+          <div class="state_trails">
             <img src="assets/icon/${getStatusIcon(item.status)}" alt="${getStatusAlt(item.status)}">
+            <p>${item.status}</p>
           </div>
         </div>
-        <button><img src="assets/icon/favorite-fill.svg" alt="heart icon">Ajouter au favoris</button>
-        <button><img src="assets/icon/hiking.svg" alt="">Ajouter à mes kilomètres</button>
-        <p>${item.description}</p>
-        <p>${item.acces}</p>
+
+        <div class="access">
+          <p>Description du sentier</p>
+          <p>${item.description}</p>
+          <p>Accéder au sentier</p>
+          <p>${item.acces}</p>
+        </div>
+
+        <div class="fav-btn-container">
+          <button class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></button>
+          <button class="fav-btn"><img src="assets/icon/hiking.svg" alt=""></button>
+        </div>       
       `;
 
       resultsContainer.appendChild(card);
@@ -200,6 +212,28 @@ function getStatusAlt(status) {
       return "no info available";
   }
 }
+
+// Fonction pour récupérer tous les sentiers
+function fetchAllTrails() {
+  fetch("/parcNational/data/data_filter_trails.php") // URL de récupération des données
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors de la récupération des données");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      updateTrailDisplay(data); // Met à jour l'affichage avec toutes les données
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+    });
+}
+
+// Appelle la fonction pour récupérer tous les sentiers lors du chargement de la page
+document.addEventListener("DOMContentLoaded", function () {
+  fetchAllTrails(); // Récupère tous les sentiers par défaut
+});
 
 function removeAll() {
   const remove = document.getElementById("remove-filter");
