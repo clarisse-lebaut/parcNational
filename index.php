@@ -20,6 +20,10 @@ $routes = [
         'controller' => 'TrailsController',
         'method' => 'details_trails',
     ],
+    'map' => [
+        'controller' => 'MapController',
+        'method' => 'map',
+    ],
     'admin_home' => [
         'controller' => 'AdminController',
         'method' => 'home',

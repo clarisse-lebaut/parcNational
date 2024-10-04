@@ -9,7 +9,7 @@
     <main>
         <div>
             <div class="hero-container">
-                <div><?php include "components/_header.php"; ?></div>
+                <header><?php include "components/_header.php"; ?></header>
                 <hgroup class="text-overlay">
                     <h1>Parc National des Calanques</h1>
                     <h2>Découvrir Marseille et ses merveilles</h2>
@@ -53,7 +53,7 @@
             <div class="container-category">
 
                 <div class="card-home">
-                    <a href="#">
+                    <a href="coves">
                         <div class="card-title">
                             <p>Les Calanques</p>
                         </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="card-home">
-                    <a href="#">
+                    <a href="ressources">
                         <div class="card-title">
                             <p>Les Ressources</p>
                         </div>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="card-home">
-                    <a href="#">
+                    <a href="campsite">
                         <div class="card-title">
                             <p>Les Campings</p>
                         </div>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="card-home">
-                    <a href="#">
+                    <a href="map">
                         <div class="card-title">
                             <p>La Carte</p>
                         </div>

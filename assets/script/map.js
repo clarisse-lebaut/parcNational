@@ -127,8 +127,8 @@ Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.jso
               closeButton: false,
             }).setLatLng(layer.getLatLng()).setContent(`
               <div>
-                <img src="${imageUrl}" alt="${feature.properties.name}" width="250px"/>
-                <p>${namePoi}</p>
+              <h3>${namePoi}</h3>
+              <img src="${imageUrl}" alt="${feature.properties.name}" width="250px"/>
               </div>  
             `);
 
