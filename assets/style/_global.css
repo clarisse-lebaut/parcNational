@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap");
 
 body {
   margin: 0;
@@ -17,7 +17,7 @@ body {
   --mediumblue: #1679ab;
   --darkblue: #074173;
   --font-Assistant: "Assistant", sans-serif;
-  --font-Archivo :"Archivo Narrow", sans-serif;
+  --font-Archivo: "Archivo Narrow", sans-serif;
 }
 
 h1 {
@@ -57,6 +57,28 @@ a {
   text-decoration: none;
   color: black;
 }
+
+/* Style de la barre de défilement */
+::-webkit-scrollbar {
+  width: 12px; /* Largeur de la barre de défilement */
+  height: 12px; /* Hauteur de la barre de défilement horizontal */
+}
+
+/* Style de la piste */
+::-webkit-scrollbar-track {
+  background: transparent; /* Couleur de la piste */
+}
+
+/* Style du pouce (la partie qui se déplace) */
+::-webkit-scrollbar-thumb {
+  background: var(--darkblue); /* Couleur du pouce */
+}
+
+/* Style du pouce au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Couleur au survol */
+}
+
 /* 
 #074173 --> bleu foncé
 #1679AB --> bleu médian
