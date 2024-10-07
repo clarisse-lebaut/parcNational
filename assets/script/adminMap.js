@@ -114,15 +114,6 @@ map.on(L.Draw.Event.CREATED, function (event) {
   const layer = event.layer;
   drawnItems.addLayer(layer);
 
-  // Récupération des coordonnées du dessin créé
-  const coordinates = layer.getLatLngs();
-  console.log("Coordonnées du sentier :", coordinates);
-});
-
-map.on(L.Draw.Event.CREATED, function (event) {
-  const layer = event.layer;
-  drawnItems.addLayer(layer);
-
   // Récupérer les coordonnées sous forme de tableaux de points
   const coordinates = layer.getLatLngs();
 
@@ -147,6 +138,30 @@ map.on(L.Draw.Event.CREATED, function (event) {
   document.getElementById("trail_coords").value = csvString;
 
   console.log("Coordonnées CSV du sentier :", csvString); // Affiche les coordonnées en CSV dans la console
+
+  // Fonction pour envoyer les données au serveur
+  function sendDataToServer(csvData) {
+    fetch("/votre-endpoint.php", {
+      // Remplacez par l'URL de votre endpoint
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ trail_coords: csvData }), // Envoi des données en JSON
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data); // Traitez la réponse du serveur ici
+        alert("Sentier enregistré avec succès !");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Erreur lors de l'enregistrement du sentier.");
+      });
+  }
+
+  // Appel de la fonction pour envoyer les données au serveur
+  sendDataToServer(csvString);
 });
 
 // Créer une couche de contrôle pour basculer entre les différents styles
