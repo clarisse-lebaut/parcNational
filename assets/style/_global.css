@@ -37,6 +37,10 @@ h3 {
   text-align: center;
 }
 
+label {
+  font-family: var(--font-Assistant);
+}
+
 hr {
   border: none; /* Supprime la bordure par défaut */
   height: 0.5px; /* Définit l'épaisseur */
