@@ -1,0 +1,20 @@
+body {
+    height: 100vh;
+    overflow: hidden; /* Empêche le défilement de la page entière */
+  }
+  h1{
+    margin-bottom: 100px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; 
+    color: #2F4F4F;
+  }
+  .form{
+    display: flex;
+    justify-content: center;
+  }
+  label{
+    margin: 10px;
+  }
+  button{
+    margin-left: 10px;
+  }

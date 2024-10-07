@@ -1,0 +1,31 @@
+body {
+    height: 100vh;
+    overflow: hidden; /* Empêche le défilement de la page entière */
+  }
+  /* Section tableau avec défilement */
+  .board {
+    height: 50vh; /* Fixe une hauteur spécifique pour la section tableau */
+    overflow-y: auto; /* Active le défilement vertical uniquement dans cette section */
+    margin: 20px; /* Espace autour de la section tableau, ajustez-le si nécessaire */
+  }
+  
+  table {
+    width: 100%; /* Le tableau occupe toute la largeur disponible */
+    border-collapse: collapse; /* Pour fusionner les bordures */
+  }
+  
+  thead, tbody, td {
+    border: solid black 1px;
+    text-align: center;
+  }
+  .lien-ajout{
+    margin-left: 10%;
+    text-decoration: none;
+  }
+  h1{
+    margin-bottom: 100px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; 
+    color: #2F4F4F;
+  }
+  
