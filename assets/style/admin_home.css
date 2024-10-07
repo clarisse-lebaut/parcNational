@@ -1,0 +1,98 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+p {
+  margin: 0;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* *DASHBOARDS WITH CARD - BENTO */
+/* 3 cards on top */
+.data-person {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px 0 10px;
+}
+.data-person > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 150%;
+  padding: 15px;
+
+  box-shadow: lightgray 0 0 10px 1px;
+  border-radius: 10px;
+}
+.data-person > div:hover {
+  background-color: #c5ff95;
+  cursor: pointer;
+}
+.data-person > div > img {
+  width: 50px;
+}
+/* other cards */
+.data-subject {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.data-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  padding: 0 10px 0 10px;
+}
+.one {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.two {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.three {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+.four {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+.five {
+  grid-column: 3/4;
+  grid-row: 1/3;
+}
+.data-page > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: lightgray 0 0 10px 1px;
+  padding: 15px;
+}
+.data-page > div > img {
+  width: 50px;
+}
+.ship {
+  display: flex;
+  flex-direction: column;
+}
+.all_ship {
+  text-align: center;
+}

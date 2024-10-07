@@ -1,0 +1,117 @@
+/* ----------------------- */
+.trails-title {
+  text-align: center;
+  font-size: 35px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  margin: 25px;
+}
+.dropdown-btn {
+  border-radius: 10px;
+  padding: 10px;
+  border: var(--lmblue) solid 1px;
+  color: var(--darkblue);
+}
+
+.filter > button {
+  box-shadow: lightgray 0px 5px 10px 0px;
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  background-color: var(--lmblue);
+}
+.filter > button:active {
+  box-shadow: lightgray 0px 5px 10px 0px;
+  transform: translateY(5px);
+}
+.filter > button > img {
+  color: white;
+}
+
+label {
+  font-family: var(--font-Assistant);
+}
+
+/* Style du bouton du dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Aspect global du bouton */
+.dropdown-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Style de la liste déroulante (invisible par défaut) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+}
+
+/* Affichage de la liste au survol du bouton */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style des cases à cocher dans le menu */
+.dropdown-content input {
+  margin-right: 5px;
+}
+
+.dropdown-content label {
+  margin-right: 10px;
+}
+
+/* Bouton de validation pour le filtre */
+.dropdown-content button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.active-filter-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  margin: 25px;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  background-color: var(--lmblue);
+  border-radius: 10px;
+  padding: 0 15px 0 15px;
+}
+
+.active-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}

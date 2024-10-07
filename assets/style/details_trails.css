@@ -1,0 +1,105 @@
+.trails_main_info {
+  border-radius: 10px;
+  box-shadow: lightgray 0 5px 15px 0;
+
+  margin: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 0 10px 0 0;
+}
+
+.trails_hero {
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trail_image {
+  object-fit: cover;
+  border-radius: 50% 20% / 10% 40%;
+}
+
+.trails_infos {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.trails_icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 25px;
+}
+
+.trails_icons > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---------------- */
+.map_container {
+  margin: 25px;
+}
+
+/* --------------- */
+.landmark_container {
+  margin: 25px;
+}
+.card_landmarks_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.card_landmarks {
+  padding: 20px;
+  border: var(--darkblue) solid 1px;
+  height: 350px;
+  overflow: scroll;
+  background-color: white;
+}
+.card_landmarks_title {
+  font-weight: 700;
+}
+
+/* ------------- */
+.other_trails {
+  margin: 25px;
+}
+
+.slider {
+  position: relative; /* Important pour que les pseudo-éléments soient positionnés par rapport au slider */
+  padding-bottom: 25px;
+  border: var(--lighgreen) solid 1px;
+}
+
+.slider_elements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px; /* Espacement entre les cartes */
+  overflow-x: auto; /* Défilement horizontal activé */
+  overflow-y: hidden;
+  height: 300px;
+  padding: 25px;
+  scroll-padding-left: 25px; /* Assure que la première carte ne soit pas coupée au bord */
+  position: relative; /* Nécessaire pour que les pseudo-éléments couvrent le slider */
+}
+
+.card_trails {
+  padding: 10px;
+  box-shadow: lightgray 0 5px 15px 0;
+  border-radius: 50% 20% / 10% 40%;
+}
+
+.pic-slider {
+  border-radius: 50% 20% / 10% 40%;
+}

@@ -24,11 +24,6 @@ $routes = [
         'controller' => 'RegisterController',
         'method' => 'registerView',
     ],
-    //Display home Page
-    '' => [
-        'controller'=> 'HomePageController',
-        'method' => 'homePage',
-    ],
     //Save register form
     'register-form' => [
         'controller' => 'RegisterController',
@@ -113,9 +108,81 @@ $routes = [
     'admin-memberships-delete' => [
         'controller' => 'AdminMembershipController',
         'method' => 'deleteMembership',
+
+
+    ],    '' => [
+        'controller' => 'HomeController', 
+        'method' => 'news',
     ],
-        
-    ];
+    'home' => [
+        'controller' => 'HomeController', 
+        'method' => 'news',
+    ],
+    'about' => [
+        'controller' => 'AboutController',
+        'method' => 'about',
+    ],
+    'trails' => [
+        'controller' => 'TrailsController',
+        'method' => 'trails',
+    ],
+    'details_trails' => [
+        'controller' => 'TrailsController',
+        'method' => 'details_trails',
+    ],
+    'map' => [
+        'controller' => 'MapController',
+        'method' => 'map',
+    ],
+    'admin_home' => [
+        'controller' => 'AdminController',
+        'method' => 'home',
+    ],
+    'manage_trails' => [
+        'controller' => 'AdminTrailsController',
+        'method' => 'manageTrails',
+    ],
+    'manage_campsite' => [
+        'controller' => 'AdminCampsitesController',
+        'method' => 'manageCampsites',
+    ],
+    'manage_ressources' => [
+        'controller' => 'AdminRessourcesController',
+        'method' => 'manageRessources',
+    ],
+    'manage_reports' => [
+        'controller' => 'AdminReportsController',
+        'method' => 'manageReports',
+    ],
+    'manage_users' => [
+        'controller' => 'AdminUsersController',
+        'method' => 'manageUsers',
+    ],
+    'manage_admin' => [
+        'controller' => 'AdminAdminController',
+        'method' => 'manageAdmin',
+    ],
+    'create_trails' => [
+        'controller' => 'AdminTrailsController',
+        'method' => 'createTrails',
+    ],
+    'create_campsite' => [
+        'controller' => 'AdminCampsitesController',
+        'method' => 'createCampsites',
+    ],
+    'create_ressources' => [
+        'controller' => 'AdminRessourcesController',
+        'method' => 'createRessources',
+    ],
+    'create_reports' => [
+        'controller' => 'AdminReportsController',
+        'method' => 'createReports',
+    ],
+    'create_admin' => [
+        'controller' => 'AdminAdminController',
+        'method' => 'createAdmin',
+    ]
+];
 
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);

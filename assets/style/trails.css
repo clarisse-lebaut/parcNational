@@ -1,0 +1,102 @@
+.hero-trails {
+  background-image: url(../img/category_home/trails.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title-trails {
+  position: relative; /* Permet de positionner les éléments enfants relativement */
+  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+}
+
+.text-overlay {
+  position: absolute; /* Positionnement absolu pour superposer le texte */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+  text-align: center; /* Centrer le texte */
+  padding: 25px;
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+}
+
+/* ----------------------- */
+.order-options,
+.distance-options {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------- */
+.trails-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 15px;
+  margin: 40px;
+}
+
+.card_trails {
+  border-radius: 10px;
+  box-shadow: lightgray 0 5px 10px 0;
+  position: relative; /* Ajouté pour le positionnement de .fav-btn-container */
+  padding-bottom: 60px; /* Ajoute un espace en bas pour éviter le chevauchement */
+}
+.pic-trails {
+  width: 100%;
+}
+.card_top {
+  text-align: center;
+}
+.card_details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 15px;
+}
+.lenght_trails,
+.difficulty_trails,
+.time_trails,
+.state_trails {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5px;
+  padding: 0 10px 0 10px;
+  margin: 5px;
+  box-shadow: inset lightgray 0 3.5px 5px 0;
+}
+
+.access {
+  padding: 10px;
+}
+.fav-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  position: absolute; /* Changez la position en absolue */
+  bottom: 0; /* Positionne le conteneur au bas de la carte */
+  right: 0;
+}
+.fav-btn {
+  background-color: var(--lightgreen);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: lightgray 0 5px 5px 0;
+}
+.fav-btn:active {
+  transform: translateY(3px);
+}

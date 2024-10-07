@@ -1,3 +1,14 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine On
+
+   # Ne pas réécrire si le fichier ou le dossier existe
+   RewriteCond %{REQUEST_FILENAME} -f [OR]
+   RewriteCond %{REQUEST_FILENAME} -d
+   RewriteRule ^ - [L]
+
+   # Réécrire toutes les autres requêtes vers index.php
+   RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
 
 <IfModule mod_rewrite.c>
    RewriteEngine On
