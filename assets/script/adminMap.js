@@ -23,34 +23,72 @@ var osmDark = L.tileLayer(
 // Ajouter le style de tuiles par défaut
 osm.addTo(map);
 
-// Charger le fichier GeoJSON data_map.php pour afficher les contours ou zones
-fetch("/parcNational/data/data_map.php")
-  .then((response) => response.json())
-  .then((geojsonData) => {
-    // Ajouter le fichier GeoJSON à la carte
-    L.geoJSON(geojsonData, {
+// Liste des fichiers GeoJSON
+var geojsonFiles = [
+  "/parcNational/data/data_map.php", // Frontières ou zones
+  "/parcNational/data/data_map_trails.php", // Sentiers
+];
+
+// Récupérer l'ID du sentier depuis l'URL (si nécessaire)
+const urlParams = new URLSearchParams(window.location.search);
+const trailId = urlParams.get("trail_id");
+
+// Utiliser Promise.all pour charger plusieurs fichiers GeoJSON
+Promise.all(geojsonFiles.map((url) => fetch(url).then((response) => response.json())))
+  .then((geojsonDataArray) => {
+    //* Ajouter le premier fichier (data_map.php) à la carte (contours)
+    L.geoJSON(geojsonDataArray[0], {
       style: function (feature) {
         return {
-          color: "gray", // Couleur des contours des frontières ou zones
-          weight: 2, // Épaisseur des lignes
-          opacity: 0.3, // Opacité des lignes
-          fillColor: "gray", // Couleur de remplissage (si c'est une zone fermée)
-          fillOpacity: 0.5, // Opacité du remplissage
+          color: "green", // Couleur des contours des frontières ou zones
+          weight: 3, // Épaisseur des lignes
+          opacity: 0.5, // Opacité des lignes
+          fillColor: "lightgreen", // Couleur de remplissage
+          fillOpacity: 0.3, // Opacité du remplissage
         };
       },
     }).addTo(map);
+
+    //* Boucler sur le second fichier (data_map_trails.php) pour récupérer uniquement le sentier spécifique
+    const trailData = geojsonDataArray[1];
+
+    if (trailData.features.length > 0) {
+      // Filtrer les sentiers selon l'ID (si nécessaire)
+      const filteredTrail = {
+        type: "FeatureCollection",
+        features: trailData.features.filter((feature) => feature.properties.trail_id == trailId), // Filtrer par trail_id
+      };
+
+      if (filteredTrail.features.length > 0) {
+        // Ajouter le sentier filtré à la carte avec un popup au hover
+        L.geoJSON(filteredTrail, {
+          style: function (feature) {
+            return {
+              color: "blue", // Couleur de la ligne du sentier
+              weight: 5, // Épaisseur de la ligne
+              opacity: 0.7, // Opacité de la ligne
+            };
+          },
+          onEachFeature: function (feature, layer) {
+            let popupContent = `<div><p><strong>Nom du sentier :</strong> ${feature.properties.name}</p></div>`;
+
+            layer.on("mouseover", function () {
+              layer.bindPopup(popupContent).openPopup();
+            });
+
+            layer.on("mouseout", function () {
+              layer.closePopup();
+            });
+          },
+        }).addTo(map);
+      } else {
+        console.error("Aucun sentier trouvé pour l'ID spécifié dans le GeoJSON.");
+      }
+    } else {
+      console.error("Aucun sentier trouvé dans le GeoJSON.");
+    }
   })
-  .catch((error) => console.error("Erreur lors du chargement du GeoJSON:", error));
-
-// Créer une couche de contrôle pour basculer entre les différents styles
-var baseMaps = {
-  "OSM Classique": osm,
-  "OSM Clair": osmLight,
-  "OSM Sombre": osmDark,
-};
-
-// Ajouter le contrôle à la carte
-L.control.layers(baseMaps).addTo(map);
+  .catch((error) => console.error("Erreur lors du chargement des GeoJSON:", error));
 
 // Groupe pour les éléments dessinés
 const drawnItems = L.featureGroup().addTo(map);
@@ -76,7 +114,47 @@ map.on(L.Draw.Event.CREATED, function (event) {
   const layer = event.layer;
   drawnItems.addLayer(layer);
 
-  // Récupération des coordonnées
+  // Récupération des coordonnées du dessin créé
   const coordinates = layer.getLatLngs();
   console.log("Coordonnées du sentier :", coordinates);
 });
+
+map.on(L.Draw.Event.CREATED, function (event) {
+  const layer = event.layer;
+  drawnItems.addLayer(layer);
+
+  // Récupérer les coordonnées sous forme de tableaux de points
+  const coordinates = layer.getLatLngs();
+
+  // Fonction pour convertir les coordonnées en chaîne CSV
+  function convertToCSV(coords) {
+    let csv = "Latitude,Longitude\n"; // En-tête du CSV
+
+    // Si l'objet est une polyligne (tableau de tableaux)
+    coords.forEach(function (coordArray) {
+      coordArray.forEach(function (coord) {
+        csv += `${coord.lat},${coord.lng}\n`; // Ajout de chaque coordonnée dans le CSV
+      });
+    });
+
+    return csv;
+  }
+
+  // Conversion des coordonnées en format CSV
+  const csvString = convertToCSV(coordinates);
+
+  // Assurez-vous que l'input caché a l'ID "trail_coords"
+  document.getElementById("trail_coords").value = csvString;
+
+  console.log("Coordonnées CSV du sentier :", csvString); // Affiche les coordonnées en CSV dans la console
+});
+
+// Créer une couche de contrôle pour basculer entre les différents styles
+var baseMaps = {
+  "OSM Classique": osm,
+  "OSM Clair": osmLight,
+  "OSM Sombre": osmDark,
+};
+
+// Ajouter le contrôle à la carte
+L.control.layers(baseMaps).addTo(map);

@@ -51,9 +51,20 @@
                             <td><?php echo htmlspecialchars($trail['length_km']); ?> km</td>
                             <td><?php echo htmlspecialchars($trail['time']); ?></td>
                             <td><?php echo htmlspecialchars($trail['status']); ?></td>
-                            <td><button><img src="assets/icon/edit.svg" alt="icon edit"></button></td>
-                            <td><button><img src="assets/icon/delete.svg" alt="icon delete"></button></td>
+                            <td>
+                                <form method="GET" action="create_trails">
+                                    <input type="text" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">    
+                                    <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
+                                </form>
+                            </td>
+                            <td>
+                                <form method="POST" action="manage_trails" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');">
+                                    <input type="hidden" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">
+                                    <button onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sentier ?');"><img src="assets/icon/delete.svg" alt="icon delete"></button>                                   
+                                </form>
+                            </td>
                         </tr>
+
                     <?php endforeach; ?>
                 </tbody>
             </table>
