@@ -1,3 +1,9 @@
+<!-- <?php
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+?> -->
+
 <link rel="stylesheet" href="assets/style/_header.css">
 <link rel="stylesheet" href="assets/style/_global.css">
 
@@ -17,12 +23,12 @@
         <li><a href="campsite">Les Campings</a></li>
         <li><a href="map">La Carte</a></li>
         <li><a href="ships">Les Abonnements</a></li>
-        <?php if (!isset($_SESSION['user'])): ?>
+        <?php if (!isset($_SESSION['user_id'])): ?>
             <li><a href="login">Connexion</a></li>
         <?php endif; ?>
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($_SESSION['user_id'])): ?>
             <li><a href="profile">Profil</a></li>
-            <li><a href="deconnection">Se déconnecter</a></li>
+            <li><a href="logout">Se déconnecter</a></li>
         <?php endif; ?>
         <li><a href="admin_home">Admin</a></li>
     </ul>
