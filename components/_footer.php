@@ -26,12 +26,12 @@
                 <li><a href="trails">Les Sentiers</a></li>
                 <li><a href="campsite">Les Campings</a></li>
                 <li><a href="map">La Carte</a></li>
-                <?php if (!isset($_SESSION['user'])): ?>
+                <?php if (!isset($_SESSION['user_id'])): ?>
                     <li><a href="log">Connexion</a></li>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['user'])): ?>
+                <?php if (isset($_SESSION['user_id'])): ?>
                     <li><a href="profile">Profil</a></li>
-                    <li><a href="deconnection">Se déconnecter</a></li>
+                    <li><a href="logout">Se déconnecter</a></li>
                 <?php endif; ?>
             </ul>
             <ul class="ul-footer">

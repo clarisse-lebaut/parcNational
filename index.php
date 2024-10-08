@@ -108,9 +108,8 @@ $routes = [
     'admin-memberships-delete' => [
         'controller' => 'AdminMembershipController',
         'method' => 'deleteMembership',
-
-
-    ],    '' => [
+    ],    
+    '' => [
         'controller' => 'HomeController', 
         'method' => 'news',
     ],
