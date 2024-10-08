@@ -25,7 +25,10 @@ $campsites = $campsiteController->getAllCampsites();
     </header>
 
     <h1>Séjournez dans un camping près des Calanques</h1>
-    <div class="campsite-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</div>
+    <div class="campsite-subtitle">
+        Séjournez dans nos campings proches des calanques, offrant un cadre naturel et paisible pour vos vacances.<br>
+         Profitez de la nature, des paysages méditerranéens et d'une expérience inoubliable dans le sud de la France !
+    </div>
 
     <?php if (!empty($campsites)): ?>
         <div class="camping-grid">
@@ -53,7 +56,16 @@ $campsites = $campsiteController->getAllCampsites();
                     </p>
                     
                     <p>Adresse : <?= htmlspecialchars($campsite['address'] ?? '') . ', ' . htmlspecialchars($campsite['city'] ?? '') . ' ' . htmlspecialchars($campsite['zipcode'] ?? ''); ?></p>
-                    <p>Statut : <?= htmlspecialchars($campsite['status'] ?? ''); ?></p>
+
+                    <div class="campsite-status">
+                        <?php if ($campsite['status'] === 'Ouvert'): ?>
+                            <span class="status-icon">&#x1F7E2;</span> <!-- Rond vert -->
+                            Ouvert
+                        <?php else: ?>
+                            <span class="status-icon">&#x1F534;</span> <!-- Rond rouge -->
+                            Fermé
+                        <?php endif; ?>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
