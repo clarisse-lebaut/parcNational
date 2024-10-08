@@ -1,15 +1,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/_global-admin.css">
     <link rel="stylesheet" href="assets/style/_header-admin.css">
 </head>
 
 <header>
     <nav class="nav-admin">
         <div class="name-admin">
-            <nav class="nav-admin">
             <img class="pic-nav-admin" src="assets/icon/users.svg" alt="avatar admin">
-            <p>Bonjour, nomdel'admin !</p>
+            <p>Bonjour, nom de l'admin</p>
         </div>
         <div class="icon-admin">
             <a href="admin_home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>
