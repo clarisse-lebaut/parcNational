@@ -65,21 +65,29 @@ $routes = [
         'controller' => 'Logincontroller',
         'method' => 'loginUsingFacebook',
     ],
+    'forgot-password' => [
+        'controller' => 'loginController',
+        'method' => 'forgotPassword',
+    ],
+    'reset-password' => [
+        'controller' => 'loginController',
+        'method' => 'resetPassword',
+    ],
+    'reset-password-request' => [
+        'controller' => 'loginController',
+        'method' => 'resetPasswordRequest',
+    ],
+    'all-memberships' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'viewAllMemberships'
+    ],
+    'admin-active-memberships-list' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'viewActiveMemberships'
+    ],
     'add-membership' =>[
         'controller' => 'UserMembershipController',
         'method' => 'addMember',
-    ],
-    'subscribe-3-months' => [
-        'controller' => 'UserMembershipController',
-        'method' => 'subscribe3Months',
-    ],
-    'subscribe-6-months' => [
-        'controller' => 'UserMembershipController',
-        'method' => 'subscribe6Months',
-    ],
-    'subscribe-12-months' => [
-        'controller' => 'UserMembershipController',
-        'method' => 'subscribe12Months',
     ],
     'payment-success' =>[
         'controller' => 'PaymentStatusController',
@@ -93,9 +101,21 @@ $routes = [
         'controller' => 'UserMembershipController',
         'method' => 'viewMembership',
     ],
-    'admin-memberships' => [
+    'user-memberships' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'subscribeMembership',
+    ],
+    'subscribe-membership' =>[
+        'controller' => 'UserMembershipController',
+        'method' => 'subscribeMembership',
+    ],
+    'view-available-memberships' => [
+        'controller' => 'UserMembershipController',
+        'method' => 'viewAvailableMemberships',
+    ],
+    'admin-memberships-list' => [
         'controller' => 'AdminMembershipController',
-        'method' => 'viewMemberships',
+        'method' => 'viewMembership',
     ],
     'admin-memberships-add' => [
         'controller' => 'AdminMembershipController',

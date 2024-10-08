@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    
     <h2> Échec du paiement</h2>
 </body>
 </html>

@@ -6,6 +6,9 @@
     <title>List of Blocked IPs</title>
 </head>
 <body>
+    <header>
+        <?php include "components/_header-admin.php"; ?>
+    </header>
     <h1>List of Blocked IPs</h1>
     <ul>
         <?php if(!empty($blockedIps)): ?>

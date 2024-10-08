@@ -5,13 +5,13 @@ body {
 
   .board {
     height: 50vh; 
-    overflow-y: auto;
+    overflow-y: auto; 
     margin: 20px; 
   }
   
   table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%; 
+    border-collapse: collapse; 
   }
   
   thead, tbody, td {

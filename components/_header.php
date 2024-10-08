@@ -22,7 +22,7 @@ echo '</pre>';
         <li><a href="trails">Les Sentiers</a></li>
         <li><a href="campsite">Les Campings</a></li>
         <li><a href="map">La Carte</a></li>
-        <li><a href="ships">Les Abonnements</a></li>
+        <li><a href="view-available-memberships">Les Abonnements</a></li>
         <?php if (!isset($_SESSION['user_id'])): ?>
             <li><a href="login">Connexion</a></li>
         <?php endif; ?>

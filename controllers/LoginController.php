@@ -1,12 +1,19 @@
 <?php
+date_default_timezone_set('Europe/Paris');
 require_once 'Controller.php';
+require_once 'AdminMembershipController.php';
 require_once __DIR__ . '/../model/User.php';
 require_once __DIR__ . '/../vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class LoginController extends Controller{
+
+    public function __construct() {
+        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+    }
+
     public function login(){
         $this->render('login');
     }
@@ -21,6 +28,7 @@ class LoginController extends Controller{
                 if($dbUser['role'] == 1){
                     $this->redirect('home');
                 }else if($dbUser['role'] == 2){
+                    $this->checkAdmin();
                     $this->redirect('home');
                 }
             }else{
@@ -50,7 +58,6 @@ class LoginController extends Controller{
     }
 
     public function getDataFromGoogle(){
-        //phpinfo();
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
         $google_redirect_url = 'http://localhost/parcNational/google-login';
@@ -152,27 +159,126 @@ class LoginController extends Controller{
         }
     }
     
+    public function forgotPassword() {
+        $this->render('forgotPassword');
+    }
 
+    public function resetPasswordRequest() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'];
+            $user = new User('users');
+            $dbUser = $user->getUserByEmail($email);
+            
+            if ($dbUser) {
+                $token = bin2hex(random_bytes(50));
+                $expiry = new DateTime('+1 hour'); 
+                var_dump($expiry->format('Y-m-d H:i:s'));
+                $user->savePasswordResetToken($dbUser['user_id'], $token, $expiry->format('Y-m-d H:i:s'));
+                $resetLink = "http://localhost/parcNational/reset-password?token=$token";
+                $name = $dbUser['lastname'];
+                $this->sendPasswordResetEmail($email, $resetLink, $name);
+                $this->render('forgotPassword', ['message' => 'Un lien pour réinitialiser le mot de passe a été envoyé.']);
+            } else {
+                $this->render('forgotPassword', ['error' => "L'utilisateur avec l'adresse e-mail fournie n'existe pas."]);
+            }
+        }
+    }
+    
+    public function sendPasswordResetEmail($userEmail, $resetLink, $name) {
+        $mail = new PHPMailer(true);
+    
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com'; 
+            $mail->SMTPAuth = true;
+            $mail->Username = $_ENV['MAIL_USERNAME'];
+            $mail->Password = $_ENV['MAIL_PASSWORD'];
+            $mail->Port = 465;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
+            $mail->setFrom('no-reply@parcNational.com', 'No Reply');
+            $mail->addAddress($userEmail); 
+            $mail->isHTML(true);
+            $mail->Subject = "Réinitialisation de mot de passe";
+            $mail->CharSet = 'UTF-8'; 
+            $mail->Body = "
+    <html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>Réinitialisation de mot de passe</title>
+    </head>
+    <body>
+        <h2>Demande de réinitialisation de mot de passe</h2>
+        <p>Madame/Monsieur: <strong>$name</strong></p>
+        <p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien ci-dessous:</p>
+        <p><a href='$resetLink'>Réinitialiser le mot de passe</a></p>
+        <p>Ce lien expirera dans 1 heure.</p>
+    </body>
+    </html>
+";
+    
+            $mail->send();
+        } catch (Exception $e) {
+            error_log("L'erreur lors de l'envoi de l'email: {$mail->ErrorInfo}");
+        }
+    }
+
+    public function resetPassword() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            error_log('Reset password called');
+            $token = $_POST['token'];
+            $newPassword = $_POST['new_password'];
+            if (!$this->isPasswordValid($newPassword)) {
+                $this->render('resetPassword', ['message' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.', 'token' => $token]);
+                return;
+            }
+    
+            $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
+            $user = new User('users');
+            $pdoToken = $user->getResetToken($token);
+            
+            if ($pdoToken && new DateTime() < new DateTime($pdoToken['expires_at'])) {
+                $user->updatePassword($pdoToken['user_id'], $hashedPassword);
+                $user->deleteResetToken($token);
+                $this->render('login', ['message' => 'Le mot de passe a été changé avec succès.']);
+            } else {
+                $this->render('resetPassword', ['message' => 'Le token est invalide ou a expiré.', 'token' => $token]);
+            }
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (isset($_GET['token'])) {
+                $this->render('resetPassword', ['token' => $_GET['token']]);
+            } else {
+                $this->render('error', ['message' => 'Token manquant.']);
+            }
+        }
+    }
+    
+    
+    private function isPasswordValid($password) {
+        return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password);
+    }
+    
     public function logout(){
-        // Démarrer la session pour accéder aux variables de session
-        session_start();
-
-        // Vide toutes les variables de session
-        $_SESSION = [];
-
-        // Si un cookie de session existe, le supprimer en le rendant expiré
-        if (ini_get("session.use_cookies")) {
+        if(session_status() === PHP_SESSION_NONE){
+           session_start();
+        }
+        $_SESSION = array();
+        if(ini_get("session.use_cookies")){
             $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
+            setcookie(session_name(), '', time() -42000,
                 $params["path"], $params["domain"],
                 $params["secure"], $params["httponly"]
             );
         }
-
-        // Détruire la session
         session_destroy();
-
-        // Rediriger vers la page d'accueil
-        $this->redirect('home');
+        $this->redirect('');
+        exit();
     }
+    
 }

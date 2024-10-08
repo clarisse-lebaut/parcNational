@@ -6,13 +6,9 @@
    RewriteCond %{REQUEST_FILENAME} -d
    RewriteRule ^ - [L]
 
-   # Réécrire toutes les autres requêtes vers index.php
-   RewriteRule ^(.*)$ index.php [L,QSA]
-</IfModule>
+   # Ne pas réécrire les requêtes pour les fichiers statiques (css, js, images, polices)
+   RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot)$ [NC]
 
-<IfModule mod_rewrite.c>
-   RewriteEngine On
-   RewriteCond %{REQUEST_FILENAME} !-f
-   RewriteCond %{REQUEST_FILENAME} !-d
+   # Réécrire toutes les autres requêtes vers index.php
    RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>

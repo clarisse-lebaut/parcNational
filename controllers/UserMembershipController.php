@@ -18,103 +18,6 @@ class UserMembershipController extends Controller{
         $this->render('addMembership');
     }
     
-    public function subscribe3Months(){
-        if(isset($_SESSION['user_id'])){
-            $membership = new Membership('membership');
-            $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
-            if ($activeMembership) {
-                // Information about already existing abo
-                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']); 
-            }else{
-                $today = new DateTime();
-                $endDate = new DateTime();
-                $endDate->modify('+3 months');
-                $userId = $_SESSION['user_id'];
-                $userModel = new User('users');
-                $user = $userModel->getById($userId);
-                if($user){
-                    $userEmail = $user['email'];
-                    $name = $user['lastname'];
-                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
-                    $_SESSION['mail'] = $userEmail;
-                    $_SESSION['random_id'] = $randomID;
-                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
-                    $_SESSION['lastname'] = $name;
-                    $this->createCheckoutSession(3, 30);
-                }else{
-                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
-                }
-            }
-            
-        }else{
-            $this->redirect('login');
-        }
-    }
-
-    public function subscribe6Months(){
-        if(isset($_SESSION['user_id'])){
-            $membership = new Membership('membership');
-            $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
-            if($activeMembership){
-                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']);
-            }else{
-                $today = new DateTime();
-                $endDate = new DateTime();
-                $endDate->modify('+6 months');
-                $userId = $_SESSION['user_id'];
-                $userModel = new User('users');
-                $user = $userModel->getById($userId);
-                if($user){
-                    $userEmail = $user['mail'];
-                    $name = $user['lastname'];
-                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
-                    $_SESSION['mail'] = $userEmail;
-                    $_SESSION['random_id'] = $randomID;
-                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
-                    $_SESSION['lastname'] = $name;
-                    $this->createCheckoutSession(6, 50);
-                }else{
-                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
-                }
-            }
-            
-        }else{
-            $this->redirect('login');
-        }
-    }
-
-    public function subscribe12Months(){
-        if(isset($_SESSION['user_id'])){
-            $membership = new Membership('membership');
-            $activeMembership = $membership->getActiveMembership($_SESSION['user_id']);
-            if ($activeMembership) {
-                // Information about already existing abo
-                $this->render('addMembership', ['message' => 'Vous avez déjà un abonnement actif.']); 
-            }else{
-                $today = new DateTime();
-                $endDate = new DateTime();
-                $endDate->modify('+12 months');
-                $userId = $_SESSION['user_id'];
-                $userModel = new User('users');
-                $user = $userModel->getById($userId);
-                if($user){
-                    $userEmail = $user['mail'];
-                    $name = $user['lastname'];
-                    $randomID = $membership->saveNewMembership($userId, $name, $today->format('Y-m-d'), $endDate->format('Y-m-d'), $userEmail, 'active');
-                    $_SESSION['mail'] = $userEmail;
-                    $_SESSION['random_id'] = $randomID;
-                    $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
-                    $_SESSION['lastname'] = $name;
-                    $this->createCheckoutSession(12, 90);
-                }else{
-                    $this->render('addMembership', ['message' => "L'utilisateur n'a pas été retrouvé ."]);
-                }
-            }
-            
-        }else{
-            $this->redirect('login');
-        }
-    }
     public function createCheckoutSession($membershipMonths, $price) {
         try {
             // Créer une session Stripe Checkout
@@ -131,7 +34,7 @@ class UserMembershipController extends Controller{
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/parcNational/payment-success',
+                'success_url' => 'http://localhost/parcNational/payment-success?session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => 'http://localhost/parcNational/payment-failed',
             ]);
 
@@ -143,18 +46,82 @@ class UserMembershipController extends Controller{
             echo "Une erreur s'est produite lors du paiement.";
         }
     }
-
-    public function viewMembership() {
-        if (isset($_SESSION['user_id'])) {
+    public function subscribeMembership() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->redirect('login');
+            exit;
+        }
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $membershipId = $_POST['membership_id'];
             $membership = new Membership('membership');
-            $currentMembership = $membership->getMembershipByUserId($_SESSION['user_id']);
-            if ($currentMembership) {
-                $this->render('userMembership', ['membership' => $currentMembership]);
+            $memberships = $membership->getAllMemberships(); 
+            $activeMembership = $membership->getAllActiveMemberships($_SESSION['user_id']);
+            
+            if ($activeMembership) {
+                $this->render('viewAvailableMemberships', [
+                    'message' => 'Vous avez déjà un abonnement actif.',
+                    'memberships' => $memberships 
+                ]); 
             } else {
-                $this->render('userMembership', ['message' => 'Vous n\'avez pas encore d\'adhésion active.']);
+                $membershipDetails = $membership->getMembershipById($membershipId);
+                if ($membershipDetails) {
+                    $durationInMonths = $membershipDetails['duration'];
+                    $endDate = new DateTime();
+                    $endDate->modify("+$durationInMonths months");
+                    $userId = $_SESSION['user_id'];
+                    $userModel = new User('users');
+                    $user = $userModel->getById($userId);
+                    
+                    if ($user) {
+                        $userEmail = $user['mail'];
+                        $name = $user['lastname'];
+                        $_SESSION['mail'] = $userEmail;
+                        $_SESSION['random_id'] = $membershipId; 
+                        $_SESSION['expiry_date'] = $endDate->format('Y-m-d');
+                        $_SESSION['lastname'] = $name;
+                        $this->createCheckoutSession($durationInMonths, $membershipDetails['price']);
+                    } else {
+                        $this->render('viewAvailableMemberships', [
+                            'message' => "L'utilisateur n'a pas été retrouvé.",
+                            'memberships' => $memberships
+                        ]);
+                    }
+                } else {
+                    $this->render('viewAvailableMemberships', [
+                        'message' => "L'adhésion n'a pas été retrouvée.",
+                        'memberships' => $memberships
+                    ]);
+                }
             }
         } else {
             $this->redirect('login');
         }
     }
+    
+    public function viewMembership() {
+        if (isset($_SESSION['user_id'])) {
+            $membership = new Membership('membership');
+            $currentMembership = $membership->getMembershipByUserId($_SESSION['user_id']);
+            if (isset($currentMembership['error'])) {
+                $this->render('userMembership', ['message' => $currentMembership['error']]);
+            } else {
+                $this->render('userMembership', ['membership' => $currentMembership]);
+            }
+        } else {
+            $this->redirect('login');
+        }
+    }
+    
+    public function viewAvailableMemberships() {
+        $membership = new Membership('membership');
+        $memberships = $membership->getAllMemberships(); 
+
+        if (!$memberships) {
+            $memberships = [];
+        }
+        $this->render('viewAvailableMemberships', ['memberships' => $memberships]);
+        
+    }
+    
 }
