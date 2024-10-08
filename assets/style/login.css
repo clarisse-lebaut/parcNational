@@ -30,6 +30,7 @@
   font-size: 15px;
   background-color: #f8f8f8;
   border-radius: 10px;
+  padding: 0 10px 0 10px;
 }
 .form > button {
   border-radius: 10px;
@@ -66,8 +67,4 @@
 }
 .connection_container > a {
   font-family: var(--font-Assistant);
-}
-
-p {
-  margin: 0px;
 }

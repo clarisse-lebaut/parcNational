@@ -3,9 +3,6 @@
   color: red;
   display: none;
 }
-p {
-  margin: 0px;
-}
 
 /* ----- */
 .form {
@@ -63,6 +60,7 @@ p {
   font-size: 15px;
   background-color: #f8f8f8;
   border-radius: 10px;
+  padding: 0 10px 0 10px;
 }
 
 /* ----- */
