@@ -4,23 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/user-membership.css">
     <title>User Membership</title>
-    <style>
-        .subscription{
-            width: 40%;
-            height: 33%;
-            border: 2px solid black;
-            background: linear-gradient(to right, #ADD8E6, #E6E6FA);
-        }
-        h3,p{
-            margin: 10px;
-            font-family: 'Poppins', sans-serif; 
-            line-height: 1.6; 
-            color: #2F4F4F;
-        }
-    </style>    
+    
 </head>
 <body>
+    <header>
+        <?php include "components/_header.php"; ?>
+    </header>
     <h2>Votre abonnement:</h2>
     <?php if (isset($membership)): ?>
         <div class="subscription">
@@ -49,6 +40,11 @@
     <?php else: ?>
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
-    <h4><a href="http://localhost/parcNational/">retour vers home page</h4>
+    <h4><a class="link" href="http://localhost/parcNational/">retour vers home page
+    <img src="assets/icon/back.jpg" alt="icon home"></a>
+    </h4>
+    <footer>
+        <?php include "components/_footer.php"; ?>
+    </footer>
 </body>
 </html>

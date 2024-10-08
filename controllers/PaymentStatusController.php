@@ -8,19 +8,32 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class PaymentStatusController extends Controller{
-        
+    
     public function __construct() {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
     }
 
     public function paymentSuccess() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->redirect('login');
+            exit();
+        }
         if (isset($_SESSION['mail'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['lastname'])) {
             $userEmail = $_SESSION['mail'];
-            $randomID = $_SESSION['random_id'];
+            $membershipId = $_SESSION['random_id'];
             $expiryDate = $_SESSION['expiry_date'];
             $name = $_SESSION['lastname'];
-            $this->sendConfirmationEmail($userEmail, $randomID, $expiryDate, $name);
+            $membership = new Membership('membership');
+            $membershipDetails = $membership->getMembershipById($membershipId);
+    
+            if ($membershipDetails) {
+                $userId = $_SESSION['user_id']; 
+                $membership->saveNewMembership($userId, $name, (new DateTime())->format('Y-m-d'), $expiryDate, $membershipDetails['memberships_name'], 'active', $userEmail);
+
+            }
+    
+            $this->sendConfirmationEmail($userEmail, $membershipId, $expiryDate, $name);
             unset($_SESSION['mail'], $_SESSION['random_id'], $_SESSION['expiry_date'], $_SESSION['lastname']);
             $message = "Votre paiement a été effectué avec succès.";
             $this->render('paymentSuccess', ['message' => $message]);
@@ -30,6 +43,10 @@ class PaymentStatusController extends Controller{
     }
 
     public function paymentFailed() {
+        if (!isset($_SESSION['user_id'])) {
+            $this->redirect('login');
+            exit();
+        }
     $message = "Votre paiement a échoué. Veuillez réessayer.";
     $this->render('paymentFailed', ['message' => $message]);
     }

@@ -28,12 +28,12 @@ class User extends Model{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    /*public function getByName($name){
+    public function getByName($name){
         $sql = 'SELECT * FROM users WHERE lastname = ?';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$name]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }*/
+    }
 
     public function saveUserFromGoogle($data){
         var_dump($data);
@@ -62,5 +62,31 @@ class User extends Model{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$facebookId]);
         return $stmt->fetch();
+    }
+
+    //////////Password reset
+
+    public function savePasswordResetToken($userId, $token, $expiry ){
+        $sql = 'INSERT INTO password_resets (user_id, token, expires_at) VALUES (?,?,?)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$userId, $token, $expiry]);
+    }
+
+    public function getResetToken($token) {
+        $sql = 'SELECT user_id, expires_at FROM password_resets WHERE token = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$token]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function updatePassword($userId, $newPassword){
+        $sql = ' UPDATE users SET password = ? WHERE user_id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$newPassword, $userId]);
+    }
+
+    public function deleteResetToken($token){
+        $sql = ' DELETE FROM password_resets WHERE token = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$token]);
     }
 }

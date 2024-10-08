@@ -14,6 +14,9 @@
   </style>
 </head>
 <body>
+<header>
+        <?php include "components/_header.php"; ?>
+    </header>
   <div class="container mt-5">
     <?php
     if(isset ($error)){
@@ -90,7 +93,7 @@
   </div>
   <script>
     document.getElementById('inputEmail').addEventListener('input', function() {
-      const email = this.value.trim();//Removes spaces at the beginning and the end
+      const email = this.value.trim();
       const emailError = document.getElementById('emailError');
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -112,6 +115,9 @@
         passwordError.style.display = 'none';
       }
     });
-  </script>  
+  </script>
+  <footer>
+        <?php include "components/_footer.php"; ?>
+  </footer>  
 </body>
 </html>

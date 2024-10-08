@@ -4,9 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/parcNational/assets/style/login-page.css">
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+    var emailInput = document.getElementById('inputEmail2');
+    var passwordInput = document.getElementById('inputPassword2');
+    var emailError = document.createElement('div'); 
+    emailError.id = 'emailError';
+    emailError.className = 'error-message'; 
+    emailInput.parentNode.appendChild(emailError);
+    
+    var passwordError = document.createElement('div');
+    passwordError.id = 'passwordError';
+    passwordError.className = 'error-message';
+    passwordInput.parentNode.appendChild(passwordError);
+    var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    emailInput.addEventListener('blur', function () {
+        if (!emailInput.value.match(emailPattern)) {
+            emailInput.style.borderColor = 'red';
+            emailError.textContent = "L'adresse e-mail n'est pas correcte.";
+            emailError.style.color = 'red';
+        } else {
+            emailInput.style.borderColor = '';
+            emailError.textContent = ''; 
+        }
+    });
+    passwordInput.addEventListener('blur', function () {
+        if (passwordInput.value.length < 8) {
+            passwordInput.style.borderColor = 'red'; 
+            passwordError.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+            passwordError.style.color = 'red';
+        } else {
+            passwordInput.style.borderColor = '';
+            passwordError.textContent = '';
+        }
+    });
+
+    document.querySelector('form').addEventListener('submit', function (event) {
+        var isValid = true;
+        var errorMessage = '';
+        if (!emailInput.value.match(emailPattern)) {
+            emailInput.style.borderColor = 'red';
+            errorMessage = "L'adresse e-mail n'est pas correcte. ";
+            emailError.style.color = 'red';
+            isValid = false;
+        }else {
+              emailError.textContent = ''; 
+        }
+
+        if (passwordInput.value.length < 8) {
+            passwordInput.style.borderColor = 'red';
+            errorMessage += 'Le mot de passe doit contenir au moins 8 caractères.';
+            passwordError.style.color = 'red';
+            isValid = false;
+        }else {
+            passwordError.textContent = '';
+        }
+
+        if (!isValid) {
+            alert(errorMessage);
+            event.preventDefault();
+        }
+    });
+});
+</script>
 </head>
 <body>
+    <header>
+        <?php include "components/_header.php"; ?>
+    </header>
     <?php
     if(isset($error)){
       echo '<div class="alert alert-danger">';
@@ -14,33 +81,49 @@
       echo '</div>';
     }
     ?>
-    <h1> Connection</h1>
-    <form method='post' action="/parcNational/loginForm" class="row g-3">
-      <div class="col-auto">
-        <label for="inputEmail2" class="visually-hidden">Email</label>
-        <input type="email" name='email' class="form-control" id="inputEmail2" placeholder=Email>
+    <div class= "main-container">
+      <h1> Connectez-vous à votre compte du Parc National des Calanques</h1>
+      <div class="login-container">
+        <form method='post' action="/parcNational/loginForm" onsubmit="validateForm(event)">
+          <div class="form-group">
+              <label for="inputEmail2">L'adresse e-mail</label> 
+              <input type="email" name='email' class="form-control" id="inputEmail2" >
+          </div>
+          <div class="form-group">
+              <label for="inputPassword2">Le mot de passe</label>
+              <input type="password" name='password' class="form-control" id="inputPassword2">
+          </div>
+          <h5><a class="register-text"href="forgot-password">Oublié mot de passe?</h5>
+          <div class="btn-confirmation"> 
+              <button type="submit" class="connect-button">Se connecter</button>
+          </div>
+        </form>
       </div>
-      <div class="col-auto">
-        <label for="inputPassword2" class="visually-hidden">Le mot de passe</label>
-        <input type="password" name='password' class="form-control" id="inputPassword2" placeholder="Le mot de passe">
+      <p>Ou connectez-vous avec: </p>
+      <div class="or-connect-with">
+        <a class="sm-connect" href="/parcNational/login-using-google" class="google-login-btn m-3">
+          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
+          Google
+        </a>
+        <?php
+          require 'vendor/autoload.php';
+          $clientId = $_ENV['FACEBOOK_CLIENT_ID'] ?? 'default_client_id';
+          $redirectUri = $_ENV['FACEBOOK_REDIRECT_URI'] ?? 'default_redirect_uri';
+        ?>
+        <a class="sm-connect" href="https://www.facebook.com/v2.10/dialog/oauth?client_id=<?php echo htmlspecialchars($clientId); ?>&redirect_uri=<?php echo urlencode($redirectUri); ?>&scope=email,public_profile">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" width="20" height="20">
+          Facebook
+        </a>
       </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Confirmez votre identité</button>
-      </div>
-      <h5 class= 'm-3'><a href="register">Vous n'avez pas encore de compte ? Allez à la page d'inscription..</h5>
-    </form>
-    <a href="/parcNational/login-using-google" class="google-login-btn m-3">
-      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
-      Connectez-vous avec Google
-    </a>
-    <?php
-      require 'vendor/autoload.php';
-      $clientId = $_ENV['FACEBOOK_CLIENT_ID'] ?? 'default_client_id';
-      $redirectUri = $_ENV['FACEBOOK_REDIRECT_URI'] ?? 'default_redirect_uri';
-    ?>
-    <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=<?php echo htmlspecialchars($clientId); ?>&redirect_uri=<?php echo urlencode($redirectUri); ?>&scope=email,public_profile">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" width="20" height="20">
-      Connectez-vous avec Facebook
-    </a>
+    </div> 
+    <div class="register-block"> 
+      <h5><a class="register-text"href="register">Inscription</h5>
+      <button class="register-button">
+        <img class="register-button-img" src="assets/icon/sign-up-icon.svg" alt="icon register">
+      </button class="register-button"></a>
+    </div>
+      <footer>
+          <?php include "components/_footer.php"; ?>
+      </footer>
 </body>
 </html>
