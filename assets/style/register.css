@@ -1,3 +1,4 @@
+/* ----- */
 .error-message {
   color: red;
   display: none;
@@ -6,6 +7,7 @@ p {
   margin: 0px;
 }
 
+/* ----- */
 .form {
   display: flex;
   flex-direction: column;
@@ -28,27 +30,33 @@ p {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 15px;
+  padding: 0 30px 30px 30px;
+  width: 25rem;
+  text-align: center;
 
   background-color: white;
   box-shadow: lightgray 0 5px 15px 0;
   border-radius: 10px;
   font-family: var(--font-Assistant);
 }
-.form > section > div,
-.form > section > div > div {
+
+.civil > div,
+.live > div,
+.password > div,
+.password > div > div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
-.form > section > div > label,
-.form > section > div > div > label {
-  text-align: center;
+.civil > div > label,
+.live > div > label,
+.password > div > label,
+.password > div > div > label {
   font-weight: 700;
 }
-.form > section > div > input,
-.form > section > div > div > input {
+.civil > div > input,
+.live > div > input,
+.password > div > input {
   border: none;
   box-shadow: inset lightgray 0 5px 10px 0;
   height: 50px;
@@ -57,7 +65,8 @@ p {
   border-radius: 10px;
 }
 
-.form > div > button {
+/* ----- */
+.form > section > div > button {
   border-radius: 10px;
   border: none;
   background-color: var(--mediumblue);
@@ -66,17 +75,19 @@ p {
   height: 45px;
   font-family: var(--font-Assistant);
   font-size: 15px;
+  width: 15rem;
 }
-.form > div > button:hover {
+.form > section > div > button:hover {
   background-color: var(--darkblue);
   cursor: pointer;
   transform: translateY(5px);
   box-shadow: lightgray 0 2.5px 5px 0;
 }
-.form > div > button:active {
+.form > section > div > button:active {
   transform: translateY(10px);
 }
 
+/* ----- */
 ::placeholder {
   font-style: italic;
   text-align: center;

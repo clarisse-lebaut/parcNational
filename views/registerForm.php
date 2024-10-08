@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscription</title>
   <link rel="stylesheet" href="assets/style/_global.css">
+  <link rel="stylesheet" href="assets/style/_header.css">
+  <link rel="stylesheet" href="assets/style/_footer.css">
   <link rel="stylesheet" href="assets/style/register.css">
 </head>
 
@@ -26,9 +28,12 @@
     ?>
         <form class="form" method="post" action="/parcNational/register-form" id="registerForm">
         
+          <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
+          
           <section class="form_container">  
 
               <section class="civil">
+                <h2>Civilités</h2>
                 <!-- Lastname -->
                 <div>
                   <label for="inputLastname">Lastname</label>
@@ -56,6 +61,7 @@
               </section>
               
               <section class="live">
+                <h2>Adresses</h2>
                 <!-- Address -->
                 <div>
                   <label for="inputAddress">Address</label>
@@ -76,11 +82,12 @@
               </section>
               
               <section class='password'>
+                <h2>Mot de passe</h2>
                 <!-- Password -->
                 <div>
                   <label for="inputPassword">Mot de passe</label>
                   <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password" required>
-                  <div id="passwordError" class="error-message" style="display:none;">Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.
+                  <div id="passwordError" class="error-message" style="display:none;">Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</div>
                 </div>
                     
                 <!-- Repeat Password -->
@@ -102,8 +109,9 @@
             
           </section>
 
+          <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
+        
         </form>
-
   </div>
   </main>
 
