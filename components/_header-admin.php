@@ -13,7 +13,7 @@
         </div>
         <div class="icon-admin">
             <a href="admin_home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>
-            <a href="home"><img class="pic-nav-admin" src="assets/icon/off.svg" alt="icon off"></a>
+            <a href="logout"><img class="pic-nav-admin" src="assets/icon/off.svg" alt="icon off"></a>
         </div>    
     </nav>
     <section class="data-admin">

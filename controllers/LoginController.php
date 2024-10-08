@@ -19,9 +19,9 @@ class LoginController extends Controller{
                 $_SESSION['user_id'] = $dbUser['user_id'];
                 $_SESSION['user_role'] = $dbUser['role'];
                 if($dbUser['role'] == 1){
-                    $this->redirect('');
+                    $this->redirect('home');
                 }else if($dbUser['role'] == 2){
-                    $this->redirect('homePageAdmin');
+                    $this->redirect('home');
                 }
             }else{
                 $this->render('login', ['error' => 'Data incorrect']);
@@ -139,9 +139,9 @@ class LoginController extends Controller{
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_role'] = $user['role'];
             if($user['role'] != 1){
-                $this->redirect('homePageAdmin');
+                $this->redirect('admin_home');
             }else{
-                $this->redirect('');
+                $this->redirect('home');
             }
         }else{
             $userObject->saveUserFromFacebook($responseData);

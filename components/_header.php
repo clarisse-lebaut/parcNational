@@ -29,7 +29,9 @@ echo '</pre>';
         <?php if (isset($_SESSION['user_id'])): ?>
             <li><a href="profile">Profil</a></li>
             <li><a href="logout">Se déconnecter</a></li>
+            <?php if ($_SESSION['user_role'] == 2): // Vérifie si l'utilisateur a le rôle d'administrateur ?>
+                <li><a href="admin_home">Admin</a></li>
+            <?php endif; ?>
         <?php endif; ?>
-        <li><a href="admin_home">Admin</a></li>
     </ul>
 </nav>
