@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/parcNational/assets/style/login-page.css">
+    <link rel="stylesheet" href="/parcNational/assets/style/user/login-page.css">
     <script>
       document.addEventListener('DOMContentLoaded', function () {
       var emailInput = document.getElementById('inputEmail2');

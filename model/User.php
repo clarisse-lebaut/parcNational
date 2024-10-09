@@ -64,8 +64,6 @@ class User extends Model{
         return $stmt->fetch();
     }
 
-    //////////Password reset
-
     public function savePasswordResetToken($userId, $token, $expiry ){
         $sql = 'INSERT INTO password_resets (user_id, token, expires_at) VALUES (?,?,?)';
         $stmt = $this->pdo->prepare($sql);

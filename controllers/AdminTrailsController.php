@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../models/AdminTrails.php';
+require_once __DIR__ . '/../model/AdminTrails.php';
 
 class AdminTrailsController extends Controller {
 

@@ -9,8 +9,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" defer></script>
     <!-- réalisé -->
     <script src="/parcNational/assets/script/map.js" defer></script>
-    <link rel="stylesheet" href="assets/style/details_trails.css">
-    <link rel="stylesheet" href="assets/style/map.css">
+    <link rel="stylesheet" href="assets/style/user/details_trails.css">
+    <link rel="stylesheet" href="assets/style/user/map.css">
 </head>
 <body>
     <header>

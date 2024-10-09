@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
     <link rel="stylesheet" href="assets/style/_global.css">
-    <link rel="stylesheet" href="/parcNational/assets/style/filter.css">
-    <link rel="stylesheet" href="/parcNational/assets/style/trails.css">
+    <link rel="stylesheet" href="/parcNational/assets/style/config/_filter.css">
+    <link rel="stylesheet" href="/parcNational/assets/style/user/trails.css">
     <script src="/parcNational/assets/script/filter.js" defer></script>
 </head>
 <body>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $isEdit ? 'Modifier Administrateur' : 'Créer Administrateur'; ?></title>
-    <link rel="stylesheet" href="assets/style/manage.css">
-    <link rel="stylesheet" href="assets/style/form.css">
+    <link rel="stylesheet" href="assets/style/admin/manage.css">
+    <link rel="stylesheet" href="assets/style/config/form.css">
 </head>
 <body>
     <header>

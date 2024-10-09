@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer les Abonnements</title>
-    <link rel="stylesheet" href="assets/style/modify-admin.css">
+    <link rel="stylesheet" href="assets/style/admin/modify-admin.css">
 </head>
 <body>
     <h1>Gérer les Abonnements</h1>

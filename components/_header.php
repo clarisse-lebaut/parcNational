@@ -4,8 +4,8 @@ print_r($_SESSION);
 echo '</pre>';
 ?> -->
 
-<link rel="stylesheet" href="assets/style/_header.css">
-<link rel="stylesheet" href="assets/style/_global.css">
+<link rel="stylesheet" href="assets/style/config/_header.css">
+<link rel="stylesheet" href="assets/style/config/_global.css">
 
 <style>
     a{

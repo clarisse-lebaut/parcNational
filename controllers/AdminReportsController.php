@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../models/AdminReports.php';
+require_once __DIR__ . '/../model/AdminReports.php';
 
 class AdminReportsController extends Controller {
 

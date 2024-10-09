@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Home</title>
-    <link rel="stylesheet" href="assets/style/_global-admin.css">
-    <link rel="stylesheet" href="assets/style/_header-admin.css">
-    <link rel="stylesheet" href="assets/style/admin_home.css">
+    <link rel="stylesheet" href="assets/stylec/config/_global-admin.css">
+    <link rel="stylesheet" href="assets/style/config/_header-admin.css">
+    <link rel="stylesheet" href="assets/style/admin/admin_home.css">
 </head>
 
 <body>

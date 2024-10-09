@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $isEdit ? 'Modifier un rapport' : 'Créer un nouveau rapport'; ?></title>
-    <link rel="stylesheet" href="assets/style/manage.css">
+    <link rel="stylesheet" href="assets/style/admin/manage.css">
 </head>
 <body>
     <header>

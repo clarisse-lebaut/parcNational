@@ -28,7 +28,7 @@ class LoginController extends Controller{
                 if($dbUser['role'] == 1){
                     $this->redirect('home');
                 }else if($dbUser['role'] == 2){
-                    $this->checkAdmin();
+                    // $this->checkAdmin();
                     $this->redirect('home');
                 }
             }else{
