@@ -32,7 +32,6 @@
   text-align: center;
 
   background-color: white;
-  box-shadow: lightgray 0 5px 15px 0;
   border-radius: 10px;
   font-family: var(--font-Assistant);
 }
@@ -89,4 +88,34 @@
 ::placeholder {
   font-style: italic;
   text-align: center;
+}
+
+.register-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 1%;
+  font-size: 20px;
+  text-decoration: none;
+}
+.register-button {
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.register-button-img {
+  width: 40px;
+}
+.register-button:hover {
+  transform: translateY(-2px);
+}
+.register-text {
+  text-decoration: none !important;
+  font-weight: 700;
+  color: var(--darkblue);
+  font-family: var(--font-Assistant);
+  font-size: 20px;
 }

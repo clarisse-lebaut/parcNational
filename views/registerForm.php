@@ -107,8 +107,13 @@
               
             </section>
 
-            <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
-          
+            <div class="register-block"> 
+              <button class="register-button">
+                <a class="register-text" href="login">Connexion</a>
+                <img class="register-button-img" src="assets/icon/sign-up-icon.svg" alt="icon register">
+              </button class="register-button">
+            </div>
+
           </form>
     </div>
   </main>
