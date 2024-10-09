@@ -33,7 +33,7 @@ class RegisterController extends Controller{
             return;
         }
         
-        $user = new User('users');// Create a new user in users table
+        $user = new User('users');
         $user->saveUser($_POST);
         $this->redirect('login'); 
     }

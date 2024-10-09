@@ -9,20 +9,24 @@ class IpController extends Controller {
         $this->checkAdmin();
         $this->render('ipForm');
     }
+    
     public function saveIp(){
         $this->checkAdmin();
         $ip = $_POST['ip'];
-
+        $message = '';
+        $messageType = '';
         if(filter_var($ip, FILTER_VALIDATE_IP)){
             $blockIp = new BlockIp('block_ips');
             $blockIp->saveIp($ip);
-            echo 'IP successfully saved';
+            $message = 'IP successfully saved';
+            $messageType = 'alert'; 
         }else {
-            echo 'Invalid IP address!';
+            $message = 'Invalid IP address!';
+            $messageType = 'alert-error';
         }
-
-    
+        $this->render('ipForm', ['message' => $message, 'messageType' => $messageType]);
     }
+
     public function getBlockIp(){
         $this->checkAdmin();
         $blockIp = new BlockIp('block_ips');

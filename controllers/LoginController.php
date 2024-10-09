@@ -32,11 +32,11 @@ class LoginController extends Controller{
                     $this->redirect('home');
                 }
             }else{
-                $this->render('login', ['error' => 'Data incorrect']);
+                $this->render('login', ['error' => 'Données incorrectes']);
             }
             
         }else{
-            $this->render('login', ['error' => 'Data incorrect']);
+            $this->render('login', ['error' => 'Données incorrectes']);
         }
     }
 
@@ -172,7 +172,6 @@ class LoginController extends Controller{
             if ($dbUser) {
                 $token = bin2hex(random_bytes(50));
                 $expiry = new DateTime('+1 hour'); 
-                var_dump($expiry->format('Y-m-d H:i:s'));
                 $user->savePasswordResetToken($dbUser['user_id'], $token, $expiry->format('Y-m-d H:i:s'));
                 $resetLink = "http://localhost/parcNational/reset-password?token=$token";
                 $name = $dbUser['lastname'];
@@ -231,14 +230,17 @@ class LoginController extends Controller{
 
     public function resetPassword() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            error_log('Reset password called');
             $token = $_POST['token'];
             $newPassword = $_POST['new_password'];
+            $repeatPassword = $_POST['repeat_password'];
+            if ($newPassword !== $repeatPassword) {
+                $this->render('resetPassword', ['message' => 'Les mots de passe ne correspondent pas.', 'token' => $token]);
+                return;
+            }
             if (!$this->isPasswordValid($newPassword)) {
                 $this->render('resetPassword', ['message' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.', 'token' => $token]);
                 return;
             }
-    
             $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
             $user = new User('users');
             $pdoToken = $user->getResetToken($token);

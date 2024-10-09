@@ -200,6 +200,10 @@ $routes = [
     'create_admin' => [
         'controller' => 'AdminAdminController',
         'method' => 'createAdmin',
+    ],
+    'manage-favorite-trail' => [
+        'controller' => 'FavoritesTrailsController',
+        'method' => 'manageFavoriteTrail',
     ]
 ];
 

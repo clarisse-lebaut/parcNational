@@ -74,18 +74,14 @@
     <header>
         <?php include "components/_header.php"; ?>
     </header>
-    <header>
-        <?php include "components/_header.php"; ?>
-    </header>
     <?php
-    if(isset($error)){
-      echo '<div class="alert alert-danger">';
-      echo $error;
-      echo '</div>';
-    }
-    ?>
+    if(isset($error)):?>
+      <div class="alert alert-danger">
+      <?php echo htmlspecialchars($error); ?>
+     </div>
+    <?php endif; ?> 
     <div class= "main-container">
-      <h1> Connectez-vous à votre compte du Parc National des Calanques</h1>
+      <h2> Connectez-vous à votre compte du Parc National des Calanques</h3>
       <div class="login-container">
         <form method='post' action="/parcNational/loginForm" onsubmit="validateForm(event)">
           <div class="form-group">
@@ -96,13 +92,13 @@
               <label for="inputPassword2">Le mot de passe</label>
               <input type="password" name='password' class="form-control" id="inputPassword2">
           </div>
-          <h5><a class="register-text"href="forgot-password">Oublié mot de passe?</h5>
+          <h5><a class="register-text"href="forgot-password">Oublié mot de passe?</a></h5>
           <div class="btn-confirmation"> 
               <button type="submit" class="connect-button">Se connecter</button>
           </div>
         </form>
       </div>
-      <p>Ou connectez-vous avec: </p>
+      <p>Ou connectez-vous avec</p>
       <div class="or-connect-with">
         <a class="sm-connect" href="/parcNational/login-using-google" class="google-login-btn m-3">
           <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">

@@ -65,12 +65,5 @@ class AdminMembershipController extends Controller {
         $activeMemberships = $membership->getAllActiveMembershipsForAdmin(); 
         $this->render('adminActiveMembershipsList', ['activeMemberships' => $activeMemberships]);
     }
-
-    protected function checkAdmin(){
-        if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 2){
-            $this->redirect('login');
-            exit;
-        }
-    }
     
 }

@@ -8,4 +8,11 @@ class Controller{
     public function redirect($url){
         header('Location: /parcNational/' . $url);
     }
+    
+    protected function checkAdmin(){
+        if(!isset($_SESSION['user_id']) || $_SESSION['user_role'] != 2){
+            $this->redirect('login');
+            exit;
+        }
+    }
 }

@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="assets/style/modify-admin.css">
 </head>
 <body>
-    <h1>Gérer les Abonnements</h1>
-
+    <header>
+        <?php include 'components/_header-admin.php'?>
+    </header>
+    <h2>Gérer les Abonnements</h2>
     <a class="lien-ajout" href="admin-memberships-add">
         Ajouter un Nouvel Abonnement
         <img src="assets/icon/add.svg" alt="icon add">
     </a>
-    
     <section class="board">
         <table>
             <thead>
@@ -56,10 +57,9 @@
         </table>
     </section>
     <nav>
-    <ul>
-        <li><a href="admin-active-memberships-list">Les adhésions actives</a></li>
-    </ul>
-</nav>
-
+        <ul>
+            <li><a class="lien" href="admin-active-memberships-list">Les adhésions actives</a></li>
+        </ul>
+    </nav>
 </body>
 </html>

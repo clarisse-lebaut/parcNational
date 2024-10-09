@@ -7,7 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+            <?php include "components/_header.php"; ?>
+    </header>
     <h2> Échec du paiement</h2>
+    <footer>
+      <?php include "components/_footer.php"; ?>
+    </footer>
 </body>
 </html>

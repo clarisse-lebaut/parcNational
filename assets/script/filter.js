@@ -97,6 +97,7 @@ function manageTagDisplay(checkbox) {
 
 //* Fonction pour afficher les données filtrées dans la div
 function updateTrailDisplay(data) {
+  console.log(data);
   const resultsContainer = document.getElementById("overflow");
   resultsContainer.innerHTML = ""; // Vider le conteneur des résultats précédents
 
@@ -145,7 +146,7 @@ function updateTrailDisplay(data) {
         </div>
 
         <div class="fav-btn-container">
-          <button class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></button>
+          <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></a>
           <button class="fav-btn"><img src="assets/icon/hiking.svg" alt=""></button>
         </div>       
       `;

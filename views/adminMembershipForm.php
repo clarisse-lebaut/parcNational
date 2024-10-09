@@ -7,15 +7,16 @@
         <link rel="stylesheet" href="assets/style/admin-M-form.css">
 </head>
 <body>
-
+    <header>
+        <?php include 'components/_header-admin.php'?>
+    </header>
     <h1><?= isset($membership) ? 'Edit Membership' : "Ajout d'une nouvelle adhésion"?></h1>
 
     <form method="post" action="<?= isset($membership) ? 'admin-memberships-edit' : 'admin-memberships-add' ?>">
-
         <div class="form">
             <label for="memberships_name">Nom de l'adhésion:</label>
             <input type="text" name="memberships_name" value="<?= isset($membership) ? $membership['memberships_name'] : '' ?>" required>
-
+            
             <label for="duration">Durée (Mois):</label>
             <input type="number" name="duration" value="<?= isset($membership) ? $membership['duration'] : '' ?>" required>
             
@@ -26,7 +27,7 @@
                 <input type="hidden" name="card_id" value="<?= $membership['card_id'] ?>">
             <?php endif; ?>
 
-            <button type="submit"><?= isset($membership) ? 'Update Membership' : "Ajout d'Adhérent" ?></button>
+            <button type="submit"><?= isset($membership) ? 'Update Membership' : "Ajout d'Adhésion" ?></button>
         </div>
     </form>
 </body>

@@ -90,3 +90,24 @@
   font-style: italic;
   text-align: center;
 }
+
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  max-width: 30%; 
+  margin: 20px auto; 
+  text-align: center;
+}
+
+.alert-danger {
+
+  background-color: #f8d7da;
+  color: #721c24;           
+  border: 1px solid #f5c6cb;
+}
+
+.alert-danger {
+  animation: fadeIn 0.5s ease-in-out;
+}

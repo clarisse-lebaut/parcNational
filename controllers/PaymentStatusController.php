@@ -74,6 +74,7 @@ class PaymentStatusController extends Controller{
             $mail->addAddress($userEmail); 
             $mail->isHTML(true);
             $mail->Subject = "Confirmation d'adhésion";
+            $mail->CharSet = 'UTF-8';
             $mail->Body = "
 
                 <html>
