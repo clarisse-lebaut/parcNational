@@ -23,7 +23,7 @@ class AdminTrailsController extends Controller {
 
             if ($deleteSuccess) {
                 // Redirige vers la même page pour actualiser la liste des sentiers
-                $this->redirect('manage_trails');
+                $this->redirect('admin/manage_trails');
                 exit; // Arrête l'exécution après la redirection
             } else {
                 echo "Erreur : Impossible de supprimer ce sentier.";
@@ -39,7 +39,7 @@ class AdminTrailsController extends Controller {
             $nameTrail = $this->model->name_trails($this->bdd); // Optionnel : Récupère le nom d'un sentier
 
             // Passe les sentiers à la vue
-            $this->render('manage_trails', [
+            $this->render('admin/manage_trails', [
                 'total_trails' => $trailsCount['total'],
                 'name_trail' => $nameTrail,
                 'trails' => $trails
@@ -136,7 +136,7 @@ class AdminTrailsController extends Controller {
                     );
 
                     if ($updateSuccess) {
-                        $this->redirect('manage_trails');
+                        $this->redirect('admin/manage_trails');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour du sentier.';
@@ -153,7 +153,7 @@ class AdminTrailsController extends Controller {
                         $status,
                         null      // Image non traitée ici
                     )) {
-                        $this->redirect('manage_trails');
+                        $this->redirect('admin/manage_trails');
                         exit;
                     } else {
                         echo 'Erreur lors de la création du sentier.';
@@ -167,7 +167,7 @@ class AdminTrailsController extends Controller {
         }
 
         // Rendre la vue pour créer ou modifier un sentier
-        $this->render('create_trails', ['trailData' => $trailsData, 'isEdit' => $isEdit]);
+        $this->render('admin/create_trails', ['trailData' => $trailsData, 'isEdit' => $isEdit]);
     }
 
     public function getDatabaseConnection(){

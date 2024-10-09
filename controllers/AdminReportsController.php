@@ -22,7 +22,7 @@ class AdminReportsController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des rapports
-                $this->redirect('manage_reports');
+                $this->redirect('admin/manage_reports');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer ce rapport.";
@@ -37,7 +37,7 @@ class AdminReportsController extends Controller {
 
         if ($reportsCount !== false && !empty($reports)) {
             // Passe tous les rapports en une seule fois à la vue
-            $this->render('manage_reports', [
+            $this->render('admin/manage_reports', [
                 'total_reports' => $reportsCount['total'],
                 'name_report' => $namereports,
                 'reports' => $reports,  // Tous les rapports sont passés à la vue
@@ -117,7 +117,7 @@ class AdminReportsController extends Controller {
                     );
 
                     if ($updateSuccess) {
-                        $this->redirect('manage_reports');
+                        $this->redirect('admin/manage_reports');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour du rapport.';
@@ -129,7 +129,7 @@ class AdminReportsController extends Controller {
                         $name,
                         $description,
                         $ressource_id)) {  // Associe la ressource lors de la création
-                        $this->redirect('manage_reports');
+                        $this->redirect('admin/manage_reports');
                         exit;
                     } else {
                         echo 'Erreur lors de la création du rapport.';
@@ -139,7 +139,7 @@ class AdminReportsController extends Controller {
         }
 
         // Rendre la vue avec les données du rapport (pour l'édition) et les ressources
-        $this->render('create_reports', [
+        $this->render('admin/create_reports', [
             'reportData' => $reportData,
             'isEdit' => $isEdit,
             'ressources' => $ressources // Passer les ressources à la vue

@@ -23,7 +23,7 @@ class AdminAdminController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
-                $this->redirect('manage_admin');
+                $this->redirect('admin/manage_admin');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer cet administrateur.";
@@ -36,7 +36,7 @@ class AdminAdminController extends Controller {
 
         // Vérifie si les administrateurs et le comptage sont corrects
         if ($countAdmin !== false && !empty($admin)) {
-            $this->render('manage_admin', [
+            $this->render('admin/manage_admin', [
                 'total_admin' => $countAdmin['total'],
                 'admin' => $admin
             ]); // Passe les administrateurs à la vue
@@ -145,7 +145,7 @@ class AdminAdminController extends Controller {
 
                     if ($updateSuccess) {
                         echo 'Administrateur modifié avec succès !';
-                        $this->redirect('manage_admin');
+                        $this->redirect('admin/manage_admin');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour de l\'administrateur.';
@@ -154,7 +154,7 @@ class AdminAdminController extends Controller {
                     // Création d'un nouvel administrateur
                     if ($this->model->create_admin($this->bdd, $lastname, $firstname, $mail, password_hash($password, PASSWORD_BCRYPT), $phone, $address, $city, $zipcode, $registration_date)) {
                         echo 'Administrateur créé avec succès !';
-                        $this->redirect('manage_admin');
+                        $this->redirect('admin/manage_admin');
                         exit;
                     } else {
                         echo 'Erreur lors de la création de l\'administrateur.';
@@ -164,7 +164,7 @@ class AdminAdminController extends Controller {
         }
 
         // Rendre la vue avec les données de l'administrateur (pour l'édition)
-        $this->render('create_admin', ['adminData' => $adminData, 'isEdit' => $isEdit]);
+        $this->render('admin/create_admin', ['adminData' => $adminData, 'isEdit' => $isEdit]);
     }
 
     // Connexion à la base de données

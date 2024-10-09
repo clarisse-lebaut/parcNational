@@ -25,7 +25,7 @@ class AdminUsersController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
-                $this->redirect('manage_users');
+                $this->redirect('admin/manage_users');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer cet administrateur.";
@@ -38,7 +38,7 @@ class AdminUsersController extends Controller {
 
         // Vérifie si les administrateurs et le comptage sont corrects
         if ($countUsers !== false && !empty($users)) {
-            $this->render('manage_users', [
+            $this->render('admin/manage_users', [
                 'total_users' => $countUsers['total'],
                 'users' => $users
             ]); // Passe les administrateurs à la vue

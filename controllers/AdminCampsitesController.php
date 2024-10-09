@@ -23,7 +23,7 @@ class AdminCampsitesController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
-                $this->redirect('manage_campsite');
+                $this->redirect('admin/manage_campsite');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer ce camping.";
@@ -36,7 +36,7 @@ class AdminCampsitesController extends Controller {
 
         // Vérifie si les campings et le comptage sont corrects
         if ($countCampsites !== false && !empty($campsites)) {
-            $this->render('manage_campsites', [
+            $this->render('admin/manage_campsites', [
                 'total_campsites' => $countCampsites['total'],
                 'campsites' => $campsites
             ]); // Passe les campings à la vue
@@ -158,7 +158,7 @@ class AdminCampsitesController extends Controller {
                     );
 
                     if ($updateSuccess) {
-                        $this->redirect('manage_campsite');
+                        $this->redirect('admin/manage_campsite');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour du camping.';
@@ -166,7 +166,7 @@ class AdminCampsitesController extends Controller {
                 } else {
                     // Création d'un nouveau camping
                     if ($this->model->create_campsites($this->bdd, $name, $description, $address, $city, $zipcode, $max_capacity, $status, $image)) {
-                        $this->redirect('manage_campsite');
+                        $this->redirect('admin/manage_campsite');
                         exit;
                     } else {
                         echo 'Erreur lors de la création du camping.';
@@ -176,7 +176,7 @@ class AdminCampsitesController extends Controller {
         }
 
         // Rendre la vue avec les données du camping (pour l'édition)
-        $this->render('create_campsites', ['campsiteData' => $campsitesData, 'isEdit' => $isEdit]);
+        $this->render('admin/create_campsites', ['campsiteData' => $campsitesData, 'isEdit' => $isEdit]);
     }
 
     // Connexion à la base de données
