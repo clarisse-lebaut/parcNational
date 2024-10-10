@@ -5,16 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style/_global-admin.css">
     <link rel="stylesheet" href="assets/style/_header-admin.css">
+
+    <script src="assets/script/hamb.js" defer></script>
 </head>
 
 <header>
+    <section id="popUpHamb">
+        <nav>
+            <div>
+                <img id="close" class="pic-nav-admin" src="assets/icon/close.svg" alt="icon cose">
+            </div>
+            <ul>
+                <li><img src="assets/icon/dashboard.svg" alt="icon dashboard"><a href="admin_home">Home</a></li>
+                <li><a href="manage_admin">Gestion des Administrateurs</a></li>
+                <li><a href="manage_users">Gestion des Utilisateurs</a></li>
+                <li><a href="manage_trails">Gestion des Sentiers</a></li>
+                <li><a href="manage_campsite">Gestion des Campings</a></li>
+                <li><a href="manage_ressources">Gestion des Ressources</a></li>
+                <li><a href="manage_reports">Gestion des Rapports</a></li>
+                <li><a href="manage_ship">Gestion des Abonnements</a></li>
+                <li><a href="manage_news">Gestion des Articles</a></li>
+            </ul>
+        </nav>
+    </section>
     <nav class="nav-admin">
         <div class="name-admin">
+            <img id="hamb" class="pic-nav-admin" src="assets/icon/hamb.svg" alt="icon hamb" sytle="z-index:2;">
             <img class="pic-nav-admin" src="assets/icon/users.svg" alt="avatar admin">
             <p>Bonjour, nom de l'admin</p>
         </div>
         <div class="icon-admin">
-            <a href="admin_home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>
+            <a href="home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>
+            <a href="admin_home"><img class="pic-nav-admin" src="assets/icon/dashboard.svg" alt="icon dashboard"></a>    
             <a href="logout"><img class="pic-nav-admin" src="assets/icon/off.svg" alt="icon off"></a>
         </div>    
     </nav>
@@ -28,4 +50,5 @@
             <button><img src="assets/icon/edit.svg" alt="icon edit"></button>
         </div>
     </section>
+
 </header>

@@ -1,6 +1,11 @@
 p {
   margin: 0;
 }
+ul {
+  list-style: none; /* Supprime les puces */
+  padding: 0; /* Supprime l'indentation interne */
+  margin: 0; /* Supprime la marge externe */
+}
 
 /* ----- */
 header {
@@ -27,6 +32,61 @@ header {
   align-items: center;
   gap: 10px;
 }
+#hamb,
+#close {
+  cursor: pointer;
+}
+#popUpHamb {
+  position: fixed; /* Hors du flux et reste en place par rapport à la fenêtre */
+  z-index: 2; /* Au-dessus des autres éléments */
+  height: 100vh; /* Pleine hauteur de la fenêtre */
+  width: 20%;
+  top: 0; /* Place le popup en haut de la fenêtre */
+  left: 0; /* Place le popup à gauche de la fenêtre */
+  margin: 0;
+
+  /*? Glashporism generator */
+  background: linear-gradient(90deg, #9ad2ff6d, #f8f8f86a);
+  box-shadow: 0 5px 15px 0 lightgray;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+header > section > nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+header > section > nav > div > img {
+  float: right;
+  padding: 10px;
+}
+header > section > nav > ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 35px 0; /* Simplification de la syntaxe */
+  width: 100%;
+}
+header > section > nav > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%; /* Assure que chaque <li> prend toute la largeur */
+  gap: 5px;
+}
+header > section > nav > ul > li > a {
+  display: block; /* Transforme le lien en élément de bloc */
+  width: 100%; /* Assure que le lien prenne 100% de la largeur du parent */
+  padding: 10px; /* Ajout d'un padding pour plus de clarté visuelle */
+  box-sizing: border-box; /* Inclut le padding et border dans la largeur */
+}
+header > section > nav > ul > li > a:hover {
+  background: linear-gradient(90deg, #f8f8f8, #f8f8f86a);
+}
+
 .icon-admin {
   display: flex;
   flex-direction: row;

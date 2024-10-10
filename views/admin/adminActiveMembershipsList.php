@@ -10,7 +10,10 @@
     <header>
         <?php include 'components/_header-admin.php'?>
     </header>
-    <h1>Liste des Abonnements Actifs</h1>
+    <div>
+        <img src="assets/icon/undo.svg" alt="Icon undo">
+        <h1>Liste des Abonnements Actifs</h1>
+    </div>
     <section class="board">
         <table>
             <thead>
