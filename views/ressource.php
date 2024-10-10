@@ -17,14 +17,17 @@ $ressources = $ressourceController->getAllRessources();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ressources Naturelles</title>
     <link rel="stylesheet" href="../assets/styles/ressource.css">
+    <link rel="stylesheet" href="../assets/styles/_global.css">
+
 </head>
 <body>
-<header>
-<?php include __DIR__ . '/../components/_header.php'; ?>
+    <header>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
     </header>
-        <main>
-                <h1>Ressources Naturelles des Calanques</h1>
+
+    <main>
         <section>
+            <h1>Ressources Naturelles des Calanques</h1>
             <?php if (!empty($ressources)): ?>
                 <div class="ressource-grid">
                     <?php foreach ($ressources as $ressource): ?>
@@ -48,6 +51,10 @@ $ressources = $ressourceController->getAllRessources();
             <?php endif; ?>
         </section>
     </main>
+
+    <footer>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
+    </footer>
 
     <script src="../assets/javascript/ressources.js"></script>
 </body>

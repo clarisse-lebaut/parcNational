@@ -59,9 +59,9 @@
 
 /* Conservation Bar */
 .conservation-bar-container {
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
     width: 50%;
-}
+    text-align: center;}
 
 .conservation-bar {
     width: 80%;
