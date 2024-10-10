@@ -2,7 +2,7 @@
 
 require_once('Controller.php');
 require_once('AdminMembershipController.php');
-require_once __DIR__ . '/../model/BlockIp.php';
+require_once __DIR__ . '/../models/BlockIp.php';
 
 class IpController extends Controller
 {

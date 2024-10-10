@@ -4,8 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 require_once ('Controller.php');
-require_once __DIR__ . '/../model/Membership.php';
-require_once __DIR__ . '/../model/User.php';
+require_once __DIR__ . '/../models/Membership.php';
+require_once __DIR__ . '/../models/User.php';
 
 class UserMembershipController extends Controller{
     public function __construct() {
