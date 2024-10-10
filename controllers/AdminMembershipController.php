@@ -60,7 +60,7 @@ class AdminMembershipController extends Controller {
         } else {
             $membershipId = $_GET['id'];
             $membership = $membershipModel->getMembershipById($membershipId);
-            $this->render('adminMembershipForm', ['membership' => $membership]);
+            $this->render('admin/adminMembershipForm', ['membership' => $membership]);
         }
     }
 
