@@ -173,6 +173,10 @@ $routes = [
         'controller' => 'AdminReportsController',
         'method' => 'manageReports',
     ],
+    'manage_ship' => [
+        'controller' => 'AdminMembershipController',
+        'method' => 'viewMembership',
+    ],
     'manage_users' => [
         'controller' => 'AdminUsersController',
         'method' => 'manageUsers',
@@ -200,6 +204,10 @@ $routes = [
     'create_admin' => [
         'controller' => 'AdminAdminController',
         'method' => 'createAdmin',
+    ],
+    'create_ship' => [
+        'controller' => 'AdminAdminController',
+        'method' => 'addMembership',
     ]
 ];
 

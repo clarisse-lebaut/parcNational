@@ -25,7 +25,7 @@
             </div>
 
             <div>
-                <a href="create_reports">Ajouter un rapport</a>
+                <a href="create_reports"><p>Ajouter un rapport</p></a>
                 <img src="assets/icon/add.svg" alt="icon add report">
             </div>    
         </section>
@@ -58,7 +58,7 @@
                             </td>
                             <td>
                                 <form method="GET" action="create_reports">
-                                    <input type="text" name="report_id" value="<?php echo htmlspecialchars($report['report_id']); ?>">    
+                                    <input type="hidden" name="report_id" value="<?php echo htmlspecialchars($report['report_id']); ?>">    
                                     <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>

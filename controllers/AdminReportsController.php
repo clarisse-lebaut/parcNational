@@ -22,7 +22,7 @@ class AdminReportsController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des rapports
-                $this->redirect('admin/manage_reports');
+                $this->redirect('manage_reports');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer ce rapport.";
@@ -117,7 +117,7 @@ class AdminReportsController extends Controller {
                     );
 
                     if ($updateSuccess) {
-                        $this->redirect('admin/manage_reports');
+                        $this->redirect('manage_reports');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour du rapport.';
@@ -129,7 +129,7 @@ class AdminReportsController extends Controller {
                         $name,
                         $description,
                         $ressource_id)) {  // Associe la ressource lors de la création
-                        $this->redirect('admin/manage_reports');
+                        $this->redirect('manage_reports');
                         exit;
                     } else {
                         echo 'Erreur lors de la création du rapport.';

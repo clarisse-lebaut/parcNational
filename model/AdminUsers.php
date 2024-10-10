@@ -6,7 +6,7 @@ class Users {
     public function get_users($bdd){
         $sql = "SELECT * FROM users WHERE role = :role";
         $stmt = $bdd->prepare($sql);
-        $stmt->bindValue(':role', 'user', PDO::PARAM_STR);
+        $stmt->bindValue(':role', 2, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -17,13 +17,13 @@ class Users {
             // Récupérer un administrateur spécifique
             $sql = "SELECT * FROM users WHERE role = :role AND user_id = :user_id";
             $stmt = $bdd->prepare($sql);
-            $stmt->bindValue(':role', 'admin', PDO::PARAM_STR);
+            $stmt->bindValue(':role', 1, PDO::PARAM_STR);
             $stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
         } else {
             // Récupérer tous les administrateurs
             $sql = "SELECT * FROM users WHERE role = :role";
             $stmt = $bdd->prepare($sql);
-            $stmt->bindValue(':role', 'admin', PDO::PARAM_STR);
+            $stmt->bindValue(':role', 1, PDO::PARAM_STR);
         }
         
         $stmt->execute();

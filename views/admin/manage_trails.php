@@ -53,7 +53,7 @@
                             <td><?php echo htmlspecialchars($trail['status']); ?></td>
                             <td>
                                 <form method="GET" action="create_trails">
-                                    <input type="text" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">    
+                                    <input type="hidden" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">    
                                     <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>

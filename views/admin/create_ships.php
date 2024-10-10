@@ -7,6 +7,9 @@
         <link rel="stylesheet" href="assets/style/admin/admin-M-form.css">
 </head>
 <body>
+    <header>
+        <?php include 'components/_header-admin.php'; ?>
+    </header>
 
     <h1><?= isset($membership) ? 'Edit Membership' : "Ajout d'une nouvelle adhésion"?></h1>
 

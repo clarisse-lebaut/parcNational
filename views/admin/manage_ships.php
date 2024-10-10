@@ -4,16 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer les Abonnements</title>
+    <link rel="stylesheet" href="assets/style/config/_global-admin.css">
+    <link rel="stylesheet" href="assets/style/admin/manage.css">
     <link rel="stylesheet" href="assets/style/admin/modify-admin.css">
 </head>
 <body>
-    <h1>Gérer les Abonnements</h1>
+    <header>
+        <?php include 'components/_header-admin.php'; ?>
+    </header>
 
-    <a class="lien-ajout" href="admin-memberships-add">
-        Ajouter un Nouvel Abonnement
-        <img src="assets/icon/add.svg" alt="icon add">
-    </a>
-    
+    <section class="data">
+        <div>
+            <p>Total d'abonnements</p>
+            <img src="assets/icon/ships.svg" alt="icon ships">
+            <div><?= htmlspecialchars($totalMemberships ?? 0) ?></div> <!-- Affichage du nombre total d'abonnements -->
+        </div>
+
+        <div>
+            <p>Dernière formule ajouté</p>
+            <img src="assets/icon/card_membership.svg" alt="icon ships">
+            <div><?= htmlspecialchars($totalMemberships ?? 0) ?></div> <!-- Affichage du nombre total d'abonnements -->
+        </div>
+
+        <div>
+            <p>Total d'abonné</p>
+            <img src="assets/icon/loyalty.svg" alt="icon users">
+            <div>
+                <?php if (!empty($randomMembership)): ?>
+                    <p><?= htmlspecialchars($randomMembership['memberships_name']) ?></p>
+                <?php else: ?>
+                    <p>Aucun abonnés</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div>
+            <a href="admin-active-memberships-list">Liste des abonnées</a>
+            <img src="assets/icon/users.svg" alt="icon users">
+        </div>
+
+        <div>
+            <a href="admin-memberships-add">Ajouter un abonnement</a>
+            <img src="assets/icon/add.svg" alt="icon add">
+        </div>    
+    </section>
+
     <section class="board">
         <table>
             <thead>
@@ -47,19 +82,13 @@
                         </td>
                     </tr>
                 <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="5">Pas d'abonnement disponible.</td>
-                    </tr>
-                <?php endif; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5">Pas d'abonnement disponible.</td>
+                </tr>
+            <?php endif; ?>
             </tbody>
         </table>
     </section>
-    <nav>
-    <ul>
-        <li><a href="admin-active-memberships-list">Les adhésions actives</a></li>
-    </ul>
-</nav>
-
 </body>
 </html>

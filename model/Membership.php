@@ -78,6 +78,12 @@ class Membership extends Model{
         
         return $result;
     }
+
+    public function getTotalMemberships() {
+        $sql = 'SELECT COUNT(*) as total FROM membership';
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC)['total'];
+    }
     
 
 }

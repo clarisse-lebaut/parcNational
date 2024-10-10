@@ -64,7 +64,7 @@
                             <td><?php echo htmlspecialchars($campsite['zipcode']); ?></td>
                             <td>
                                 <form method="GET" action="create_campsite">
-                                    <input type="text" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
+                                    <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
                                     <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>

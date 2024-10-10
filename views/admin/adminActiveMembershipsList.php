@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="assets/style/admin/active-memberships.css">
 </head>
 <body>
+    <header>
+        <?php include 'components/_header-admin.php'; ?>
+    </header>
+    
     <h1>Liste des Abonnements Actifs</h1>
 
     <section class="board">

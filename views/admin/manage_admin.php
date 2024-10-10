@@ -51,7 +51,7 @@
                             <td><?php echo htmlspecialchars($admins['zipcode']); ?></td>
                             <td>
                                 <form method="GET" action="create_admin">
-                                    <input type="text" name="user_id" value="<?php echo $admins['user_id']; ?>">    
+                                    <input type="hidden" name="user_id" value="<?php echo $admins['user_id']; ?>">    
                                     <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>
