@@ -4,15 +4,13 @@ require_once __DIR__ . '/../controllers/CampsiteController.php';
 
 $campsiteModel = new CampsiteModel();
 $campsiteController = new CampsiteController($campsiteModel);
-
-// Récupérer l'ID du camping depuis l'URL puis ses details grâce au model
 $campsite_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($campsite_id > 0) {
     $campsite = $campsiteModel->getCampsiteById($campsite_id);
-    // Récupérer les événements de vacances et vérifier le statut
     $events = $campsiteController->getVacationEvents($campsite_id);
     $isClosed = $campsiteController->isClosedToday($events);
+    $availability = $campsiteController->checkAvailability($campsite_id);
 } else {
     $campsite = null;
 }
@@ -52,9 +50,11 @@ if ($campsite_id > 0) {
             <div class="campsite-details-row campsite-details-rowicon">
                 <p id="campsite-status">
                     <?php if ($isClosed): ?>
-                        <span>&#x1F534;</span> Fermé 
+                        <span>&#x1F534;</span> Fermé (Vacances) 
+                    <?php elseif ($availability === 'Camping complet'): ?>
+                        <span>&#x1F534;</span> Complet
                     <?php else: ?>
-                        <span>&#x1F7E2;</span> Ouvert 
+                        <span>&#x1F7E2;</span> Ouvert
                     <?php endif; ?>
                 </p>
 
@@ -72,9 +72,12 @@ if ($campsite_id > 0) {
             </div>
 
             <!-- ROW BOUTON RESERVER -->
-            <div class="campsite-details-row">
-                <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
-            </div>
+            <?php if (!$isClosed && $availability !== 'Camping complet'): ?>
+                <div class="campsite-details-row">
+                    <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
+                </div>
+            <?php endif; ?>
+
         <?php else: ?>
             <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>
         <?php endif; ?>

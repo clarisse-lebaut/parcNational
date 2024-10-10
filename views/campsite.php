@@ -6,10 +6,11 @@ $campsiteModel = new CampsiteModel();
 $campsiteController = new CampsiteController($campsiteModel);
 $campsites = $campsiteController->getAllCampsites();
 
-// boucler chaque camping pour verif leur statut
+// Boucler chaque camping pour vérifier leur statut et disponibilité
 foreach ($campsites as &$campsite) {
     $events = $campsiteController->getVacationEvents($campsite['campsite_id']);
     $campsite['isClosed'] = $campsiteController->isClosedToday($events);
+    $campsite['availability'] = $campsiteController->checkAvailability($campsite['campsite_id']); // Vérifier la disponibilité
 }
 ?>
 
@@ -30,7 +31,7 @@ foreach ($campsites as &$campsite) {
     <h1>Séjournez dans un camping près des Calanques</h1>
     <div class="campsite-subtitle">
         Séjournez dans nos campings proches des calanques, offrant un cadre naturel et paisible pour vos vacances.<br>
-         Profitez de la nature, des paysages méditerranéens et d'une expérience inoubliable dans le sud de la France !
+        Profitez de la nature, des paysages méditerranéens et d'une expérience inoubliable dans le sud de la France !
     </div>
 
     <?php if (!empty($campsites)): ?>
@@ -64,6 +65,9 @@ foreach ($campsites as &$campsite) {
                         <?php if ($campsite['isClosed']): ?>
                             <span class="status-icon">&#x1F534;</span>
                             Fermé
+                        <?php elseif ($campsite['availability'] === 'Camping complet'): ?>
+                            <span class="status-icon">&#x1F534;</span>
+                            Complet
                         <?php else: ?>
                             <span class="status-icon">&#x1F7E2;</span>
                             Ouvert
