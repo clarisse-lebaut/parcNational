@@ -2,10 +2,12 @@
 
 require_once 'Controller.php';
 
-class AboutController extends Controller {
+class AboutController extends Controller
+{
 
-    public function about(){
+    public function about()
+    {
         $this->render('about');
     }
-    
+
 }

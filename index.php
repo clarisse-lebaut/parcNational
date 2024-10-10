@@ -208,6 +208,14 @@ $routes = [
     'create_ship' => [
         'controller' => 'AdminAdminController',
         'method' => 'addMembership',
+    ],
+    'manage-favorite-trail' => [
+        'controller' => 'FavoritesTrailsController',
+        'method' => 'manageFavoriteTrail',
+    ],
+    'profile' => [
+        'controller' => 'ProfileController',
+        'method' => 'viewProfile',
     ]
 ];
 
@@ -218,13 +226,13 @@ if(isset($routes[$urlArray[0]])){
     $methodName = $routes[$urlArray[0]]['method'];
    // var_dump($methodName);
 
-    require_once 'model/BlockIp.php';
+    require_once 'models/BlockIp.php';
     $blockIp = new BlockIp('block_ips');
     if($blockIp->isIpBlocked()){
         echo 'Your Ip is blocked';
         return;
     }
-    require_once 'model/Log.php';
+    require_once 'models/Log.php';
     $log = new Log('logs');
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';

@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    overflow: hidden; 
+    overflow: auto; 
   }
 
   .board {
@@ -21,11 +21,15 @@ body {
   .lien-ajout{
     margin-left: 10%;
     text-decoration: none;
+    color: blue;
   }
-  h1{
-    margin-bottom: 100px;
+  h2{
+    margin-bottom: 40px;
     text-align: center;
     font-family: 'Poppins', sans-serif; 
     color: #2F4F4F;
+  }
+  .lien{
+    color: blue;
   }
   

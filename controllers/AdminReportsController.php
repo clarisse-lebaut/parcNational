@@ -1,23 +1,26 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/AdminReports.php';
+require_once __DIR__ . '/../models/AdminReports.php';
 
-class AdminReportsController extends Controller {
+class AdminReportsController extends Controller
+{
 
     private $model;
     private $bdd;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->model = new ManageReports();
         $this->bdd = $this->getDatabaseConnection();
     }
 
-    public function manageReports() {
+    public function manageReports()
+    {
         // Vérifie si une requête POST a été effectuée pour supprimer un rapport
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['report_id']) && !empty($_POST['report_id'])) {
             $report_id = intval($_POST['report_id']);
-            
+
             $deleteSuccess = $this->model->delete($this->bdd, $report_id);
 
             if ($deleteSuccess) {
@@ -42,12 +45,13 @@ class AdminReportsController extends Controller {
                 'name_report' => $namereports,
                 'reports' => $reports,  // Tous les rapports sont passés à la vue
             ]);
-        } else { 
+        } else {
             echo "Erreur lors de la récupération des données.";
         }
     }
 
-    public function createReports() {
+    public function createReports()
+    {
         $isEdit = false;
         $reportData = [];
         $ressources = $this->model->name_ressource($this->bdd); // Récupérer toutes les ressources
@@ -124,11 +128,14 @@ class AdminReportsController extends Controller {
                     }
                 } else {
                     // Création d'un nouveau rapport
-                    if ($this->model->create_report(
-                        $this->bdd,
-                        $name,
-                        $description,
-                        $ressource_id)) {  // Associe la ressource lors de la création
+                    if (
+                        $this->model->create_report(
+                            $this->bdd,
+                            $name,
+                            $description,
+                            $ressource_id
+                        )
+                    ) {  // Associe la ressource lors de la création
                         $this->redirect('manage_reports');
                         exit;
                     } else {
@@ -147,7 +154,8 @@ class AdminReportsController extends Controller {
     }
 
 
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
     }

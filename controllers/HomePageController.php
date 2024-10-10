@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once __DIR__ . '/../model/BlockIp.php';
+require_once __DIR__ . '/../models/BlockIp.php';
 
 class HomePageController extends Controller{
     public function homePage(){

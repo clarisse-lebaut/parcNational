@@ -14,34 +14,36 @@
     </header>
     <h2>Votre abonnement:</h2>
     <?php if (isset($membership)): ?>
+    <main>    
         <div class="subscription">
             <h3>Votre adhésion active:</h3>
-            <p> Mdme/M : &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+            <p> Mdme/M : 
             <?php
                  echo !empty($membership['lastname']) ? htmlspecialchars($membership['lastname']) : 'N/A';
             ?></p>       
-            <p>Identificateur: &nbsp &nbsp &nbsp &nbsp
+            <p>Identificateur: 
             <?php
                 echo htmlspecialchars($membership['random_id']); 
             ?></p>
-            <p>Date de début: &nbsp &nbsp &nbsp
+            <p>Date de début: 
             <?php 
                 $deliveryDate = new DateTime($membership['delivery_date']);
                 echo htmlspecialchars($deliveryDate->format('Y-m-d H:i')); 
             ?>
             </p>
-            <p>Date d'expiration: &nbsp
+            <p>Date d'expiration: 
             <?php 
                 $expiryDate = new DateTime($membership['expiry_date']);
                 echo htmlspecialchars($expiryDate->format('Y-m-d H:i'));
             ?>
             </p>
         </div>
+    </main>    
     <?php else: ?>
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
     <h4><a class="link" href="http://localhost/parcNational/">retour vers home page
-    <img src="assets/icon/back.jpg" alt="icon home"></a>
+    <img class="icon" src="assets/icon/back.jpg" alt="icon home"></a>
     </h4>
     <footer>
         <?php include "components/_footer.php"; ?>

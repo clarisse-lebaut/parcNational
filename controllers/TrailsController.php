@@ -3,13 +3,15 @@ require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
 require_once __DIR__ . '/../model/Trails.php';
 
-class TrailsController extends Controller {
+class TrailsController extends Controller
+{
 
     private $newsModel;
     private $bdd;
 
     // Constructeur pour initialiser le modèle et la base de données
-    public function __construct(){
+    public function __construct()
+    {
         // Initialisation de l'objet Trails = c'est le nom de la classe que je donne le ficher dans le dossier Models
         $this->newsModel = new Trails();
 
@@ -17,17 +19,19 @@ class TrailsController extends Controller {
         $this->bdd = $this->getDatabaseConnection(); // Méthode à créer si elle n'existe pas
     }
 
-    public function trails(){
+    public function trails()
+    {
         // Récupérer les news en utilisant le modèle
         $trails = $this->newsModel->get_all_trails($this->bdd);
         // Afficher la vue 'trails' avec les données récupérées
         $this->render('trails', ['trails' => $trails]);
     }
-    
-    public function details_trails() {
+
+    public function details_trails()
+    {
         // Récupérer l'ID depuis l'URL
         $trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-        
+
         // Récupérer tous les sentiers
         $trails = $this->newsModel->get_all_trails($this->bdd);
 
@@ -35,13 +39,13 @@ class TrailsController extends Controller {
         if ($trail_id > 0) {
             // Récupérer les données du sentier
             $trail = $this->newsModel->get_trails_id($this->bdd, $trail_id);
-            
+
             // Si le sentier n'existe pas, afficher un message et sortir
             if (!$trail) {
                 echo "Sentier non trouvé.";
-                return; 
+                return;
             }
-            
+
             // Récupérer les autres détails du sentier
             $trail_time = $this->newsModel->get_trails_time($this->bdd, $trail['time']);
             $trail_length = $this->newsModel->get_trails_km($this->bdd, $trail['length_km']);
@@ -69,11 +73,12 @@ class TrailsController extends Controller {
     }
 
     //* Fonction pour avoir la connexion à la base de donnée
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         // Instancier la classe ConnectBDD
         $connectBDD = new ConnectBDD();
         // Retourner l'objet PDO
         return $connectBDD->bdd;
     }
-    
+
 }

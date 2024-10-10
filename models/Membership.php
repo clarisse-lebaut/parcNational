@@ -17,7 +17,7 @@ class Membership extends Model{
         return $randomID;
     }
     public function getMembershipByUserId($user_id){
-        $sql = " SELECT * FROM membership WHERE user_id = ? AND status = 'active' LIMIT 1 ";
+        $sql = "SELECT * FROM membership WHERE user_id = ? AND status = 'active' LIMIT 1";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$user_id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

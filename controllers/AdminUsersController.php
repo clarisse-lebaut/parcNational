@@ -1,14 +1,16 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/AdminUsers.php';
+require_once __DIR__ . '/../models/AdminUsers.php';
 
-class AdminUsersController extends Controller {
+class AdminUsersController extends Controller
+{
 
     private $model;
     private $bdd;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->model = new Users(); // Utiliser le modèle Users
         $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
     }
@@ -16,11 +18,12 @@ class AdminUsersController extends Controller {
     //* Méthode pour afficher la vue des administrateurs
     // il faut que toutes mes fonction de gestion soient dans cette méthode 
     //! parce que je ne peux faire qu'une seule route par méthode dans l'index !
-    public function manageUsers() {
+    public function manageUsers()
+    {
         // Vérifie si une requête POST a été effectuée pour supprimer un administrateur
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && !empty($_POST['user_id'])) {
             $user_id = intval($_POST['user_id']);
-            
+
             $deleteSuccess = $this->model->delete($this->bdd, $user_id);
 
             if ($deleteSuccess) {
@@ -49,7 +52,8 @@ class AdminUsersController extends Controller {
     }
 
     // Connexion à la base de données
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
     }

@@ -2,45 +2,50 @@
 date_default_timezone_set('Europe/Paris');
 require_once 'Controller.php';
 require_once 'AdminMembershipController.php';
-require_once __DIR__ . '/../model/User.php';
+require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class LoginController extends Controller{
+class LoginController extends Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
         $dotenv->load();
     }
 
-    public function login(){
+    public function login()
+    {
         $this->render('login');
     }
 
-    public function loginSaveForm(){
+    public function loginSaveForm()
+    {
         $user = new User('users');
         $dbUser = $user->getUserByEmail($_POST['email']);
-        if($dbUser != false){
-            if(password_verify($_POST['password'], $dbUser['password'])){
+        if ($dbUser != false) {
+            if (password_verify($_POST['password'], $dbUser['password'])) {
                 $_SESSION['user_id'] = $dbUser['user_id'];
                 $_SESSION['user_role'] = $dbUser['role'];
-                if($dbUser['role'] == 1){
+                if ($dbUser['role'] == 1) {
                     $this->redirect('home');
-                }else if($dbUser['role'] == 2){
+                } else if ($dbUser['role'] == 2) {
                     // $this->checkAdmin();
                     $this->redirect('home');
                 }
-            }else{
-                $this->render('login', ['error' => 'Data incorrect']);
+            } else {
+                $this->render('login', ['error' => 'Données incorrectes']);
             }
-            
-        }else{
-            $this->render('login', ['error' => 'Data incorrect']);
+
+        } else {
+            $this->render('login', ['error' => 'Données incorrectes']);
         }
     }
 
-    public function loginUsingGoogle(){
+    public function loginUsingGoogle()
+    {
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
         $google_redirect_url = 'http://localhost/parcNational/google-login';
@@ -57,7 +62,8 @@ class LoginController extends Controller{
         header('Location: https://accounts.google.com/o/oauth2/auth?' . http_build_query($params));// converts an associative array into a link (a string with GET parameters)
     }
 
-    public function getDataFromGoogle(){
+    public function getDataFromGoogle()
+    {
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
         $google_redirect_url = 'http://localhost/parcNational/google-login';
@@ -87,21 +93,21 @@ class LoginController extends Controller{
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $responseData->access_token]);
         $response = curl_exec($curl);
-  
+
         $responseData = json_decode($response);
 
         $userObject = new User('users');
         $user = $userObject->getByGoogleId($responseData->sub);
-        if($user){
+        if ($user) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_role'] = $user['role'];
-            if($user['role'] != 1){
+            if ($user['role'] != 1) {
                 $this->redirect('homePageAdmin');
-            }else{
+            } else {
                 $this->redirect('');
             }
-            
-        }else{
+
+        } else {
             $userObject->saveUserFromGoogle($responseData);
             $newUser = $userObject->getByGoogleId($responseData->sub);
             $_SESSION['user_id'] = $newUser['user_id'];
@@ -109,7 +115,8 @@ class LoginController extends Controller{
         }
     }
 
-    public function loginUsingFacebook(){//// This method will be triggered when Facebook redirects back to us
+    public function loginUsingFacebook()
+    {//// This method will be triggered when Facebook redirects back to us
         $facebook_client_id = $_ENV['FACEBOOK_CLIENT_ID'];
         $facebook_client_secret = $_ENV['FACEBOOK_CLIENT_SECRET'];
         $facebook_redirect_url = 'http://localhost/parcNational/facebook-login';
@@ -142,15 +149,15 @@ class LoginController extends Controller{
 
         $userObject = new User('users');
         $user = $userObject->getByFacebookId($responseData->id);
-        if($user){
+        if ($user) {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_role'] = $user['role'];
-            if($user['role'] != 1){
+            if ($user['role'] != 1) {
                 $this->redirect('admin_home');
-            }else{
+            } else {
                 $this->redirect('home');
             }
-        }else{
+        } else {
             $userObject->saveUserFromFacebook($responseData);
             $newUser = $userObject->getByFacebookId($responseData->id);
             $_SESSION['user_id'] = $newUser['user_id'];
@@ -158,21 +165,22 @@ class LoginController extends Controller{
             $this->redirect('');
         }
     }
-    
-    public function forgotPassword() {
+
+    public function forgotPassword()
+    {
         $this->render('forgotPassword');
     }
 
-    public function resetPasswordRequest() {
+    public function resetPasswordRequest()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $user = new User('users');
             $dbUser = $user->getUserByEmail($email);
-            
+
             if ($dbUser) {
                 $token = bin2hex(random_bytes(50));
-                $expiry = new DateTime('+1 hour'); 
-                var_dump($expiry->format('Y-m-d H:i:s'));
+                $expiry = new DateTime('+1 hour');
                 $user->savePasswordResetToken($dbUser['user_id'], $token, $expiry->format('Y-m-d H:i:s'));
                 $resetLink = "http://localhost/parcNational/reset-password?token=$token";
                 $name = $dbUser['lastname'];
@@ -183,13 +191,14 @@ class LoginController extends Controller{
             }
         }
     }
-    
-    public function sendPasswordResetEmail($userEmail, $resetLink, $name) {
+
+    public function sendPasswordResetEmail($userEmail, $resetLink, $name)
+    {
         $mail = new PHPMailer(true);
-    
+
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com'; 
+            $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = $_ENV['MAIL_USERNAME'];
             $mail->Password = $_ENV['MAIL_PASSWORD'];
@@ -203,10 +212,10 @@ class LoginController extends Controller{
                 )
             );
             $mail->setFrom('no-reply@parcNational.com', 'No Reply');
-            $mail->addAddress($userEmail); 
+            $mail->addAddress($userEmail);
             $mail->isHTML(true);
             $mail->Subject = "Réinitialisation de mot de passe";
-            $mail->CharSet = 'UTF-8'; 
+            $mail->CharSet = 'UTF-8';
             $mail->Body = "
     <html>
     <head>
@@ -222,27 +231,31 @@ class LoginController extends Controller{
     </body>
     </html>
 ";
-    
+
             $mail->send();
         } catch (Exception $e) {
             error_log("L'erreur lors de l'envoi de l'email: {$mail->ErrorInfo}");
         }
     }
 
-    public function resetPassword() {
+    public function resetPassword()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            error_log('Reset password called');
             $token = $_POST['token'];
             $newPassword = $_POST['new_password'];
+            $repeatPassword = $_POST['repeat_password'];
+            if ($newPassword !== $repeatPassword) {
+                $this->render('resetPassword', ['message' => 'Les mots de passe ne correspondent pas.', 'token' => $token]);
+                return;
+            }
             if (!$this->isPasswordValid($newPassword)) {
                 $this->render('resetPassword', ['message' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.', 'token' => $token]);
                 return;
             }
-    
             $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
             $user = new User('users');
             $pdoToken = $user->getResetToken($token);
-            
+
             if ($pdoToken && new DateTime() < new DateTime($pdoToken['expires_at'])) {
                 $user->updatePassword($pdoToken['user_id'], $hashedPassword);
                 $user->deleteResetToken($token);
@@ -258,27 +271,34 @@ class LoginController extends Controller{
             }
         }
     }
-    
-    
-    private function isPasswordValid($password) {
+
+
+    private function isPasswordValid($password)
+    {
         return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password);
     }
-    
-    public function logout(){
-        if(session_status() === PHP_SESSION_NONE){
-           session_start();
+
+    public function logout()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
         $_SESSION = array();
-        if(ini_get("session.use_cookies")){
+        if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() -42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
             );
         }
         session_destroy();
         $this->redirect('');
         exit();
     }
-    
+
 }

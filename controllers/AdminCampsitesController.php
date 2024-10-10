@@ -1,24 +1,27 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/AdminCampsites.php';
+require_once __DIR__ . '/../models/AdminCampsites.php';
 
-class AdminCampsitesController extends Controller {
+class AdminCampsitesController extends Controller
+{
 
     private $model;
     private $bdd;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->model = new ManageCampsites(); // Utiliser le modèle Users
         $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
     }
 
     //* Méthode pour afficher la vue des administrateurs
-    public function manageCampsites() {
+    public function manageCampsites()
+    {
         // Vérifie si une requête POST a été effectuée pour supprimer un administrateur
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['campsite_id']) && !empty($_POST['campsite_id'])) {
             $campsite_id = intval($_POST['campsite_id']);
-            
+
             $deleteSuccess = $this->model->delete($this->bdd, $campsite_id);
 
             if ($deleteSuccess) {
@@ -46,7 +49,8 @@ class AdminCampsitesController extends Controller {
         }
     }
 
-    public function createCampsites() {
+    public function createCampsites()
+    {
         $isEdit = false;
         $campsitesData = [];
 
@@ -92,7 +96,7 @@ class AdminCampsitesController extends Controller {
             $zipcode = $_POST['zipcode'] ?? '';
             $max_capacity = $_POST['max_capacity'] ?? 0;
             $status = $_POST['status'] ?? '';
-            $errors = []; 
+            $errors = [];
 
             // Gérer l'image si elle est soumise
             $image = null;  // Initialise la variable image à null
@@ -115,25 +119,25 @@ class AdminCampsitesController extends Controller {
                 }
             }
 
-                // Validation des autres données
-                if (empty($name)) {
-                    $errors[] = 'Le nom du camping est requis.';
-                }
-                if (empty($description)) {
-                    $errors[] = 'La description du camping est requise.';
-                }
-                if (empty($address)) {
-                    $errors[] = 'L\'adresse est requise.';
-                }
-                if (empty($city)) {
-                    $errors[] = 'La ville est requise.';
-                }
-                if (empty($zipcode)) {
-                    $errors[] = 'Le code postal est requis.';
-                }
-                if ($max_capacity <= 0) {
-                    $errors[] = 'La capacité maximale doit être supérieure à 0.';
-                }
+            // Validation des autres données
+            if (empty($name)) {
+                $errors[] = 'Le nom du camping est requis.';
+            }
+            if (empty($description)) {
+                $errors[] = 'La description du camping est requise.';
+            }
+            if (empty($address)) {
+                $errors[] = 'L\'adresse est requise.';
+            }
+            if (empty($city)) {
+                $errors[] = 'La ville est requise.';
+            }
+            if (empty($zipcode)) {
+                $errors[] = 'Le code postal est requis.';
+            }
+            if ($max_capacity <= 0) {
+                $errors[] = 'La capacité maximale doit être supérieure à 0.';
+            }
 
             // Si des erreurs existent, les afficher
             if (!empty($errors)) {
@@ -180,7 +184,8 @@ class AdminCampsitesController extends Controller {
     }
 
     // Connexion à la base de données
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
     }

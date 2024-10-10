@@ -73,15 +73,12 @@
     <header>
         <?php include "components/_header.php"; ?>
     </header>
-
     <?php
-    if(isset($error)){
-      echo '<div class="alert alert-danger">';
-      echo $error;
-      echo '</div>';
-    }
-    ?>
-
+    if(isset($error)):?>
+      <div class="alert alert-danger">
+      <?php echo htmlspecialchars($error); ?>
+     </div>
+    <?php endif; ?> 
     <div class= "main-container">
       <h1>Se Connecter</h1>
       <div class="login-container">

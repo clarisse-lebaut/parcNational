@@ -1,23 +1,26 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/AdminTrails.php';
+require_once __DIR__ . '/../models/AdminTrails.php';
 
-class AdminTrailsController extends Controller {
+class AdminTrailsController extends Controller
+{
 
     private $model;
     private $bdd;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->model = new ManageTrails();
         $this->bdd = $this->getDatabaseConnection();
     }
 
-    public function manageTrails() {
+    public function manageTrails()
+    {
         // Vérifie si une requête POST a été effectuée pour supprimer un sentier
         if ($_POST && isset($_POST['trail_id']) && !empty($_POST['trail_id'])) {
             $trail_id = intval($_POST['trail_id']);
-            
+
             // Supprime le sentier en utilisant le modèle
             $deleteSuccess = $this->model->delete($this->bdd, $trail_id);
 
@@ -50,7 +53,8 @@ class AdminTrailsController extends Controller {
         }
     }
 
-    public function createTrails() {
+    public function createTrails()
+    {
         $isEdit = false;
         $trailsData = [];
 
@@ -143,16 +147,18 @@ class AdminTrailsController extends Controller {
                     }
                 } else {
                     // Création d'un nouveau sentier
-                    if ($this->model->create_trails(
-                        $this->bdd,
-                        $name,
-                        $description,
-                        $location,
-                        $distance,
-                        $difficulty,
-                        $status,
-                        null      // Image non traitée ici
-                    )) {
+                    if (
+                        $this->model->create_trails(
+                            $this->bdd,
+                            $name,
+                            $description,
+                            $location,
+                            $distance,
+                            $difficulty,
+                            $status,
+                            null      // Image non traitée ici
+                        )
+                    ) {
                         $this->redirect('admin/manage_trails');
                         exit;
                     } else {
@@ -170,7 +176,8 @@ class AdminTrailsController extends Controller {
         $this->render('admin/create_trails', ['trailData' => $trailsData, 'isEdit' => $isEdit]);
     }
 
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
     }

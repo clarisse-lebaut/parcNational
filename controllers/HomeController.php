@@ -1,15 +1,17 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/News.php';
+require_once __DIR__ . '/../models/News.php';
 
-class HomeController extends Controller {
-    
+class HomeController extends Controller
+{
+
     private $newsModel;
     private $bdd;
 
     // Constructeur pour initialiser le modèle et la base de données
-    public function __construct(){
+    public function __construct()
+    {
         // Initialisation de l'objet News
         $this->newsModel = new News();
 
@@ -19,18 +21,20 @@ class HomeController extends Controller {
     }
 
     // Méthode pour afficher toutes les news dans la page home
-    public function news(){ 
+    public function news()
+    {
         // Récupérer les news en utilisant le modèle
         $news = $this->newsModel->get_news($this->bdd);
         // Afficher la vue 'news' avec les données récupérées
         $this->render('home', ['news' => $news]);
     }
 
-    public function getDatabaseConnection(){
-    // Instancier la classe ConnectBDD
-    $connectBDD = new ConnectBDD();
-    // Retourner l'objet PDO
-    return $connectBDD->bdd;
+    public function getDatabaseConnection()
+    {
+        // Instancier la classe ConnectBDD
+        $connectBDD = new ConnectBDD();
+        // Retourner l'objet PDO
+        return $connectBDD->bdd;
     }
 
 }

@@ -2,10 +2,12 @@
 
 require_once 'Controller.php';
 
-class MapController extends Controller {
+class MapController extends Controller
+{
 
-    public function map(){
+    public function map()
+    {
         $this->render('map');
     }
-    
+
 }

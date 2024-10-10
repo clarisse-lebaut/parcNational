@@ -17,13 +17,11 @@
     <h1>Se créer un compte</h1>
 
     <div>
-      <?php
-        if(isset ($error)){
-          echo '<div class="alert alert-danger">';
-          echo $error;
-          echo '</div>';
-        }
-      ?>
+      <?php if(isset($error)): ?>
+        <div class="alert alert-danger">
+          <?php echo htmlspecialchars($error); ?>
+        </div>
+      <?php endif; ?>
           <form class="form" method="post" action="/parcNational/register-form" id="registerForm">
           
             <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>

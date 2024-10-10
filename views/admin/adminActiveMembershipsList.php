@@ -8,11 +8,9 @@
 </head>
 <body>
     <header>
-        <?php include 'components/_header-admin.php'; ?>
+        <?php include 'components/_header-admin.php'?>
     </header>
-    
     <h1>Liste des Abonnements Actifs</h1>
-
     <section class="board">
         <table>
             <thead>

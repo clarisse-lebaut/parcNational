@@ -1,24 +1,27 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../model/AdminUsers.php';
+require_once __DIR__ . '/../models/AdminUsers.php';
 
-class AdminAdminController extends Controller {
+class AdminAdminController extends Controller
+{
 
     private $model;
     private $bdd;
-    
-    public function __construct(){
+
+    public function __construct()
+    {
         $this->model = new Users(); // Utiliser le modèle Users
         $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
     }
 
     //* Méthode pour afficher la vue des administrateurs
-    public function manageAdmin() {
+    public function manageAdmin()
+    {
         // Vérifie si une requête POST a été effectuée pour supprimer un administrateur
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && !empty($_POST['user_id'])) {
             $admin_id = intval($_POST['user_id']);
-            
+
             $deleteSuccess = $this->model->delete($this->bdd, $admin_id);
 
             if ($deleteSuccess) {
@@ -46,7 +49,8 @@ class AdminAdminController extends Controller {
         }
     }
 
-    public function createAdmin() {
+    public function createAdmin()
+    {
         $isEdit = false;
         $adminData = [];
 
@@ -168,7 +172,8 @@ class AdminAdminController extends Controller {
     }
 
     // Connexion à la base de données
-    public function getDatabaseConnection(){
+    public function getDatabaseConnection()
+    {
         $connectBDD = new ConnectBDD();
         return $connectBDD->bdd;
     }
