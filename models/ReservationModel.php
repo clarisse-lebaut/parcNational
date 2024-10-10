@@ -68,7 +68,14 @@ class ReservationModel extends connectBDD {
             }
         }
     
-        return false; // Réservation introuvable
+        return false; 
     }
-    
+
+    // nb actuel de reservations
+    public function getCurrentReservations($campsite_id) {
+        $query = $this->db->prepare('SELECT COUNT(*) FROM reservations WHERE campsite_id = :campsite_id AND status != "annulée"');
+        $query->bindParam(':campsite_id', $campsite_id);
+        $query->execute();
+        return $query->fetchColumn(); 
+    }
 }

@@ -5,21 +5,29 @@ require_once __DIR__ . '/Controller.php';
 class ReservationController extends Controller {
 
     private $reservationModel;
+    private $campsiteController;
 
     public function __construct() {
-        $this->reservationModel = new ReservationModel(); 
+        $this->reservationModel = new ReservationModel();
+        $this->campsiteController = new CampsiteController(new CampsiteModel()); // Initialiser CampsiteController
     }
 
-    // Créer réservation
+    // Créer réservation (après verif dispo)
     public function createReservation($user_id, $campsite_id, $start_date, $end_date, $price) {
-        if ($this->reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price)) {
-            $message = 'La réservation a été créée avec succès.';
+        $availability = $this->campsiteController->checkAvailability($campsite_id);
+
+        if ($availability === 'Camping complet') {
+            $message = 'Désolé, ce camping est complet.';
         } else {
-            $message = 'Erreur lors de la création de la réservation.';
+            if ($this->reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price)) {
+                $message = 'La réservation a été créée avec succès.';
+            } else {
+                $message = 'Erreur lors de la création de la réservation.';
+            }
         }
+
         
-        // Rediriger vers l'historique avec un message de confirmation ou d'erreur
-        $this->render('reservationHistory', [
+        $this->render('reservationHistory', [ // Rediriger vers historique
             'reservations' => $this->reservationModel->getReservationsByUser($user_id),
             'message' => $message
         ]);
