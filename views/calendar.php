@@ -2,14 +2,18 @@
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/ReservationController.php';
 require_once __DIR__ . '/../controllers/PaymentController.php';
+require_once __DIR__ . '/../controllers/CampsiteController.php'; 
 
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 
 if ($campsite_id > 0) {
     $campsiteModel = new CampsiteModel();
+    $campsiteController = new CampsiteController($campsiteModel);
     $campsite = $campsiteModel->getCampsiteById($campsite_id);
+    $vacationEvents = $campsiteController->getVacationEvents($campsite_id);
 } else {
     $campsite = null;
+    $vacationEvents = [];
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentController->createCheckoutSession($campsite_id, $price);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -101,7 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <footer>
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
-
+    
+    <script> let vacationEvents = <?= json_encode($vacationEvents); ?>; </script>
     <!-- SCRIPTS -->
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
