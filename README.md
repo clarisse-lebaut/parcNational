@@ -12,4 +12,4 @@ D'autre part, ce premier merge donne l'ocassion de corriger :
 - le nommage des fichiers
 - la correction de l'environnement de dévéloppement
 
-Changement dans filter.js ---> ligne 149 (<a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></a>)
+IMPORTANT!!!!  Changement dans filter.js ---> ligne 149 (<a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></a>)

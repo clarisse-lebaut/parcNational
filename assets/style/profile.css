@@ -1,0 +1,12 @@
+img{
+    width: 14%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+.top-container{
+    background-color: skyblue;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}

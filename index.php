@@ -204,6 +204,10 @@ $routes = [
     'manage-favorite-trail' => [
         'controller' => 'FavoritesTrailsController',
         'method' => 'manageFavoriteTrail',
+    ],
+    'profile' => [
+        'controller' => 'ProfileController',
+        'method' => 'viewProfile',
     ]
 ];
 
