@@ -2,30 +2,34 @@ document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
 
     const urlParams = new URLSearchParams(window.location.search);
-    const campsite_id = urlParams.get('campsite_id');
-    let events = [];
     const defaultColor = '#FF1473';
 
-    const generateEvent = (title, start, end) => {
-        return {
-            title: title,
-            start: start,
-            end: end,
-            color: defaultColor,
-            allDay: true
-        };
+    // Les événements sont injectés via PHP
+    let events = vacationEvents.map(event => ({
+        title: 'Fermeture',  // Titre fixe pour chaque événement de fermeture
+        start: event.start,
+        end: event.end,
+        color: defaultColor,
+        allDay: true
+    }));
+
+    // Fonction pour vérifier si le camping est fermé aujourd'hui
+    const isClosedToday = (events) => {
+        const today = new Date().toISOString().split('T')[0];
+        return events.some(event => today >= event.start && today <= event.end); 
     };
 
-    if (campsite_id == 1) {
-        events.push(generateEvent('Fermeture - Camping Les Cigales', '2024-03-25', '2024-04-10'));
-    } else if (campsite_id == 2) {
-        events.push(generateEvent('Fermeture - Camping de Ceyreste', '2024-04-15', '2024-04-30'));
-    } else if (campsite_id == 3) {
-        events.push(generateEvent('Fermeture - Camping La Baie des Anges', '2024-03-29', '2024-09-15'));
-    } else if (campsite_id == 4) {
-        events.push(generateEvent('Fermeture - Camping Les Tamaris', '2024-11-01', '2025-04-20'));
-    } else if (campsite_id == 5) {
-        events.push(generateEvent('Fermeture - Camping Les Flots Bleus', '2024-05-15', '2024-05-31'));
+    // Mettre à jour le statut du camping en fonction des vacances
+    const campsiteStatusEl = document.getElementById('campsite-status');
+    
+    if (campsiteStatusEl) {
+        if (isClosedToday(events)) {
+            campsiteStatusEl.textContent = 'Fermé'; // Statut: Fermé
+            campsiteStatusEl.classList.add('status-icon', 'closed');
+        } else {
+            campsiteStatusEl.textContent = 'Ouvert'; // Statut: Ouvert
+            campsiteStatusEl.classList.add('status-icon', 'open');
+        }
     }
 
     // Récup prix/nuit
@@ -44,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         totalPriceElement.textContent = totalPrice.toFixed(2);
         priceInput.value = totalPrice.toFixed(2);
     };
+
     // maj du prix selon le nombre de personnes
     personsInput.addEventListener('input', calculateTotalPrice);
 
@@ -75,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             calculateTotalPrice();
         },
-
     });
 
     calendar.render();

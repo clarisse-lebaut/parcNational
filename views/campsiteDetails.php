@@ -1,13 +1,18 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
+require_once __DIR__ . '/../controllers/CampsiteController.php';
 
 $campsiteModel = new CampsiteModel();
+$campsiteController = new CampsiteController($campsiteModel);
 
-// Récupérer l'ID du camping depuis l'URL puis ses details grace au model
+// Récupérer l'ID du camping depuis l'URL puis ses details grâce au model
 $campsite_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($campsite_id > 0) {
     $campsite = $campsiteModel->getCampsiteById($campsite_id);
+    // Récupérer les événements de vacances et vérifier le statut
+    $events = $campsiteController->getVacationEvents($campsite_id);
+    $isClosed = $campsiteController->isClosedToday($events);
 } else {
     $campsite = null;
 }
@@ -25,7 +30,7 @@ if ($campsite_id > 0) {
 <body>
     <header>
         <?php include __DIR__ . '/../components/_header.php'; ?>
-</header>
+    </header>
 
     <div class="campsite-details-container">
         <?php if ($campsite): ?>
@@ -38,28 +43,26 @@ if ($campsite_id > 0) {
             <div class="campsite-details-row">
                 <img class="campsite-details-img" src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
                 <div class="campsite-details-adress">
-                <span class="location-icon">&#x1F4CD;</span> 
-                <p><?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>
+                    <span class="location-icon">&#x1F4CD;</span> 
+                    <p><?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>
+                </div>
             </div>
-        </div>
 
-            <!-- ROW ICONES -->
-            <div class="campsite-details-row campsite-details-rowicon <?= ($campsite['status'] === 'Ouvert') ? 'status-open' : 'status-closed'; ?>">
-                <p>
-                    <?php if ($campsite['status'] === 'Ouvert'): ?>
-                        <span class="status-icon">&#x1F7E2;</span> 
-                        Ouvert
+            <!-- ROW STATUT -->
+            <div class="campsite-details-row campsite-details-rowicon">
+                <p id="campsite-status">
+                    <?php if ($isClosed): ?>
+                        <span>&#x1F534;</span> Fermé 
                     <?php else: ?>
-                        <span class="status-icon">&#x1F534;</span> 
-                        Fermé
+                        <span>&#x1F7E2;</span> Ouvert 
                     <?php endif; ?>
                 </p>
+
                 <div class="campsite-price">
                     <span class="price-icon">€</span> 
                     <?= number_format($campsite['price_per_night'], 2); ?> / nuit
                 </div> 
             </div>
-
 
             <!-- ROW DESCRIPTION -->
             <div class="campsite-details-row">
@@ -70,7 +73,7 @@ if ($campsite_id > 0) {
 
             <!-- ROW BOUTON RESERVER -->
             <div class="campsite-details-row">
-             <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
+                <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
             </div>
         <?php else: ?>
             <p class="campsite-details-error">Camping introuvable ou ID de camping non valide.</p>

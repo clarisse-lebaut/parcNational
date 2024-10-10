@@ -2,12 +2,15 @@
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/CampsiteController.php';
 
-// Créez les objets
 $campsiteModel = new CampsiteModel();
 $campsiteController = new CampsiteController($campsiteModel);
-
-// Récupérez les campings
 $campsites = $campsiteController->getAllCampsites();
+
+// boucler chaque camping pour verif leur statut
+foreach ($campsites as &$campsite) {
+    $events = $campsiteController->getVacationEvents($campsite['campsite_id']);
+    $campsite['isClosed'] = $campsiteController->isClosedToday($events);
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +49,7 @@ $campsites = $campsiteController->getAllCampsites();
                         <?php
                         $description = htmlspecialchars($campsite['description']);
                         if (strlen($description) > 100) {
-                            echo '<span class="short-text">' . substr($description, 0, 100) . '...</span>';
+                            echo '<span class="short-text">' . substr($description, 0, 100) . ' </span>';
                             echo '<span class="long-text">' . substr($description, 100) . '</span>';
                             echo '<span class="show-more" data-id="' . htmlspecialchars($campsite['campsite_id']) . '">Voir plus</span>';
                         } else {
@@ -55,15 +58,15 @@ $campsites = $campsiteController->getAllCampsites();
                         ?>
                     </p>
                     
-                    <p>Adresse : <?= htmlspecialchars($campsite['address'] ?? '') . ', ' . htmlspecialchars($campsite['city'] ?? '') . ' ' . htmlspecialchars($campsite['zipcode'] ?? ''); ?></p>
+                    <p><span class="location-icon">&#x1F4CD;</span> <?= htmlspecialchars($campsite['address'] ?? '') . ', ' . htmlspecialchars($campsite['city'] ?? '') . ' ' . htmlspecialchars($campsite['zipcode'] ?? ''); ?></p>
 
                     <div class="campsite-status">
-                        <?php if ($campsite['status'] === 'Ouvert'): ?>
-                            <span class="status-icon">&#x1F7E2;</span> <!-- Rond vert -->
-                            Ouvert
-                        <?php else: ?>
-                            <span class="status-icon">&#x1F534;</span> <!-- Rond rouge -->
+                        <?php if ($campsite['isClosed']): ?>
+                            <span class="status-icon">&#x1F534;</span>
                             Fermé
+                        <?php else: ?>
+                            <span class="status-icon">&#x1F7E2;</span>
+                            Ouvert
                         <?php endif; ?>
                     </div>
                 </div>
