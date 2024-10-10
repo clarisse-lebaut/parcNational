@@ -71,7 +71,6 @@ class CampsiteController {
     public function getVacationEvents($campsite_id) {
         $events = [];
     
-        // Vérification de l'ID du camping et ajout des événements associés
         if ($campsite_id == 1) {
             $events[] = ['start' => '2024-03-25', 'end' => '2024-04-10'];
         } else if ($campsite_id == 2) {
@@ -88,7 +87,7 @@ class CampsiteController {
     }
         
     // 8. Vérifier si aujourd'hui se trouve dans une période de fermeture
-    private function isClosedToday($events) {
+    public function isClosedToday($events) {
         $today = date('Y-m-d');
         foreach ($events as $event) {
             if ($today >= $event['start'] && $today <= $event['end']) {
