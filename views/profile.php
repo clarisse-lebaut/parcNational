@@ -54,11 +54,13 @@
                 <?php foreach($favoriteTrails as $trail): ?>
                     <div class="trail-image">
                         <a href="details_trails?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                            <img src="/parcNational/<?= htmlspecialchars($trail['image']) ?>" alt="la photo de sentier">
+                            <img class="img-profil" src="/parcNational/<?= htmlspecialchars($trail['image']) ?>" alt="la photo de sentier">
                         </a>
+                        <div class="lien-container">
                         <a href="/parcNational/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                            <img src="/parNational/assets/icon/delete.svg">
-                        </a>    
+                            <p class="delete">Supprimer</p>
+                        </a>
+                        </div>    
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
