@@ -1,13 +1,16 @@
 <?php
 require_once __DIR__ . '/../models/CampsiteModel.php';
+require_once __DIR__ . '/../models/ReservationModel.php';
 require_once __DIR__ . '/../controllers/Controller.php';  
 
 class CampsiteController {
 
     private $campsiteModel;
+    private $reservationModel;
 
     public function __construct(CampsiteModel $campsiteModel) {
         $this->campsiteModel = $campsiteModel; 
+        $this->reservationModel = new ReservationModel(); // Pour gérer la capacité en fonction des réservations
     }
 
     // 1. Récupérer tous les campings
@@ -55,18 +58,18 @@ class CampsiteController {
         }
     }
 
-    // 6. Mise à jour du statut ( en fonction des vacances)
-    public function updateStatusBasedOnVacation($campsite_id, $campsite) {
+    // 6. Mise à jour du statut (en fonction des vacances)
+    public function updateStatusBasedOnVacation($campsite_id, &$campsite) {
         $events = $this->getVacationEvents($campsite_id);
         $isClosed = $this->isClosedToday($events);
-    
         $newStatus = $isClosed ? 'Fermé' : 'Ouvert';
         
-        if ($this->campsiteModel->updateStatus($campsite_id, $newStatus)) {
-            $campsite['status'] = $newStatus;
+        if ($campsite['status'] !== $newStatus) {
+            if ($this->campsiteModel->updateStatus($campsite_id, $newStatus)) {
+                $campsite['status'] = $newStatus;
+            }
         }
     }
-    
     // 7. Obtenir les vacances d'un camping
     public function getVacationEvents($campsite_id) {
         $events = [];
@@ -88,12 +91,26 @@ class CampsiteController {
         
     // 8. Vérifier si aujourd'hui se trouve dans une période de fermeture
     public function isClosedToday($events) {
-        $today = date('Y-m-d');
+        $today = date('d-m-Y');
         foreach ($events as $event) {
             if ($today >= $event['start'] && $today <= $event['end']) {
                 return true;
             }
         }
         return false;
+    }
+
+    // 9. Vérifier la disponibilité d'un camping
+    public function checkAvailability($campsite_id) {
+        $campsite = $this->campsiteModel->getCampsiteById($campsite_id);
+        $currentReservations = $this->reservationModel->getCurrentReservations($campsite_id);
+
+        if ($currentReservations >= $campsite['max_capacity']) {
+            $this->campsiteModel->updateAvailability($campsite_id, 0); 
+            return 'Camping complet';
+        } else {
+            $this->campsiteModel->updateAvailability($campsite_id, 1);
+            return 'Disponible';
+        }
     }
 }
