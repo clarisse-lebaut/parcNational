@@ -79,7 +79,7 @@
                 <a href="manage_ship">
                     <div>
                         <p>Gérer les abonnements</p>
-                        <img src="assets/icon/ship.svg" alt="icon rapport">
+                        <img src="assets/icon/card_membership.svg" alt="icon rapport">
                         <div>informations</div>
                         <!-- <div><?php echo htmlspecialchars($total_shiphs); ?></div> -->
                     </div>

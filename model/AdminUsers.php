@@ -2,6 +2,15 @@
 require_once __DIR__ . '/../config/connectBDD.php';
 
 class Users {
+
+    // Requête pour récupérer certains éléménts de l'utilisateur connecté
+    public function get_user_by_id($bdd, $user_id) {
+        $sql = "SELECT firstname, lastname, mail FROM users WHERE user_id = :user_id";
+        $stmt = $bdd->prepare($sql);
+        $stmt->execute([':user_id' => $user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Requête pour récupérer tous les utilisateurs dans la base de données
     public function get_users($bdd){
         $sql = "SELECT * FROM users WHERE role = :role";
