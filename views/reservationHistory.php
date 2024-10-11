@@ -55,6 +55,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Réservations</title>
     <link rel="stylesheet" href="../assets/styles/reservationHistory.css">
+    <link rel="stylesheet" href="../assets/styles/_global.css">
 </head>
 <body>
     <header>
@@ -63,7 +64,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
     
     <main>
         <section>
-            <h1>Historique des Réservations</h1>
+            <h1>Mes Réservations</h1>
             <p><?= htmlspecialchars($message); ?></p>
 
             <?php if (isset($recap)): ?>
@@ -77,10 +78,8 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                 </ul>
             <?php endif; ?>
 
-            <h2>Mes réservations</h2>
-
             <?php if (!empty($reservations)): ?>
-                <table>
+                <table class="table-history">
                     <thead>
                         <tr>
                             <th>Camping</th>
@@ -104,7 +103,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
     <?php if ($reservation['status'] !== 'annulée'): ?>
         <button type="button" class="cancel-btn" data-reservation-id="<?= $reservation['reservation_id']; ?>">Annuler</button>
     <?php endif; ?>
-</td>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -115,8 +114,20 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
         </section>
     </main>
 
+    <!-- Modale 'annulation -->
+<div id="cancel-modal" class="modal">
+    <div class="modal-content">
+        <p>Êtes-vous sûr de vouloir annuler cette réservation ?</p>
+        <button id="confirm-cancel-btn" class="btn-confirm">Oui</button>
+        <button id="close-modal-btn" class="btn-close">Non</button>
+    </div>
+</div>
+
+
     <footer>
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
+
+    <script src="../assets/javascript/reservationHistory.js"></script>
 </body>
 </html>

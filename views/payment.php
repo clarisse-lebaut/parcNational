@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
                 <h2>Informations sur la réservation</h2>
                 <b><?= htmlspecialchars($campsite['name']); ?></b>
                 <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b> <?= htmlspecialchars($end_date); ?> </b> </p>
-                <p>Nombre de personnes: <?= htmlspecialchars($num_persons); ?></p>
+                <p> <b> <?= htmlspecialchars($num_persons); ?></b> personnes </p>
                 <p>Prix total : <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span></p>
             </div>
 
