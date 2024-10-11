@@ -61,6 +61,7 @@ li {
   font-family: var(--font-Assistant);
 }
 a {
+  font-family: var(--font-Assistant);
   text-decoration: none;
   color: black;
 }

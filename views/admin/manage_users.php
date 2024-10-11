@@ -46,7 +46,7 @@
                             <td>
                                 <form method="POST" action="manage_users" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                                     <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">    
-                                    <button><img src="assets/icon/delete.svg" alt="icon delete"></button>
+                                    <button class="del-button"><img src="assets/icon/delete.svg" alt="icon delete"></button>
                                 </form>
                             </td>
                         </tr>

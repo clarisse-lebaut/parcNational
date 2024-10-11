@@ -10,12 +10,15 @@
     <header>
         <?php include 'components/_header-admin.php' ?>
     </header>
+    
     <main>
+        
         <section class="data">
+
             <div>
                 <p>Total de campings enregistrés</p>
                 <img src="assets/icon/campsites.svg" alt="icon campsite">
-                <div><?php echo htmlspecialchars($total_campsites); ?></div>
+                <p><?php echo htmlspecialchars($total_campsites); ?></p>
             </div>
 
             <div>
@@ -38,9 +41,12 @@
             </div>
 
             <div>
-                <a href="create_campsite">Ajouter un camping</a>
-                <img src="assets/icon/add.svg" alt="icon add">
-            </div>    
+                <a href="create_campsite">
+                    <p>Ajouter un camping</p>
+                    <img src="assets/icon/add.svg" alt="icon add">
+                </a>
+            </div>
+
         </section>
 
         <section class="board">
@@ -65,13 +71,13 @@
                             <td>
                                 <form method="GET" action="create_campsite">
                                     <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
-                                    <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
+                                    <button class="edit-button" type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>
                             <td>
                                 <form method="POST" action="manage_campsite" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce camping ?');">
                                     <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
-                                    <button type="submit"><img src="assets/icon/delete.svg" alt="icon delete"></button>
+                                    <button class="del-button" type="submit"><img src="assets/icon/delete.svg" alt="icon delete"></button>
                                 </form>
                             </td>
                         </tr>

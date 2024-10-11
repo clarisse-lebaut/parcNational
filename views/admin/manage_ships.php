@@ -12,30 +12,31 @@
     <header>
         <?php include 'components/_header-admin.php'; ?>
     </header>
-
+    
+    
     <section class="data">
         <div>
             <p>Total d'abonnements</p>
             <img src="assets/icon/ships.svg" alt="icon ships">
-            <div><?= htmlspecialchars($totalMemberships ?? 0) ?></div> <!-- Affichage du nombre total d'abonnements -->
+            <p><?= htmlspecialchars($totalMemberships ?? 0) ?></p> <!-- Affichage du nombre total d'abonnements -->
         </div>
 
         <div>
             <p>Dernière formule ajouté</p>
             <img src="assets/icon/card_membership.svg" alt="icon ships">
-            <div><?= htmlspecialchars($totalMemberships ?? 0) ?></div> <!-- Affichage du nombre total d'abonnements -->
+            <p>
+                <?php if (!empty($randomMembership)): ?>
+                    <?= htmlspecialchars($randomMembership['memberships_name']) ?>
+                <?php else: ?>
+                    <p>Aucun abonnés</p>
+                <?php endif; ?>
+            </p>
         </div>
 
         <div>
             <p>Total d'abonné</p>
             <img src="assets/icon/loyalty.svg" alt="icon users">
-            <div>
-                <?php if (!empty($randomMembership)): ?>
-                    <p><?= htmlspecialchars($randomMembership['memberships_name']) ?></p>
-                <?php else: ?>
-                    <p>Aucun abonnés</p>
-                <?php endif; ?>
-            </div>
+            <p><?= htmlspecialchars($totalMemberships ?? 0) ?></p> <!-- Affichage du nombre total d'abonnements -->
         </div>
 
         <div>
@@ -70,12 +71,12 @@
                         <td><?= htmlspecialchars($membership['price']) ?></td>
                         <td>
                             <a href="admin-memberships-edit?id=<?= htmlspecialchars($membership['card_id']) ?>">
-                                <button>
+                                <button class="edit-button">
                                     <img src="assets/icon/edit.svg" alt="icon edit">
                                 </button>
                             </a>
                             <a href="admin-memberships-delete?id=<?= htmlspecialchars($membership['card_id']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet adhésion?')">
-                                <button>
+                                <button class="del-button">
                                     <img src="assets/icon/delete.svg" alt="icon delete">
                                 </button>
                             </a>

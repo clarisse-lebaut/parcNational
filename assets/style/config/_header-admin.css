@@ -106,7 +106,7 @@ header > section > nav > ul > li > a:hover {
 .data-admin {
   display: flex;
   flex-direction: column;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 30px 0;
 }
 .data-admin > div {
   display: flex;

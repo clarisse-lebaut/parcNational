@@ -17,11 +17,13 @@
                 <img src="assets/icon/admin.svg" alt="icon admin">
                 <div><?php echo htmlspecialchars($total_admin); ?></div>
             </div>
-
-            <div>
-                <a href="create_admin">Ajouter un administrateur</a>
-                <img src="assets/icon/add.svg" alt="icon add">
-            </div> 
+            
+            <a href="create_admin">
+                <div>
+                    <p>Ajouter un administrateur</p>
+                    <img src="assets/icon/add.svg" alt="icon add">
+                </div> 
+            </a>
         </section>
 
         <section class="board">
@@ -52,13 +54,13 @@
                             <td>
                                 <form method="GET" action="create_admin">
                                     <input type="hidden" name="user_id" value="<?php echo $admins['user_id']; ?>">    
-                                    <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
+                                    <button class="edit-button" type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>
                             <td>
                                 <form method="POST" action="manage_admin" onsubmit="return confirm('Êtes-vous sûr de vouloir modifier cet administrateur ?');">
                                     <input type="hidden" name="user_id" value="<?php echo $admins['user_id']; ?>">    
-                                    <button><img src="assets/icon/delete.svg" alt="icon delete"></button>
+                                    <button class="del-button"><img src="assets/icon/delete.svg" alt="icon delete"></button>
                                 </form>
                             </td>
                         </tr>
