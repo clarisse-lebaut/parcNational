@@ -2,12 +2,11 @@
 require_once __DIR__ . '/../controllers/PaymentController.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 
-
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); 
+    session_start();
 }
 
-// verification code promo
+// Vérification du code promo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promo_code'])) {
     $promo_code = $_POST['promo_code'];
     $price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
@@ -22,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['promo_code'])) {
 
     header('Content-Type: application/json');
     echo json_encode($response);
-    exit; // Finir le script après avoir envoyé la réponse JSON
+    exit;
 }
 
 // Si on arrive ici, c'est pour afficher la page de paiement classique
@@ -40,6 +39,7 @@ if ($promo_code === 'PROMO10') {
     $price *= 0.9; 
 }
 
+// Gestion du paiement
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
     $_SESSION['start_date'] = $start_date;
     $_SESSION['end_date'] = $end_date;
@@ -50,54 +50,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
     $paymentController->createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons);
 } else {
     ?>
+
     <!DOCTYPE html>
     <html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Confirmation de Paiement</title>
+        <link rel="stylesheet" href="../assets/styles/_global.css">
+        <link rel="stylesheet" href="../assets/styles/payment.css">
         <script src="/assets/javascript/payment.js" defer></script>
     </head>
     <body>
         <header>
+            <?php include __DIR__ . '/../components/_header.php'; ?>
         </header>
         <main>
-        <h1>Récapitulatif de la commande</h1>
+    <h1 class="payment-title">Récapitulatif de la commande</h1>
 
-        <?php if ($campsite): ?>
-            <p>Camping: <?= htmlspecialchars($campsite['name']); ?></p>
-            <p>Date de début: <?= htmlspecialchars($start_date); ?></p>
-            <p>Date de fin: <?= htmlspecialchars($end_date); ?></p>
-            <p>Nombre de personnes: <?= htmlspecialchars($num_persons); ?></p>
-            <p>Prix total : <span id="total_price"><?= htmlspecialchars($price); ?> €</span></p>
+    <?php if ($campsite): ?>
+        <div class="payment-container"> 
+            <div class="payment-card">
+                <h2>Informations sur la réservation</h2>
+                <b><?= htmlspecialchars($campsite['name']); ?></b>
+                <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b> <?= htmlspecialchars($end_date); ?> </b> </p>
+                <p>Nombre de personnes: <?= htmlspecialchars($num_persons); ?></p>
+                <p>Prix total : <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span></p>
+            </div>
 
-            <h2>Ajouter un code promo</h2>
-            <form id="promo-form" method="POST">
-                <label for="promo_code">Code promo :</label>
-                <input type="text" id="promo_code" name="promo_code">
-                <button type="button" id="apply-promo">Appliquer</button>
-                <input type="hidden" id="final_price" name="price" value="<?= htmlspecialchars($price); ?>">
-                <p id="promo_error" style="color: red;"></p> <!-- Zone d'affichage pour les erreurs -->
-            </form>
+            <div class="payment-card">
+                <h2>Ajouter un code promo</h2>
+                <form id="promo-form" method="POST">
+                    <label for="promo_code">Code promo :</label>
+                    <input type="text" id="promo_code" name="promo_code">
+                    <button type="button" id="apply-promo">Appliquer</button>
+                    <input type="hidden" id="final_price" name="price" value="<?= htmlspecialchars($price); ?>">
+                    <p id="promo_error" style="color: red;"></p>
+                </form>
+            </div>
+        </div> 
 
-            <h2>Paiement</h2>
-            <form id="payment-form" action="payment.php" method="POST">
-                <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
-                <input type="hidden" name="start_date" value="<?= htmlspecialchars($start_date); ?>">
-                <input type="hidden" name="end_date" value="<?= htmlspecialchars($end_date); ?>">
-                <input type="hidden" name="num_persons" value="<?= htmlspecialchars($num_persons); ?>">
-                <input type="hidden" id="final_price_input" name="price" value="<?= htmlspecialchars($price); ?>"> 
-                <button type="submit" name="confirm_payment">Payer</button>
-            </form>
-        <?php else: ?>
-            <p>Erreur : camping introuvable.</p>
-        <?php endif; ?>
-
-        </main>
+        <form id="payment-form" action="payment.php" method="POST">
+            <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
+            <input type="hidden" name="start_date" value="<?= htmlspecialchars($start_date); ?>">
+            <input type="hidden" name="end_date" value="<?= htmlspecialchars($end_date); ?>">
+            <input type="hidden" name="num_persons" value="<?= htmlspecialchars($num_persons); ?>">
+            <input type="hidden" id="final_price_input" name="price" value="<?= htmlspecialchars($price); ?>"> 
+            <button type="submit" name="confirm_payment">Payer</button>
+        </form>
+    <?php else: ?>
+        <p>Erreur : camping introuvable.</p>
+    <?php endif; ?>
+</main>
         <footer>
+            <?php include __DIR__ . '/../components/_footer.php'; ?>
         </footer>
-
     </body>
     </html>
+
 <?php
 }
+?>
