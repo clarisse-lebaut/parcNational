@@ -45,9 +45,10 @@
         </div>
 
         <div>
-            <a href="admin-memberships-add">Ajouter un abonnement</a>
-            <img src="assets/icon/add.svg" alt="icon add">
-        </div>    
+            <a href="admin-memberships-add">Ajouter une ressource naturelle</a>
+            <a href="admin-memberships-add"><img src="assets/icon/add.svg" alt="icon add"></a>
+        </div>
+          
     </section>
 
     <section class="board">

@@ -41,10 +41,8 @@
             </div>
 
             <div>
-                <a href="create_campsite">
-                    <p>Ajouter un camping</p>
-                    <img src="assets/icon/add.svg" alt="icon add">
-                </a>
+                <a href="create_campsite">Ajouter un camping</a>
+                <a href="create_campsite"><img src="assets/icon/add.svg" alt="icon add"></a>
             </div>
 
         </section>

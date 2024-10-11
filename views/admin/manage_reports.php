@@ -26,11 +26,10 @@
             </div>
 
             <div>
-                <a href="create_reports">
-                    <p>Ajouter un rapport</p>
-                    <img src="assets/icon/add.svg" alt="icon add report">
-                </a>
-            </div>    
+                <a href="create_reports">Ajouter un camping</a>
+                <a href="create_reports"><img src="assets/icon/add.svg" alt="icon add"></a>
+            </div>
+   
         </section>
 
         <section class="board">

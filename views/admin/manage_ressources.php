@@ -41,10 +41,8 @@
             </div>
 
             <div>
-                <a href="create_ressources">
-                    <p>Ajouter une ressource naturelle</p>
-                    <img src="assets/icon/add.svg" alt="icon add">
-                </a>
+                <a href="create_ressources">Ajouter une ressource naturelle</a>
+                <a href="create_ressources"><img src="assets/icon/add.svg" alt="icon add"></a>
             </div>
             
         </section>

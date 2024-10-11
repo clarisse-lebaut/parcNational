@@ -27,11 +27,10 @@
             </div>
 
             <div>
-                <a href="create_trails">
-                    <p>Ajouter un sentier</p>
-                    <img src="assets/icon/add.svg" alt="icon visitors">
-                </a>
-            </div>    
+                <a href="create_trails">Ajouter une ressource naturelle</a>
+                <a href="create_trails"><img src="assets/icon/add.svg" alt="icon add"></a>
+            </div>
+   
         </section>
 
         <section class="board">

@@ -52,8 +52,11 @@ body {
   transform: rotate(180deg) scale(1.3); /* Rotation de 180 degrés et zoom de 10% lors du survol */
 }
 
+.data > div > a {
+  font-family: var(--font-Assistant);
+}
 .data > div > a > img {
-  width: 30%;
+  width: 150%;
   transition: transform ease-in-out 0.5s; /* Transition pour l'état normal */
   transform: rotate(0deg) scale(1);
 }
