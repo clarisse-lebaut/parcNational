@@ -7,7 +7,7 @@ class ConnectBDD
     function __construct()
     {
         try {
-            $dsn = "mysql:host=localhost;dbname=nationalpark(2);charset=utf8";
+            $dsn = "mysql:host=localhost;dbname=nationalpark;charset=utf8";
             $username = "root";
             $password = "";
 

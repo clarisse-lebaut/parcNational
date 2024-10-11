@@ -216,6 +216,10 @@ $routes = [
     'profile' => [
         'controller' => 'ProfileController',
         'method' => 'viewProfile',
+    ],
+    'manage-completed-trail' => [
+        'controller' => 'CompletedTrailsController',
+        'method' => 'manageCompletedTrail',
     ]
 ];
 

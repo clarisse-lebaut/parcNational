@@ -14,14 +14,14 @@
     <section>
         <div class="top-container">
             <div class="profile">
-                <h3>Les données d'utilisateur</h3>
-                <a href="profile-form">Modifier</a>
+                <a class="edit" href="profile-form">
+                <h2>Les données d'utilisateur</h2>
+                </a>
             </div>
             <div class="membership">
                 <h2> Votre adhésion</h2>
                 <?php if(!empty($availableMembership)): ?>
                     <div class="subscription">
-                        <h3>Votre adhésion active:</h3>
                         <p> Mdme/M : 
                         <?php
                             echo !empty($availableMembership['lastname']) ? htmlspecialchars($availableMembership['lastname']) : 'N/A';
@@ -53,18 +53,40 @@
             <?php if(!empty($favoriteTrails)): ?>
                 <?php foreach($favoriteTrails as $trail): ?>
                     <div class="trail-image">
-                        <a href="details_trails?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                            <img src="/parcNational/<?= htmlspecialchars($trail['image']) ?>" alt="la photo de sentier">
+                        <a href="details_trails?id=<?= htmlspecialchars($trail['trail_id']) ?>">
+                            <img class="img-profil" src="/parcNational/<?= htmlspecialchars($trail['image']) ?>" alt="la photo de sentier">
                         </a>
+                        <div class="lien-container">
                         <a href="/parcNational/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                            <img src="/parNational/assets/icon/delete.svg">
-                        </a>    
+                            <p class="delete">Supprimer</p>
+                        </a>
+                        </div>    
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <p> Pas de sentiers dans le favoris</p>
             <?php endif; ?>                       
         </div>   
+    </section>
+    <section>
+    <div class="completed-trails">
+    <h2> Tes Sentiers complétes</h2>
+        <?php if(!empty($completedTrails)): ?>
+            <?php foreach($completedTrails as $completedTrail): ?>
+                <div class="trail-image">
+                    <a href="details_trails?id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
+                        <img class="img-profil" src="/parcNational/<?= htmlspecialchars($completedTrail['image']) ?>" alt="la photo de sentier">
+                    </a>
+                    <div class="lien-container">
+                    <a href="/parcNational/manage-completed-trail?trail_id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
+                        <p class="delete">Supprimer</p>
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p> Pas de sentiers dans le favoris</p>
+        <?php endif; ?>    
+
     </section>
     <footer>
       <?php include "components/_footer.php"; ?>
