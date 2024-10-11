@@ -1,0 +1,60 @@
+/* Grille des ressources naturelles */
+.ressource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 0;
+}
+
+/* "card" des ressources naturelles */
+.ressource-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.ressource-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ressource-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.ressource-name a {
+    color: #005a36;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.ressource-name a:visited {
+    color: #004b2e;
+}
+
+.ressource-name a:hover {
+    text-decoration: underline;
+}
+
+.ressource-item p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+}
+
+.ressource-subtitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+    line-height: 1.6;
+    color: #005a36;
+}
+

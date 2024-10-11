@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/AdminRessources.php';
 
 class AdminRessourcesController extends Controller {
@@ -194,7 +194,7 @@ class AdminRessourcesController extends Controller {
     }
 
     public function getDatabaseConnection(){
-        $connectBDD = new ConnectBDD();
+        $connectBDD = new ConnectDB();
         return $connectBDD->bdd;
     }
 }

@@ -2,20 +2,20 @@
 
 class ConnectBDD
 {
-    public $bdd;
+    protected $db; //co stockée
 
-    function __construct()
-    {
+    public function __construct() {
         try {
-            $dsn = "mysql:host=localhost;dbname=nationalpark(2);charset=utf8";
-            $username = "root";
-            $password = "";
-
-            $this->bdd = new PDO($dsn, $username, $password);
-            $this->bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db = new PDO("mysql:host=localhost;dbname=nationalpark(2);charset=utf8", "root", "");
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connexion réussie !";
         } catch (PDOException $e) {
-            echo 'Erreur PDO : ' . $e->getMessage();
-            die();
+            die('Erreur : ' . $e->getMessage());
         }
+    }
+
+    // méthode qui recup la co et retourne l'objet pdo pour utiliser ailleurs 
+    public function getDb() {
+        return $this->db;  
     }
 }

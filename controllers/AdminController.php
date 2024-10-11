@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/AdminHome.php';
 
 class AdminController extends Controller
@@ -54,7 +54,7 @@ class AdminController extends Controller
     // Fonction pour établir la connexion à la base de données
     public function getDatabaseConnection()
     {
-        $connectBDD = new ConnectBDD();
+        $connectBDD = new ConnectDB();
         return $connectBDD->bdd;
     }
 }

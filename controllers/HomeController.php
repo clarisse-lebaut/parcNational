@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/News.php';
 
 class HomeController extends Controller
@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function getDatabaseConnection()
     {
         // Instancier la classe ConnectBDD
-        $connectBDD = new ConnectBDD();
+        $connectBDD = new ConnectDB();
         // Retourner l'objet PDO
         return $connectBDD->bdd;
     }

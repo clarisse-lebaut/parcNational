@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/AdminTrails.php';
 
 class AdminTrailsController extends Controller
@@ -178,7 +178,7 @@ class AdminTrailsController extends Controller
 
     public function getDatabaseConnection()
     {
-        $connectBDD = new ConnectBDD();
+        $connectBDD = new ConnectDB();
         return $connectBDD->bdd;
     }
 }
