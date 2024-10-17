@@ -17,7 +17,7 @@ class CompletedTrails extends Model{
     }
 
     public function getCompletedTrailByUser(){
-        $sql = 'SELECT c.trail_id, t.image FROM completed_trails c
+        $sql = 'SELECT c.trail_id, t.image, t.name FROM completed_trails c
         JOIN trails t ON c.trail_id = t.trail_id
         WHERE c.user_id = ?';
         $stmt = $this->pdo->prepare($sql);
