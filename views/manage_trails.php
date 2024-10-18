@@ -27,7 +27,7 @@
             </div>
 
             <div>
-                <a href="create_trails">Ajouter une ressource naturelle</a>
+                <a href="create_trails">Ajouter un sentier</a>
                 <a href="create_trails"><img src="assets/icon/add.svg" alt="icon add"></a>
             </div>
    

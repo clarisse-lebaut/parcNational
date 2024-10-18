@@ -45,7 +45,7 @@
         </div>
 
         <div>
-            <a href="admin-memberships-add">Ajouter une ressource naturelle</a>
+            <a href="admin-memberships-add">Ajouter un abonnement</a>
             <a href="admin-memberships-add"><img src="assets/icon/add.svg" alt="icon add"></a>
         </div>
           
@@ -55,11 +55,12 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>ID</th>
-                    <th>Durée (Mois)</th>
-                    <th>Prix (€)</th>
-                    <th>Actions</th>
+                    <td>Nom</td>
+                    <td>ID</td>
+                    <td>Durée (Mois)</td>
+                    <td>Prix (€)</td>
+                    <td>Editer</td>
+                    <td>Supprimer</td>
                 </tr>
             </thead>
             <tbody>
@@ -76,6 +77,8 @@
                                     <img src="assets/icon/edit.svg" alt="icon edit">
                                 </button>
                             </a>
+                        </td>
+                        <td>
                             <a href="admin-memberships-delete?id=<?= htmlspecialchars($membership['card_id']) ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet adhésion?')">
                                 <button class="del-button">
                                     <img src="assets/icon/delete.svg" alt="icon delete">

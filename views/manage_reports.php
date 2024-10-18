@@ -26,10 +26,9 @@
             </div>
 
             <div>
-                <a href="create_reports">Ajouter un camping</a>
+                <a href="create_reports">Ajouter un rapport</a>
                 <a href="create_reports"><img src="assets/icon/add.svg" alt="icon add"></a>
             </div>
-   
         </section>
 
         <section class="board">
@@ -38,7 +37,7 @@
                     <tr>
                         <td>Nom</td>
                         <td>Description</td>
-                        <td>Ressource Associée</td> <!-- Nouvelle colonne pour la ressource associée -->
+                        <td>Ressource Associée</td>
                         <td>Éditer</td>
                         <td>Supprimer</td>
                     </tr>

@@ -31,7 +31,7 @@ class AdminController extends Controller
         // Vérifier si les nombres ont été récupérés avec succès
         if ($userCount !== false && $trailsCount !== false) {
             // Passer les totaux à la vue admin_home
-            $this->render('/admin/admin_home', [
+            $this->render('admin_home', [
                 // Assurez-vous que cela correspond à votre structure
                 'total_users' => $userCount['total'],
                 'total_admin' => $adminCount['total'],

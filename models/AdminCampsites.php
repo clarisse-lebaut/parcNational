@@ -56,7 +56,7 @@ class ManageCampsites {
     }
 
     // Mettre à jour un camping
-    public function update_campsites($bdd, $campsite_id, $name, $city, $address, $zipcode, $description = null) {
+    public function update_campsites($bdd, $campsite_id, $name, $description, $address, $city, $zipcode) {
         // Construire la requête SQL
         $sql = "UPDATE campsite SET name = :name, city = :city, address = :address, zipcode = :zipcode";
 

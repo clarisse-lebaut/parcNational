@@ -52,7 +52,7 @@
                     </div>
                 </a>
    
-                <a href="manage_campsite">
+                <a href="manage_campsites">
                     <div>
                         <p>Gérer les campings</p>
                         <img src="assets/icon/campsite.svg" alt="icon campsite">

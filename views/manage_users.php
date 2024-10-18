@@ -17,6 +17,18 @@
                 <img src="assets/icon/users.svg" alt="icon user">
                 <div><?php echo htmlspecialchars($total_users); ?></div>
             </div>  
+
+            <div>
+                <p>Nombre d'utilisateur inscrit sur le mois</p></a>
+                <img src="assets/icon/users.svg" alt="icon users"></a>
+                <div>15</div>
+            </div> 
+
+            <div>
+                <p>Nombre d'utilisateur inscrit sur l'année</p></a>
+                <img src="assets/icon/users.svg" alt="icon users"></a>
+                <div>150</div>
+            </div> 
         </section>
 
         <section class="board">

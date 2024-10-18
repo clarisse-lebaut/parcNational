@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les Sentiers</title>
+    <title>Les Campings</title>
     <link rel="stylesheet" href="assets/style/admin/manage.css">
 </head>
 <body>
@@ -53,6 +53,7 @@
                     <tr>
                         <td>Nom</td>
                         <td>Ville</td>
+                        <td>Description</td>
                         <td>Adresse</td>
                         <td>Code postal</td>
                         <td>Éditer</td>
@@ -64,7 +65,8 @@
                         <tr>
                             <td><?php echo htmlspecialchars($campsite['name']); ?></td>
                             <td><?php echo htmlspecialchars($campsite['city']); ?></td>
-                            <td><?php echo htmlspecialchars($campsite['address']); ?> km</td>
+                            <td><?php echo htmlspecialchars($campsite['description']); ?></td>
+                            <td><?php echo htmlspecialchars($campsite['address']); ?></td>
                             <td><?php echo htmlspecialchars($campsite['zipcode']); ?></td>
                             <td>
                                 <form method="GET" action="create_campsite">

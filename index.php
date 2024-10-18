@@ -161,7 +161,7 @@ $routes = [
         'controller' => 'AdminTrailsController',
         'method' => 'manageTrails',
     ],
-    'manage_campsite' => [
+    'manage_campsites' => [
         'controller' => 'AdminCampsitesController',
         'method' => 'manageCampsites',
     ],

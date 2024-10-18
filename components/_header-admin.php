@@ -32,7 +32,7 @@
         <div class="name-admin">
             <img id="hamb" class="pic-nav-admin" src="assets/icon/hamb.svg" alt="icon hamb" sytle="z-index:2;">
             <img class="pic-nav-admin" src="assets/icon/users.svg" alt="avatar admin">
-            <p>Bonjour, nom de l'admin</p>
+            <p>Ravie de vous voir !</p>
         </div>
         <div class="icon-admin">
             <a href="home"><img class="pic-nav-admin" src="assets/icon/home.svg" alt="icon home"></a>

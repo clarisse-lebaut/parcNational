@@ -40,7 +40,7 @@ class AdminReportsController extends Controller
 
         if ($reportsCount !== false && !empty($reports)) {
             // Passe tous les rapports en une seule fois à la vue
-            $this->render('admin/manage_reports', [
+            $this->render('manage_reports', [
                 'total_reports' => $reportsCount['total'],
                 'name_report' => $namereports,
                 'reports' => $reports,  // Tous les rapports sont passés à la vue
@@ -146,7 +146,7 @@ class AdminReportsController extends Controller
         }
 
         // Rendre la vue avec les données du rapport (pour l'édition) et les ressources
-        $this->render('admin/create_reports', [
+        $this->render('create_reports', [
             'reportData' => $reportData,
             'isEdit' => $isEdit,
             'ressources' => $ressources // Passer les ressources à la vue

@@ -22,7 +22,7 @@ class AdminRessourcesController extends Controller {
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des ressources
-                $this->redirect('admin/manage_ressources');
+                $this->redirect('manage_ressources');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer cette ressource.";
@@ -37,7 +37,7 @@ class AdminRessourcesController extends Controller {
 
         if ($ressourcesCount !== false && !empty($ressources)) {
             // Passe toutes les ressources en une seule fois à la vue
-            $this->render('admin/manage_ressources', [
+            $this->render('manage_ressources', [
                 'total_ressources' => $ressourcesCount['total'],
                 'name_ressources' => $nameRessources,
                 'ressources' => $ressources,  // Toutes les ressources sont passées à la vue
@@ -163,7 +163,7 @@ class AdminRessourcesController extends Controller {
                     );
 
                     if ($updateSuccess) {
-                        $this->redirect('admin/manage_ressources');
+                        $this->redirect('manage_ressources');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour de la ressource.';
@@ -180,7 +180,7 @@ class AdminRessourcesController extends Controller {
                         $level,
                         $precaution,
                         $image)) {
-                        $this->redirect('admin/manage_ressources');
+                        $this->redirect('manage_ressources');
                         exit;
                     } else {
                         echo 'Erreur lors de la création de la ressource.';
@@ -190,7 +190,7 @@ class AdminRessourcesController extends Controller {
         }
 
         // Rendre la vue avec les données de la ressource (pour l'édition)
-        $this->render('admin/create_ressources', ['ressourceData' => $ressourcesData, 'isEdit' => $isEdit]);
+        $this->render('create_ressources', ['ressourceData' => $ressourcesData, 'isEdit' => $isEdit]);
     }
 
     public function getDatabaseConnection(){

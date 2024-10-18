@@ -5,6 +5,7 @@
     <title><?php echo $isEdit ? 'Modifier Administrateur' : 'Créer Administrateur'; ?></title>
     <link rel="stylesheet" href="assets/style/admin/manage.css">
     <link rel="stylesheet" href="assets/style/config/form.css">
+    <link rel="stylesheet" href="assets/style/admin/create.css">
 </head>
 <body>
     <header>

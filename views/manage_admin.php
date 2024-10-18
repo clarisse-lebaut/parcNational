@@ -17,13 +17,11 @@
                 <img src="assets/icon/admin.svg" alt="icon admin">
                 <div><?php echo htmlspecialchars($total_admin); ?></div>
             </div>
-            
-            <a href="create_admin">
-                <div>
-                    <p>Ajouter un administrateur</p>
-                    <img src="assets/icon/add.svg" alt="icon add">
-                </div> 
-            </a>
+
+            <div>
+                <a href="create_admin"><p>Ajouter un administrateur</p></a>
+                <a href="create_admin"><img src="assets/icon/add.svg" alt="icon add"></a>
+            </div> 
         </section>
 
         <section class="board">
