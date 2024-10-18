@@ -11,7 +11,7 @@ main > section {
   border-radius: 10px;
   padding: 10px;
   box-shadow: lightgray 0 5px 15px 0;
-  background-color: white;
+  background: linear-gradient(to right, #add8e6, #e6e6fa);
   margin-bottom: 50px;
 }
 
@@ -32,9 +32,9 @@ main > section > section > div {
   margin: 10px;
   text-align: center;
   padding: 10px;
-  box-shadow: lightgray 0 5px 15px 0;
   border-radius: 50% 20% / 10% 40%;
-  background-color: var(--lmblue);
+  background-color: #f8f8f8;
+  border: var(--darkblue) solid 1px;
 }
 
 /* ------------ */
