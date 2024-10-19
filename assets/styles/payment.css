@@ -1,0 +1,62 @@
+.payment-card {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 45%; 
+    box-sizing: border-box; 
+}
+
+.payment-container {
+    display: flex;
+    justify-content: center; 
+    gap: 20px; 
+    flex-wrap: wrap; 
+}
+
+/* Pour les écrans plus petits (mobiles) : cartes empilées */
+@media (max-width: 768px) {
+    .payment-card {
+        width: 100%; /* Les cartes prennent 100% de la largeur sur mobile */
+    }
+}
+
+.payment-container {
+    justify-content: center;
+    align-items: center;
+}
+
+#payment-form button,
+#promo-form button {
+    width: auto; 
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+}
+
+#payment-form button:hover,
+#promo-form button:hover {
+    background-color: #45a049;
+}
+
+#promo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#promo-form input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}  

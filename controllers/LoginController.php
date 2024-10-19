@@ -33,7 +33,7 @@ class LoginController extends Controller
                     $this->redirect('home');
                 } else if ($dbUser['role'] == 2) {
                     // $this->checkAdmin();
-                    $this->redirect('home');
+                    $this->redirect('admin_home');
                 }
             } else {
                 $this->render('login', ['error' => 'Données incorrectes']);
@@ -102,7 +102,7 @@ class LoginController extends Controller
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['user_role'] = $user['role'];
             if ($user['role'] != 1) {
-                $this->redirect('homePageAdmin');
+                $this->redirect('admin_home');
             } else {
                 $this->redirect('');
             }

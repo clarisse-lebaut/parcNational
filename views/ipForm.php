@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gerer IP</title>
     <link rel="stylesheet" href="/parcNational/assets/style/ip-form.css">
 </head>
 <body>

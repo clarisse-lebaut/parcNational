@@ -88,4 +88,10 @@ class User extends Model{
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$token]);
     }
+
+    public function updateUser($userId, $data){
+    $sql = 'UPDATE users SET firstname = ?, lastname = ?, mail = ?, phone = ?, address = ?, city = ?, zipcode = ? WHERE user_id = ?';
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$data['firstname'], $data['lastname'], $data['mail'], $data['phone'], $data['address'], $data['city'], $data['zipcode'], $userId]);
+    }
 }

@@ -6,6 +6,36 @@
     padding: 0 5%;
 }
 
+.user-info-parent{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first{
+    margin-right: 50px;
+}
+.second{
+    margin-right: 30px;
+}
+.third{
+    margin-right: 10px;
+}
+.fourth{
+    margin-right: 40px;
+}
+.fifth{
+    margin-right: 60px;
+}
+.sixt{
+    margin-right: 10px;
+}
 .membership{
     background-color: var(--lmblue);
     margin: 1% 0;

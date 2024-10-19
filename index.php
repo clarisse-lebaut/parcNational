@@ -220,6 +220,22 @@ $routes = [
     'manage-completed-trail' => [
         'controller' => 'CompletedTrailsController',
         'method' => 'manageCompletedTrail',
+    ],
+    'campsite' => [
+        'controller' => 'campsiteController',
+        'method' => 'getCampsiteById',
+    ],
+    'reservationHistory' => [
+        'controller' => 'reservationController',
+        'method' => 'createReservation',
+    ],
+    'update-profile' => [
+        'controller' => 'ProfileController',
+        'method' => 'updateProfile',
+    ],
+    'profile-form' =>[
+        'controller' => 'ProfileController',
+        'method' => 'ProfileForm',
     ]
 ];
 

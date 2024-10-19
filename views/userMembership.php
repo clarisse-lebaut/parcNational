@@ -23,17 +23,17 @@
             ?></p>       
             <p>Identificateur: 
             <?php
-                echo htmlspecialchars($membership['random_id']); 
+                echo htmlspecialchars($membership['random_id']??''); 
             ?></p>
             <p>Date de début: 
             <?php 
-                $deliveryDate = new DateTime($membership['delivery_date']);
+                $deliveryDate = new DateTime($membership['delivery_date']??'');
                 echo htmlspecialchars($deliveryDate->format('Y-m-d H:i')); 
             ?>
             </p>
             <p>Date d'expiration: 
             <?php 
-                $expiryDate = new DateTime($membership['expiry_date']);
+                $expiryDate = new DateTime($membership['expiry_date']??'');
                 echo htmlspecialchars($expiryDate->format('Y-m-d H:i'));
             ?>
             </p>

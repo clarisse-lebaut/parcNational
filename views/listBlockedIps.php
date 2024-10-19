@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Blocked IPs</title>
+    <title>List des IPs bloqués</title>
     <link rel="stylesheet" href="/parcNational/assets/style/ip-block.css">
 </head>
 <body>

@@ -39,10 +39,10 @@
                             <td><?php echo htmlspecialchars($user['lastname']); ?></td>
                             <td><?php echo htmlspecialchars($user['firstname']); ?></td>
                             <td><?php echo htmlspecialchars($user['mail']); ?></td>
-                            <td><?php echo htmlspecialchars($user['phone']); ?></td>
-                            <td><?php echo htmlspecialchars($user['address']); ?></td>
-                            <td><?php echo htmlspecialchars($user['city']); ?></td>
-                            <td><?php echo htmlspecialchars($user['zipcode']); ?></td>
+                            <td><?php echo htmlspecialchars($user['phone']??''); ?></td>
+                            <td><?php echo htmlspecialchars($user['address']??''); ?></td>
+                            <td><?php echo htmlspecialchars($user['city']??''); ?></td>
+                            <td><?php echo htmlspecialchars($user['zipcode']??''); ?></td>
                             <td>
                                 <form method="POST" action="manage_users" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                                     <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">    
