@@ -1,7 +1,10 @@
 <?php 
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class ManageReports {
+class ManageReports extends Model {
+    public function __construct($table){
+        parent::__construct($table);
+    }
     public function get_reports($bdd) {
         $stmt = $bdd->prepare("SELECT reports.*, natural_ressources.name AS ressource_name FROM reports LEFT JOIN natural_ressources ON reports.resource_id = natural_ressources.ressource_id");
         $stmt->execute();

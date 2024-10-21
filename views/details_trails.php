@@ -144,21 +144,22 @@
             </div>
         </section>
 
-        <section class="other_trails">
-            <h2>Slider des autres sentiers</h2>
-            <div class="slider">
-                <div class="slider_elements">
-                    <?php foreach ($trails as $trail): ?>
-                        <div class="card_trails">
-                            <a href="details_trails?id=<?php echo urlencode($trail['trail_id']); ?>">
-                                <p><?php echo htmlspecialchars($trail['name']); ?></p>
-                                <img class="pic-slider" src="<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>" width="200">
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
+<section class="other_trails">
+    <h2>Slider des autres sentiers</h2>
+    <div class="slider">
+        <div class="slider_elements">
+            <?php foreach ($trails as $trail): ?>
+                <div class="card_trails">
+                    <a href="details_trails?id=<?php echo urlencode($trail['trail_id']); ?>">
+                        <p><?php echo htmlspecialchars($trail['name']); ?></p> <!-- Affiche le nom -->
+                        <img class="pic-slider" src="<?php echo htmlspecialchars($trail['image']); ?>" alt="<?php echo htmlspecialchars($trail['name']); ?>" width="200"> <!-- Affiche l'image -->
+                    </a>
                 </div>
-            </div>
-        </section>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
     </main>
     <footer>
         <?php include "components/_footer.php"; ?>

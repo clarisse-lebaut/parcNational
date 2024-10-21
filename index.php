@@ -224,7 +224,7 @@ $urlArray = explode('?', $url);
 if(isset($routes[$urlArray[0]])){
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
-   // var_dump($methodName);
+    // var_dump($methodName);
 
     require_once 'models/BlockIp.php';
     $blockIp = new BlockIp('block_ips');
@@ -237,7 +237,13 @@ if(isset($routes[$urlArray[0]])){
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
-    $object = new $className; 
+    if ($className == 'HomeController') {
+        $object = new $className('news'); // 'news' est le nom de la table utilisée pour récupérer les actualités
+    } elseif ($className == 'TrailsController') {
+        $object = new $className('trails'); // 'trails' est le nom de la table utilisée pour les sentiers
+    } else {
+        $object = new $className; // Pour les autres contrôleurs qui ne nécessitent pas de paramètres
+    }
     $object->{$methodName}();
     
 }else{

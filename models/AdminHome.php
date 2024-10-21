@@ -1,7 +1,10 @@
 <?php 
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class AdminData {
+class AdminData extends Model {
+    public function __construct($table){
+        parent::__construct($table);
+    }
     public function get_user($bdd){
         $sql = "SELECT * FROM users";
         $stmt = $bdd->prepare($sql);

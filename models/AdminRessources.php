@@ -1,7 +1,10 @@
 <?php 
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class ManageRessources {
+class ManageRessources extends Model {
+    public function __construct($table){
+        parent::__construct($table);
+    }
     public function get_ressources($bdd) {
         $stmt = $bdd->prepare("SELECT * FROM natural_ressources");
         $stmt->execute();

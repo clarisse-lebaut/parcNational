@@ -1,7 +1,11 @@
 <?php
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class ManageTrails {
+class ManageTrails extends Model {
+
+    public function __construct($table){
+        parent::__construct($table);
+    }
     public function count_trails($bdd) {
         $stmt = $bdd->prepare("SELECT COUNT(*) as total FROM trails");
         $stmt->execute();

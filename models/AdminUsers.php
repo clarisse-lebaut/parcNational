@@ -1,7 +1,11 @@
 <?php 
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class Users {
+class Users extends Model {
+
+    public function __construct($table){
+        parent::__construct($table);
+    }
 
     // Requête pour récupérer certains éléménts de l'utilisateur connecté
     public function get_user_by_id($bdd, $user_id) {

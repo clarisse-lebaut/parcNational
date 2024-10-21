@@ -1,7 +1,10 @@
 <?php 
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class ManageCampsites {
+class ManageCampsites extends Model {
+    public function __construct($table){
+        parent::__construct($table);
+    }
     public function get_campsites($bdd) {
         $stmt = $bdd->prepare("SELECT * FROM campsite");
         $stmt->execute();
