@@ -3,31 +3,38 @@ require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../models/ReservationModel.php';
 require_once __DIR__ . '/../controllers/Controller.php';  
 
-class CampsiteController {
+class CampsiteController extends Controller {
 
     private $campsiteModel;
     private $reservationModel;
 
-    public function __construct(CampsiteModel $campsiteModel) {
-        $this->campsiteModel = $campsiteModel; 
-        $this->reservationModel = new ReservationModel(); // Pour gérer la capacité en fonction des réservations
+    public function __construct() {
+        $this->campsiteModel = new CampsiteModel();
+        $this->reservationModel = new ReservationModel(); 
     }
 
     // 1. Récupérer tous les campings
     public function getAllCampsites() {
-        return $this->campsiteModel->getAllCampsites();
-    }
-    
-    // 2. Récupérer un camping par ID
+        $campsites = $this->campsiteModel->getAllCampsites();
+
+        // Mise à jour de la disponibilité et statut
+        foreach ($campsites as &$campsite) {
+            $events = $this->getVacationEvents($campsite['campsite_id']);
+            $campsite['isClosed'] = $this->isClosedToday($events);
+            $campsite['availability'] = $this->checkAvailability($campsite['campsite_id']);
+        }
+
+        $this->render('campsite', ['campsites' => $campsites]);
+    }            
+
     public function getCampsiteById($campsite_id) {
+        echo "ID reçu dans CampsiteController : " . $campsite_id . "<br>";
         $campsite = $this->campsiteModel->getCampsiteById($campsite_id);
-        if ($campsite) {
-            $this->updateStatusBasedOnVacation($campsite_id, $campsite);
-            if ($campsite['status']) {
-                $this->render('campsiteDetails', ['campsite' => $campsite]);
-            }
+        if ($campsite) { //MAJ du statut + rendu de la view
+            $this->updateStatusBasedOnVacation($campsite_id, $campsite); 
+            $this->render('campsiteDetails', ['campsite' => $campsite]); 
         } else {
-            return null;
+            echo "Camping non trouvé.";
         }
     }
     
@@ -65,11 +72,11 @@ class CampsiteController {
         $newStatus = $isClosed ? 'Fermé' : 'Ouvert';
         
         if ($campsite['status'] !== $newStatus) {
-            if ($this->campsiteModel->updateStatus($campsite_id, $newStatus)) {
-                $campsite['status'] = $newStatus;
-            }
+            $this->campsiteModel->updateStatus($campsite_id, $newStatus);
+            $campsite['status'] = $newStatus;
         }
     }
+
     // 7. Obtenir les vacances d'un camping
     public function getVacationEvents($campsite_id) {
         $events = [];
@@ -88,10 +95,10 @@ class CampsiteController {
     
         return $events;
     }
-        
+
     // 8. Vérifier si aujourd'hui se trouve dans une période de fermeture
     public function isClosedToday($events) {
-        $today = date('d-m-Y');
+        $today = date('Y-m-d'); 
         foreach ($events as $event) {
             if ($today >= $event['start'] && $today <= $event['end']) {
                 return true;
