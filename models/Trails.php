@@ -162,74 +162,131 @@ class Trails extends Model {
         ];
     }
 
-    public function get_map_trails_data() {
-        $sql = "SELECT t.trail_id, t.name, pg.part_number, pg.coordinate_number, pg.longitude, pg.latitude
-                FROM trails t
-                JOIN position_geographic pg ON t.trail_id = pg.trail_id
-                ORDER BY t.trail_id, pg.part_number, pg.coordinate_number";
+public function get_map_landmarks_data() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
+    header('Content-Type: application/json');
 
-        $trails = [];
-        $currentTrailId = null;
-        $currentLineString = [];
-        $currentPartNumber = null;
+    // Récupérer tous les points d'intérêt + ID du sentier
+    $sql = "SELECT lt.landmark_id, l.name, lt.trail_id, l.longitude, l.latitude, l.image 
+            FROM landmarks l
+            JOIN landmarks_trails lt ON l.landmark_id = lt.landmark_id";
 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $trailId = $row['trail_id'];
-            $partNumber = $row['part_number'];
+    // Utiliser $this->pdo pour préparer la requête
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
 
-            if ($currentTrailId !== null && $currentTrailId !== $trailId) {
-                if (!empty($currentLineString)) {
-                    $trails[$currentTrailId]['linestrings'][] = $currentLineString;
-                }
-                $currentLineString = [];
-            }
-
-            if ($currentPartNumber !== null && $currentPartNumber !== $partNumber) {
-                if (!empty($currentLineString)) {
-                    $trails[$trailId]['linestrings'][] = $currentLineString;
-                }
-                $currentLineString = [];
-            }
-
-            $currentLineString[] = [(float)$row['longitude'], (float)$row['latitude']];
-            $currentPartNumber = $partNumber;
-            $currentTrailId = $trailId;
-
-            if (!isset($trails[$trailId])) {
-                $trails[$trailId] = [
-                    'trail_id' => $trailId,
-                    'name' => $row['name'],
-                    'linestrings' => []
-                ];
-            }
-        }
-
-        if (!empty($currentLineString)) {
-            $trails[$currentTrailId]['linestrings'][] = $currentLineString;
-        }
-
-        $geojson = [
-            'type' => 'FeatureCollection',
-            'features' => []
+    $pois = [];
+    while ($poi = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $pois[] = [
+            'type' => 'Feature',
+            'geometry' => [
+                'type' => 'Point',
+                'coordinates' => [(float)$poi['longitude'], (float)$poi['latitude']]
+            ],
+            'properties' => [
+                'landmark_id' => $poi['landmark_id'],
+                'trail_id' => $poi['trail_id'], // Inclure l'ID du sentier
+                'name' => $poi['name'],
+                'image' => $poi['image']
+            ]
         ];
+    }
 
-        foreach ($trails as $trail) {
-            $geojson['features'][] = [
-                'type' => 'Feature',
-                'geometry' => [
-                    'type' => 'MultiLineString',
-                    'coordinates' => $trail['linestrings']
-                ],
-                'properties' => [
-                    'trail_id' => $trail['trail_id'],
-                    'name' => $trail['name']
-                ]
+    // Créer le GeoJSON
+    $geojson = [
+        'type' => 'FeatureCollection',
+        'features' => $pois
+    ];
+
+    return $geojson;  // Retourner le GeoJSON
+}
+
+public function get_map_trails_data() {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    header('Content-Type: application/json');
+
+    // Requête SQL pour récupérer tous les sentiers
+    $sql = "SELECT t.trail_id, t.name, pg.part_number, pg.coordinate_number, pg.longitude, pg.latitude
+            FROM trails t
+            JOIN position_geographic pg ON t.trail_id = pg.trail_id
+            ORDER BY t.trail_id, pg.part_number, pg.coordinate_number";
+
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute();
+
+    // Structure pour contenir tous les sentiers
+    $trails = [];
+    $currentTrailId = null;
+    $currentLineString = [];
+    $currentPartNumber = null;
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $trailId = $row['trail_id'];
+        $partNumber = $row['part_number'];
+
+        // Si nous changeons de sentier, sauvegardons le précédent
+        if ($currentTrailId !== null && $currentTrailId !== $trailId) {
+            if (!empty($currentLineString)) {
+                $trails[$currentTrailId]['linestrings'][] = $currentLineString;
+            }
+            $currentLineString = [];
+        }
+
+        // Si nous changeons de partie, ajoutons la ligne courante au sentier
+        if ($currentPartNumber !== null && $currentPartNumber !== $partNumber) {
+            if (!empty($currentLineString)) {
+                $trails[$trailId]['linestrings'][] = $currentLineString;
+            }
+            $currentLineString = [];
+        }
+
+        // Ajouter les coordonnées à la LineString courante
+        $currentLineString[] = [(float)$row['longitude'], (float)$row['latitude']];
+        $currentPartNumber = $partNumber;
+        $currentTrailId = $trailId;
+
+        // Stocker les informations du sentier
+        if (!isset($trails[$trailId])) {
+            $trails[$trailId] = [
+                'trail_id' => $trailId, // Ajouter l'ID du sentier
+                'name' => $row['name'],
+                'linestrings' => []
             ];
         }
-
-        return $geojson;
     }
+
+    // Ajouter la dernière LineString si nécessaire
+    if (!empty($currentLineString)) {
+        $trails[$currentTrailId]['linestrings'][] = $currentLineString;
+    }
+
+    // Créer le GeoJSON
+    $geojson = [
+        'type' => 'FeatureCollection',
+        'features' => []
+    ];
+
+    foreach ($trails as $trailId => $trail) {
+        $geojson['features'][] = [
+            'type' => 'Feature',
+            'geometry' => [
+                'type' => 'MultiLineString',
+                'coordinates' => $trail['linestrings']
+            ],
+            'properties' => [
+                'name' => $trail['name'],
+                'trail_id' => $trail['trail_id']  // Ajouter l'ID du sentier ici
+            ]
+        ];
+    }
+
+    return $geojson;  // Retourner le GeoJSON
+}
+
 }
