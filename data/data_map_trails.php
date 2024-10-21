@@ -1,5 +1,5 @@
 <?php 
-include '../config/connectBDD.php';
+require_once '../models/Model.php';
 include '../controllers/TrailsController.php'; // Contient la fonction
 
 $trailsModel = new Trails('trails'); // Passer la connexion à Trails
