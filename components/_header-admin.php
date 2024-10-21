@@ -42,12 +42,8 @@
     </nav>
     <section class="data-admin">
         <div>
-            <p>Adresse mail de l'admin : récupérer l'adresse mail</p>
-            <button><img src="assets/icon/edit.svg" alt="icon edit"></button>
-        </div>
-        <div>
-            <p>Mot de passe : *********</p>
-            <button><img src="assets/icon/edit.svg" alt="icon edit"></button>
+            <p>Modifier mon profil</p>
+            <a href=""><button><img src="assets/icon/edit.svg" alt="icon edit"></button></a>
         </div>
     </section>
 
