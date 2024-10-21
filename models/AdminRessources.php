@@ -5,40 +5,40 @@ class ManageRessources extends Model {
     public function __construct($table){
         parent::__construct($table);
     }
-    public function get_ressources($bdd) {
-        $stmt = $bdd->prepare("SELECT * FROM natural_ressources");
+    public function get_ressources() {
+        $stmt = $this->pdo->prepare("SELECT * FROM natural_ressources");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_ressources_by_id($bdd, $ressource_id) {
-        $stmt = $bdd->prepare("SELECT * FROM natural_ressources WHERE ressource_id = :ressource_id");
+    public function get_ressources_by_id($ressource_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM natural_ressources WHERE ressource_id = :ressource_id");
         $stmt->bindParam(':ressource_id', $ressource_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer une seule ligne
     }
 
-    public function count_ressources($bdd) {
-        $stmt = $bdd->prepare("SELECT COUNT(*) as total FROM natural_ressources");
+    public function count_ressources() {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM natural_ressources");
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function name_ressources($bdd) {
-        $stmt = $bdd->prepare("SELECT name FROM natural_ressources LIMIT 1");
+    public function name_ressources() {
+        $stmt = $this->pdo->prepare("SELECT name FROM natural_ressources LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['name'] ?? null; // Retourne le nom ou null si aucune ressource
     }
 
-    public function delete($bdd, $ressource_id) {
-        $stmt = $bdd->prepare("DELETE FROM natural_ressources WHERE ressource_id = :ressource_id");
+    public function delete($ressource_id) {
+        $stmt = $this->pdo->prepare("DELETE FROM natural_ressources WHERE ressource_id = :ressource_id");
         $stmt->bindParam(':ressource_id', $ressource_id, PDO::PARAM_INT);
         return $stmt->execute(); // Exécuter la requête et retourner le résultat
     }
 
-    public function create_ressource($bdd, $name, $type, $location, $floraison, $description, $level, $precautions, $image) {
-        $stmt = $bdd->prepare("INSERT INTO natural_ressources (name, type, location, floraison, description, level, precautions, image) 
+    public function create_ressource($name, $type, $location, $floraison, $description, $level, $precautions, $image) {
+        $stmt = $this->pdo->prepare("INSERT INTO natural_ressources (name, type, location, floraison, description, level, precautions, image) 
                             VALUES (:name, :type, :location, :floraison, :description, :level, :precautions, :image)");
         return $stmt->execute([
             ':name' => $name,
@@ -53,7 +53,7 @@ class ManageRessources extends Model {
     }
 
     // Mettre à jour une ressource
-    public function update_ressources($bdd, $ressource_id, $name, $type, $location, $floraison, $level, $precautions, $description = null) {
+    public function update_ressources($ressource_id, $name, $type, $location, $floraison, $level, $precautions, $description = null) {
         // Construire la requête SQL
         $sql = "UPDATE natural_ressources SET name = :name, type = :type, location = :location, floraison = :floraison, level = :level, precautions = :precautions";
 
@@ -64,7 +64,7 @@ class ManageRessources extends Model {
 
         $sql .= " WHERE ressource_id = :ressource_id";
 
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
         // Lier les paramètres
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);

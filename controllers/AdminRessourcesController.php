@@ -6,11 +6,9 @@ require_once __DIR__ . '/../models/AdminRessources.php';
 class AdminRessourcesController extends Controller {
 
     private $model;
-    private $bdd;
     
     public function __construct(){
-        $this->model = new ManageRessources();
-        $this->bdd = $this->getDatabaseConnection();
+        $this->model = new ManageRessources('natural_ressources');
     }
 
     public function manageRessources() {
@@ -18,7 +16,7 @@ class AdminRessourcesController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ressource_id']) && !empty($_POST['ressource_id'])) {
             $ressource_id = intval($_POST['ressource_id']);
             
-            $deleteSuccess = $this->model->delete($this->bdd, $ressource_id);
+            $deleteSuccess = $this->model->delete($ressource_id);
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des ressources
@@ -30,10 +28,10 @@ class AdminRessourcesController extends Controller {
         }
 
         // Récupération du nombre total de ressources et des données associées
-        $ressourcesCount = $this->model->count_ressources($this->bdd);
-        $nameRessources = $this->model->name_ressources($this->bdd);
+        $ressourcesCount = $this->model->count_ressources();
+        $nameRessources = $this->model->name_ressources();
         // Récupération de toutes les ressources
-        $ressources = $this->model->get_ressources($this->bdd);
+        $ressources = $this->model->get_ressources();
 
         if ($ressourcesCount !== false && !empty($ressources)) {
             // Passe toutes les ressources en une seule fois à la vue
@@ -63,7 +61,7 @@ class AdminRessourcesController extends Controller {
         // Si en mode édition, récupérer les informations de la ressource
         if ($isEdit) {
             // Récupérer la ressource par ID
-            $resource = $this->model->get_ressources_by_id($this->bdd, $ressource_id);
+            $resource = $this->model->get_ressources_by_id($ressource_id);
 
             // Vérifier si la ressource a été trouvée
             if ($resource) {
@@ -150,7 +148,6 @@ class AdminRessourcesController extends Controller {
                 if ($isEdit) {
                     // Mise à jour de la ressource dans la base de données
                     $updateSuccess = $this->model->update_ressources(
-                        $this->bdd,
                         $ressource_id,
                         $name,
                         $type,
@@ -171,7 +168,6 @@ class AdminRessourcesController extends Controller {
                 } else {
                     // Création d'une nouvelle ressource
                     if ($this->model->create_ressource(
-                        $this->bdd,
                         $name,
                         $type,
                         $location,
@@ -191,10 +187,5 @@ class AdminRessourcesController extends Controller {
 
         // Rendre la vue avec les données de la ressource (pour l'édition)
         $this->render('create_ressources', ['ressourceData' => $ressourcesData, 'isEdit' => $isEdit]);
-    }
-
-    public function getDatabaseConnection(){
-        $connectBDD = new ConnectBDD();
-        return $connectBDD->bdd;
     }
 }
