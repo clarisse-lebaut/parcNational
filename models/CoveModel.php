@@ -3,7 +3,7 @@ class CoveModel {
     private $db;
 
     public function __construct() {
-        $this->db = (new ConnectBDD())->getDb();
+        $this->db = (new ConnectBD())->getDb();
     }
 
     // Récupérer toutes les calanques

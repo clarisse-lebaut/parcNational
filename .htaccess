@@ -1,25 +1,13 @@
 <IfModule mod_rewrite.c>
-   RewriteEngine On
-
-   # Ne pas réécrire si le fichier ou le dossier existe
-   RewriteCond %{REQUEST_FILENAME} -f [OR]
-   RewriteCond %{REQUEST_FILENAME} -d
-   RewriteRule ^ - [L]
-
-   # Ne pas réécrire les requêtes pour les fichiers statiques (css, js, images, polices)
-   RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot)$ [NC]
-
-   # Réécrire toutes les autres requêtes vers index.php
-   RewriteRule ^(.*)$ index.php [L,QSA]
-</IfModule>
-
-<IfModule mod_rewrite.c>
     RewriteEngine On
 
     # Ne pas réécrire si le fichier ou le dossier existe
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
+
+    # Ne pas réécrire les requêtes pour les fichiers statiques (css, js, images, polices)
+    RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|otf|eot)$ [NC]
 
     # Exception pour reservationHistory.php (ou d'autres fichiers spécifiques)
     RewriteCond %{REQUEST_URI} !^/parcNational/views/reservationHistory.php$

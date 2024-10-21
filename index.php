@@ -14,17 +14,14 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $routes = [
-    //The login displays the login page, then selects the Controller and the method
     'login' => [
         'controller' => 'LoginController', 
         'method' => 'login',
     ],
-    //Display register Page
     'register' => [
         'controller' => 'RegisterController',
         'method' => 'registerView',
     ],
-    //Save register form
     'register-form' => [
         'controller' => 'RegisterController',
         'method' => 'registerSaveForm',
@@ -61,20 +58,20 @@ $routes = [
         'controller' => 'IpController',
         'method' => 'getBlockIp',
     ],
-    'facebook-login' =>[
-        'controller' => 'Logincontroller',
+    'facebook-login' => [
+        'controller' => 'LoginController',
         'method' => 'loginUsingFacebook',
     ],
     'forgot-password' => [
-        'controller' => 'loginController',
+        'controller' => 'LoginController',
         'method' => 'forgotPassword',
     ],
     'reset-password' => [
-        'controller' => 'loginController',
+        'controller' => 'LoginController',
         'method' => 'resetPassword',
     ],
     'reset-password-request' => [
-        'controller' => 'loginController',
+        'controller' => 'LoginController',
         'method' => 'resetPasswordRequest',
     ],
     'all-memberships' => [
@@ -85,19 +82,19 @@ $routes = [
         'controller' => 'AdminMembershipController',
         'method' => 'viewActiveMemberships'
     ],
-    'add-membership' =>[
+    'add-membership' => [
         'controller' => 'UserMembershipController',
         'method' => 'addMember',
     ],
-    'payment-success' =>[
+    'payment-success' => [
         'controller' => 'PaymentStatusController',
         'method' => 'paymentSuccess',
     ],
-    'payment-failed' =>[
+    'payment-failed' => [
         'controller' => 'PaymentStatusController',
         'method' => 'paymentFailed',
     ],
-    'user-membership' =>[
+    'user-membership' => [
         'controller' => 'UserMembershipController',
         'method' => 'viewMembership',
     ],
@@ -105,7 +102,7 @@ $routes = [
         'controller' => 'UserMembershipController',
         'method' => 'subscribeMembership',
     ],
-    'subscribe-membership' =>[
+    'subscribe-membership' => [
         'controller' => 'UserMembershipController',
         'method' => 'subscribeMembership',
     ],
@@ -216,30 +213,79 @@ $routes = [
     'profile' => [
         'controller' => 'ProfileController',
         'method' => 'viewProfile',
-    ]
+    ],
+
+ 'campsite' => [
+    'controller' => 'CampsiteController',
+    'method' => 'getAllCampsites',
+],
+'campsiteDetails' => [
+    'controller' => 'CampsiteController',
+    'method' => 'getCampsiteById',
+],
+
+'reservation_history' => [
+    'controller' => 'ReservationController',
+    'method' => 'getReservationsByUser',
+],
+
+'coves' => [
+    'controller' => 'CoveController',
+    'method' => 'getAllCoves',
+],
+
+// Routes pour les ressources naturelles
+'ressources' => [
+    'controller' => 'RessourceController',
+    'method' => 'getAllRessources',
+],
+'ressourceDetails' => [
+    'controller' => 'RessourceController',
+    'method' => 'getRessourceById',
+],
 ];
 
-$url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
+// Nettoyage et traitement de l'URL
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
+$url = trim($url, '/'); 
+$url = str_replace('.php', '', $url);
+$url = str_replace('parcNational', '', $url);
+
 $urlArray = explode('?', $url);
-if(isset($routes[$urlArray[0]])){
+
+if (isset($routes[$urlArray[0]])) {
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
-   // var_dump($methodName);
 
     require_once 'models/BlockIp.php';
     $blockIp = new BlockIp('block_ips');
-    if($blockIp->isIpBlocked()){
-        echo 'Your Ip is blocked';
+    if ($blockIp->isIpBlocked()) {
+        echo 'Your IP is blocked';
         return;
     }
+
     require_once 'models/Log.php';
     $log = new Log('logs');
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
-    $object = new $className; 
+    // Si le contrôleur est 'CoveController' ou 'CampsiteController', on passe le modèle au constructeur
+    if ($className === 'CoveController') {
+        require_once 'models/CoveModel.php';
+        $coveModel = new CoveModel();
+        $object = new CoveController($coveModel);
+    } elseif ($className === 'CampsiteController') {
+        require_once 'models/CampsiteModel.php';
+        $campsiteModel = new CampsiteModel();
+        $object = new CampsiteController($campsiteModel);
+    } else {
+        // Pour tous les autres contrôleurs, on les crée sans argument
+        $object = new $className;
+    }
+
+    // Appeler la méthode du contrôleur
     $object->{$methodName}();
-    
-}else{
+
+} else {
     var_dump("pas d'adresse");
 }
