@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once  __DIR__ . '/../models/Model.php';
 require_once __DIR__ . '/../models/AdminUsers.php';
 
 class AdminUsersController extends Controller
