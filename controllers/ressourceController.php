@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/ressourceModel.php';
+require_once __DIR__ . '/../models/RessourceModel.php';
 require_once __DIR__ . '/../controllers/Controller.php';
 
 class RessourceController extends Controller {
@@ -7,23 +7,25 @@ class RessourceController extends Controller {
     private $ressourceModel;
 
     public function __construct() {
-        $this->ressourceModel = new RessourceModel();
+        $this->ressourceModel = new RessourceModel();  // Instancie le modèle de ressource
     }
 
+    // 1. Récupérer toutes les ressources naturelles
     public function getAllRessources() {
-        return $this->ressourceModel->getAllRessources(); // retourne directement le résultat
+        $ressources = $this->ressourceModel->getAllRessources();
+        $this->render('ressource', ['ressources' => $ressources]);  // Rendu de la vue 'ressource'
     }
-    
+        
     // 2. Récupérer une ressource par ID
     public function getRessourceById($ressource_id) {
         $ressource = $this->ressourceModel->getRessourceById($ressource_id);
         if ($ressource) {
-            $this->render('ressourceDetails', ['ressource' => $ressource]);
+            $this->render('ressourceDetails', ['ressource' => $ressource]);  // Rendu de la vue 'ressourceDetails'
         } else {
-            return null;
+            echo "Ressource non trouvée.";
         }
     }
-
+    
     // 3. Créer une nouvelle ressource naturelle
     public function createRessource($name, $type, $location, $floraison, $description, $level, $precautions, $image) {
         if ($this->ressourceModel->createRessource($name, $type, $location, $floraison, $description, $level, $precautions, $image)) {

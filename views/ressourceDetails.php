@@ -1,18 +1,3 @@
-<?php
-require_once __DIR__ . '/../models/ressourceModel.php';
-
-$ressourceModel = new RessourceModel();
-
-// Récupérer l'ID de la ressource depuis l'URL puis ses détails grâce au modèle
-$ressource_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-if ($ressource_id > 0) {
-    $ressource = $ressourceModel->getRessourceById($ressource_id);
-} else {
-    $ressource = null;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

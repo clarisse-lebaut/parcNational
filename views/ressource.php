@@ -1,14 +1,3 @@
-<?php
-require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../models/ressourceModel.php';
-require_once __DIR__ . '/../controllers/ressourceController.php';
-
-$ressourceModel = new RessourceModel();
-$ressourceController = new RessourceController($ressourceModel);
-
-$ressources = $ressourceController->getAllRessources();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
