@@ -75,7 +75,7 @@
                                 </form>
                             </td>
                             <td>
-                                <form method="POST" action="manage_campsite" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce camping ?');">
+                                <form method="POST" action="manage_campsites" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce camping ?');">
                                     <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
                                     <button class="del-button" type="submit"><img src="assets/icon/delete.svg" alt="icon delete"></button>
                                 </form>

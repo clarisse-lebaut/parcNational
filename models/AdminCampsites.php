@@ -5,36 +5,36 @@ class ManageCampsites extends Model {
     public function __construct($table){
         parent::__construct($table);
     }
-    public function get_campsites($bdd) {
-        $stmt = $bdd->prepare("SELECT * FROM campsite");
+    public function get_campsites() {
+        $stmt = $this->pdo->prepare("SELECT * FROM campsite");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_campsites_by_id($bdd, $campsite_id) {
-        $stmt = $bdd->prepare("SELECT * FROM campsite WHERE campsite_id = :campsite_id");
+    public function get_campsites_by_id($campsite_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM campsite WHERE campsite_id = :campsite_id");
         $stmt->bindParam(':campsite_id', $campsite_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer une seule ligne
     }
 
-    public function count_campsites($bdd){
-        $stmt = $bdd->prepare("SELECT COUNT(*) as total FROM campsite");
+    public function count_campsites(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM campsite");
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function name_campsites($bdd) {
-        $stmt = $bdd->prepare("SELECT name FROM campsite LIMIT 1");
+    public function name_campsites() {
+        $stmt = $this->pdo->prepare("SELECT name FROM campsite LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['name'];  // Retourne uniquement le nom
     }
 
     // Méthode pour supprimer un utilisateur spécifique par son ID
-    public function delete($bdd, $campsite_id){
+    public function delete($campsite_id){
         $sql = "DELETE FROM campsite WHERE campsite_id = :campsite_id";
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':campsite_id', $campsite_id, PDO::PARAM_INT);
         if($stmt->execute()){
             return true;
@@ -43,8 +43,8 @@ class ManageCampsites extends Model {
         }
     }
 
-    public function create_campsites($bdd, $name, $description, $address, $city, $zipcode, $status, $max_capacity, $image) {
-        $stmt = $bdd->prepare("INSERT INTO campsite (name, description, address, city, zipcode, status, max_capacity, image) 
+    public function create_campsites($name, $description, $address, $city, $zipcode, $status, $max_capacity, $image) {
+        $stmt = $this->pdo->prepare("INSERT INTO campsite (name, description, address, city, zipcode, status, max_capacity, image) 
                             VALUES (:name, :description, :address, :city, :zipcode, :status, :max_capacity, :image)");
         return $stmt->execute([
             ':name' => $name,
@@ -59,7 +59,7 @@ class ManageCampsites extends Model {
     }
 
     // Mettre à jour un camping
-    public function update_campsites($bdd, $campsite_id, $name, $description, $address, $city, $zipcode) {
+    public function update_campsites($campsite_id, $name, $description, $address, $city, $zipcode) {
         // Construire la requête SQL
         $sql = "UPDATE campsite SET name = :name, city = :city, address = :address, zipcode = :zipcode";
 
@@ -70,7 +70,7 @@ class ManageCampsites extends Model {
 
         $sql .= " WHERE campsite_id = :campsite_id";
         
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
 
         // Lier les paramètres
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
