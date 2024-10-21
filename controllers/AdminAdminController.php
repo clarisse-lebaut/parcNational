@@ -7,12 +7,10 @@ class AdminAdminController extends Controller
 {
 
     private $model;
-    private $bdd;
 
     public function __construct()
     {
-        $this->model = new Users(); // Utiliser le modèle Users
-        $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
+        $this->model = new Users('users'); // Utiliser le modèle Users
     }
 
     //* Méthode pour afficher la vue des administrateurs
@@ -22,7 +20,7 @@ class AdminAdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && !empty($_POST['user_id'])) {
             $admin_id = intval($_POST['user_id']);
 
-            $deleteSuccess = $this->model->delete($this->bdd, $admin_id);
+            $deleteSuccess = $this->model->delete($admin_id);
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
@@ -34,8 +32,8 @@ class AdminAdminController extends Controller
         }
 
         // Si aucune suppression n'est demandée, on récupère et affiche les administrateurs
-        $admin = $this->model->get_admin($this->bdd); // Récupère les administrateurs
-        $countAdmin = $this->model->count_admin($this->bdd); // Compte le nombre d'administrateurs
+        $admin = $this->model->get_admin(); // Récupère les administrateurs
+        $countAdmin = $this->model->count_admin(); // Compte le nombre d'administrateurs
 
         // Vérifie si les administrateurs et le comptage sont corrects
         if ($countAdmin !== false && !empty($admin)) {
@@ -65,7 +63,7 @@ class AdminAdminController extends Controller
 
         // Si en mode édition, récupérer les informations de l'administrateur
         if ($isEdit) {
-            $admin = $this->model->get_admin($this->bdd, $user_id);  // Méthode pour récupérer un admin par ID
+            $admin = $this->model->get_admin($user_id);  // Méthode pour récupérer un admin par ID
 
             if ($admin) {
                 // Pré-remplir les champs du formulaire avec les données récupérées
@@ -135,7 +133,6 @@ class AdminAdminController extends Controller
                 if ($isEdit) {
                     // Mise à jour de l'administrateur dans la base de données
                     $updateSuccess = $this->model->update_admin(
-                        $this->bdd,
                         $user_id,
                         $lastname,
                         $firstname,
@@ -156,7 +153,7 @@ class AdminAdminController extends Controller
                     }
                 } else {
                     // Création d'un nouvel administrateur
-                    if ($this->model->create_admin($this->bdd, $lastname, $firstname, $mail, password_hash($password, PASSWORD_BCRYPT), $phone, $address, $city, $zipcode, $registration_date)) {
+                    if ($this->model->create_admin($lastname, $firstname, $mail, password_hash($password, PASSWORD_BCRYPT), $phone, $address, $city, $zipcode, $registration_date)) {
                         echo 'Administrateur créé avec succès !';
                         $this->redirect('manage_admin');
                         exit;
@@ -169,12 +166,5 @@ class AdminAdminController extends Controller
 
         // Rendre la vue avec les données de l'administrateur (pour l'édition)
         $this->render('create_admin', ['adminData' => $adminData, 'isEdit' => $isEdit]);
-    }
-
-    // Connexion à la base de données
-    public function getDatabaseConnection()
-    {
-        $connectBDD = new ConnectBDD();
-        return $connectBDD->bdd;
     }
 }

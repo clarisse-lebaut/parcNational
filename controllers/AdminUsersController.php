@@ -7,12 +7,11 @@ class AdminUsersController extends Controller
 {
 
     private $model;
-    private $bdd;
 
     public function __construct()
     {
-        $this->model = new Users(); // Utiliser le modèle Users
-        $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
+        $this->model = new Users('users'); // Utiliser le modèle Users
+
     }
 
     //* Méthode pour afficher la vue des administrateurs
@@ -24,7 +23,7 @@ class AdminUsersController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && !empty($_POST['user_id'])) {
             $user_id = intval($_POST['user_id']);
 
-            $deleteSuccess = $this->model->delete($this->bdd, $user_id);
+            $deleteSuccess = $this->model->delete($user_id);
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
@@ -36,8 +35,8 @@ class AdminUsersController extends Controller
         }
 
         // Si aucune suppression n'est demandée, on récupère et affiche les administrateurs
-        $users = $this->model->get_users($this->bdd); // Récupère les administrateurs
-        $countUsers = $this->model->count_users($this->bdd); // Compte le nombre d'administrateurs
+        $users = $this->model->get_users(); // Récupère les administrateurs
+        $countUsers = $this->model->count_users(); // Compte le nombre d'administrateurs
 
         // Vérifie si les administrateurs et le comptage sont corrects
         if ($countUsers !== false && !empty($users)) {
@@ -49,12 +48,5 @@ class AdminUsersController extends Controller
             // Gère le cas où les données ne sont pas récupérées correctement
             echo "Erreur lors du chargement des administrateurs.";
         }
-    }
-
-    // Connexion à la base de données
-    public function getDatabaseConnection()
-    {
-        $connectBDD = new ConnectBDD();
-        return $connectBDD->bdd;
     }
 }
