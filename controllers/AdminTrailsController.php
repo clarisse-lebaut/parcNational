@@ -1,54 +1,48 @@
 <?php
 require_once 'Controller.php';
-require_once  __DIR__ . '/../models/Model.php';
+require_once __DIR__ . '/../models/Model.php';
 require_once __DIR__ . '/../models/AdminTrails.php';
 
 class AdminTrailsController extends Controller
 {
-
     private $model;
-    private $bdd;
 
     public function __construct()
     {
-        $this->model = new ManageTrails();
-        $this->bdd = $this->getDatabaseConnection();
+        // Initialisation du modèle
+        $this->model = new ManageTrails('trails'); // Spécifiez le nom de la table
     }
 
     public function manageTrails()
     {
-        // Vérifie si une requête POST a été effectuée pour supprimer un sentier
+        // Vérification de la suppression d'un sentier via POST
         if ($_POST && isset($_POST['trail_id']) && !empty($_POST['trail_id'])) {
             $trail_id = intval($_POST['trail_id']);
-
-            // Supprime le sentier en utilisant le modèle
-            $deleteSuccess = $this->model->delete($this->bdd, $trail_id);
+            $deleteSuccess = $this->model->delete($trail_id);
 
             if ($deleteSuccess) {
-                // Redirige vers la même page pour actualiser la liste des sentiers
                 $this->redirect('manage_trails');
-                exit; // Arrête l'exécution après la redirection
+                exit;
             } else {
                 echo "Erreur : Impossible de supprimer ce sentier.";
             }
         }
 
-        // Récupère et affiche les sentiers si aucune suppression n'est demandée
-        $trails = $this->model->get_trails($this->bdd); // Récupère les sentiers
-        $trailsCount = $this->model->count_trails($this->bdd); // Compte le nombre de sentiers
+        // Récupération des sentiers
+        $trails = $this->model->get_trails(); // Récupération des sentiers
+        $trailsCount = $this->model->count_trails(); // Compte des sentiers
 
-        // Vérifie si les sentiers et le comptage sont récupérés correctement
+        // Vérification des résultats
         if ($trailsCount !== false && !empty($trails)) {
-            $nameTrail = $this->model->name_trails($this->bdd); // Optionnel : Récupère le nom d'un sentier
+            $nameTrail = $this->model->name_trails(); // Récupération du nom d'un sentier
 
-            // Passe les sentiers à la vue
+            // Passage des sentiers à la vue
             $this->render('manage_trails', [
                 'total_trails' => $trailsCount['total'],
                 'name_trail' => $nameTrail,
                 'trails' => $trails
             ]);
         } else {
-            // Gère le cas où les données ne sont pas récupérées correctement
             echo "Erreur lors de la récupération des sentiers.";
         }
     }
@@ -58,39 +52,27 @@ class AdminTrailsController extends Controller
         $isEdit = false;
         $trailsData = [];
 
-        // Vérifier si un trail_id est passé via POST (soumission du formulaire) ou GET (affichage pour édition)
+        // Vérification de l'ID du sentier
         if (isset($_POST['trail_id']) && !empty($_POST['trail_id'])) {
             $isEdit = true;
-            $trail_id = intval($_POST['trail_id']);  // Récupérer l'ID du sentier à modifier via POST
+            $trail_id = intval($_POST['trail_id']);
         } elseif (isset($_GET['trail_id']) && !empty($_GET['trail_id'])) {
             $isEdit = true;
-            $trail_id = intval($_GET['trail_id']);  // En cas de requête GET (affichage du formulaire pour édition)
+            $trail_id = intval($_GET['trail_id']);
         }
 
-        // Si en mode édition, récupérer les informations du sentier
+        // Récupération des informations du sentier pour édition
         if ($isEdit) {
-            // Récupérer le sentier par ID
-            $trail = $this->model->get_trails_by_id($this->bdd, $trail_id);
-
+            $trail = $this->model->get_trails_by_id($trail_id);
             if ($trail) {
-                // Pré-remplir les champs avec les données récupérées
-                $trailsData = [
-                    'trail_id' => $trail['trail_id'] ?? '',
-                    'name' => $trail['name'] ?? '',
-                    'description' => $trail['description'] ?? '',
-                    'location' => $trail['location'] ?? '',
-                    'distance' => $trail['distance'] ?? 0,
-                    'difficulty' => $trail['difficulty'] ?? '',
-                    'status' => $trail['status'] ?? '',
-                    // Enlevez longitude et latitude si non nécessaire ici
-                ];
+                $trailsData = $trail; // Récupère toutes les données du sentier
             } else {
                 echo "Erreur : Sentier non trouvé.";
                 return;
             }
         }
 
-        // Vérification de la soumission du formulaire
+        // Traitement du formulaire
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = trim($_POST['name'] ?? '');
             $description = trim($_POST['description'] ?? '');
@@ -127,16 +109,15 @@ class AdminTrailsController extends Controller
                 if ($isEdit) {
                     // Mise à jour du sentier
                     $updateSuccess = $this->model->update_trails(
-                        $this->bdd,
                         $trail_id,
                         $name,
                         $description,
                         $distance,
                         $difficulty,
                         $status,
-                        null,      // Image non traitée ici
-                        null,      // Longitude non traitée ici
-                        null       // Latitude non traitée ici
+                        null, // Image non traitée ici
+                        $longitude,
+                        $latitude
                     );
 
                     if ($updateSuccess) {
@@ -147,18 +128,16 @@ class AdminTrailsController extends Controller
                     }
                 } else {
                     // Création d'un nouveau sentier
-                    if (
-                        $this->model->create_trails(
-                            $this->bdd,
-                            $name,
-                            $description,
-                            $location,
-                            $distance,
-                            $difficulty,
-                            $status,
-                            null      // Image non traitée ici
-                        )
-                    ) {
+                    if ($this->model->create_trails(
+                        $name,
+                        $description,
+                        $distance,
+                        $difficulty,
+                        $status,
+                        null, // Image non traitée ici
+                        $longitude,
+                        $latitude
+                    )) {
                         $this->redirect('manage_trails');
                         exit;
                     } else {
@@ -174,11 +153,5 @@ class AdminTrailsController extends Controller
 
         // Rendre la vue pour créer ou modifier un sentier
         $this->render('create_trails', ['trailData' => $trailsData, 'isEdit' => $isEdit]);
-    }
-
-    public function getDatabaseConnection()
-    {
-        $connectBDD = new ConnectBDD();
-        return $connectBDD->bdd;
     }
 }

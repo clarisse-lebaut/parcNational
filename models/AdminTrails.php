@@ -6,32 +6,32 @@ class ManageTrails extends Model {
     public function __construct($table){
         parent::__construct($table);
     }
-    public function count_trails($bdd) {
-        $stmt = $bdd->prepare("SELECT COUNT(*) as total FROM trails");
+    public function count_trails() {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM trails");
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function get_trails($bdd) {
-        $stmt = $bdd->prepare("SELECT * FROM trails");
+    public function get_trails() {
+        $stmt = $this->pdo->prepare("SELECT * FROM trails");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function get_trails_by_id($bdd, $trail_id) {
-        $stmt = $bdd->prepare("SELECT * FROM trails WHERE trail_id = :trail_id");
+    public function get_trails_by_id($trail_id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM trails WHERE trail_id = :trail_id");
         $stmt->bindParam(':trail_id', $trail_id, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC); // Récupérer une seule ligne
     }
-    public function name_trails($bdd) {
-        $stmt = $bdd->prepare("SELECT name FROM trails LIMIT 1");
+    public function name_trails() {
+        $stmt = $this->pdo->prepare("SELECT name FROM trails LIMIT 1");
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['name'];  // Retourne uniquement le nom
     }
     // Méthode pour supprimer un utilisateur spécifique par son ID
-    public function delete($bdd, $trail_id){
+    public function delete($trail_id){
         $sql = "DELETE FROM trails WHERE trail_id = :trail_id";
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':trail_id', $trail_id, PDO::PARAM_INT);
         if($stmt->execute()){
             return true;
@@ -40,10 +40,10 @@ class ManageTrails extends Model {
         }
     }
 
-    public function create_trails($bdd, $name, $description, $distance, $difficulty, $status, $image, $longitude, $latitude) {
+    public function create_trails($name, $description, $distance, $difficulty, $status, $image, $longitude, $latitude) {
         $sql = "INSERT INTO trails (name, description, distance, difficulty, status, image, longitude, latitude)
                 VALUES (:name, :description, :distance, :difficulty, :status, :image, :longitude, :latitude)";
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':distance', $distance);
@@ -55,7 +55,7 @@ class ManageTrails extends Model {
         return $stmt->execute();
     }
 
-    public function update_trails($bdd, $trail_id, $name, $description, $distance, $difficulty, $status, $image, $longitude, $latitude) {
+    public function update_trails($trail_id, $name, $description, $distance, $difficulty, $status, $image, $longitude, $latitude) {
         // Préparation de la requête SQL avec les champs longitude et latitude
         $sql = "UPDATE trails SET 
                     name = :name, 
@@ -69,7 +69,7 @@ class ManageTrails extends Model {
                 WHERE trail_id = :trail_id";
         
         // Préparation de la requête
-        $stmt = $bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         
         // Association des paramètres à la requête
         $stmt->bindParam(':name', $name);
@@ -90,7 +90,7 @@ class ManageTrails extends Model {
         $sql = "INSERT INTO votre_table_geographique (trail_id, type, part_number, coordinate_number, longitude, latitude)
                 VALUES (:trail_id, :type, :part_number, :coordinate_number, :longitude, :latitude)";
         
-        $stmt = $this->bdd->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         
         // Lier les paramètres
         $stmt->bindParam(':trail_id', $trail_id);
