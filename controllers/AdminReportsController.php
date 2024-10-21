@@ -7,12 +7,10 @@ class AdminReportsController extends Controller
 {
 
     private $model;
-    private $bdd;
 
     public function __construct()
     {
-        $this->model = new ManageReports();
-        $this->bdd = $this->getDatabaseConnection();
+        $this->model = new ManageReports('reports');
     }
 
     public function manageReports()
@@ -21,7 +19,7 @@ class AdminReportsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['report_id']) && !empty($_POST['report_id'])) {
             $report_id = intval($_POST['report_id']);
 
-            $deleteSuccess = $this->model->delete($this->bdd, $report_id);
+            $deleteSuccess = $this->model->delete($report_id);
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des rapports
@@ -33,10 +31,10 @@ class AdminReportsController extends Controller
         }
 
         // Récupération du nombre total de rapports et des données associées
-        $reportsCount = $this->model->count_reports($this->bdd);
-        $namereports = $this->model->name_reports($this->bdd);
+        $reportsCount = $this->model->count_reports();
+        $namereports = $this->model->name_reports();
         // Récupération de tous les rapports
-        $reports = $this->model->get_reports($this->bdd);
+        $reports = $this->model->get_reports();
 
         if ($reportsCount !== false && !empty($reports)) {
             // Passe tous les rapports en une seule fois à la vue
@@ -54,7 +52,7 @@ class AdminReportsController extends Controller
     {
         $isEdit = false;
         $reportData = [];
-        $ressources = $this->model->name_ressource($this->bdd); // Récupérer toutes les ressources
+        $ressources = $this->model->name_ressource(); // Récupérer toutes les ressources
 
         // Vérifier si un report_id est passé via POST (soumission du formulaire) ou GET (affichage pour édition)
         if (isset($_POST['report_id']) && !empty($_POST['report_id'])) {
@@ -68,7 +66,7 @@ class AdminReportsController extends Controller
         // Si en mode édition, récupérer les informations du rapport
         if ($isEdit) {
             // Récupérer le rapport par ID
-            $report = $this->model->get_reports_by_id($this->bdd, $report_id);
+            $report = $this->model->get_reports_by_id($report_id);
 
             // Vérifier si le rapport a été trouvé
             if ($report) {
@@ -113,7 +111,6 @@ class AdminReportsController extends Controller
                 if ($isEdit) {
                     // Mise à jour du rapport dans la base de données
                     $updateSuccess = $this->model->update_report(
-                        $this->bdd,
                         $report_id,
                         $name,
                         $description,
@@ -130,7 +127,6 @@ class AdminReportsController extends Controller
                     // Création d'un nouveau rapport
                     if (
                         $this->model->create_report(
-                            $this->bdd,
                             $name,
                             $description,
                             $ressource_id
@@ -151,12 +147,5 @@ class AdminReportsController extends Controller
             'isEdit' => $isEdit,
             'ressources' => $ressources // Passer les ressources à la vue
         ]);
-    }
-
-
-    public function getDatabaseConnection()
-    {
-        $connectBDD = new ConnectBDD();
-        return $connectBDD->bdd;
     }
 }
