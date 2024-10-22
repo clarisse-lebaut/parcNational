@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La page de connection</title>
-    <link rel="stylesheet" href="/parcNational/assets/style/user/login-page.css">
-    <script src="/parcNational/assets/script/login.js" defer></script>
+    <link rel="stylesheet" href="assets/style/user/login-page.css">
+    <script src="assets/script/login.js" defer></script>
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
     <div class= "main-container">
       <h1>Se Connecter</h1>
       <div class="login-container">
-        <form method='post' action="/parcNational/loginForm" onsubmit="validateForm(event)">
+        <form method='post' action="loginForm" onsubmit="validateForm(event)">
           <div class="form-group">
               <label for="inputEmail2">E-mail</label> 
               <input type="email" name='email' class="form-control" id="inputEmail2" >
@@ -37,7 +37,7 @@
       </div>
       <p>Ou connectez-vous avec : </p>
       <div class="or-connect-with">
-        <a class="sm-connect" href="/parcNational/login-using-google" class="google-login-btn m-3">
+        <a class="sm-connect" href="login-using-google" class="google-login-btn m-3">
           <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
           Google
         </a>

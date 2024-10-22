@@ -9,7 +9,7 @@ class Controller
     }
     public function redirect($url)
     {
-        header('Location: /parcNational/' . $url);
+        header('Location: /' . $url);
     }
 
     protected function checkAdmin()

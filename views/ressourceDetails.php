@@ -69,6 +69,6 @@
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
 
-    <script src="../assets/javascript/ressource.js"></script>
+    <script src="assets/script/ressource.js"></script>
 </body>
 </html>

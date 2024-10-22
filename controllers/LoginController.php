@@ -34,7 +34,7 @@ class LoginController extends Controller
                         $this->redirect('home');
                     } else if ($dbUser['role'] == 2) {
                         // $this->checkAdmin();
-                        $this->redirect('admin_home');
+                        $this->redirect('home');
                     }
                 } else {
                 $this->render('login', ['error' => 'Données incorrectes']);
