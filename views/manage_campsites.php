@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les Sentiers</title>
+    <title>Les Campings</title>
     <link rel="stylesheet" href="assets/style/admin/manage.css">
 </head>
 <body>
     <header>
         <?php include 'components/_header-admin.php' ?>
     </header>
+    
     <main>
+        
         <section class="data">
+
             <div>
                 <p>Total de campings enregistrés</p>
                 <img src="assets/icon/campsites.svg" alt="icon campsite">
-                <div><?php echo htmlspecialchars($total_campsites); ?></div>
+                <p><?php echo htmlspecialchars($total_campsites); ?></p>
             </div>
 
             <div>
@@ -39,8 +42,9 @@
 
             <div>
                 <a href="create_campsite">Ajouter un camping</a>
-                <img src="assets/icon/add.svg" alt="icon add">
-            </div>    
+                <a href="create_campsite"><img src="assets/icon/add.svg" alt="icon add"></a>
+            </div>
+
         </section>
 
         <section class="board">
@@ -49,6 +53,7 @@
                     <tr>
                         <td>Nom</td>
                         <td>Ville</td>
+                        <td>Description</td>
                         <td>Adresse</td>
                         <td>Code postal</td>
                         <td>Éditer</td>
@@ -60,18 +65,19 @@
                         <tr>
                             <td><?php echo htmlspecialchars($campsite['name']); ?></td>
                             <td><?php echo htmlspecialchars($campsite['city']); ?></td>
-                            <td><?php echo htmlspecialchars($campsite['address']); ?> km</td>
+                            <td><?php echo htmlspecialchars($campsite['description']); ?></td>
+                            <td><?php echo htmlspecialchars($campsite['address']); ?></td>
                             <td><?php echo htmlspecialchars($campsite['zipcode']); ?></td>
                             <td>
                                 <form method="GET" action="create_campsite">
                                     <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
-                                    <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
+                                    <button class="edit-button" type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>
                             <td>
-                                <form method="POST" action="manage_campsite" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce camping ?');">
+                                <form method="POST" action="manage_campsites" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce camping ?');">
                                     <input type="hidden" name="campsite_id" value="<?php echo $campsite['campsite_id']; ?>">    
-                                    <button type="submit"><img src="assets/icon/delete.svg" alt="icon delete"></button>
+                                    <button class="del-button" type="submit"><img src="assets/icon/delete.svg" alt="icon delete"></button>
                                 </form>
                             </td>
                         </tr>

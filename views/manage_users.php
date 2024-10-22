@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <?php include 'components/_header-admin.php'?>
+        <?php include 'components/_header-admin.php'; ?>
     </header>
     <main>
         <section class="data">
@@ -17,6 +17,18 @@
                 <img src="assets/icon/users.svg" alt="icon user">
                 <div><?php echo htmlspecialchars($total_users); ?></div>
             </div>  
+
+            <div>
+                <p>Nombre d'utilisateurs inscrits ce mois-ci</p>
+                <img src="assets/icon/users.svg" alt="icon users">
+                <div>15</div>
+            </div> 
+
+            <div>
+                <p>Nombre d'utilisateurs inscrits cette année</p>
+                <img src="assets/icon/users.svg" alt="icon users">
+                <div>150</div>
+            </div> 
         </section>
 
         <section class="board">
@@ -45,8 +57,10 @@
                             <td><?php echo htmlspecialchars($user['zipcode']); ?></td>
                             <td>
                                 <form method="POST" action="manage_users" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
-                                    <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>">    
-                                    <button><img src="assets/icon/delete.svg" alt="icon delete"></button>
+                                    <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user['user_id']); ?>">    
+                                    <button class="del-button" aria-label="Supprimer l'utilisateur">
+                                        <img src="assets/icon/delete.svg" alt="icon delete">
+                                    </button>
                                 </form>
                             </td>
                         </tr>

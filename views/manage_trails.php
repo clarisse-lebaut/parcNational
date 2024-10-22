@@ -10,24 +10,27 @@
     <header>
         <?php include 'components/_header-admin.php'?>
     </header>
+
     <main>
+        
         <section class="data">
             <div>
                 <p>Total de sentier enregistrer</p>
                 <img src="assets/icon/hiking.svg" alt="icon hiking">
-                <div><?php echo htmlspecialchars($total_trails); ?></div>
+                <p><?php echo htmlspecialchars($total_trails); ?></p>
             </div>
 
             <div>
                 <p>Dernier sentier ajouter</p>
                 <img src="assets/icon/trails.svg" alt="icon trails">
-                <div><?php echo htmlspecialchars($name_trail); ?></div>
+                <p><?php echo htmlspecialchars($name_trail); ?></p>
             </div>
 
             <div>
                 <a href="create_trails">Ajouter un sentier</a>
-                <img src="assets/icon/add.svg" alt="icon visitors">
-            </div>    
+                <a href="create_trails"><img src="assets/icon/add.svg" alt="icon add"></a>
+            </div>
+   
         </section>
 
         <section class="board">
@@ -50,17 +53,17 @@
                             <td><?php echo htmlspecialchars($trail['difficulty']); ?></td>
                             <td><?php echo htmlspecialchars($trail['length_km']); ?> km</td>
                             <td><?php echo htmlspecialchars($trail['time']); ?></td>
-                            <td><?php echo htmlspecialchars($trail['status']); ?></td>
+                            <td><?php echo htmlspecialchars($trail['status'] ?? ''); ?></td>
                             <td>
                                 <form method="GET" action="create_trails">
                                     <input type="hidden" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">    
-                                    <button type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
+                                    <button class="edit-button" type="submit"><img src="assets/icon/edit.svg" alt="icon edit"></button>
                                 </form>
                             </td>
                             <td>
-                                <form method="POST" action="manage_trails" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce rapport ?');">
+                                <form method="POST" action="manage_trails">
                                     <input type="hidden" name="trail_id" value="<?php echo htmlspecialchars($trail['trail_id']); ?>">
-                                    <button onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sentier ?');"><img src="assets/icon/delete.svg" alt="icon delete"></button>                                   
+                                    <button class="del-button" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce sentier ?');"><img src="assets/icon/delete.svg" alt="icon delete"></button>                                   
                                 </form>
                             </td>
                         </tr>

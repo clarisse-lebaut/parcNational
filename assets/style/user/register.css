@@ -90,7 +90,6 @@
   text-align: center;
 }
 
-<<<<<<< HEAD:assets/style/user/register.css
 .register-block {
   display: flex;
   flex-direction: row;
@@ -120,7 +119,6 @@
   font-family: var(--font-Assistant);
   font-size: 20px;
 }
-=======
 .alert {
   padding: 10px;
   border-radius: 5px;
@@ -141,4 +139,3 @@
 .alert-danger {
   animation: fadeIn 0.5s ease-in-out;
 }
->>>>>>> merge-v2-profil-pawel:assets/style/register.css

@@ -52,7 +52,7 @@
                     </div>
                 </a>
    
-                <a href="manage_campsite">
+                <a href="manage_campsites">
                     <div>
                         <p>Gérer les campings</p>
                         <img src="assets/icon/campsite.svg" alt="icon campsite">
@@ -80,8 +80,6 @@
                     <div>
                         <p>Gérer les abonnements</p>
                         <img src="assets/icon/card_membership.svg" alt="icon rapport">
-                        <div>informations</div>
-                        <!-- <div><?php echo htmlspecialchars($total_shiphs); ?></div> -->
                     </div>
                 </a>
 
@@ -89,7 +87,6 @@
                     <div>
                         <p>Gérer les articles</p>
                         <img src="assets/icon/news.svg" alt="icon news">
-                        <div>informations</div>
                         <!-- <div><?php echo htmlspecialchars($total_news); ?></div> -->
                     </div>
                 </a>

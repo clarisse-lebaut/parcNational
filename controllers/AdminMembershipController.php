@@ -24,7 +24,7 @@ class AdminMembershipController extends Controller
             $randomMembership = !empty($allMemberships) ? $allMemberships[array_rand($allMemberships)] : null;
 
             // Passer les données à la vue
-            $this->render('admin/manage_ships', [
+            $this->render('manage_ships', [
                 'memberships' => $allMemberships,
                 'totalMemberships' => $totalMemberships,
                 'randomMembership' => $randomMembership
@@ -45,7 +45,7 @@ class AdminMembershipController extends Controller
             $membershipModel->addMembership($membershipsName, $duration, $price);
             $this->redirect('admin-memberships-list');
         } else {
-            $this->render('admin/create_ships');
+            $this->render('create_ships');
         }
     }
 
@@ -64,7 +64,7 @@ class AdminMembershipController extends Controller
         } else {
             $membershipId = $_GET['id'];
             $membership = $membershipModel->getMembershipById($membershipId);
-            $this->render('admin/adminMembershipForm', ['membership' => $membership]);
+            $this->render('adminMembershipForm', ['membership' => $membership]);
         }
     }
 
@@ -82,7 +82,7 @@ class AdminMembershipController extends Controller
         $this->checkAdmin();
         $membership = new Membership('membership');
         $activeMemberships = $membership->getAllActiveMembershipsForAdmin();
-        $this->render('admin/adminActiveMembershipsList', ['activeMemberships' => $activeMemberships]);
+        $this->render('adminActiveMembershipsList', ['activeMemberships' => $activeMemberships]);
     }
 
 }

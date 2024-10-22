@@ -1,40 +1,25 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/News.php';
 
 class HomeController extends Controller
 {
-
     private $newsModel;
-    private $bdd;
 
-    // Constructeur pour initialiser le modèle et la base de données
-    public function __construct()
+    // Constructeur pour initialiser le modèle
+    public function __construct($table)
     {
-        // Initialisation de l'objet News
-        $this->newsModel = new News();
-
-        // Initialisation de la connexion à la base de données (supposons que tu aies une instance $bdd quelque part)
-        // Exemple : $this->bdd = new PDO(...); ou récupérer la connexion via un service
-        $this->bdd = $this->getDatabaseConnection(); // Méthode à créer si elle n'existe pas
+        // Initialisation de l'objet News (hérite de Model, qui gère la connexion à la base de données)
+        $this->newsModel = new News($table);
     }
 
     // Méthode pour afficher toutes les news dans la page home
     public function news()
     {
         // Récupérer les news en utilisant le modèle
-        $news = $this->newsModel->get_news($this->bdd);
+        $news = $this->newsModel->get_news();
         // Afficher la vue 'news' avec les données récupérées
         $this->render('home', ['news' => $news]);
     }
-
-    public function getDatabaseConnection()
-    {
-        // Instancier la classe ConnectBDD
-        $connectBDD = new ConnectDB();
-        // Retourner l'objet PDO
-        return $connectBDD->bdd;
-    }
-
 }
+?>

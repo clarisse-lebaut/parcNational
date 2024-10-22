@@ -1,28 +1,21 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectDB.php';
 require_once __DIR__ . '/../models/Trails.php';
 
 class TrailsController extends Controller
 {
+    private $trailsModel; // Renommé pour correspondre à la classe du modèle
 
-    private $newsModel;
-    private $bdd;
-
-    // Constructeur pour initialiser le modèle et la base de données
+    // Constructeur pour initialiser le modèle
     public function __construct()
     {
-        // Initialisation de l'objet Trails = c'est le nom de la classe que je donne le ficher dans le dossier Models
-        $this->newsModel = new Trails();
-
-        // Initialisation de la connexion à la base de données (supposons que tu aies une instance $bdd quelque part)
-        $this->bdd = $this->getDatabaseConnection(); // Méthode à créer si elle n'existe pas
+        $this->trailsModel = new Trails('trails'); // Assurez-vous que le nom de la table soit correct
     }
 
     public function trails()
     {
-        // Récupérer les news en utilisant le modèle
-        $trails = $this->newsModel->get_all_trails($this->bdd);
+        // Récupérer tous les sentiers en utilisant le modèle
+        $trails = $this->trailsModel->get_all_trails();
         // Afficher la vue 'trails' avec les données récupérées
         $this->render('trails', ['trails' => $trails]);
     }
@@ -32,34 +25,36 @@ class TrailsController extends Controller
         // Récupérer l'ID depuis l'URL
         $trail_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-        // Récupérer tous les sentiers
-        $trails = $this->newsModel->get_all_trails($this->bdd);
+        // Si l'ID du sentier est invalide, afficher un message et sortir
+        if ($trail_id <= 0) {
+            echo "ID de sentier invalide.";
+            return;
+        }
 
         // Récupérer le sentier correspondant à l'ID
-        if ($trail_id > 0) {
-            // Récupérer les données du sentier
-            $trail = $this->newsModel->get_trails_id($this->bdd, $trail_id);
+        $trail = $this->trailsModel->get_trail_id($trail_id); // Méthode du modèle pour récupérer un sentier par ID
 
-            // Si le sentier n'existe pas, afficher un message et sortir
-            if (!$trail) {
-                echo "Sentier non trouvé.";
-                return;
-            }
-
-            // Récupérer les autres détails du sentier
-            $trail_time = $this->newsModel->get_trails_time($this->bdd, $trail['time']);
-            $trail_length = $this->newsModel->get_trails_km($this->bdd, $trail['length_km']);
-            $trail_description = $this->newsModel->get_trails_description($this->bdd, $trail['description']);
-            $trail_difficulty = $this->newsModel->get_trails_difficulty($this->bdd, $trail['difficulty']);
-            $trail_status = $this->newsModel->get_trails_status($this->bdd, $trail['status']);
-            $trail_infos = $this->newsModel->get_trails_info($this->bdd, $trail['infos']);
-            $trail_access = $this->newsModel->get_trails_access($this->bdd, $trail['acces']);
-            $landmarks = $this->newsModel->get_trails_landmarks($this->bdd, $trail_id);
+        // Si le sentier n'existe pas, afficher un message et sortir
+        if (!$trail) {
+            echo "Sentier non trouvé.";
+            return;
         }
+
+        // Récupérer les autres détails du sentier
+        $trail_time = $this->trailsModel->get_trails_time($trail['time']);
+        $trail_length = $this->trailsModel->get_trails_km($trail['length_km']);
+        $trail_description = $this->trailsModel->get_trails_description($trail['description']);
+        $trail_difficulty = $this->trailsModel->get_trails_difficulty($trail['difficulty']);
+        $trail_status = $this->trailsModel->get_trails_status($trail['status']);
+        $trail_infos = $this->trailsModel->get_trails_infos($trail['infos']);
+        $trail_access = $this->trailsModel->get_trails_acces($trail['acces']);
+        $landmarks = $this->trailsModel->get_trails_landmarks($trail_id);
+
+        // Récupérer tous les sentiers pour le slider
+        $trails = $this->trailsModel->get_all_trails();
 
         // Afficher la vue 'details_trails' avec les données récupérées
         $this->render('details_trails', [
-            'trails' => $trails,
             'trail' => $trail,
             'trail_time' => $trail_time,
             'trail_length' => $trail_length,
@@ -68,17 +63,8 @@ class TrailsController extends Controller
             'trail_status' => $trail_status,
             'trail_infos' => $trail_infos,
             'trail_access' => $trail_access,
-            'landmarks' => $landmarks
+            'landmarks' => $landmarks,
+            'trails' => $trails // Ajoute cette ligne pour passer la liste des sentiers
         ]);
     }
-
-    //* Fonction pour avoir la connexion à la base de donnée
-    public function getDatabaseConnection()
-    {
-        // Instancier la classe ConnectBDD
-        $connectBDD = new ConnectDB();
-        // Retourner l'objet PDO
-        return $connectBDD->bdd;
-    }
-
 }

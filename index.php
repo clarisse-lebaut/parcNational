@@ -163,7 +163,7 @@ $routes = [
         'controller' => 'AdminTrailsController',
         'method' => 'manageTrails',
     ],
-    'manage_campsite' => [
+    'manage_campsites' => [
         'controller' => 'AdminCampsitesController',
         'method' => 'manageCampsites',
     ],
@@ -282,7 +282,13 @@ if (isset($routes[$urlArray[0]])) {
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
-    $object = new $className;
+    if ($className == 'HomeController') {
+        $object = new $className('news'); // 'news' est le nom de la table utilisée pour récupérer les actualités
+    } elseif ($className == 'TrailsController') {
+        $object = new $className('trails'); // 'trails' est le nom de la table utilisée pour les sentiers
+    } else {
+        $object = new $className;// Pour les autres contrôleurs qui ne nécessitent pas de paramètres
+    }
 
     // methodes qui ont besoin d'un ID
     if (in_array($methodName, ['getCampsiteById', 'getRessourceById'])) {

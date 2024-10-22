@@ -1,13 +1,8 @@
 <?php 
-include '../config/connectBDD.php';
-include '../controllers/TrailsController.php';
+require_once '../models/Model.php';
+require_once '../controllers/TrailsController.php';
 
-//! Instancier la classe ConnectBDD et obtenir la connexion PDO
-$connectBDDInstance = new ConnectBDD();
-$connectBDD = $connectBDDInstance->bdd; // Assurez-vous que cette variable contient une connexion valide
-
-//! Instancier la classe Trails et obtenir les données des sentiers
-$trailsModel = new Trails($connectBDD); // Passer la connexion à Trails
+$trailsModel = new Trails('map'); // Passer la connexion à Trails
 
 // Si ce fichier est appelé directement, afficher les résultats
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -15,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     
     //! Appeler la fonction get_map_data pour récupérer les données de la map
     //? imporant de mettre l'instace et d'appeller la fonction !! il faut la flèche sinon ca ne marche pas avec le MVC
-    $data = $trailsModel->get_map_data($connectBDD);
+    $data = $trailsModel->get_map_data();
     
     // S'assurer que les données sont présentes
     if ($data && isset($data['type']) && $data['type'] === 'FeatureCollection') {

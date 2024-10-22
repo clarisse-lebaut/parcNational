@@ -1,18 +1,15 @@
 <?php
 require_once 'Controller.php';
-require_once __DIR__ . '/../config/connectDB.php';
-require_once __DIR__ . '/../models/AdminUsers.php';
+require_once __DIR__ . '/../models/Model.php';
+require_once __DIR__ . '/../models/AdminUsers.php'; // Correction du nom du modèle
 
 class AdminAdminController extends Controller
 {
-
     private $model;
-    private $bdd;
 
     public function __construct()
     {
-        $this->model = new Users(); // Utiliser le modèle Users
-        $this->bdd = $this->getDatabaseConnection(); // Connexion à la base de données
+        $this->model = new Users('users'); // Utiliser le modèle Users
     }
 
     //* Méthode pour afficher la vue des administrateurs
@@ -22,11 +19,11 @@ class AdminAdminController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && !empty($_POST['user_id'])) {
             $admin_id = intval($_POST['user_id']);
 
-            $deleteSuccess = $this->model->delete($this->bdd, $admin_id);
+            $deleteSuccess = $this->model->delete($admin_id);
 
             if ($deleteSuccess) {
                 // Rediriger vers la même page pour actualiser la liste des administrateurs
-                $this->redirect('admin/manage_admin');
+                $this->redirect('manage_admin');
                 exit; // S'assurer que le script s'arrête ici
             } else {
                 echo "Erreur : Impossible de supprimer cet administrateur.";
@@ -34,12 +31,12 @@ class AdminAdminController extends Controller
         }
 
         // Si aucune suppression n'est demandée, on récupère et affiche les administrateurs
-        $admin = $this->model->get_admin($this->bdd); // Récupère les administrateurs
-        $countAdmin = $this->model->count_admin($this->bdd); // Compte le nombre d'administrateurs
+        $admin = $this->model->get_users_by_role(2); // Récupère les administrateurs avec le rôle 2
+        $countAdmin = $this->model->count_admin(); // Compte le nombre d'administrateurs
 
         // Vérifie si les administrateurs et le comptage sont corrects
         if ($countAdmin !== false && !empty($admin)) {
-            $this->render('admin/manage_admin', [
+            $this->render('manage_admin', [
                 'total_admin' => $countAdmin['total'],
                 'admin' => $admin
             ]); // Passe les administrateurs à la vue
@@ -65,7 +62,7 @@ class AdminAdminController extends Controller
 
         // Si en mode édition, récupérer les informations de l'administrateur
         if ($isEdit) {
-            $admin = $this->model->get_admin($this->bdd, $user_id);  // Méthode pour récupérer un admin par ID
+            $admin = $this->model->get_admin($user_id);  // Méthode pour récupérer un admin par ID
 
             if ($admin) {
                 // Pré-remplir les champs du formulaire avec les données récupérées
@@ -135,7 +132,6 @@ class AdminAdminController extends Controller
                 if ($isEdit) {
                     // Mise à jour de l'administrateur dans la base de données
                     $updateSuccess = $this->model->update_admin(
-                        $this->bdd,
                         $user_id,
                         $lastname,
                         $firstname,
@@ -149,16 +145,17 @@ class AdminAdminController extends Controller
 
                     if ($updateSuccess) {
                         echo 'Administrateur modifié avec succès !';
-                        $this->redirect('admin/manage_admin');
+                        $this->redirect('manage_admin');
                         exit;
                     } else {
                         echo 'Erreur lors de la mise à jour de l\'administrateur.';
                     }
                 } else {
                     // Création d'un nouvel administrateur
-                    if ($this->model->create_admin($this->bdd, $lastname, $firstname, $mail, password_hash($password, PASSWORD_BCRYPT), $phone, $address, $city, $zipcode, $registration_date)) {
+                    $registration_date = date('Y-m-d H:i:s'); // Ajout de l'initialisation de la date d'enregistrement
+                    if ($this->model->create_admin($lastname, $firstname, $mail, $password, $phone, $address, $city, $zipcode, $registration_date)) {
                         echo 'Administrateur créé avec succès !';
-                        $this->redirect('admin/manage_admin');
+                        $this->redirect('manage_admin');
                         exit;
                     } else {
                         echo 'Erreur lors de la création de l\'administrateur.';
@@ -168,13 +165,6 @@ class AdminAdminController extends Controller
         }
 
         // Rendre la vue avec les données de l'administrateur (pour l'édition)
-        $this->render('admin/create_admin', ['adminData' => $adminData, 'isEdit' => $isEdit]);
-    }
-
-    // Connexion à la base de données
-    public function getDatabaseConnection()
-    {
-        $connectBDD = new ConnectDB();
-        return $connectBDD->bdd;
+        $this->render('create_admin', ['adminData' => $adminData, 'isEdit' => $isEdit]);
     }
 }
