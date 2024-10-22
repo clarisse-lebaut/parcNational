@@ -53,7 +53,7 @@ function applyFilters() {
 
   const queryString = queryParams.join("&");
 
-  fetch(`/parcNational/data/data_filter_trails.php?${queryString}`)
+  fetch(`/data/data_filter_trails.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -216,7 +216,7 @@ function getStatusAlt(status) {
 
 // Fonction pour récupérer tous les sentiers
 function fetchAllTrails() {
-  fetch("/parcNational/data/data_filter_trails.php") // URL de récupération des données
+  fetch("/data/data_filter_trails.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");
@@ -251,7 +251,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("/parcNational/data/data_filter_trails.php")
+    fetch("/data/data_filter_trails.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");

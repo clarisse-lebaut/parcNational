@@ -25,9 +25,9 @@ osm.addTo(map);
 
 // Liste des fichiers GeoJSON
 var geojsonFiles = [
-  "/parcNational/data/data_map.php",
-  "/parcNational/data/data_map_trails.php",
-  "/parcNational/data/data_map_landmarks.php",
+  "data/data_map.php",
+  "data/data_map_trails.php",
+  "data/data_map_landmarks.php",
 ];
 
 // Récupérer l'ID du sentier depuis l'URL

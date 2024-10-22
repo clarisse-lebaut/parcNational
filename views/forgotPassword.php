@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mot de passe oublié</title>
-    <link rel="stylesheet" href="/parcNational/assets/style/forgot-password.css">
+    <link rel="stylesheet" href="assets/style/forgot-password.css">
 </head>
 <body>
     <header>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calanques de Marseille</title>
-    <link rel="stylesheet" href="../assets/styles/coves.css">
-    <link rel="stylesheet" href="../assets/styles/_global.css">
+    <link rel="stylesheet" href="assets/style/coves.css">
+    <link rel="stylesheet" href="assets/style/_global.css">
 </head>
 <body>
     <header>
@@ -36,5 +36,8 @@
             <?php endif; ?>
         </section>
     </main>
+    <footer>
+        <?php include "components/_footer.php"; ?>
+    </footer>
 </body>
 </html>

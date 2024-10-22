@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-    <link rel="stylesheet" href="/parcNational/assets/style/profile.css">
+    <link rel="stylesheet" href="assets/style/profile.css">
 </head>
 <body>
     <header>

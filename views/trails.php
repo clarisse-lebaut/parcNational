@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trails</title>
     <link rel="stylesheet" href="assets/style/_global.css">
-    <link rel="stylesheet" href="/parcNational/assets/style/config/_filter.css">
-    <link rel="stylesheet" href="/parcNational/assets/style/user/trails.css">
-    <script src="/parcNational/assets/script/filter.js" defer></script>
+    <link rel="stylesheet" href="assets/style/config/_filter.css">
+    <link rel="stylesheet" href="assets/style/user/trails.css">
+    <script src="assets/script/filter.js" defer></script>
 </head>
 <body>
     <main>
@@ -31,7 +31,7 @@
                     <button class="dropdown-btn">
                         <img src="assets/icon/hiking.svg" alt="Icon hiking">
                         <div>Difficulté</div>
-                        <img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">
                         <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
@@ -49,7 +49,7 @@
                     <button class="dropdown-btn">
                         <img src="assets/icon/circle-default.svg" alt="Icon State">
                         <div>Etats</div>
-                        <img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">
                         <input class="status" type="checkbox" id="active" name="tag" value="active">
@@ -67,7 +67,7 @@
                     <button class="dropdown-btn">
                         <img src="assets/icon/shoes-default.svg" alt="Icon Lenght">
                         <div>Longueur du sentier</div>
-                        <img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">  
                         <!-- Boucle pour afficher toutes les distances -->
@@ -92,7 +92,7 @@
                     <button class="dropdown-btn">
                         <img src="assets/icon/time.svg" alt="Icon Time">
                         <div>Temps de marche</div>
-                        <img src="/parcNational/assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">  
                         <!-- Boucle pour afficher toutes les distances -->

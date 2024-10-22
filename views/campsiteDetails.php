@@ -22,8 +22,8 @@ if ($campsite_id > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Camping</title>
-    <link rel="stylesheet" href="../assets/styles/campsiteDetails.css">
-    <link rel="stylesheet" href="../assets/styles/_global.css">
+    <link rel="stylesheet" href="assets/style/campsiteDetails.css">
+    <link rel="stylesheet" href="assets/style/_global.css">
 </head>
 <body>
     <header>

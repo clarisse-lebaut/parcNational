@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="/parcNational/assets/style/config/_footer.css">
-<link rel="stylesheet" href="/parcNational/assets/style/config/_global.css">
+<link rel="stylesheet" href="assets/style/config/_footer.css">
+<link rel="stylesheet" href="assets/style/config/_global.css">
 
 <nav class="nav-footer">
     <section class="first-section-footer">

@@ -25,9 +25,9 @@ osm.addTo(map);
 
 // Liste des fichiers GeoJSON
 var geojsonFiles = [
-  "/parcNational/data/data_map.php", // Contours ou zones
-  "/parcNational/data/data_map_trails.php", // Sentiers
-  "/parcNational/data/data_map_landmarks.php", // Points d'intérêt
+  "data/data_map.php", // Contours ou zones
+  "data/data_map_trails.php", // Sentiers
+  "data/data_map_landmarks.php", // Points d'intérêt
 ];
 
 // Fonction pour générer une couleur aléatoire

@@ -57,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Confirmation de Paiement</title>
-        <link rel="stylesheet" href="../assets/styles/_global.css">
-        <link rel="stylesheet" href="../assets/styles/payment.css">
-        <script src="/assets/javascript/payment.js" defer></script>
+        <link rel="stylesheet" href="assets/style/_global.css">
+        <link rel="stylesheet" href="assets/style/payment.css">
+        <script src="assets/script/payment.js" defer></script>
     </head>
     <body>
         <header>

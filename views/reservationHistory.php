@@ -54,8 +54,8 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Réservations</title>
-    <link rel="stylesheet" href="../assets/styles/reservationHistory.css">
-    <link rel="stylesheet" href="../assets/styles/_global.css">
+    <link rel="stylesheet" href="assets/styles/reservationHistory.css">
+    <link rel="stylesheet" href="assets/styles/_global.css">
 </head>
 <body>
     <header>

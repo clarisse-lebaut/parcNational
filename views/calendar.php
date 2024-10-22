@@ -36,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Réservation - <?= $campsite ? htmlspecialchars($campsite['name']) : 'Camping'; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.global.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/timegrid.min.css" />
-    <link rel="stylesheet" href="../assets/styles/_global.css">
-    <link rel="stylesheet" href="../assets/styles/calendar.css">
+    <link rel="stylesheet" href="assets/style/_global.css">
+    <link rel="stylesheet" href="assets/style/calendar.css">
 </head>
 
 <body>
@@ -109,6 +109,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
 <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
-<script src="../assets/javascript/calendar.js"></script>
+<script src="assets/script/calendar.js"></script>
 </body>
 </html>

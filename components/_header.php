@@ -15,10 +15,11 @@ echo '</pre>';
 
 <nav class="nav-header">
     <img class="logo-header" src="assets/img/logo-pncal.svg" alt="Logo du Parc Nationnal des Calanques">
+    <!-- <a href="home"><img class="logo-header" src="assets/img/logo-pncal.svg" alt="Logo du Parc Nationnal des Calanques"></a> -->
     <ul class="ul-header">
         <li><a href="home">Accueil</a></li>
         <li><a href="coves">Les Calanques</a></li>
-        <li><a href="ressources">Les Ressources naturelles</a></li>
+        <li><a href="ressources">Les Ressources Naturelles</a></li>
         <li><a href="trails">Les Sentiers</a></li>
         <li><a href="campsite">Les Campings</a></li>
         <li><a href="map">La Carte</a></li>

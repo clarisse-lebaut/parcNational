@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campings</title>
-    <link rel="stylesheet" href="../assets/styles/campsite.css">
-    <link rel="stylesheet" href="../assets/styles/_global.css">
+    <link rel="stylesheet" href="assets/style/campsite.css">
+    <link rel="stylesheet" href="assets/style/_global.css">
 </head>
 <body>
     <header>
@@ -63,6 +63,6 @@
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
 
-    <script src="../assets/javascript/campsite.js"></script>
+    <script src="assets/script/campsite.js"></script>
 </body>
 </html>
