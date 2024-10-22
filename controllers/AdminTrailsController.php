@@ -52,7 +52,7 @@ class AdminTrailsController extends Controller
         $isEdit = false;
         $trailsData = [];
 
-        // Vérification de l'ID du sentier
+        // Vérification de l'ID du sentier pour édition
         if (isset($_POST['trail_id']) && !empty($_POST['trail_id'])) {
             $isEdit = true;
             $trail_id = intval($_POST['trail_id']);
@@ -65,7 +65,7 @@ class AdminTrailsController extends Controller
         if ($isEdit) {
             $trail = $this->model->get_trails_by_id($trail_id);
             if ($trail) {
-                $trailsData = $trail; // Récupère toutes les données du sentier
+                $trailsData = $trail;
             } else {
                 echo "Erreur : Sentier non trouvé.";
                 return;
@@ -76,12 +76,12 @@ class AdminTrailsController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = trim($_POST['name'] ?? '');
             $description = trim($_POST['description'] ?? '');
-            $location = trim($_POST['location'] ?? '');
-            $distance = floatval($_POST['distance'] ?? 0);
+            $length_km = floatval($_POST['length_km'] ?? '');
+            $time = trim($_POST['time'] ?? '');
             $difficulty = trim($_POST['difficulty'] ?? '');
             $status = trim($_POST['status'] ?? '');
-            $longitude = trim($_POST['longitude'] ?? '');
-            $latitude = trim($_POST['latitude'] ?? '');
+            $infos = trim($_POST['infos'] ?? '');
+            $acces = trim($_POST['acces'] ?? '');
             $errors = [];
 
             // Validation des données
@@ -91,17 +91,36 @@ class AdminTrailsController extends Controller
             if (empty($description)) {
                 $errors[] = 'La description du sentier est requise.';
             }
-            if (empty($location)) {
-                $errors[] = 'La localisation est requise.';
+            if ($length_km <= 0) {
+                $errors[] = 'La longueur doit être supérieure à 0.';
             }
-            if ($distance <= 0) {
-                $errors[] = 'La distance doit être supérieure à 0.';
+            if (empty($time)) {
+                $errors[] = 'La durée est requise.';
             }
-            if (!filter_var($longitude, FILTER_VALIDATE_FLOAT)) {
-                $errors[] = 'La longitude est requise et doit être un nombre valide.';
-            }
-            if (!filter_var($latitude, FILTER_VALIDATE_FLOAT)) {
-                $errors[] = 'La latitude est requise et doit être un nombre valide.';
+
+            // Gestion de l'upload d'image (facultatif)
+            $imagePath = null;
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = __DIR__ . '/../uploads/'; // Dossier où stocker les images
+                $fileTmpPath = $_FILES['image']['tmp_name'];
+                $fileName = basename($_FILES['image']['name']);
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+                // Vérification du type de fichier
+                if (in_array($fileExtension, $allowedExtensions)) {
+                    // Déplacer le fichier dans le dossier de destination
+                    $newFileName = uniqid() . '.' . $fileExtension;
+                    $destination = $uploadDir . $newFileName;
+
+                    if (move_uploaded_file($fileTmpPath, $destination)) {
+                        $imagePath = '/uploads/' . $newFileName; // Stocker le chemin relatif
+                    } else {
+                        $errors[] = "Erreur lors du téléchargement de l'image.";
+                    }
+                } else {
+                    $errors[] = "Type de fichier non valide. Les types acceptés sont : jpg, jpeg, png, gif.";
+                }
             }
 
             // Si aucune erreur, procéder à l'insertion ou la mise à jour
@@ -111,13 +130,14 @@ class AdminTrailsController extends Controller
                     $updateSuccess = $this->model->update_trails(
                         $trail_id,
                         $name,
-                        $description,
-                        $distance,
                         $difficulty,
+                        $length_km,
+                        $time,
+                        $description,
                         $status,
-                        null, // Image non traitée ici
-                        $longitude,
-                        $latitude
+                        $imagePath,
+                        $infos,
+                        $acces
                     );
 
                     if ($updateSuccess) {
@@ -130,13 +150,14 @@ class AdminTrailsController extends Controller
                     // Création d'un nouveau sentier
                     if ($this->model->create_trails(
                         $name,
-                        $description,
-                        $distance,
                         $difficulty,
+                        $length_km,
+                        $time,
+                        $description,
                         $status,
-                        null, // Image non traitée ici
-                        $longitude,
-                        $latitude
+                        $imagePath,
+                        $infos,
+                        $acces
                     )) {
                         $this->redirect('manage_trails');
                         exit;
