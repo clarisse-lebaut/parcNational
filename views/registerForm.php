@@ -6,6 +6,7 @@
   <title>Inscription</title>
   <link rel="stylesheet" href="assets/style/config/_global.css">
   <link rel="stylesheet" href="assets/style/user/register.css">
+  <script src="/parcNational/assets/script/register.js" defer></script>
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
     <div>
       <?php if(isset($error)): ?>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="display: flex; justify-content: center; align-items: center;">
           <?php echo htmlspecialchars($error); ?>
         </div>
       <?php endif; ?>
@@ -32,19 +33,19 @@
                   <h2>Civilités</h2>
                   <!-- Lastname -->
                   <div>
-                    <label for="inputLastname">Lastname</label>
+                    <label for="inputLastname">Nom</label>
                     <input type="text" name="lastname" id="inputLastname" placeholder="Your lastname" required>
                   </div>
 
                   <!-- Firstname -->
                   <div>
-                    <label for="inputFirstname">Firstname</label>
+                    <label for="inputFirstname">Prénom</label>
                     <input type="text" name="firstname" id="inputFirstname" placeholder="Your firstname" required>
                   </div>
 
                   <!-- Email -->
                   <div>
-                    <label for="inputEmail">Email</label>
+                    <label for="inputEmail">E-mail</label>
                     <input type="email" name="email" id="inputEmail" placeholder="Your email" required>
                     <div id="emailError" class="error-message" style="display:none;"> L'email doit contenir '@' et être au format correct.</div>
                   </div>
@@ -57,10 +58,10 @@
                 </section>
                 
                 <section class="live">
-                  <h2>Adresses</h2>
+                  <h2>Adresse</h2>
                   <!-- Address -->
                   <div>
-                    <label for="inputAddress">Address</label>
+                    <label for="inputAddress">Addresse</label>
                     <input type="text" name="adress" id="inputAddress" placeholder="1234 Main St" required>
                   </div>
 
@@ -120,30 +121,5 @@
       <?php include "components/_footer.php"; ?>
   </footer>
 
-  <script>
-    document.getElementById('inputEmail').addEventListener('input', function() {
-      const email = this.value.trim();
-      const emailError = document.getElementById('emailError');
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (!emailRegex.test(email)) {
-        emailError.style.display = 'block';
-      }else{
-        emailError.style.display = 'none';
-      }
-    });
-
-    document.getElementById('inputPassword').addEventListener('input', function() {
-      const password = this.value.trim();
-      const passwordError = document.getElementById('passwordError');
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-
-      if (!passwordRegex.test(password)) {
-        passwordError.style.display = 'block';
-      } else{
-        passwordError.style.display = 'none';
-      }
-    });
-  </script>
 </body>
 </html>

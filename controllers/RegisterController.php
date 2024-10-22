@@ -26,6 +26,12 @@ class RegisterController extends Controller
             $this->render('registerForm', ['error' => "L'email doit contenir '@' et être au format correct."]);
             return;
         }
+
+        $user = new User('users');
+        if ($user->userExists($email)) {
+            $this->render('registerForm', ['error' => 'L\'adresse e-mail est déjà utilisée.']);
+            return;
+        }
         if ($password != $repeatPassword) {
             $this->render('registerForm', ['error' => 'Les mots de passe ne sont pas les mêmes']);
             return;

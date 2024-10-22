@@ -83,4 +83,10 @@ class ReservationModel extends Model {
         $query->execute();
         return $query->fetchColumn(); 
     }
+
+    public function deleteReservationById($reservation_id){
+        $sql = 'DELETE FROM reservations WHERE reservation_id = ?';
+        $stmt =  $this->pdo->prepare($sql);
+        $stmt->execute ([$reservation_id]);
+    }
 }

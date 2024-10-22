@@ -1,0 +1,72 @@
+#calendar {max-width: 400px; }
+.reservation-section { max-width: 40%;}
+
+.calendar-form-container {
+        display: flex;
+        justify-content: center; 
+        gap: 20px; 
+        margin: 20px 0; 
+}
+
+.date-fields {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px; 
+}
+    
+.date-field {
+        display: flex;
+        flex-direction: column;
+        width: 30%; 
+}
+    
+
+.persons-field {margin-bottom: 20px;}
+    
+/* calendar header */
+.fc-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.fc-toolbar-title {
+    padding-left: 10px !important;
+    font-size: 20px !important;
+    color: #000000 !important;
+}
+
+.fc-day-today { /* aujourd'hui */
+    background-color: #e6d2e3 !important; 
+    color: #000000 !important;
+}
+
+.fc-col-header-cell { /* lundi,mardi.. */
+    background-color: #8cacb0 !important; 
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+.fc-prev-button, .fc-next-button, .fc-today-button {
+    border: none !important;
+    padding: 8px 16px !important;
+}
+
+/* boutons navigation (<,>, aujourd'hui) */
+.fc-prev-button, .fc-next-button, .fc-today-button {
+    background-color: #8cacb0 !important;
+    border-radius: 5px !important;
+    margin: 4px !important;
+}
+
+.fc-prev-button, .fc-next-button {
+    background-color: #b5d1dc !important; 
+}
+
+.calendar-info { 
+    background-color: #8cacb0 !important; 
+}
+.calendar-img {
+    width: 15% !important;
+    height: auto !important;
+    max-height: 80px !important;
+    object-fit: cover !important;
+}

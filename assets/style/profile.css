@@ -1,12 +1,163 @@
-img{
-    width: 14%;
+.top-container{
+    background: linear-gradient(to right, #add8e6, #31a2df);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0 5%;
+}
+
+.user-info-parent{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first{
+    margin-right: 50px;
+}
+.second{
+    margin-right: 30px;
+}
+.third{
+    margin-right: 10px;
+}
+.fourth{
+    margin-right: 40px;
+}
+.fifth{
+    margin-right: 60px;
+}
+.sixt{
+    margin-right: 10px;
+}
+.membership{
+    background-color: var(--lmblue);
+    margin: 1% 0;
+    padding: 0 2%;
+    border-radius: 3%;
+    width: auto;
+    line-height: 0.6;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.edit-profil{
+    background-color: var(--lmblue);
+    margin: 1% 0;
+    padding: 3%;
+    border-radius: 3%;
+    text-align: center;
+    color: var(--mediumblue);
+    font-family: var(--font-Archivo);
+}
+
+.edit-profil:hover{
+    background-color: #d0e7ff;
+}
+
+.reservation-image{
+    width: 300px;
+    height: 150px;
+    border-radius: 3%;
+    border: 2px solid black;
+    margin-top: 5%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    
+}
+
+.reservation-image:hover{
+    transform: scale(1.4);
+}
+.img-trail{
+    width: 100%;
     height: auto;
+    max-width: 150px;
+    max-height: 150px;
     border-radius: 5px;
     border: 2px solid black;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
-.top-container{
-    background-color: skyblue;
+
+.img-trail:hover{
+    transform: scale(1.3);
+}
+.delete{
+    width: 100%;
+    max-width: 145px;
+    max-height: 145px;
+    min-width: 145px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    background-color: var(--lmblue);;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete:hover{
+    background-color: #62a3e8;
+    transform: translateY(-2px);
+}
+
+.middle-container{
     display: flex;
-    justify-content: center;
     flex-direction: row;
+    justify-content:space-around;
+    background: linear-gradient(to right, #add8e6, #31a2df);
+}
+
+.left-part{
+   flex-basis: 80%;
+   margin-left: 2%;
+}
+
+.reservation-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    width: 90%;
+    border-radius: 2%;
+}
+
+.favorites-trails{
+    margin-right: 5%;
+    max-width: 200px;
+}
+
+.test{
+    width: 43%;
+    height: 30%;
+    background-color: blue;
+    text-align: center;
+}
+.completed-trails{
+    margin-left: 9%;
+}
+
+.trail-item{
+    display: flex;
+    align-items:flex-start;
+    
+}
+
+.description-text{
+    max-width: 100%;
+    margin: 60px 20px;
+    line-height: 1.2;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: var(--mediumblue);
+    text-align: center;
+    
 }

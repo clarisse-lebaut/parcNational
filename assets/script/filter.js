@@ -146,8 +146,12 @@ function updateTrailDisplay(data) {
         </div>
 
         <div class="fav-btn-container">
-          <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn"><img src="assets/icon/favorite-fill.svg" alt="heart icon"></a>
-          <button class="fav-btn"><img src="assets/icon/hiking.svg" alt=""></button>
+          <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
+            <img src="assets/icon/favorite-fill.svg" alt="heart icon">
+          </a>
+          <a href="/parcNational/manage-completed-trail?trail_id=${item.trail_id}" class="fav-btn">
+            <img src="assets/icon/hiking.svg" alt="hiking icon">
+          </a>
         </div>       
       `;
 

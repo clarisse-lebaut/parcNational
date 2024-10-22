@@ -13,11 +13,20 @@ class FavoriteTrail extends Model{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function isFavorite($userId, $trailId) {
+        $sql = 'SELECT COUNT(*) FROM favorites_trails WHERE user_id = ? AND trail_id = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$userId, $trailId]);
+        return $stmt->fetchColumn() > 0; 
+    }
+
     public function addFavoriteTrail($trailId){
+        if (!$this->isFavorite($_SESSION['user_id'], $trailId)) {
         $sql = 'INSERT INTO favorites_trails(user_id, trail_id) VALUES(?,?)';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$_SESSION['user_id'], $trailId]);
     }
+}
 
     public function deleteFavoriteTrail($trailId){
         $sql = 'DELETE FROM favorites_trails WHERE user_id = ? AND trail_id = ?';
