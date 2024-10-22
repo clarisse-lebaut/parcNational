@@ -12,15 +12,18 @@ class AdminData extends Model {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function count_admin() {
+    // Méthode pour compter les utilisateurs
+    public function count_users() {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM users WHERE role = :role");
-        $stmt->bindValue(':role', 'admin', PDO::PARAM_STR);
+        $stmt->bindValue(':role', 1, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function count_users() {
+
+    // Méthode pour compter les admins
+    public function count_admin() {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM users WHERE role = :role");
-        $stmt->bindValue(':role', 'user', PDO::PARAM_STR);
+        $stmt->bindValue(':role', 2, PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
