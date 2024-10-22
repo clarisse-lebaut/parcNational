@@ -16,12 +16,6 @@
     
     <section class="data">
         <div>
-            <p>Total d'abonnements</p>
-            <img src="assets/icon/ships.svg" alt="icon ships">
-            <p><?= htmlspecialchars($totalMemberships ?? 0) ?></p> <!-- Affichage du nombre total d'abonnements -->
-        </div>
-
-        <div>
             <p>Dernière formule ajouté</p>
             <img src="assets/icon/card_membership.svg" alt="icon ships">
             <p>
