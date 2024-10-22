@@ -1,13 +1,3 @@
-<?php
-require_once __DIR__ . '/../config/connectBDD.php';
-require_once __DIR__ . '/../models/CoveModel.php';  
-require_once __DIR__ . '/../controllers/coveController.php';  
-
-$coveController = new CoveController(new CoveModel());
-$calanques = $coveController->getAllCoves();  
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,10 +10,10 @@ $calanques = $coveController->getAllCoves();
 <body>
     <header>
          <?php include __DIR__ . '/../components/_header.php'; ?>
-     </header>
+    </header>
 
-        <main>
-            <h1>Les Calanques de Marseille</h1>
+    <main>
+        <h1>Les Calanques de Marseille</h1>
         <section>
             <?php if (!empty($calanques)): ?>
                 <div class="coves-grid">
