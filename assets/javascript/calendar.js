@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Les événements sont injectés via PHP
     let events = vacationEvents.map(event => ({
-        title: 'Fermeture',  // Titre fixe pour chaque événement de fermeture
+        title: 'Fermeture',  
         start: event.start,
         end: event.end,
         color: defaultColor,
@@ -52,35 +52,38 @@ document.addEventListener('DOMContentLoaded', function() {
     // maj du prix selon le nombre de personnes
     personsInput.addEventListener('input', calculateTotalPrice);
 
-    let calendar = new FullCalendar.Calendar(calendarEl, { //initialisation FC
+    let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         locale: 'fr',
+        height: 'auto',
         headerToolbar: {
             start: 'title',
             center: '',
             end: 'prev,next today'
         },
+        dayHeaderFormat: { weekday: 'short' },  
         events: events,
         selectable: true,
         validRange: function(nowDate) {
-            let today = new Date();
+            let nowDate = new Date();
             return {
-                start: today, 
+                start: nowDate,
             };
         },
-
+        selectOverlap: function(event) {
+            return event.title !== 'Fermeture'; 
+        },
         select: function(info) {
             document.getElementById('start_date').value = info.startStr;
             document.getElementById('end_date').value = info.endStr;
-
-            // date de début - date de fin = différence de jours   (1000 ms * 60 s * 60 min * 24 h)
+    
             let startDate = new Date(info.startStr);
             let endDate = new Date(info.endStr);
             selectedDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
-
+    
             calculateTotalPrice();
         },
     });
-
+    
     calendar.render();
 });

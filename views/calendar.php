@@ -41,51 +41,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <header>
-        <?php include __DIR__ . '/../components/_header.php'; ?>
-    </header>
-    <main>
-        <section>
-            <?php if ($campsite): ?>
-                <h1><?= htmlspecialchars($campsite['name']); ?></h1>
+<header>
+    <?php include __DIR__ . '/../components/_header.php'; ?>
+</header>
+<main>
+    <section>
+        <?php if ($campsite): ?>
+            <div class="title-and-image">
+                <h1 class="campsite-title"><?= htmlspecialchars($campsite['name']); ?></h1>
                 <div class="calendar-info" data-price-per-night="<?= htmlspecialchars($campsite['price_per_night']); ?>">
                     <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
                 </div>
-            <?php else: ?>
-                <p class="error">Erreur : Camping introuvable.</p>
-            <?php endif; ?>
-        </section>
+            </div>
+        <?php else: ?>
+            <p class="error">Erreur : Camping introuvable.</p>
+        <?php endif; ?>
+    </section>
 
     <div class="calendar-form-container">
         <section class="reservation-section">
-        <h2>Réserver ce camping</h2>
+            <h2>Réserver ce camping</h2>
             <form action="payment.php" method="POST">
                 <div class="date-fields">
-                <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
-                
+                    <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
                     <div class="date-field">
                         <label for="start_date">Du</label>
                         <input type="text" id="start_date" name="start_date" readonly required>
                     </div>
-
                     <div class="date-field">
-                        <label for="end_date">au</label>
+                        <label for="end_date">Au</label>
                         <input type="text" id="end_date" name="end_date" readonly required>
                     </div>
                 </div>
-
                 <div class="persons-field">
                     <label for="num_persons">Nombre de personnes </label>
                     <input type="number" id="num_persons" name="num_persons" min="1" max="10" required>
                 </div>
 
-            <input type="hidden" name="price" id="calculated_price" value="0">
-            <div id="calendar-price-resa">
-                <p>Prix total: <span id="total-price">0</span> €</p>
-            </div>
-
-            <input type="submit" value="PAYER">
-         </form>
+                <input type="hidden" name="price" id="calculated_price" value="0">
+                <div id="calendar-price-resa">
+                    <p>Prix total: <span id="total-price">0</span> €</p>
+                </div>
+                <input type="submit" value="PAYER">
+            </form>
         </section>
 
         <?php if (!empty($message)): ?>
@@ -95,24 +93,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php endif; ?>
 
         <section>
-                <div id="calendar"></div>
+            <div id="calendar"></div>
         </section>
     </div>
 
-    </main>
-    
-    <footer>
-        <?php include __DIR__ . '/../components/_footer.php'; ?>
-    </footer>
-    
-    <script> let vacationEvents = <?= json_encode($vacationEvents); ?>; </script>
-    <!-- SCRIPTS -->
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
-    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
+</main>
+<footer>
+    <?php include __DIR__ . '/../components/_footer.php'; ?>
+</footer>
 
-    <script src="../assets/javascript/calendar.js"></script>
+<script> let vacationEvents = <?= json_encode($vacationEvents); ?>; </script>
+<!-- SCRIPTS -->
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
+<script src="../assets/javascript/calendar.js"></script>
 </body>
 </html>
