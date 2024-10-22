@@ -26,17 +26,21 @@ class LoginController extends Controller
         $user = new User('users');
         $dbUser = $user->getUserByEmail($_POST['email']);
         if ($dbUser != false) {
-            if (password_verify($_POST['password'], $dbUser['password'])) {
-                $_SESSION['user_id'] = $dbUser['user_id'];
-                $_SESSION['user_role'] = $dbUser['role'];
-                if ($dbUser['role'] == 1) {
-                    $this->redirect('home');
-                } else if ($dbUser['role'] == 2) {
-                    // $this->checkAdmin();
-                    $this->redirect('admin_home');
-                }
-            } else {
+            if (!empty($dbUser['password'])) {
+                if (password_verify($_POST['password'], $dbUser['password'])) {
+                    $_SESSION['user_id'] = $dbUser['user_id'];
+                    $_SESSION['user_role'] = $dbUser['role'];
+                    if ($dbUser['role'] == 1) {
+                        $this->redirect('home');
+                    } else if ($dbUser['role'] == 2) {
+                        // $this->checkAdmin();
+                        $this->redirect('admin_home');
+                    }
+                } else {
                 $this->render('login', ['error' => 'Données incorrectes']);
+            } 
+            } else {
+                $this->render('login', ["error' => L'utilisateur n'a pas de mot de passe."]);
             }
 
         } else {

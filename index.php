@@ -236,6 +236,11 @@ $routes = [
     'profile-form' =>[
         'controller' => 'ProfileController',
         'method' => 'ProfileForm',
+    ],
+    'deleteReservation' =>[
+        'controller' => 'ProfileController',
+        'method' => 'deleteReservation',
+        'params' => ['reservation_id']
     ]
 ];
 

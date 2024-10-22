@@ -10,7 +10,7 @@
     <header>
         <?php include "components/_header.php"; ?>
     </header>
-    <h1>Bienvenue sur ton profile</h1>
+    <h1>Bienvenue sur ton profile <?=$userId['firstname']?></h1>
     <section>
         <!-- Top section containing personal data and memberships -->
         <div class="top-container">
@@ -71,12 +71,23 @@
             <div class="left-part">
                 <h2>Mes résérvations</h2>
                 <div class="reservation-container">
-                    <div class="test">one</div>
-                    <div class="test">two</div>
-                    <div class="test">three</div>
-                    <div class="test">one</div>
-                    <div class="test">two</div>
-                    <div class="test">three</div>
+                    <?php if(!empty($reservedCampings)): ?>
+                        <?php foreach($reservedCampings as $reservedCamping): ?>
+                            <div class="reserved-campings">
+                                <img src= /parcNational/<?= $reservedCamping['campsite_image']; ?> alt="Image du camping" class="reservation-image"></img>
+                                <p><strong>Nom de camping : </strong><?= htmlspecialchars($reservedCamping['campsite_name']); ?></p>
+                                <p><strong>Date de debout : </strong><?= date('Y-m-d', strtotime($reservedCamping['start_date'])) ; ?></p>
+                                <p><strong>Date de fin : </strong><?= date('Y-m-d', strtotime($reservedCamping['end_date'])) ; ?></p>
+                                <p><strong>Prix : </strong><?= htmlspecialchars($reservedCamping['price']) ; ?> €</p>
+                                <p><strong>Date de résérvation : </strong><?= htmlspecialchars($reservedCamping['reservation_date']) ; ?></p>
+                                <p><strong>Statut : </strong><?= htmlspecialchars($reservedCamping['status']) ; ?></p>
+                                <p><a href="/parcNational/deleteReservation?reservation_id=<?= htmlspecialchars($reservedCamping['reservation_id']); ?>" class="delete">Supprimer</a></p>
+
+                            </div>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>Pas de résérvations</p>
+                    <?php endif; ?>
                 </div>
                 <!-- Completed trails section -->
                 <div class="completed-trails">

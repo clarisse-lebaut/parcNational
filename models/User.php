@@ -14,6 +14,12 @@ class User extends Model{
         $stmt->execute([1, $data['lastname'], $data['firstname'], $data['email'], password_hash($data['password'], PASSWORD_BCRYPT), $data['phone'], $data['adress'], $data['city'], $data['zipcode']]);
     }
 
+    public function userExists($email) {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE mail = :mail");
+        $stmt->execute([':mail' => $email]);
+        return $stmt->fetchColumn() > 0;
+    }
+
     public function getUserByEmail($email){
         $sql = ' SELECT * FROM users WHERE mail = ?';
         $stmt = $this->pdo->prepare($sql);
@@ -90,8 +96,25 @@ class User extends Model{
     }
 
     public function updateUser($userId, $data){
-    $sql = 'UPDATE users SET firstname = ?, lastname = ?, mail = ?, phone = ?, address = ?, city = ?, zipcode = ? WHERE user_id = ?';
+    $sql = 'UPDATE users SET firstname = ?, lastname = ?, mail = ?, phone = ?, address = ?, city = ?, zipcode = ?, password = ? WHERE user_id = ?';
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([$data['firstname'], $data['lastname'], $data['mail'], $data['phone'], $data['address'], $data['city'], $data['zipcode'], $userId]);
+    $stmt->execute([$data['firstname'], $data['lastname'], $data['mail'], $data['phone'], $data['address'], $data['city'], $data['zipcode'], $data['password'], $userId]);
+    }
+
+    public function getReservationsByUser($user_id) {
+        $query = $this->pdo->prepare('SELECT r.*, c.name AS campsite_name, c.image AS campsite_image
+                                     FROM reservations r 
+                                     JOIN campsite c ON r.campsite_id = c.campsite_id 
+                                     WHERE r.user_id = :user_id 
+                                     ORDER BY r.reservation_date DESC');
+        $query->bindParam(':user_id', $user_id);
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteReservationById($reservation_id){
+        $sql = 'DELETE FROM reservations WHERE user_id = ? and reservation_id = ?';
+        $stmt =  $this->pdo->prepare($sql);
+        $stmt->execute($_SESSION['user_id'], [$reservation_id]);
     }
 }

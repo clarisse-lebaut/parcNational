@@ -19,7 +19,7 @@
 
     <div>
       <?php if(isset($error)): ?>
-        <div class="alert alert-danger">
+        <div class="alert alert-danger" style="display: flex; justify-content: center; align-items: center;">
           <?php echo htmlspecialchars($error); ?>
         </div>
       <?php endif; ?>

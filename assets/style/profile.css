@@ -59,9 +59,22 @@
 
 .edit-profil:hover{
     background-color: #d0e7ff;
-    transform: translateY(-2px);
 }
 
+.reservation-image{
+    width: 300px;
+    height: 150px;
+    border-radius: 3%;
+    border: 2px solid black;
+    margin-top: 5%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    
+}
+
+.reservation-image:hover{
+    transform: scale(1.4);
+}
 .img-trail{
     width: 100%;
     height: auto;
@@ -70,10 +83,11 @@
     border-radius: 5px;
     border: 2px solid black;
     object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
 .img-trail:hover{
-    transform: translateY(-2px);
+    transform: scale(1.3);
 }
 .delete{
     width: 100%;
@@ -99,6 +113,7 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
+    background: linear-gradient(to right, #add8e6, #31a2df);
 }
 
 .left-part{
@@ -109,10 +124,15 @@
 .reservation-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     gap: 10px;
     width: 90%;
-    background-color: var(--lmblue);
     border-radius: 2%;
+}
+
+.favorites-trails{
+    margin-right: 5%;
+    max-width: 200px;
 }
 
 .test{
@@ -121,11 +141,14 @@
     background-color: blue;
     text-align: center;
 }
+.completed-trails{
+    margin-left: 9%;
+}
 
 .trail-item{
     display: flex;
     align-items:flex-start;
-    margin-bottom: 20px;
+    
 }
 
 .description-text{

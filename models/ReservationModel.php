@@ -1,11 +1,10 @@
 <?php
-require_once __DIR__ . '/../config/connectBDD.php';
+require_once 'Model.php';
 
-class ReservationModel extends connectBDD {
+class ReservationModel extends Model {
 
-    public function __construct() {
-        parent::__construct();
-        $this->db = $this->getDb();
+    public function __construct($table) {
+        parent::__construct($table);
     }
 
     // 1. Créer une réservation
@@ -87,5 +86,11 @@ class ReservationModel extends connectBDD {
         $query->bindParam(':campsite_id', $campsite_id);
         $query->execute();
         return $query->fetchColumn(); 
+    }
+
+    public function deleteReservationById($reservation_id){
+        $sql = 'DELETE FROM reservations WHERE reservation_id = ?';
+        $stmt =  $this->pdo->prepare($sql);
+        $stmt->execute ([$reservation_id]);
     }
 }

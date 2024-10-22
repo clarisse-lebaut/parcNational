@@ -6,6 +6,7 @@ require_once __DIR__ . '/../models/Trails.php';
 require_once __DIR__ . '/../models/Membership.php';
 require_once __DIR__ . '/../models/CompletedTrails.php';
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../models/ReservationModel.php';
 
 
 class ProfileController extends Controller
@@ -33,6 +34,10 @@ class ProfileController extends Controller
         $User = new User('users');
         $userId = $User->getById($userId);
 
+        /*Fetching the current user's reservations to display on the profile page*/
+        $user_id = $_SESSION['user_id'];
+        $reservedCampingObject = new User('c.campsite_id');
+        $reservedCampings = $reservedCampingObject->getReservationsByUser($user_id);
         require_once __DIR__ . '/../views/profile.php';
     }
 
@@ -55,16 +60,33 @@ class ProfileController extends Controller
         $this->render('login');
         exit;
     }
+
     /* Preparing an array with the updated user data from the form*/ 
     $userId = $_SESSION['user_id'];
+    $userModel = new User('users');
+    $userData = $userModel->getById($userId);
     $updatedData = [
         'firstname' => $_POST['firstname'],
         'lastname' => $_POST['lastname'],
         'phone' => $_POST['phone'],
         'address' => $_POST['address'],
         'city' => $_POST['city'],
-        'zipcode' => $_POST['zipcode']
+        'zipcode' => $_POST['zipcode'],
+        'mail' => $_POST['mail']
     ];
+
+    if (!empty($_POST['password'])) {
+        if($_POST['password'] === $_POST['repeatpassword']){
+            $updatedData['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        }else{
+            $errorMessage = "Les mots de passe saisis sont différents";
+            $this->render('profileForm', ['userData' => $userData, 'errorMessage' => $errorMessage]);
+            return;
+        }
+    } else {
+        $updatedData['password'] = $userData['password'];
+    }
+
     /*Updating user data using updateUser method*/
     $userModel = new User('users');
     $userModel->updateUser($userId, $updatedData);
@@ -75,9 +97,34 @@ class ProfileController extends Controller
     $_SESSION['address'] = $updatedData['address'];
     $_SESSION['city'] = $updatedData['city'];
     $_SESSION['zipcode'] = $updatedData['zipcode'];
+    $_SESSION['mail'] = $updatedData['mail'];
     
     /* Redirection to the profile site after data updating*/
     header('Location: profile');
-}
+    }
+
+    public function deleteReservation(){
+        $reservationUserObject = new ReservationModel('reservations');
+        $reservation_id = $_GET['reservation_id'];
+        var_dump("deleteReservation called");
+        if(!isset($_SESSION['user_id'])){
+            var_dump($_SESSION['user_id']);
+            $this->render('login');
+            exit;
+        }
+
+        if (isset($reservation_id)){  
+        var_dump($reservation_id);
+        $reservationUserObject->deleteReservationById($reservation_id);
+        header('Location: profile');
+        exit;
+        } else {
+            // Handle invalid input (e.g., show an error message)
+            echo "Invalid reservation ID.";
+            exit;
+        }
+
+
+    }
 
 }
