@@ -30,16 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 newPriceSpan.style.fontWeight = 'bold';
 
                 const totalPriceElement = document.getElementById('payment-total_price');
-
                 totalPriceElement.textContent = ''; 
                 totalPriceElement.appendChild(oldPriceSpan);
                 totalPriceElement.appendChild(newPriceSpan);
 
                 document.getElementById('final_price').value = newPrice;
                 document.getElementById('final_price_input').value = newPrice;
-
-                applyPromoBtn.disabled = true;
-                promoCodeInput.disabled = true;
 
                 document.getElementById('promo_error').innerText = ''; 
             } else {

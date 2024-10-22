@@ -88,7 +88,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_payment'])) {
                     <p id="promo_error" style="color: red;"></p>
                 </form>
             </div>
-        </div> 
 
         <form id="payment-form" action="payment.php" method="POST">
             <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
