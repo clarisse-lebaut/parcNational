@@ -1,11 +1,10 @@
 <?php
 require_once 'Controller.php';
-require_once  __DIR__ . '/../models/Model.php';
-require_once __DIR__ . '/../models/AdminUsers.php';
+require_once __DIR__ . '/../models/Model.php';
+require_once __DIR__ . '/../models/AdminUsers.php'; // Correction du nom du modèle
 
 class AdminAdminController extends Controller
 {
-
     private $model;
 
     public function __construct()
@@ -32,7 +31,7 @@ class AdminAdminController extends Controller
         }
 
         // Si aucune suppression n'est demandée, on récupère et affiche les administrateurs
-        $admin = $this->model->get_admin(); // Récupère les administrateurs
+        $admin = $this->model->get_users_by_role(2); // Récupère les administrateurs avec le rôle 2
         $countAdmin = $this->model->count_admin(); // Compte le nombre d'administrateurs
 
         // Vérifie si les administrateurs et le comptage sont corrects
@@ -153,7 +152,8 @@ class AdminAdminController extends Controller
                     }
                 } else {
                     // Création d'un nouvel administrateur
-                    if ($this->model->create_admin($lastname, $firstname, $mail, password_hash($password, PASSWORD_BCRYPT), $phone, $address, $city, $zipcode, $registration_date)) {
+                    $registration_date = date('Y-m-d H:i:s'); // Ajout de l'initialisation de la date d'enregistrement
+                    if ($this->model->create_admin($lastname, $firstname, $mail, $password, $phone, $address, $city, $zipcode, $registration_date)) {
                         echo 'Administrateur créé avec succès !';
                         $this->redirect('manage_admin');
                         exit;

@@ -20,34 +20,38 @@
         <?php endif; ?>
 
         <section>
-        <div>
-        <label for="lastname">Nom de famille :</label>
-        <input type="text" name="lastname" value="<?php echo htmlspecialchars($isEdit ? $adminData['lastname'] : ''); ?>" required><br>
+            <section>
+                <div>
+                    <label for="lastname">Nom de famille :</label>
+                    <input type="text" name="lastname" value="<?php echo htmlspecialchars($isEdit ? $adminData['lastname'] : ''); ?>" required><br>
 
-        <label for="firstname">Prénom :</label>
-        <input type="text" name="firstname" value="<?php echo htmlspecialchars($isEdit ? $adminData['firstname'] : ''); ?>" required><br>
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" name="firstname" value="<?php echo htmlspecialchars($isEdit ? $adminData['firstname'] : ''); ?>" required><br>
 
-        <label for="mail">Email :</label>
-        <input type="email" name="mail" value="<?php echo htmlspecialchars($isEdit ? $adminData['mail'] : ''); ?>" required><br>
-        </div>
-        <div>
-        <label for="password">Mot de passe (laisser vide pour conserver) :</label>
-        <input type="password" name="password"><br>
+                    <label for="mail">Email :</label>
+                    <input type="email" name="mail" value="<?php echo htmlspecialchars($isEdit ? $adminData['mail'] : ''); ?>" required><br>
+                </div>
+                <div>
+                    <label for="password">Mot de passe (laisser vide pour conserver) :</label>
+                    <input type="password" name="password"><br>
 
-        <label for="phone">Téléphone :</label>
-        <input type="text" name="phone" value="<?php echo htmlspecialchars($isEdit ? $adminData['phone'] : ''); ?>" required><br>
-        </div>
-        <div>
-        <label for="address">Adresse :</label>
-        <input type="text" name="address" value="<?php echo htmlspecialchars($isEdit ? $adminData['address'] : ''); ?>" required><br>
+                    <label for="phone">Téléphone :</label>
+                    <input type="text" name="phone" value="<?php echo htmlspecialchars($isEdit ? $adminData['phone'] : ''); ?>" required><br>
+                </div>
+                <div>
+                    <label for="address">Adresse :</label>
+                    <input type="text" name="address" value="<?php echo htmlspecialchars($isEdit ? $adminData['address'] : ''); ?>" required><br>
 
-        <label for="city">Ville :</label>
-        <input type="text" name="city" value="<?php echo htmlspecialchars($isEdit ? $adminData['city'] : ''); ?>" required><br>
+                    <label for="city">Ville :</label>
+                    <input type="text" name="city" value="<?php echo htmlspecialchars($isEdit ? $adminData['city'] : ''); ?>" required><br>
 
-        <label for="zipcode">Code Postal :</label>
-        <input type="text" name="zipcode" value="<?php echo htmlspecialchars($isEdit ? $adminData['zipcode'] : ''); ?>" required><br>
-        </div>
-        <button type="submit"><?php echo $isEdit ? 'Modifier' : 'Créer'; ?></button>
+                    <label for="zipcode">Code Postal :</label>
+                    <input type="text" name="zipcode" value="<?php echo htmlspecialchars($isEdit ? $adminData['zipcode'] : ''); ?>" required><br>
+                </div>
+            </section>
+            <section>
+                <button type="submit"><?php echo $isEdit ? 'Modifier' : 'Créer'; ?></button>
+            </section>
         </section>
     </form>
 </body>
