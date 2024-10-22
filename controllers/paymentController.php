@@ -45,11 +45,11 @@ class PaymentController {
                 session_start();
             }
             $reservationModel = new ReservationModel();
-            $user_id = 1; //A CHANGER USER STATIQUE 
+            $user_id = 1;  // User ID statique pour l'instant
             $reservation_id = $reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price, "en attente");
             $_SESSION['reservation_id'] = $reservation_id;
-
-            $checkout_session = Session::create([
+    
+            $checkout_session = \Stripe\Checkout\Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
                     'price_data' => [
@@ -57,24 +57,24 @@ class PaymentController {
                         'product_data' => [
                             'name' => 'Réservation Camping #' . $campsite_id,
                         ],
-                        'unit_amount' => $price * 100, // Prix en centimes
+                        'unit_amount' => $price * 100,  // Prix en centimes
                     ],
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=success',
-                'cancel_url' => 'http://parcnational/views/reservationHistory.php?campsite_id=' . $campsite_id . '&status=cancel',
+                'success_url' => 'http://parcnational/reservation_history?campsite_id=' . $campsite_id . '&status=success', // URL redirigée via le routeur
+                'cancel_url' => 'http://parcnational/reservation_history?campsite_id=' . $campsite_id . '&status=cancel',
             ]);
-
+    
             header("Location: " . $checkout_session->url);
             exit();
-
+    
         } catch (Exception $e) {
             error_log("Erreur lors de la création de la session Stripe: " . $e->getMessage());
             echo "Une erreur s'est produite lors du paiement.";
         }
     }
-
+    
     // reservation confirmée quand paiment reussi
     public function confirmReservation($reservation_id) {
         $reservationModel = new ReservationModel();

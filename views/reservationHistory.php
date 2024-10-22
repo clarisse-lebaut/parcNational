@@ -88,6 +88,7 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                             <th>Prix</th>
                             <th>Date de réservation</th>
                             <th>Statut</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,9 +101,9 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
                                 <td><?= isset($reservation['reservation_date']) ? htmlspecialchars($reservation['reservation_date']) : 'Non disponible'; ?></td>
                                 <td><?= isset($reservation['status']) ? htmlspecialchars($reservation['status']) : 'Non disponible'; ?></td>
                                 <td>
-    <?php if ($reservation['status'] !== 'annulée'): ?>
-        <button type="button" class="cancel-btn" data-reservation-id="<?= $reservation['reservation_id']; ?>">Annuler</button>
-    <?php endif; ?>
+                                    <?php if ($reservation['status'] !== 'annulée'): ?>
+                                        <button type="button" class="cancel-btn" data-reservation-id="<?= $reservation['reservation_id']; ?>">Annuler</button>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -114,15 +115,20 @@ $reservations = $reservationModel->getReservationsByUser($user_id);
         </section>
     </main>
 
-    <!-- Modale 'annulation -->
-<div id="cancel-modal" class="modal">
-    <div class="modal-content">
-        <p>Êtes-vous sûr de vouloir annuler cette réservation ?</p>
-        <button id="confirm-cancel-btn" class="btn-confirm">Oui</button>
-        <button id="close-modal-btn" class="btn-close">Non</button>
+    <!-- MODALES -->
+    <div id="cancel-modal" class="modal">
+        <div class="modal-content">
+            <p>Êtes-vous sûr de vouloir annuler cette réservation ?</p>
+            <button id="confirm-cancel-btn" class="btn-confirm">Oui</button>
+            <button id="close-modal-btn" class="btn-close">Non</button>
+        </div>
+        <div id="error-modal" class="modal">
+            <div class="modal-content">
+                <p id="error-message"></p>
+                <button id="close-error-modal-btn" class="btn-close">Fermer</button>
+            </div>
+        </div>
     </div>
-</div>
-
 
     <footer>
         <?php include __DIR__ . '/../components/_footer.php'; ?>

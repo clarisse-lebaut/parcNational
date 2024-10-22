@@ -5,17 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeModalBtn = document.getElementById('close-modal-btn');
     let reservationIdToCancel = null;
 
+    // Gestion de l'affichage de la modale sur clic du bouton "Annuler"
     cancelButtons.forEach(button => {
         button.addEventListener('click', function() {
             reservationIdToCancel = this.getAttribute('data-reservation-id');
-            modal.style.display = 'flex'; // Affiche la modale
+            modal.style.display = 'flex'; // Afficher la modale seulement quand on clique sur "Annuler"
         });
     });
 
     // Fermer la modale si on clique sur 'Non'
     closeModalBtn.addEventListener('click', function() {
-        modal.style.display = 'none';
-        reservationIdToCancel = null;
+        modal.style.display = 'none'; // Cacher la modale
+        reservationIdToCancel = null; // Réinitialiser la réservation à annuler
     });
 
     // Si 'Oui', soumettre le formulaire d'annulation
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (reservationIdToCancel) {
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = 'reservationHistory.php';
+            form.action = ''; // Soumission du formulaire sur la même page
 
             const input = document.createElement('input');
             input.type = 'hidden';
@@ -38,7 +39,12 @@ document.addEventListener('DOMContentLoaded', function() {
             form.appendChild(submit);
 
             document.body.appendChild(form);
-            form.submit(); 
+            form.submit();
         }
+    });
+
+    // Modale  cachée au chargement de la page
+    window.addEventListener('load', function() {
+        modal.style.display = 'none'; 
     });
 });

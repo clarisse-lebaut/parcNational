@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
@@ -14,6 +18,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $routes = [
+    
     'login' => [
         'controller' => 'LoginController', 
         'method' => 'login',
@@ -215,12 +220,13 @@ $routes = [
         'method' => 'viewProfile',
     ],
 
+
  'campsite' => [
-    'controller' => 'CampsiteController',
+    'controller' => 'campsiteController',
     'method' => 'getAllCampsites',
 ],
 'campsiteDetails' => [
-    'controller' => 'CampsiteController',
+    'controller' => 'campsiteController',
     'method' => 'getCampsiteById',
 ],
 
@@ -229,12 +235,15 @@ $routes = [
     'method' => 'getReservationsByUser',
 ],
 
+'calendar' => [
+    'controller' => 'CalendarController',
+    'method' => 'showCalendar',
+],
 'coves' => [
     'controller' => 'CoveController',
     'method' => 'getAllCoves',
 ],
 
-// Routes pour les ressources naturelles
 'ressources' => [
     'controller' => 'RessourceController',
     'method' => 'getAllRessources',
@@ -243,11 +252,15 @@ $routes = [
     'controller' => 'RessourceController',
     'method' => 'getRessourceById',
 ],
+'payment' => [
+    'controller' => 'PaymentController',
+    'method' => 'processPayment',
+],
 ];
 
 // Nettoyage et traitement de l'URL
-$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); 
-$url = trim($url, '/'); 
+$url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$url = trim($url, '/');
 $url = str_replace('.php', '', $url);
 $url = str_replace('parcNational', '', $url);
 
@@ -269,23 +282,23 @@ if (isset($routes[$urlArray[0]])) {
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
-    // Si le contrôleur est 'CoveController' ou 'CampsiteController', on passe le modèle au constructeur
-    if ($className === 'CoveController') {
-        require_once 'models/CoveModel.php';
-        $coveModel = new CoveModel();
-        $object = new CoveController($coveModel);
-    } elseif ($className === 'CampsiteController') {
-        require_once 'models/CampsiteModel.php';
-        $campsiteModel = new CampsiteModel();
-        $object = new CampsiteController($campsiteModel);
+    $object = new $className;
+
+    // methodes qui ont besoin d'un ID
+    if (in_array($methodName, ['getCampsiteById', 'getRessourceById'])) {
+        if (isset($_GET['id'])) {
+            $id = (int) $_GET['id'];
+            $object->{$methodName}($id); // Appel avec l'ID
+        } else {
+            echo "Erreur : ID manquant.";
+            return;
+        }
+    } elseif ($methodName === 'getReservationsByUser') {
+        $user_id = 1; // À remplacer par l'ID de l'utilisateur connecté
+        $object->{$methodName}($user_id); 
     } else {
-        // Pour tous les autres contrôleurs, on les crée sans argument
-        $object = new $className;
+        $object->{$methodName}();
     }
-
-    // Appeler la méthode du contrôleur
-    $object->{$methodName}();
-
 } else {
-    var_dump("pas d'adresse");
+    echo "pas d'adresse valide";
 }

@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../models/ReservationModel.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/Controller.php';
+require_once __DIR__ . '/CampsiteController.php';
+
 
 class ReservationController extends Controller {
 
@@ -42,6 +44,21 @@ class ReservationController extends Controller {
     // Récupérer toutes les réservations d'un utilisateur
     public function getReservationsByUser($user_id) {
         $reservations = $this->reservationModel->getReservationsByUser($user_id);
-        $this->render('reservationHistory', ['reservations' => $reservations]);
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
+        $message = '';
+    
+        if ($status === 'success' && isset($_SESSION['reservation_id'])) {
+            $reservation_id = $_SESSION['reservation_id'];
+            $this->reservationModel->updateReservationStatus($reservation_id, "confirmée");
+            unset($_SESSION['reservation_id']);
+            $message = "Paiement réussi ! Votre réservation a été confirmée.";
+        } elseif ($status === 'cancel') {
+            $message = "Le paiement a été annulé. Vous pouvez réessayer.";
+        }
+    
+        $this->render('reservationHistory', [
+            'reservations' => $reservations,
+            'message' => $message
+        ]);
     }
-}
+    }

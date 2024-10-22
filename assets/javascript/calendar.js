@@ -65,9 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
         events: events,
         selectable: true,
         validRange: function(nowDate) {
-            let nowDate = new Date();
             return {
-                start: nowDate,
+                start: nowDate // Correction : pas de redéclaration de 'nowDate'
             };
         },
         selectOverlap: function(event) {
@@ -76,11 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
         select: function(info) {
             document.getElementById('start_date').value = info.startStr;
             document.getElementById('end_date').value = info.endStr;
-    
+
             let startDate = new Date(info.startStr);
             let endDate = new Date(info.endStr);
             selectedDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
-    
+
             calculateTotalPrice();
         },
     });
