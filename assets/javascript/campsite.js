@@ -83,4 +83,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
+
+// 'voir +'
+document.querySelectorAll('.show-more').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const shortText = this.previousElementSibling.previousElementSibling; // Texte court
+        const longText = this.previousElementSibling;
+
+        if (longText.style.display === 'none' || !longText.style.display) {
+            longText.style.display = 'inline';
+            shortText.style.display = 'none'; 
+            this.textContent = 'Voir moins';
+        } else {
+            longText.style.display = 'none';
+            shortText.style.display = 'inline';
+            this.textContent = 'Voir plus';
+        }
+    });
+});
 });

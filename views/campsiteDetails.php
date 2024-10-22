@@ -74,7 +74,7 @@ if ($campsite_id > 0) {
             <!-- ROW BOUTON RESERVER -->
             <?php if (!$isClosed && $availability !== 'Camping complet'): ?>
                 <div class="campsite-details-row">
-                    <a href="../views/calendar.php?campsite_id=<?= $campsite_id ?>" class="campsite-details-btn">Réserver</a>
+                <a href="calendar?campsite_id=<?= htmlspecialchars($campsite['campsite_id']); ?>">Réserver</a>
                 </div>
             <?php endif; ?>
 

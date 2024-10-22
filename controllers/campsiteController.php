@@ -28,7 +28,6 @@ class CampsiteController extends Controller {
     }            
 
     public function getCampsiteById($campsite_id) {
-        echo "ID reçu dans CampsiteController : " . $campsite_id . "<br>";
         $campsite = $this->campsiteModel->getCampsiteById($campsite_id);
         if ($campsite) { //MAJ du statut + rendu de la view
             $this->updateStatusBasedOnVacation($campsite_id, $campsite); 
