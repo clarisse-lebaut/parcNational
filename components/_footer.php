@@ -13,6 +13,7 @@
             <img src="assets/icon/whatsapp.svg" alt="Icon Whatsapp">
             <img src="assets/icon/tiktok.svg" alt="Icon TikTok">
             <img src="assets/icon/linkedin.svg" alt="Icon Linkedin">
+            <a class="top-icon" href="coves"><img src="assets/icon/arrow_up.svg" alt="Icon Arrow Up"></a>
         </div>
     </section>
 
