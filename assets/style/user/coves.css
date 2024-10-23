@@ -1,3 +1,35 @@
+.hero-page {
+  background-image: url(../../img/category_home/coves.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title-page {
+  position: relative; /* Permet de positionner les éléments enfants relativement */
+  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+}
+
+.text-overlay {
+  position: absolute; /* Positionnement absolu pour superposer le texte */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+  text-align: center; /* Centrer le texte */
+  padding: 25px;
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+}
+
+/* ----------------------- */
+
+
+
 main > section > p {
   text-align: center;
 }

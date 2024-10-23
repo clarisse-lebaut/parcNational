@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="assets/style/_global.css">
 </head>
 <body>
-    <header>
-         <?php include __DIR__ . '/../components/_header.php'; ?>
-    </header>
-
     <main>
-        <h1>Les Calanques de Marseille</h1>
+        <section>
+            <div class="hero-page">
+                <header><?php include "components/_header.php"; ?></header>    
+                <hgroup class="text-overlay">
+                    <h1 class="title-page">Les Calanques de Marseille</h1>
+                </hgroup>
+            </div>
+        </section>
        
         <nav class="coves-nav">
             <?php 

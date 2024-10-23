@@ -1,11 +1,11 @@
-.hero-trails {
+.hero-page {
   background-image: url(../../img/category_home/trails.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
 }
 
-.title-trails {
+.title-page {
   position: relative; /* Permet de positionner les éléments enfants relativement */
   width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
 }
