@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
-    'domain' => 'localhost', 
+    'domain' => '', 
     'httponly' => true, 
 ]);
 

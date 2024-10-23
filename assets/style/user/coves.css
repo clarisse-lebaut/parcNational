@@ -1,0 +1,87 @@
+main > section > p {
+  text-align: center;
+}
+main > section > section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 auto;
+  gap: 20px;
+  width: 80%;
+}
+main > section > section > li {
+  border: solid 1px var(--lmblue);
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+main > section > section > li:hover {
+  border: solid 1px var(--darkblue);
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: lightgray 0 5px 10px 0;
+}
+
+main > nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2px;
+  margin: 10px;
+  text-align: center;
+  border-bottom: solid 1px var(--lmblue);
+  background-color: #f8f8f8;
+}
+main > nav > li {
+  background-color: var(--lmblue);
+  border-radius: 5px 5px 0 0;
+  border: solid 1px #f8f8f8;
+  border-bottom: none;
+  padding: 10px;
+  color: white;
+}
+main > nav > li:hover {
+  border: solid 1px var(--lmblue);
+  border-bottom: none;
+  background-color: white;
+  border-radius: 5px 5px 0 0;
+}
+
+main > section > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main > section > div > article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  margin: 20px;
+  margin-top: 0;
+  border: solid 1px lightblue;
+  border-radius: 5px;
+  background-color: white;
+}
+
+article > :nth-child(2) {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+article > section > img {
+  width: 40%; /* Ajuster la taille de l'image si nécessaire */
+}
+
+article > section > p {
+  text-align: left; /* Alignement du texte */
+}
+
+hgroup {
+  display: flex;
+  align-items: last baseline;
+  gap: 10px;
+}

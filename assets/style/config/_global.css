@@ -4,12 +4,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
-
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap");
-
 body {
   margin: 0;
   background-color: #f8f8f8;
@@ -45,14 +39,6 @@ h3 {
 
 label {
   font-family: var(--font-Assistant);
-}
-
-hr {
-  border: none; /* Supprime la bordure par défaut */
-  height: 0.5px; /* Définit l'épaisseur */
-  background-color: black; /* Définit la couleur */
-  width: 50%; /* Définit la largeur */
-  margin: 5px auto; /* Centrage de la ligne */
 }
 
 p {
