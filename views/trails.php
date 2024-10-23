@@ -16,12 +16,21 @@
                 <header><?php include "components/_header.php"; ?></header>    
                 <hgroup class="text-overlay">
                     <h1 class="title-page">Les Sentiers</h1>
-                    <p>Arpenter les chemins est le meilleur moyen de découvrir les multiples facettes de ce parc national.</p>
-                    <p>De nombreux chemins balisés sont accessibles pour les visiteurs en quête de randonnées. 
-                    Quel que soit le niveau de difficulté choisi, chaque itinéraire donne lieu à des paysages fabuleux entre mer et montagne.</p>
+                    <p>
+                        Arpenter les chemins est le meilleur moyen de
+                        <br>
+                        découvrir les multiples facettes de ce parc national.</p>
+                    <p>
+                        De nombreux chemins balisés sont accessibles pour les visiteurs en quête de randonnées. 
+                        Quel que soit le niveau de difficulté choisi, 
+                        <br>
+                        chaque itinéraire donne lieu à des paysages fabuleux entre mer et montagne.
+                    </p>
                 </hgroup>
             </div>
         </section>
+
+        <p></p>
 
         <section>
             <div class="filter">

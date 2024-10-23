@@ -14,6 +14,12 @@
                 <header><?php include "components/_header.php"; ?></header>    
                 <hgroup class="text-overlay">
                     <h1 class="title-page">Les Calanques de Marseille</h1>
+                    <p>
+                        De majestueuses formations rocheuses bordées d'eaux cristallines de la Méditerranée 
+                        vous offrent des panoramas à couper le souffle.
+                        Que vous veniez pour une simple promenade ou une journée de découverte,
+                        chaque calanque révèle des paysages époustouflants entre terre et mer.
+                    </p>
                 </hgroup>
             </div>
         </section>
@@ -108,7 +114,7 @@
                         <article>
                             <section>
                                 <div>
-                                    <hgroup>
+                                    <hgroup class=".hgroup">
                                         <h2 id="calanque-<?= $idCounter; ?>"><?= htmlspecialchars($calanque['name']); ?>,</h2>
                                         <p><i><?= htmlspecialchars($calanque['location']); ?></i></p>
                                     </hgroup>

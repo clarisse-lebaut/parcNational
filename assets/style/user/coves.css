@@ -28,8 +28,6 @@
 
 /* ----------------------- */
 
-
-
 main > section > p {
   text-align: center;
 }
@@ -112,7 +110,7 @@ article > section > p {
   text-align: left; /* Alignement du texte */
 }
 
-hgroup {
+.hgroup {
   display: flex;
   align-items: last baseline;
   gap: 10px;
