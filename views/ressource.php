@@ -29,24 +29,28 @@
         <section>
             <div class="filter">
                 <p>Filtrer par :</p>
-                <!-- Filtre pour toutes ressources terrestre -->
+                <!-- Filtre par ressources-->
                 <div class="dropdown">
-                    <button class="dropdown-btn">
-                        <img src="assets/icon/hiking.svg" alt="Icon hiking">
-                        <div>Ressources</div>
-                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
-                    </button>
-                    <div class="dropdown-content">
-                        <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
-                        <label for="facile">Toutes</label><br>
+                <button class="dropdown-btn">
+                    <img src="assets/icon/hiking.svg" alt="Icon hiking">
+                    <div>Ressources</div>
+                    <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                </button>
+                <div class="dropdown-content">
+                    <input class="ressources" type="checkbox" id="tag-terrestre" name="tag" value="Terrestre">
+                    <label for="tag-terrestre">Terrestres</label><br>
 
-                        <input class="difficulty" type="checkbox" id="tag-moyen" name="tag" value="Moyen">
-                        <label for="moyen">Terrestres</label><br>
+                    <input class="ressources" type="checkbox" id="tag-marine" name="tag" value="Marine">
+                    <label for="tag-marine">Marines</label><br>
 
-                        <input class="difficulty" type="checkbox" id="tag-difficile" name="tag" value="Difficile">
-                        <label for="difficile">Marines</label><br>
-                    </div>
+                    <input class="ressources" type="checkbox" id="tag-flore" name="tag" value="Flore">
+                    <label for="tag-flore">Flore</label><br>
+
+                    <input class="ressources" type="checkbox" id="tag-faune" name="tag" value="Faune">
+                    <label for="tag-faune">Faune</label><br>
                 </div>
+                </div>
+
 
                 <!-- Filtre par faune -->
                 <div class="dropdown">
@@ -56,16 +60,14 @@
                         <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">
-                        <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
-                        <label for="facile">Toutes</label><br>
+                        <input class="faune" type="checkbox" id="tag-faune-terrestre" name="tag" value="Faune Terrestre">
+                        <label for="tag-faune-terrestre">Terrestres</label><br>
 
-                        <input class="difficulty" type="checkbox" id="tag-moyen" name="tag" value="Moyen">
-                        <label for="moyen">Terrestres</label><br>
-
-                        <input class="difficulty" type="checkbox" id="tag-difficile" name="tag" value="Difficile">
-                        <label for="difficile">Marines</label><br>
+                        <input class="faune" type="checkbox" id="tag-faune-marine" name="tag" value="Faune Marine">
+                        <label for="tag-faune-marine">Marines</label><br>
                     </div>
                 </div>
+
                 <!-- Filtre par flore -->
                 <div class="dropdown">
                     <button class="dropdown-btn">
@@ -74,14 +76,11 @@
                         <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">
-                        <input class="difficulty" type="checkbox" id="tag-facile" name="tag" value="Facile">
-                        <label for="facile">Toutes</label><br>
+                        <input class="flore" type="checkbox" id="tag-flore-terrestre" name="tag" value="Flore Terrestre">
+                        <label for="tag-flore-terrestre">Terrestres</label><br>
 
-                        <input class="difficulty" type="checkbox" id="tag-moyen" name="tag" value="Moyen">
-                        <label for="moyen">Terrestres</label><br>
-
-                        <input class="difficulty" type="checkbox" id="tag-difficile" name="tag" value="Difficile">
-                        <label for="difficile">Marines</label><br>
+                        <input class="flore" type="checkbox" id="tag-flore-marine" name="tag" value="Flore Marine">
+                        <label for="tag-flore-marine">Marines</label><br>
                     </div>
                 </div>
 
@@ -102,36 +101,10 @@
             <div id="overflow" class="ressources-container">
             </div>
         </section>
-
-        <section>
-            <?php if (!empty($ressources)): ?>
-                <div class="ressource-grid">
-                    <?php foreach ($ressources as $ressource): ?>
-                        <div class="ressource-item">
-                            <?php if (!empty($ressource['image'])): ?>
-                                <a href="ressourceDetails.php?id=<?= htmlspecialchars($ressource['ressource_id']); ?>">
-                                    <img src="../<?= htmlspecialchars($ressource['image']); ?>" alt="Image de <?= htmlspecialchars($ressource['name'] ?? 'Ressource') ?>">
-                                </a>
-                            <?php endif; ?>
-
-                            <a href="ressourceDetails.php?id=<?= htmlspecialchars($ressource['ressource_id']); ?>" class="ressource-name">
-                                <?= htmlspecialchars($ressource['name'] ?? 'Nom non disponible'); ?>
-                            </a>
-
-                            <p>Type : <?= htmlspecialchars($ressource['type'] ?? 'Non spécifié'); ?></p>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php else: ?>
-                <p>Aucune ressource naturelle trouvée.</p>
-            <?php endif; ?>
-        </section>
     </main>
 
     <footer>
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
-
-    <script src="../assets/javascript/ressources.js"></script>
 </body>
 </html>
