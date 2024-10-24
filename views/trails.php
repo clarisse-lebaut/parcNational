@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/style/_global.css">
     <link rel="stylesheet" href="assets/style/config/_filter.css">
     <link rel="stylesheet" href="assets/style/user/trails.css">
-    <script src="assets/script/filter.js" defer></script>
+    <script src="assets/script/filter/filter-trails.js" defer></script>
 </head>
 <body>
     <main>
@@ -19,7 +19,8 @@
                     <p>
                         Arpenter les chemins est le meilleur moyen de
                         <br>
-                        découvrir les multiples facettes de ce parc national.</p>
+                        découvrir les multiples facettes de ce parc national.
+                    </p>
                     <p>
                         De nombreux chemins balisés sont accessibles pour les visiteurs en quête de randonnées. 
                         Quel que soit le niveau de difficulté choisi, 
@@ -29,8 +30,6 @@
                 </hgroup>
             </div>
         </section>
-
-        <p></p>
 
         <section>
             <div class="filter">
