@@ -27,7 +27,8 @@ function applyFilters() {
         selectedFaune.push(checkbox.value);
       } else if (checkbox.classList.contains("flore")) {
         selectedFlore.push(checkbox.value);
-      } else if (checkbox.classList.contains("ressources")) { // Vérifier pour les ressources
+      } else if (checkbox.classList.contains("ressources")) {
+        // Vérifier pour les ressources
         selectedRessources.push(checkbox.value);
       }
     }
@@ -44,7 +45,8 @@ function applyFilters() {
   if (selectedFlore.length > 0) {
     searchTerms.push(...selectedFlore);
   }
-  if (selectedRessources.length > 0) { // Ajouter les ressources
+  if (selectedRessources.length > 0) {
+    // Ajouter les ressources
     searchTerms.push(...selectedRessources);
   }
 
@@ -67,7 +69,6 @@ function applyFilters() {
     })
     .catch((error) => console.error("Erreur:", error));
 }
-
 
 //* Fonction pour gérer l'affichage des tags en fonction des cases cochées
 function manageTagDisplay(checkbox) {
@@ -98,7 +99,6 @@ function manageTagDisplay(checkbox) {
   }
 }
 
-
 //* Fonction pour afficher les données filtrées dans la div
 function updateRessourcesDisplay(data) {
   const resultsContainer = document.getElementById("overflow");
@@ -112,26 +112,26 @@ function updateRessourcesDisplay(data) {
       card.innerHTML = `
         <div class="card_top">
           <a href="ressourceDetails?id=${encodeURIComponent(item.ressource_id)}">
-            <img class="pic-ressources" src="${item.image}" alt="${item.name}" width="200">
+            <img class="pic-ressources" src="${item.image}" alt="${item.name}">
           </a>
         </div>
 
         <div class="card_details">
-            <div name_ressources">
+            <div class="name_ressources">
                 <p>${item.name}</p>
             </div>
 
-            <div name_ressources">
-                <p>Type : ${item.type}</p>
+            <div class="type_ressources">
+                <p><strong>Type</strong> : ${item.type}</p>
             </div>
         </div>
 
-        <div class="fav-btn-container">
-          <a href="/parcNational/manage-favorite-trail?trail_id=${
-            item.ressource_id
-          }" class="fav-btn">
-            <img src="assets/icon/favorite-fill.svg" alt="heart icon">
-          </a>
+        <div class="btn-container">
+            <button class="btn-details">
+                <a href="ressourceDetails?id=${encodeURIComponent(item.ressource_id)}">
+                    En découvir plus !
+                </a>
+            </button>
         </div>
       `;
 

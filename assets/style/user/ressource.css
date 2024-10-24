@@ -28,62 +28,55 @@
 
 /* ----------------------- */
 
-/* Grille des ressources naturelles */
-.ressource-grid {
+.ressources-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  padding: 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  margin: 20px;
 }
 
-/* "card" des ressources naturelles */
-.ressource-item {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.card_ressources {
+  border: solid lightgray 1px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
   text-align: center;
-  transition: box-shadow 0.3s ease;
+  height: 25rem;
+  border-radius: 10px;
+  background-color: white;
+  transition: all ease-in-out 0.3s;
 }
 
-.ressource-item:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.pic-ressources {
+  border-radius: 40% 20% / 30% 10%;
+  width: 200px;
+  border: 1px black solid;
 }
 
-.ressource-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 5px;
-  margin-bottom: 10px;
+.card_ressources:hover {
+  box-shadow: lightgray 0 5px 15px 0;
+  background-color: #f8f8f8;
+  transform: scale(1.05);
 }
 
-.ressource-name a {
-  color: #005a36;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2em;
+.name_ressources > p {
+  font-size: 17px;
+  font-style: italic;
 }
 
-.ressource-name a:visited {
-  color: #004b2e;
+.type_ressources > p {
+  font-size: 15px;
 }
 
-.ressource-name a:hover {
-  text-decoration: underline;
+.btn-details {
+  background-color: var(--lmblue);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all ease-in-out 0.2s;
 }
-
-.ressource-item p {
-  font-size: 1em;
-  line-height: 1.6;
-  color: #333;
-}
-
-.ressource-subtitle {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin: 20px 0;
-  text-align: center;
-  line-height: 1.6;
-  color: #005a36;
+.btn-details:hover {
+  background-color: var(--mediumblue);
 }

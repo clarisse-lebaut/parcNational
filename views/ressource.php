@@ -32,7 +32,7 @@
                 <!-- Filtre par ressources-->
                 <div class="dropdown">
                 <button class="dropdown-btn">
-                    <img src="assets/icon/hiking.svg" alt="Icon hiking">
+                    <img src="assets/icon/type.svg" alt="Icon types de ressources">
                     <div>Ressources</div>
                     <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                 </button>
@@ -55,7 +55,7 @@
                 <!-- Filtre par faune -->
                 <div class="dropdown">
                     <button class="dropdown-btn">
-                        <img src="assets/icon/hiking.svg" alt="Icon hiking">
+                        <img src="assets/icon/animals.svg" alt="Icon ressource : faune">
                         <div>Faune</div>
                         <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
@@ -71,7 +71,7 @@
                 <!-- Filtre par flore -->
                 <div class="dropdown">
                     <button class="dropdown-btn">
-                        <img src="assets/icon/circle-default.svg" alt="Icon State">
+                        <img src="assets/icon/ressource.svg" alt="Icon ressources : flore">
                         <div>Flore</div>
                         <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
