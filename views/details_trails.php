@@ -22,7 +22,8 @@
 
             <div class="trails_hero">
                 <img class="trail_image" src="<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>">
-                <div><figcaption><i>Image du sentier </i><?php echo htmlspecialchars($trail['name']) ?></figcaption></div>
+                <div><figcaption><i>Image du sentier :</i> "<?php echo htmlspecialchars($trail['name']) ?>"</figcaption></div>
+                <div><figcaption><i>Source :</i> Parc Nationnal des Calanques</figcaption></div>
             </div>
             
 

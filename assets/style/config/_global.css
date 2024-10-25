@@ -45,6 +45,13 @@ p {
   font-family: var(--font-Assistant);
 }
 
+div {
+  font-family: var(--font-Assistant);
+}
+
+figcaption {
+  font-family: var(--font-Assistant);
+}
 li {
   list-style: none;
   font-family: var(--font-Assistant);
