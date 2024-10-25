@@ -1,0 +1,80 @@
+.hero-page {
+  background-image: url(../../img/category_home/campsite.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title-page {
+  position: relative; /* Permet de positionner les éléments enfants relativement */
+  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+}
+
+.text-overlay {
+  position: absolute; /* Positionnement absolu pour superposer le texte */
+  top: 50%; /* Centrer verticalement */
+  left: 50%; /* Centrer horizontalement */
+  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+  text-align: center; /* Centrer le texte */
+  padding: 25px;
+
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+}
+
+/* ---------- */
+
+.camping-grid {
+  margin: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* "card" des campings */
+.camping-item {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.camping-item img {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.campsite-name {
+  color: var(--darkblue);
+  font-size: 25px; /* Taille ajustée pour le titre du camping */
+  text-align: center;
+  font-family: var(--font-Archivo);
+  font-weight: normal;
+}
+
+.campsite-name a:visited {
+  color: #2c4f75 !important;
+}
+
+.campsite-name a:hover {
+  text-decoration: underline !important;
+}
+
+.camping-item p {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.campsite-subtitle {
+  color: var(--mediumblue);
+  font-size: 35px;
+  text-align: center;
+  font-family: var(--font-Archivo);
+  font-weight: normal;
+}
