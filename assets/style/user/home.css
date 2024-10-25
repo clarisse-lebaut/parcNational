@@ -216,3 +216,8 @@ h2 {
   object-fit: cover;
   flex-grow: 1;
 }
+
+hr {
+  width: 50%;
+  margin: auto;
+}
