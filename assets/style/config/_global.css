@@ -69,7 +69,7 @@ a {
 
 /* Style de la piste */
 ::-webkit-scrollbar-track {
-  background: transparent; /* Couleur de la piste */
+  background: white; /* Couleur de la piste */
 }
 
 /* Style du pouce (la partie qui se déplace) */
