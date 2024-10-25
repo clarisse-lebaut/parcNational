@@ -109,7 +109,7 @@ function updateTrailDisplay(data) {
       card.innerHTML = `
         <div class="card_top">
           <a href="details_trails?id=${encodeURIComponent(item.trail_id)}">
-            <p>${item.name}</p>
+            <h2>${item.name}</h2>
             <img class="pic-trails" src="${item.image}" alt="${item.name}">
           </a>
         </div>
