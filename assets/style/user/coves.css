@@ -26,6 +26,10 @@
   border-radius: 10px;
 }
 
+[id^="calanque-"] {
+  scroll-margin-top: 70px; /* Ajuste cette valeur en fonction de la hauteur de ton en-tête */
+}
+
 /* ----------------------- */
 
 main > section > p {
