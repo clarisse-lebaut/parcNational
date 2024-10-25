@@ -127,16 +127,18 @@
 
         <section>
             <div class="active-filter-container">
-                <p>Filtres actif</p>
+                <p>Filtres actifs :</p>
                 <div id="active-filter" class="active-filter">
                     <div class="filter-check"></div>
                 </div>
             </div>
         </section>
 
+        <hr>
+        
         <section>
-            <div id="overflow" class="trails-container">
-            </div>
+            <h2 style="margin-left: 25px;">Nos Sentiers</h2>
+            <div id="overflow" class="trails-container"></div>
         </section>
     </main>
 

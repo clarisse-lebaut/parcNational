@@ -26,80 +26,86 @@
             </div>
         </section>
 
-        <section>
-            <div class="filter">
-                <p>Filtrer par :</p>
-                <!-- Filtre par ressources-->
-                <div class="dropdown">
-                <button class="dropdown-btn">
-                    <img src="assets/icon/type.svg" alt="Icon types de ressources">
-                    <div>Ressources</div>
-                    <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
-                </button>
-                <div class="dropdown-content">
-                    <input class="ressources" type="checkbox" id="tag-terrestre" name="tag" value="Terrestre">
-                    <label for="tag-terrestre">Terrestres</label><br>
+        <section class="filter-container">
 
-                    <input class="ressources" type="checkbox" id="tag-marine" name="tag" value="Marine">
-                    <label for="tag-marine">Marines</label><br>
-
-                    <input class="ressources" type="checkbox" id="tag-flore" name="tag" value="Flore">
-                    <label for="tag-flore">Flore</label><br>
-
-                    <input class="ressources" type="checkbox" id="tag-faune" name="tag" value="Faune">
-                    <label for="tag-faune">Faune</label><br>
-                </div>
-                </div>
-
-
-                <!-- Filtre par faune -->
-                <div class="dropdown">
+            <section >
+                <div class="filter">
+                    <p>Filtrer par :</p>
+                    <!-- Filtre par ressources-->
+                    <div class="dropdown">
                     <button class="dropdown-btn">
-                        <img src="assets/icon/animals.svg" alt="Icon ressource : faune">
-                        <div>Faune</div>
+                        <img src="assets/icon/type.svg" alt="Icon types de ressources">
+                        <div>Ressources</div>
                         <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
                     </button>
                     <div class="dropdown-content">
-                        <input class="faune" type="checkbox" id="tag-faune-terrestre" name="tag" value="Faune Terrestre">
-                        <label for="tag-faune-terrestre">Terrestres</label><br>
+                        <input class="ressources" type="checkbox" id="tag-terrestre" name="tag" value="Terrestre">
+                        <label for="tag-terrestre">Terrestres</label><br>
 
-                        <input class="faune" type="checkbox" id="tag-faune-marine" name="tag" value="Faune Marine">
-                        <label for="tag-faune-marine">Marines</label><br>
+                        <input class="ressources" type="checkbox" id="tag-marine" name="tag" value="Marine">
+                        <label for="tag-marine">Marines</label><br>
+
+                        <input class="ressources" type="checkbox" id="tag-flore" name="tag" value="Flore">
+                        <label for="tag-flore">Flore</label><br>
+
+                        <input class="ressources" type="checkbox" id="tag-faune" name="tag" value="Faune">
+                        <label for="tag-faune">Faune</label><br>
+                    </div>
+                    </div>
+
+
+                    <!-- Filtre par faune -->
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <img src="assets/icon/animals.svg" alt="Icon ressource : faune">
+                            <div>Faune</div>
+                            <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        </button>
+                        <div class="dropdown-content">
+                            <input class="faune" type="checkbox" id="tag-faune-terrestre" name="tag" value="Faune Terrestre">
+                            <label for="tag-faune-terrestre">Terrestres</label><br>
+
+                            <input class="faune" type="checkbox" id="tag-faune-marine" name="tag" value="Faune Marine">
+                            <label for="tag-faune-marine">Marines</label><br>
+                        </div>
+                    </div>
+
+                    <!-- Filtre par flore -->
+                    <div class="dropdown">
+                        <button class="dropdown-btn">
+                            <img src="assets/icon/ressource.svg" alt="Icon ressources : flore">
+                            <div>Flore</div>
+                            <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
+                        </button>
+                        <div class="dropdown-content">
+                            <input class="flore" type="checkbox" id="tag-flore-terrestre" name="tag" value="Flore Terrestre">
+                            <label for="tag-flore-terrestre">Terrestres</label><br>
+
+                            <input class="flore" type="checkbox" id="tag-flore-marine" name="tag" value="Flore Marine">
+                            <label for="tag-flore-marine">Marines</label><br>
+                        </div>
+                    </div>
+
+                    <button id="remove-filter" class="filter-btn">Retirer tous les filtres</button>
+                </div>
+            </section>
+
+            <section>
+                <div class="active-filter-container">
+                    <p>Filtres actifs :</p>
+                    <div id="active-filter" class="active-filter">
+                        <div class="filter-check"></div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Filtre par flore -->
-                <div class="dropdown">
-                    <button class="dropdown-btn">
-                        <img src="assets/icon/ressource.svg" alt="Icon ressources : flore">
-                        <div>Flore</div>
-                        <img src="assets/icon/arrow-drop-down.svg" alt="icon arrow down">
-                    </button>
-                    <div class="dropdown-content">
-                        <input class="flore" type="checkbox" id="tag-flore-terrestre" name="tag" value="Flore Terrestre">
-                        <label for="tag-flore-terrestre">Terrestres</label><br>
-
-                        <input class="flore" type="checkbox" id="tag-flore-marine" name="tag" value="Flore Marine">
-                        <label for="tag-flore-marine">Marines</label><br>
-                    </div>
-                </div>
-
-                <button id="remove-filter" class="filter-btn">Retirer tous les filtres</button>
-            </div>
         </section>
 
-        <section>
-            <div class="active-filter-container">
-                <p>Filtres actif</p>
-                <div id="active-filter" class="active-filter">
-                    <div class="filter-check"></div>
-                </div>
-            </div>
-        </section>
+        <hr>
 
         <section>
-            <div id="overflow" class="ressources-container">
-            </div>
+            <h2 style="margin-left: 25px;">Nos Ressources Naturelles</h2>
+            <div id="overflow" class="ressources-container"></div>
         </section>
     </main>
 
