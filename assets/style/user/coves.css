@@ -48,7 +48,6 @@ main > section > section > li:hover {
   border: solid 1px var(--darkblue);
   border-radius: 15px;
   background-color: white;
-  box-shadow: lightgray 0 5px 10px 0;
 }
 
 main > nav {
@@ -60,14 +59,15 @@ main > nav {
   text-align: center;
   border-bottom: solid 1px var(--lmblue);
   background-color: #f8f8f8;
+  box-shadow: inset 0px -5px 10px 1px lightgray;
 }
+
 main > nav > li {
   background-color: var(--lmblue);
   border-radius: 5px 5px 0 0;
-  border: solid 1px #f8f8f8;
+  border: solid 1px transparent;
   border-bottom: none;
   padding: 10px;
-  color: white;
 }
 main > nav > li:hover {
   border: solid 1px var(--lmblue);
