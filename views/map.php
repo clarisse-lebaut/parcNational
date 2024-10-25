@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="stylesheet" href="assets/style/user/map.css">
-    <script src="assets/script/allMap.js" defer></script>
+    <script src="assets/script/map/allMap.js" defer></script>
 </head>
 <body>
     <header>
