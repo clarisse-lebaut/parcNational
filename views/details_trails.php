@@ -22,102 +22,99 @@
 
             <div class="trails_hero">
                 <img class="trail_image" src="<?php echo ($trail['image']); ?>" alt="<?php echo($trail['name']); ?>">
+                <div><figcaption><i>Image du sentier </i><?php echo htmlspecialchars($trail['name']) ?></figcaption></div>
             </div>
             
-            <div class="trails_main_info">
-                
-                
-                <div class="trails_infos">
-                    <!-- Description du sentier -->
-                    <div>
-                        <h2>Description du sentier</h2>
-                        <p><?php echo($trail['description']) ?></p>
-                    </div>
-                    <!-- Informations sur le sentier -->
-                    <div>
-                        <h2>Informations sur le sentier</h2>
-                        <p><?php echo htmlspecialchars($trail['infos']); ?></p>
-                    </div>
-                    <!-- Accéder au sentier -->
-                    <div>
-                        <h2>Accéder au sentier</h2>
-                        <p><?php echo htmlspecialchars($trail['acces']); ?></p>
-                    </div>
-                    <!-- Détails des conditions du sentier -->
-                    <div>
-                        <h2>Détails du sentier</h2>
-                        <div class="trails_icons">
-                            <!-- Icon du temps -->
-                            <div>
-                                <img src="assets/icon/time.svg" alt="icon time">
-                                <p><?php echo ($trail['time']) ?></p>
-                            </div>
-                            <!-- Icon de la longueur -->
-                            <div>
-                                <img src="assets/icon/hiking.svg" alt="icon length">
-                                <p><?php echo ($trail['length_km']) ?></p>
-                            </div>
-                            <!-- Icone de la difficilté -->
-                            <div>
-                                <?php
-                                    $image_path = "";
-                                    $difficulty_from_db = $trail['difficulty'];
 
-                                    switch ($difficulty_from_db) {
-                                        case "Facile":
-                                            $image_path = "assets/icon/shoes-green.svg";
-                                            break;
-                                        case "Moyen":
-                                            $image_path = "assets/icon/shoes-orange.svg";
-                                            break;
-                                        case "Difficile":
-                                            $image_path = "assets/icon/shoes-red.svg";
-                                            break;
-                                        default:
-                                            // Image par défaut si difficulté inconnue
-                                            $image_path = "assets/icon/shoes-default.svg";
-                                            break;
-                                    }
-                                ?>
-                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['difficulty']) ?>">
-                                <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
-                            </div>
-                            <!-- Icone du statut -->
-                            <div>
-                                <?php
-                                    $image_path = "";
-                                    $status_from_db = $trail['status'];
+            <section class="trails_info_container">
+                <h2>Détails du sentier</h2>
+                <div class="trails_main_info">
+                    <div class="trails_infos">
+                        <!-- Détails des conditions du sentier -->
+                        <div>
+                            <h3>Conditions</h3>
+                            <div class="trails_icons">
+                                <!-- Icon du temps -->
+                                <div>
+                                    <img src="assets/icon/time.svg" alt="icon time">
+                                    <p><?php echo ($trail['time']) ?></p>
+                                </div>
+                                <!-- Icon de la longueur -->
+                                <div>
+                                    <img src="assets/icon/hiking.svg" alt="icon length">
+                                    <p><?php echo ($trail['length_km']) ?></p>
+                                </div>
+                                <!-- Icone de la difficilté -->
+                                <div>
+                                    <?php
+                                        $image_path = "";
+                                        $difficulty_from_db = $trail['difficulty'];
 
-                                    switch ($difficulty_from_db) {
-                                        case "active":
-                                            $image_path = "assets/icon/circle-green.svg";
-                                            break;
-                                        case "work":
-                                            $image_path = "assets/icon/circle-orange.svg"; // Peut-être une autre image ?
-                                            break;
-                                        case "inactive":
-                                            $image_path = "assets/icon/circle-red.svg"; // Peut-être une autre image ?
-                                            break;
-                                        default:
-                                            // Image par défaut si difficulté inconnue
-                                            $image_path = "assets/icon/circle-green.svg";
-                                            break;
-                                    }
-                                ?>
-                                <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['status'] ?? 'Statut inconnu'); ?>">
-                                <p><?php echo htmlspecialchars($trail['status']);?></p>
+                                        switch ($difficulty_from_db) {
+                                            case "Facile":
+                                                $image_path = "assets/icon/shoes-green.svg";
+                                                break;
+                                            case "Moyen":
+                                                $image_path = "assets/icon/shoes-orange.svg";
+                                                break;
+                                            case "Difficile":
+                                                $image_path = "assets/icon/shoes-red.svg";
+                                                break;
+                                            default:
+                                                // Image par défaut si difficulté inconnue
+                                                $image_path = "assets/icon/shoes-default.svg";
+                                                break;
+                                        }
+                                    ?>
+                                    <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['difficulty']) ?>">
+                                    <p><?php echo htmlspecialchars($trail['difficulty']); ?></p>
+                                </div>
+                                <!-- Icone du statut -->
+                                <div>
+                                    <?php
+                                        $image_path = "";
+                                        $status_from_db = $trail['status'];
+
+                                        switch ($difficulty_from_db) {
+                                            case "active":
+                                                $image_path = "assets/icon/circle-green.svg";
+                                                break;
+                                            case "work":
+                                                $image_path = "assets/icon/circle-orange.svg"; // Peut-être une autre image ?
+                                                break;
+                                            case "inactive":
+                                                $image_path = "assets/icon/circle-red.svg"; // Peut-être une autre image ?
+                                                break;
+                                            default:
+                                                // Image par défaut si difficulté inconnue
+                                                $image_path = "assets/icon/circle-green.svg";
+                                                break;
+                                        }
+                                    ?>
+                                    <img src="<?php echo htmlspecialchars($image_path) ?>" alt="<?php echo htmlspecialchars($trail['status'] ?? 'Statut inconnu'); ?>">
+                                    <p><?php echo htmlspecialchars($trail['status']);?></p>
+                                </div>
                             </div>
                         </div>
+                        <!-- Description du sentier -->
+                        <div>
+                            <h3>Description</h3>
+                            <p><?php echo htmlspecialchars($trail['description']) ?></p>
+                        </div>
+                        <!-- Informations sur le sentier -->
+                        <div>
+                            <h3>Informations</h3>
+                            <p><?php echo ($trail_infos['infos']); ?></p>
+                        </div>
+                        <!-- Accéder au sentier -->
+                        <div>
+                            <h3>Accès</h3>
+                            <p><?php echo htmlspecialchars($trail['acces']); ?></p>
+                        </div>
                     </div>
-
-
-                    <div class="trails_icons">
-
-                    </div>
+            
                 </div>
-           
-            </div>
-
+            </section>
         </section>
 
         <section class="map_container">
