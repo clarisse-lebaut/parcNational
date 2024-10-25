@@ -43,6 +43,7 @@
 }
 
 .card_trails {
+  background-color: white;
   border-radius: 10px;
   box-shadow: lightgray 0 5px 10px 0;
   position: relative; /* Ajouté pour le positionnement de .fav-btn-container */
@@ -56,10 +57,11 @@
 }
 .card_details {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-self: center;
   align-items: center;
-  gap: 15px;
+}
+.card_details > div > img {
+  width: 25%;
 }
 .lenght_trails,
 .difficulty_trails,
@@ -67,14 +69,15 @@
 .state_trails {
   display: flex;
   flex-direction: row;
-  gap: 2.5px;
-  padding: 0 10px 0 10px;
-  margin: 5px;
-  box-shadow: inset lightgray 0 3.5px 5px 0;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 0 5px 0 5px;
+  margin: 1px 2px 1px 2px;
 }
 
 .access {
-  padding: 10px;
+  padding: 0 10px 0 10px;
 }
 .fav-btn-container {
   display: flex;
@@ -86,8 +89,9 @@
   bottom: 0; /* Positionne le conteneur au bas de la carte */
   right: 0;
 }
-.fav-btn {
-  background-color: var(--lightgreen);
+.fav-btn,
+.hiking-btn {
+  background-color: var(--lmblue);
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -95,8 +99,21 @@
   gap: 5px;
   border-radius: 10px;
   border: none;
-  box-shadow: lightgray 0 5px 5px 0;
 }
-.fav-btn:active {
-  transform: translateY(3px);
+.fav-btn:hover,
+.hiking-btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--mediumblue);
+}
+
+.fav-btn:hover {
+  content: url("../../icon/favorite-fill.svg");
+}
+.hiking-btn:hover {
+  content: url("../../icon/hiking_white.svg");
+}
+
+.fav-btn:active,
+.hiking-btn:active {
+  transform: translateY(0px);
 }

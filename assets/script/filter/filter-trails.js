@@ -110,11 +110,11 @@ function updateTrailDisplay(data) {
         <div class="card_top">
           <a href="details_trails?id=${encodeURIComponent(item.trail_id)}">
             <p>${item.name}</p>
-            <img class="pic-trails" src="${item.image}" alt="${item.name}" width="200">
+            <img class="pic-trails" src="${item.image}" alt="${item.name}">
           </a>
         </div>
+
         <div class="card_details">
-          
           <div class="lenght_trails">
             <img src="assets/icon/hiking.svg" alt="icon length">
             <p>${item.length_km} km</p>
@@ -138,18 +138,22 @@ function updateTrailDisplay(data) {
           </div>
         </div>
 
+        <hr>
+
         <div class="access">
-          <p>Description du sentier</p>
+          <p><strong>Description du sentier</strong></p>
           <p>${item.description}</p>
-          <p>Accéder au sentier</p>
+          <p><strong>Accéder au sentier</strong></p>
           <p>${item.acces}</p>
         </div>
 
         <div class="fav-btn-container">
           <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
-            <img src="assets/icon/favorite-fill.svg" alt="heart icon">
+            <img src="assets/icon/favorite-empty.svg" alt="heart icon">
           </a>
-          <a href="/parcNational/manage-completed-trail?trail_id=${item.trail_id}" class="fav-btn">
+          <a href="/parcNational/manage-completed-trail?trail_id=${
+            item.trail_id
+          }" class="hiking-btn">
             <img src="assets/icon/hiking.svg" alt="hiking icon">
           </a>
         </div>       
