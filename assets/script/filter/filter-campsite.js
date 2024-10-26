@@ -50,7 +50,7 @@ function updateCampsitesDisplay(data) {
 
       card.innerHTML = `
         <div class="card_top">
-          <a href="campsitesDetails?id=${encodeURIComponent(item.campsites_id)}">
+          <a href="campsiteDetails?id=${encodeURIComponent(item.campsite_id)}">
             <img class="pic-campiste" src="${item.image}" alt="${item.name}">
           </a>
         </div>
