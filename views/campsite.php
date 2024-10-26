@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/style/user/campsite.css">
     <link rel="stylesheet" href="assets/style/config/_filter.css">
     <link rel="stylesheet" href="assets/style/_global.css">
+    <script src="assets/script/filter/filter-campsite.js" defer></script>
 </head>
 <body>
   <main>
@@ -25,61 +26,16 @@
 
     <section class="title-and-toggle-container">
         <h2>Séjournez dans un camping près des Calanques</h2>
-        <style>
-            .title-and-toggle-container{
-                display:flex;
-                flex-direction:row;
-                align-items:center;
-                justify-content:space-between;
-                padding : 0 25px 0 25px ;
-            }
-            .container-toggle{
-                display:flex;
-                flex-direction:row;
-                justify-content:flex-end;
-                align-items:center;
-                gap:20px;
-            }
-            .toggle-checkbox {
-                display: none;
-            }
-            .toggle-switch {
-                display: inline-block;
-                position: relative;
-                width: 50px;
-                height: 20px;
-                background-color: lightgray;
-                border-radius: 8px;
-            }
-            
-            .toggle-switch::before {
-                content: "";
-                background-color: #ffffff;
-                position: absolute;
-                height: 15px;
-                width: 15px;
-                border-radius: 5px;
-                top: 2px;
-                left: 2px;
-            }
-            .toggle-checkbox:checked + .toggle-switch {
-                background-color: green;
-            }
-            
-            .toggle-checkbox:checked + .toggle-switch::before {
-                left: 32px;
-            }
-        </style>
         <div class="container-toggle">
             <p>Uniquement campings ouverts</p>
             <label class="toggle">
-                <input class="toggle-checkbox" type="checkbox">
+                <input class="toggle-checkbox" type="checkbox" id="toggle">
                 <span class="toggle-switch"></span>
             </label>
         </div>
     </section>
     
-    <?php if (!empty($campsites)): ?>
+    <!-- <?php if (!empty($campsites)): ?>
         <div class="camping-grid">
             <?php foreach ($campsites as $campsite): ?>
                 <div class="camping-item">
@@ -117,8 +73,16 @@
         </div>
     <?php else: ?>
         <p>Aucun camping trouvé.</p>
-    <?php endif; ?>
-    </main>
+    <?php endif; ?> -->
+    
+</main>
+
+
+    <section id="overflow" class="camping-grid">
+        <!-- Les éléments seront injectés ici -->
+    </section>
+
+
     <footer>
         <?php include __DIR__ . '/../components/_footer.php'; ?>
     </footer>
