@@ -23,8 +23,8 @@
           <?php echo htmlspecialchars($error); ?>
         </div>
       <?php endif; ?>
-          <form class="form" method="post" action="/parcNational/register-form" id="registerForm">
-          
+          <form class="form" method="post" action="register-form" id="registerForm">
+          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']);?>">
             <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
 
             <section class="form_container">  
@@ -92,8 +92,7 @@
                     <label for="inputRepeatPassword">Répétez le mot de passe</label>
                     <input type="password" name="repeatpassword" class="form-control" id="inputRepeatPassword" placeholder="Repeat password" required>          
                   </div>
-                  
-                  <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'];?>">
+    
                 </section> 
 
             </section>

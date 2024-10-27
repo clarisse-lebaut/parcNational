@@ -47,6 +47,7 @@
     flex-direction: column;
     gap: 10px;
   }
+  .civil > div >label,
   .address > div > label,
   .address > div > label,
   .password > div > label,

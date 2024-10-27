@@ -21,8 +21,7 @@ class LoginController extends Controller
         $this->render('login');
     }
 
-    public function loginSaveForm()
-    {
+    public function loginSaveForm(){
         $user = new User('users');
         $dbUser = $user->getUserByEmail($_POST['email']);
         if ($dbUser != false) {
@@ -52,7 +51,7 @@ class LoginController extends Controller
     {
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
-        $google_redirect_url = 'http://localhost/parcNational/google-login';
+        $google_redirect_url = 'http://your-ngrok-url.ngrok.io/parcNational/google-login';
         //App performs a user browser redirect sending an authorization to google request with this below parameters
         $params = [
             'response_type' => 'code',
@@ -70,7 +69,7 @@ class LoginController extends Controller
     {
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
-        $google_redirect_url = 'http://localhost/parcNational/google-login';
+        $google_redirect_url = 'https://your-ngrok-url.ngrok.io/parcNational/google-login'; 
         $params = [
             'code' => $_GET['code'],
             'client_id' => $google_client_id,

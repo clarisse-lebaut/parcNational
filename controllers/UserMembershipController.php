@@ -34,8 +34,8 @@ class UserMembershipController extends Controller{
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://localhost/parcNational/payment-success?session_id={CHECKOUT_SESSION_ID}',
-                'cancel_url' => 'http://localhost/parcNational/payment-failed',
+                'success_url' => 'http://parcNational/payment-success?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => 'http://parcNational/payment-failed',
             ]);
 
             header("Location: " . $checkout_session->url);

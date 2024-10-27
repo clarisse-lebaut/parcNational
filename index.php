@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 session_set_cookie_params([
     'lifetime' => 0,
     'path' => '/',
-    'domain' => 'localhost', 
+    'domain' => '', 
     'httponly' => true, 
 ]);
 
@@ -287,7 +287,6 @@ $routes = [
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $url = trim($url, '/');
 $url = str_replace('.php', '', $url);
-$url = str_replace('parcNational', '', $url);
 
 $urlArray = explode('?', $url);
 

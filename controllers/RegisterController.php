@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Controller.php';
 require_once __DIR__ . '/../models/User.php';
 
@@ -7,6 +6,7 @@ class RegisterController extends Controller
 {
     public function registerView()
     {
+
         if (empty($_SESSION['csrf_token'])) {
             $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
@@ -14,9 +14,14 @@ class RegisterController extends Controller
     }
 
     public function registerSaveForm()
-    {
+    {   
+        if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $this->render('registerForm', ['error' => 'Token CSRF manquant.', 'csrf_token' => $_SESSION['csrf_token']]);
+            return;
+        }
+    
         if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
-            $this->render('registerForm', ['error' => "Token CSRF n'est pas correct."]);
+            $this->render('registerForm', ['error' => "Le token CSRF est incorrect."]);
             return;
         }
         $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));

@@ -1,5 +1,9 @@
+<?php if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +14,16 @@
 <body>
     <header>
         <?php include "components/_header.php"; ?>
-    </header>
-    <?php
-    if(isset($error)):?>
-      <div class="alert alert-danger">
-      <?php echo htmlspecialchars($error); ?>
-     </div>
-    <?php endif; ?> 
+    </header> 
     <div class= "main-container">
+      <?php
+      if(isset($error)):?>
+        <div class="alert" style="display:flex; justify-content: center; aligne-items: center; color: red; margin-top:2%;">
+        <?php echo htmlspecialchars($error); ?>
+      </div>
+      <?php endif; ?>
       <h1>Se Connecter</h1>
+
       <div class="login-container">
         <form method='post' action="loginForm" onsubmit="validateForm(event)">
           <div class="form-group">

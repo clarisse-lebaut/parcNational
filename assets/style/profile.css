@@ -1,3 +1,4 @@
+/*Top Caontainer*/
 .top-container{
     background: linear-gradient(to right, #add8e6, #31a2df);
     display: flex;
@@ -6,10 +7,25 @@
     padding: 0 5%;
 }
 
+.edit-profil{
+    background-color: var(--lmblue);
+    margin: 1% 0;
+    padding: 3%;
+    border-radius: 3%;
+    text-align: center;
+    color: var(--mediumblue);
+    font-family: var(--font-Archivo);
+    max-width: 18%;
+}
+
+.edit-profil:hover{
+    background-color: #d0e7ff;
+}
+
 .user-info-parent{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
 }
 
 .user-info{
@@ -36,6 +52,7 @@
 .sixt{
     margin-right: 10px;
 }
+
 .membership{
     background-color: var(--lmblue);
     margin: 1% 0;
@@ -47,18 +64,33 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.edit-profil{
-    background-color: var(--lmblue);
-    margin: 1% 0;
-    padding: 3%;
-    border-radius: 3%;
-    text-align: center;
-    color: var(--mediumblue);
-    font-family: var(--font-Archivo);
+/* Bottom Container*/
+.bottom-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    background: linear-gradient(to right, #add8e6, #31a2df);
+    align-items:baseline;
 }
 
-.edit-profil:hover{
-    background-color: #d0e7ff;
+.left-part{
+    flex-basis: 80%;
+    margin-left: 2%;
+ }
+ 
+ .reservation-container{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     gap: 10px;
+     width: 90%;
+     border-radius: 2%;
+ }
+
+.title-reservation{
+    display: block;
+    text-align: center;
+    margin: 5% 0 3% 0;
 }
 
 .reservation-image{
@@ -66,7 +98,7 @@
     height: 150px;
     border-radius: 3%;
     border: 2px solid black;
-    margin-top: 5%;
+    margin-bottom: 5%;
     object-fit: cover;
     transition: transform 0.5s ease;
     
@@ -75,6 +107,7 @@
 .reservation-image:hover{
     transform: scale(1.4);
 }
+
 .img-trail{
     width: 100%;
     height: auto;
@@ -84,11 +117,13 @@
     border: 2px solid black;
     object-fit: cover;
     transition: transform 0.3s ease;
+    margin-bottom: 2%;
 }
 
 .img-trail:hover{
     transform: scale(1.3);
 }
+
 .delete{
     width: 100%;
     max-width: 145px;
@@ -109,38 +144,6 @@
     transform: translateY(-2px);
 }
 
-.middle-container{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-around;
-    background: linear-gradient(to right, #add8e6, #31a2df);
-}
-
-.left-part{
-   flex-basis: 80%;
-   margin-left: 2%;
-}
-
-.reservation-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
-    width: 90%;
-    border-radius: 2%;
-}
-
-.favorites-trails{
-    margin-right: 5%;
-    max-width: 200px;
-}
-
-.test{
-    width: 43%;
-    height: 30%;
-    background-color: blue;
-    text-align: center;
-}
 .completed-trails{
     margin-left: 9%;
 }
@@ -148,7 +151,18 @@
 .trail-item{
     display: flex;
     align-items:flex-start;
-    
+}
+
+
+.favorites-trails{
+    margin-right: 5%;
+    max-width: 300px;
+}
+
+.favorites-trails h2{
+    white-space: nowrap;
+    margin-bottom: 15%;
+    text-align: start;
 }
 
 .description-text{
@@ -159,5 +173,4 @@
     font-family: 'Poppins', sans-serif;
     color: var(--mediumblue);
     text-align: center;
-    
 }

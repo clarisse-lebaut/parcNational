@@ -42,7 +42,7 @@
     <?php else: ?>
         <p><?php echo htmlspecialchars($message); ?></p>
     <?php endif; ?>
-    <h4><a class="link" href="http://localhost/parcNational/">retour vers home page
+    <h4><a class="link" href="http://parcNational/">retour vers home page
     <img class="icon" src="assets/icon/back.jpg" alt="icon home"></a>
     </h4>
     <footer>

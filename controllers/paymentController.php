@@ -62,8 +62,8 @@ class PaymentController {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => 'http://parcnational/reservation_history?campsite_id=' . $campsite_id . '&status=success', // URL redirigée via le routeur
-                'cancel_url' => 'http://parcnational/reservation_history?campsite_id=' . $campsite_id . '&status=cancel',
+                'success_url' => 'http://reservation_history?campsite_id=' . $campsite_id . '&status=success', // URL redirigée via le routeur
+                'cancel_url' => 'http://reservation_history?campsite_id=' . $campsite_id . '&status=cancel',
             ]);
     
             header("Location: " . $checkout_session->url);

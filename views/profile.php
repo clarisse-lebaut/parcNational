@@ -25,7 +25,7 @@
                     <div class="user-info-left">
                         <p><strong class="first">Nom :</strong><?= htmlspecialchars($userId['lastname']??''); ?></p>
                         <p><strong  class="second">Prénom :</strong><?= htmlspecialchars($userId['firstname']??''); ?></p>
-                    <p><strong class="third">Téléphone :</strong><?= htmlspecialchars($userId['phone']??''); ?></p>
+                        <p><strong class="third">Téléphone :</strong><?= htmlspecialchars($userId['phone']??''); ?></p>
                     </div>
                     <div class="user-info-right">
                         <p><strong class="fourth">Adresse :</strong><?= htmlspecialchars($userId['address']??''); ?></p>
@@ -66,22 +66,22 @@
     </section>
     <!-- Middle section containing reservations and favorite trails -->
     <section>
-        <div class="middle-container">
+        <div class="bottom-container">
             <!-- Reservations section -->
             <div class="left-part">
-                <h2>Mes résérvations</h2>
+                <h2 class="title-reservation">Mes résérvations</h2>
                 <div class="reservation-container">
                     <?php if(!empty($reservedCampings)): ?>
                         <?php foreach($reservedCampings as $reservedCamping): ?>
                             <div class="reserved-campings">
-                                <img src= /parcNational/<?= $reservedCamping['campsite_image']; ?> alt="Image du camping" class="reservation-image"></img>
+                                <img src= <?= $reservedCamping['campsite_image']; ?> alt="Image du camping" class="reservation-image"></img>
                                 <p><strong>Nom de camping : </strong><?= htmlspecialchars($reservedCamping['campsite_name']); ?></p>
                                 <p><strong>Date de debout : </strong><?= date('Y-m-d', strtotime($reservedCamping['start_date'])) ; ?></p>
                                 <p><strong>Date de fin : </strong><?= date('Y-m-d', strtotime($reservedCamping['end_date'])) ; ?></p>
                                 <p><strong>Prix : </strong><?= htmlspecialchars($reservedCamping['price']) ; ?> €</p>
                                 <p><strong>Date de résérvation : </strong><?= htmlspecialchars($reservedCamping['reservation_date']) ; ?></p>
                                 <p><strong>Statut : </strong><?= htmlspecialchars($reservedCamping['status']) ; ?></p>
-                                <p><a href="/parcNational/deleteReservation?reservation_id=<?= htmlspecialchars($reservedCamping['reservation_id']); ?>" class="delete">Supprimer</a></p>
+                                <p><a href="/deleteReservation?reservation_id=<?= htmlspecialchars($reservedCamping['reservation_id']); ?>" class="delete">Supprimer</a></p>
 
                             </div>
                         <?php endforeach; ?>
@@ -97,9 +97,9 @@
                             <div class="trail-item">
                                 <div class="trail-image">
                                     <a href="details_trails?id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
-                                        <img class="img-trail" src="/parcNational/<?= htmlspecialchars($completedTrail['image']) ?>" alt="la photo de sentier">
+                                        <img class="img-trail" src=<?= htmlspecialchars($completedTrail['image']) ?> alt="la photo de sentier">
                                     </a>
-                                    <a href="/parcNational/manage-completed-trail?trail_id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
+                                    <a href="/manage-completed-trail?trail_id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
                                         <p class="delete">Supprimer</p>
                                     </a>
                                 </div>
@@ -122,10 +122,10 @@
                     <?php foreach($favoriteTrails as $trail): ?>
                         <div class="trail-image">
                             <a href="details_trails?id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                                <img class="img-trail" src="/parcNational/<?= htmlspecialchars($trail['image']) ?>" alt="la photo de sentier">
+                                <img class="img-trail" src=<?= htmlspecialchars($trail['image']) ?> alt="la photo de sentier">
                             </a>
                             <div class="lien-container">
-                                <a href="/parcNational/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
+                                <a href="/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
                                     <p class="delete">Supprimer</p>
                                 </a>
                             </div>    
