@@ -139,6 +139,10 @@ $routes = [
         'controller' => 'HomeController', 
         'method' => 'news',
     ],
+    'details_news' => [
+        'controller' => 'NewsController', 
+        'method' => 'details_news',
+    ],
     'about' => [
         'controller' => 'AboutController',
         'method' => 'about',
@@ -310,29 +314,39 @@ if (isset($routes[$urlArray[0]])) {
     $log->saveLog($url);
     require_once 'controllers/' . $className . '.php';
 
+    // Création de l'objet en fonction de la classe
     if ($className == 'HomeController') {
-        $object = new $className('news'); // 'news' est le nom de la table utilisée pour récupérer les actualités
+        $object = new $className('news');
     } elseif ($className == 'TrailsController') {
-        $object = new $className('trails'); // 'trails' est le nom de la table utilisée pour les sentiers
+        $object = new $className('trails');
     } else {
-        $object = new $className;// Pour les autres contrôleurs qui ne nécessitent pas de paramètres
+        $object = new $className; // Pour les autres contrôleurs
     }
 
-    // methodes qui ont besoin d'un ID
-    if (in_array($methodName, ['getCampsiteById', 'getRessourceById'])) {
+    // Vérification si la méthode nécessite un ID
+    if ($methodName === 'details_news') {
+        // Vérifiez si un ID est passé dans l'URL, par exemple : /details_news?id=123
         if (isset($_GET['id'])) {
-            $id = (int) $_GET['id'];
+            $id = (int)$_GET['id'];
+            $object->{$methodName}($id); // Appel de la méthode avec l'ID
+        } else {
+            echo "Erreur : ID manquant.";
+            return;
+        }
+    } elseif (in_array($methodName, ['getCampsiteById', 'getRessourceById'])) {
+        if (isset($_GET['id'])) {
+            $id = (int)$_GET['id'];
             $object->{$methodName}($id); // Appel avec l'ID
         } else {
             echo "Erreur : ID manquant.";
             return;
         }
     } elseif ($methodName === 'getReservationsByUser') {
-        $user_id = 1; // À remplacer par l'ID de l'utilisateur connecté
+        $user_id = 1; // Remplacez par l'ID de l'utilisateur connecté
         $object->{$methodName}($user_id); 
     } else {
         $object->{$methodName}();
     }
 } else {
-    echo "pas d'adresse valide";
+    echo "Pas d'adresse valide.";
 }

@@ -14,4 +14,11 @@ class News extends Model{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function get_news_by_id($id){
+        $sql = "SELECT * FROM news WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT); // Liaison de l'ID
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Utiliser fetch() au lieu de fetchAll() pour un seul résultat
+    }
 }
