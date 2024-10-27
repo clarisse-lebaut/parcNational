@@ -43,7 +43,7 @@
     <section class="data-admin">
         <div>
             <p>Modifier mon profil</p>
-            <a href=""><button><img src="assets/icon/edit.svg" alt="icon edit"></button></a>
+            <a href="admin_profil"><button class="edit_profil_btn"><img src="assets/icon/edit.svg" alt="icon edit"></button></a>
         </div>
     </section>
 

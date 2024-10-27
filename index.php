@@ -187,6 +187,10 @@ $routes = [
         'controller' => 'AdminAdminController',
         'method' => 'manageAdmin',
     ],
+    'admin_profil' => [
+        'controller' => 'AdminProfilController',
+        'method' => 'editAdminProfile',
+    ],
     'create_trails' => [
         'controller' => 'AdminTrailsController',
         'method' => 'createTrails',
@@ -245,42 +249,41 @@ $routes = [
         'params' => ['reservation_id']
     ],
 
+    'campsite' => [
+        'controller' => 'campsiteController',
+        'method' => 'getAllCampsites',
+    ],
+    'campsiteDetails' => [
+        'controller' => 'campsiteController',
+        'method' => 'getCampsiteById',
+    ],
 
- 'campsite' => [
-    'controller' => 'campsiteController',
-    'method' => 'getAllCampsites',
-],
-'campsiteDetails' => [
-    'controller' => 'campsiteController',
-    'method' => 'getCampsiteById',
-],
+    'reservation_history' => [
+        'controller' => 'ReservationController',
+        'method' => 'getReservationsByUser',
+    ],
 
-'reservation_history' => [
-    'controller' => 'ReservationController',
-    'method' => 'getReservationsByUser',
-],
+    'calendar' => [
+        'controller' => 'CalendarController',
+        'method' => 'showCalendar',
+    ],
+    'coves' => [
+        'controller' => 'CoveController',
+        'method' => 'getAllCoves',
+    ],
 
-'calendar' => [
-    'controller' => 'CalendarController',
-    'method' => 'showCalendar',
-],
-'coves' => [
-    'controller' => 'CoveController',
-    'method' => 'getAllCoves',
-],
-
-'ressources' => [
-    'controller' => 'RessourceController',
-    'method' => 'getAllRessources',
-],
-'ressourceDetails' => [
-    'controller' => 'RessourceController',
-    'method' => 'getRessourceById',
-],
-'payment' => [
-    'controller' => 'PaymentController',
-    'method' => 'processPayment',
-],
+    'ressources' => [
+        'controller' => 'RessourceController',
+        'method' => 'getAllRessources',
+    ],
+    'ressourceDetails' => [
+        'controller' => 'RessourceController',
+        'method' => 'getRessourceById',
+    ],
+    'payment' => [
+        'controller' => 'PaymentController',
+        'method' => 'processPayment',
+    ],
 ];
 
 // Nettoyage et traitement de l'URL

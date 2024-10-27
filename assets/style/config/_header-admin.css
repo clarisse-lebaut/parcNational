@@ -120,3 +120,19 @@ header > section > nav > ul > li > a:hover {
   cursor: pointer;
   color: none;
 }
+
+/* ---------- */
+.edit_profil_btn {
+  background-color: transparent;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+.edit_profil_btn:active {
+  transform: translateY(10px);
+}
+.edit_profil_btn:hover {
+  cursor: pointer;
+}
+.edit_profil_btn > img:hover {
+  content: url("../../icon/edit-orange.svg");
+}
