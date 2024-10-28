@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List des IPs bloqués</title>
-    <link rel="stylesheet" href="/parcNational/assets/style/ip-block.css">
+    <link rel="stylesheet" href="/assets/style/ip-block.css">
 </head>
 <body>
     <header>

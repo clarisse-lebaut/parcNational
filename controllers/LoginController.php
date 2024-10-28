@@ -51,7 +51,7 @@ class LoginController extends Controller
     {
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
-        $google_redirect_url = 'http://your-ngrok-url.ngrok.io/parcNational/google-login';
+        $google_redirect_url = 'http://localhost/parcnational/google-login';
         //App performs a user browser redirect sending an authorization to google request with this below parameters
         $params = [
             'response_type' => 'code',
@@ -60,16 +60,14 @@ class LoginController extends Controller
             'scope' => 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
             'access_type' => 'offline',
             'prompt' => 'consent'
-            //https://accounts.google.com/o/oauth2/auth
         ];
         header('Location: https://accounts.google.com/o/oauth2/auth?' . http_build_query($params));// converts an associative array into a link (a string with GET parameters)
     }
 
-    public function getDataFromGoogle()
-    {
+    public function getDataFromGoogle(){
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
-        $google_redirect_url = 'https://your-ngrok-url.ngrok.io/parcNational/google-login'; 
+        $google_redirect_url = 'http://localhost/parcnational/google-login'; 
         $params = [
             'code' => $_GET['code'],
             'client_id' => $google_client_id,
@@ -185,7 +183,7 @@ class LoginController extends Controller
                 $token = bin2hex(random_bytes(50));
                 $expiry = new DateTime('+1 hour');
                 $user->savePasswordResetToken($dbUser['user_id'], $token, $expiry->format('Y-m-d H:i:s'));
-                $resetLink = "http://localhost/parcNational/reset-password?token=$token";
+                $resetLink = "http://parcnational/reset-password?token=$token";
                 $name = $dbUser['lastname'];
                 $this->sendPasswordResetEmail($email, $resetLink, $name);
                 $this->render('forgotPassword', ['message' => 'Un lien pour réinitialiser le mot de passe a été envoyé.']);
@@ -214,7 +212,7 @@ class LoginController extends Controller
                     'allow_self_signed' => true
                 )
             );
-            $mail->setFrom('no-reply@parcNational.com', 'No Reply');
+            $mail->setFrom('no-reply@parcnational.com', 'No Reply');
             $mail->addAddress($userEmail);
             $mail->isHTML(true);
             $mail->Subject = "Réinitialisation de mot de passe";
