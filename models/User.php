@@ -6,13 +6,39 @@ class User extends Model{
     public function __construct($table){
         parent::__construct($table);
     }
-    public function saveUser($data){
+    /*public function saveUser($data){
         //Database keys
         $sql = 'INSERT INTO users (role, lastname, firstname, mail, password, phone, address, city, zipcode) values (?,?,?,?,?,?,?,?,?)';
         $stmt = $this->pdo->prepare($sql);
         //"names" from Form
         $stmt->execute([1, $data['lastname'], $data['firstname'], $data['email'], password_hash($data['password'], PASSWORD_BCRYPT), $data['phone'], $data['adress'], $data['city'], $data['zipcode']]);
+    }*/
+    
+    public function saveUserWithActivation($userData, $token){
+        $sql = 'INSERT INTO users (role, lastname, firstname, mail, password, phone, address, city, zipcode, activation_token, is_active) VALUES(?,?,?,?,?,?,?,?,?,?,?)';
+        $stmt = $this->pdo->prepare($sql);
+        $hashedPassword = password_hash($userData['password'], PASSWORD_BCRYPT);
+        $activationToken = $token;
+        $isActive = 0;
+        $stmt->execute([ 1, $userData['lastname'], $userData['firstname'], $userData['email'], $hashedPassword, $userData['phone'], $userData['adress'], $userData['city'], $userData['zipcode'], $activationToken, $isActive]);
     }
+
+    public function activateUser($token){
+        $sql = 'SELECT users SET is_active = ?, activation_token = NULL WHERE activation_token = ?';
+        $stmt->prepare->pdo($sql);
+        $isActive = 1;
+
+        return $stmt->execute([$isActive, $token]);
+    }
+
+    public function isUserActive($email){
+        $sql = 'SELECT from users WHERE email = ?';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        return $user && $user['is_active'] ==  1;
+        }
 
     public function userExists($email) {
         $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM " . $this->table . " WHERE mail = :mail");

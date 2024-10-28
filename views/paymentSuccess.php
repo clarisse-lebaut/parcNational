@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/assets/style/payment-succes.css">
     <script type="text/javascript">
         setTimeout(function() {
-            window.location.href = 'user-membership'; 
+            window.location.href = 'profile'; 
         }, 5000); 
     </script>
 </head>
@@ -20,8 +20,8 @@
         <div class="main-container">
             <h2> Paiement réussi !</h2>
             <p><?php echo htmlspecialchars($message); ?></p>
-            <p>Vous serez redirigé vers la page d'accueil dans quelques secondes...</p>
-            <a href="user-membership">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
+            <p>Vous serez redirigé vers la page de profil dans quelques secondes...</p>
+            <a href="profile">Cliquez ici si vous n'êtes pas redirigé automatiquement</a>
         </div>
     </main>
     <footer>

@@ -74,8 +74,9 @@
                     <?php if(!empty($reservedCampings)): ?>
                         <?php foreach($reservedCampings as $reservedCamping): ?>
                             <div class="reserved-campings">
-                                <img src= <?= $reservedCamping['campsite_image']; ?> alt="Image du camping" class="reservation-image"></img>
-                                <p><strong>Nom de camping : </strong><?= htmlspecialchars($reservedCamping['campsite_name']); ?></p>
+                                <a href="campsiteDetails?id=<?= htmlspecialchars($reservedCamping['campsite_id']) ?>">
+                                    <img src= <?= $reservedCamping['campsite_image']; ?> alt="Image du camping" class="reservation-image"></img></a>
+                                <p><strong>Nom de camping : </strong><?= htmlspecialchars($reservedCamping['campsite_name']) ; ?></p>
                                 <p><strong>Date de debout : </strong><?= date('Y-m-d', strtotime($reservedCamping['start_date'])) ; ?></p>
                                 <p><strong>Date de fin : </strong><?= date('Y-m-d', strtotime($reservedCamping['end_date'])) ; ?></p>
                                 <p><strong>Prix : </strong><?= htmlspecialchars($reservedCamping['price']) ; ?> €</p>

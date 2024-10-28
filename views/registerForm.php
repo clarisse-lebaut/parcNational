@@ -23,6 +23,11 @@
           <?php echo htmlspecialchars($error); ?>
         </div>
       <?php endif; ?>
+      <?php if(isset($message)): ?>
+        <div class="message" style=" display: flex; justify-content: center; align-items: center; color: green; ">
+          <?php echo htmlspecialchars($message); ?>
+        </div>
+        <?php endif; ?>
           <form class="form" method="post" action="register-form" id="registerForm">
           <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']);?>">
             <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
