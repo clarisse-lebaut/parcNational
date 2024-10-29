@@ -79,7 +79,7 @@
         </section>
 
         <section class="other_ressources">
-            <h2>Slider des autres sentiers</h2>
+            <h2>Autres ressources</h2>
             <div class="slider">
                 <div class="slider_elements">
                     <?php foreach ($all_ressources as $all_ressource): ?>

@@ -111,3 +111,39 @@
   text-align: center;
   font-size: 1.2em;
 }
+
+/* ------------- */
+.other_ressources {
+  margin: 25px;
+  padding: 25px 0 25px 0;
+}
+
+.slider {
+  position: relative; /* Important pour que les pseudo-éléments soient positionnés par rapport au slider */
+  padding-bottom: 25px;
+  border: var(--lighgreen) solid 1px;
+}
+
+.slider_elements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px; /* Espacement entre les cartes */
+  overflow-x: auto; /* Défilement horizontal activé */
+  overflow-y: hidden;
+  height: 300px;
+  padding: 25px;
+  scroll-padding-left: 25px; /* Assure que la première carte ne soit pas coupée au bord */
+  position: relative; /* Nécessaire pour que les pseudo-éléments couvrent le slider */
+}
+
+.card_trails {
+  padding: 10px;
+  box-shadow: lightgray 0 5px 15px 0;
+  border-radius: 50% 20% / 10% 40%;
+  background-color: white;
+}
+
+.pic-slider {
+  border-radius: 50% 20% / 10% 40%;
+}
