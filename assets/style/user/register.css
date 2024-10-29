@@ -15,6 +15,7 @@
 }
 .form_container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   gap: 25px;
@@ -139,4 +140,28 @@
 
 .alert-danger {
   animation: fadeIn 0.5s ease-in-out;
+}
+
+.gender {
+  display: flex;
+  flex-direction: row!important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.gender > div {
+  display: flex;
+  align-items: center;
+}
+
+
+
+@media(max-width: 600px){
+  .form_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }  
 }

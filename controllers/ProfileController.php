@@ -66,13 +66,14 @@ class ProfileController extends Controller
     $userModel = new User('users');
     $userData = $userModel->getById($userId);
     $updatedData = [
-        'firstname' => $_POST['firstname'],
-        'lastname' => $_POST['lastname'],
-        'phone' => $_POST['phone'],
-        'address' => $_POST['address'],
-        'city' => $_POST['city'],
-        'zipcode' => $_POST['zipcode'],
-        'mail' => $_POST['mail']
+        'firstname' => htmlspecialchars(trim($_POST['firstname'])),
+        'lastname' => htmlspecialchars(trim($_POST['lastname'])),
+        'gender' => $_POST['gender'] ?? $userData['gender'],
+        'phone' => htmlspecialchars(trim($_POST['phone'])),
+        'address' => htmlspecialchars(trim($_POST['address'])),
+        'city' => htmlspecialchars(trim($_POST['city'])),
+        'zipcode' => htmlspecialchars(trim($_POST['zipcode'])),
+        'mail' => filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)
     ];
 
     if (!empty($_POST['password'])) {
@@ -90,9 +91,9 @@ class ProfileController extends Controller
     /*Updating user data using updateUser method*/
     $userModel = new User('users');
     $userModel->updateUser($userId, $updatedData);
-
     $_SESSION['firstname'] = $updatedData['firstname'];
     $_SESSION['lastname'] = $updatedData['lastname'];
+    $_SESSION['gender'] = $updatedData['gender'];
     $_SESSION['phone'] = $updatedData['phone'];
     $_SESSION['address'] = $updatedData['address'];
     $_SESSION['city'] = $updatedData['city'];
@@ -101,30 +102,7 @@ class ProfileController extends Controller
     
     /* Redirection to the profile site after data updating*/
     header('Location: profile');
-    }
-
-    public function deleteReservation(){
-        $reservationUserObject = new ReservationModel('reservations');
-        $reservation_id = $_GET['reservation_id'];
-        var_dump("deleteReservation called");
-        if(!isset($_SESSION['user_id'])){
-            var_dump($_SESSION['user_id']);
-            $this->render('login');
-            exit;
-        }
-
-        if (isset($reservation_id)){  
-        var_dump($reservation_id);
-        $reservationUserObject->deleteReservationById($reservation_id);
-        header('Location: profile');
-        exit;
-        } else {
-            // Handle invalid input (e.g., show an error message)
-            echo "Invalid reservation ID.";
-            exit;
-        }
-
-
+    exit;
     }
 
 }

@@ -12,16 +12,33 @@
     <?php include "components/_header.php"; ?>
     </header>
     <h1>Modifier vos données</h1>
-    <?php if (isset($errorMessage)): ?>
-    <div class="error-message" style="color: red;">
-        <?= htmlspecialchars($errorMessage); ?>
+    <div>
+        <?php if (isset($errorMessage)): ?>
+        <div class="error-message" style="color: red; display: flex; justify-content: center; margin-bottom: 3%; ">
+            <?= htmlspecialchars($errorMessage); ?>
+        </div>
     </div>
     <?php endif; ?>
     <!--The profile form for current user's information updating -->
     <form class="form" action="/update-profile" method="post">
         <section class="form_container">
-            <!-- First section conteining civil data-->  
-            <section class="civil">
+            <!-- First section conteining civil data and address-->  
+            <section class="civil-address">
+                <label><h2>Genre</h2></label>
+                <div class="gender">
+                    <div>
+                        <input type="radio" id="genderMale" name="gender" value="male" <?= isset($userData['gender']) && $userData['gender'] === 'male' ? 'checked' : ''?>>
+                        <label for="genderMale">Homme</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="genderFemale" name="gender" value="female" <?= isset($userData['gender']) && $userData['gender'] === 'female' ? 'checked' : '' ?>>
+                        <label for="genderFemale">Femme</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="genderOther" name="gender" value="other" <?= isset($userData['gender']) && $userData['gender'] === 'other' ? 'checked' : '' ?>>
+                        <label for="genderOther">Autre</label>
+                    </div>
+                </div>
                 <h2>Civilités</h2>
                 <div>
                     <label for="inputLastname">Nom</label>
@@ -35,9 +52,6 @@
                     <label for="inputPhone">Téléphone</label>
                     <input type="tel" name="phone" placeholder="Votre numéro de téléphone" value="<?= isset($userData['phone']) ? htmlspecialchars($userData['phone']): ''; ?>">
                 </div>
-            </section>
-            <!-- Second section conteining address data--> 
-            <section class="address">
                 <h2>Adresse</h2>
                 <div>
                     <label for="inputAddress">Adresse</label>
@@ -52,9 +66,9 @@
                     <input type="text" name="zipcode" placeholder="Votre code postale" value="<?= isset($userData['zipcode']) ? htmlspecialchars($userData['zipcode']): ''; ?>">
                 </div>
             </section>
-            <!-- Third section conteining connection data--> 
+            <!-- Second section conteining connection data--> 
             <section class= "connect-data">
-            <h2>Les données de connection</h2>
+                <h2>Les données de connection</h2>
                 <div class="connect-email">
                     <label for= "inputEmail">E-mail</label>
                     <input type="email" name="mail" id="inputEmail" placeholder="Votre e-mail" value="<?= isset($userData['mail']) ? htmlspecialchars($userData['mail']): ''; ?>">

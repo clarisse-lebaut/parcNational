@@ -15,12 +15,12 @@ class User extends Model{
     }*/
     
     public function saveUserWithActivation($userData, $token){
-        $sql = 'INSERT INTO users (role, lastname, firstname, mail, password, phone, address, city, zipcode, activation_token, is_active) VALUES(?,?,?,?,?,?,?,?,?,?,?)';
+        $sql = 'INSERT INTO users (role, lastname, firstname, gender, mail, password, phone, address, city, zipcode, activation_token, is_active) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)';
         $stmt = $this->pdo->prepare($sql);
         $hashedPassword = password_hash($userData['password'], PASSWORD_BCRYPT);
         $activationToken = $token;
         $isActive = 0;
-        $stmt->execute([ 1, $userData['lastname'], $userData['firstname'], $userData['email'], $hashedPassword, $userData['phone'], $userData['adress'], $userData['city'], $userData['zipcode'], $activationToken, $isActive]);
+        $stmt->execute([ 1, $userData['lastname'], $userData['firstname'], $userData['gender'], $userData['email'], $hashedPassword, $userData['phone'], $userData['adress'], $userData['city'], $userData['zipcode'], $activationToken, $isActive]);
     }
 
     public function activateUser($token){
@@ -122,9 +122,9 @@ class User extends Model{
     }
 
     public function updateUser($userId, $data){
-    $sql = 'UPDATE users SET firstname = ?, lastname = ?, mail = ?, phone = ?, address = ?, city = ?, zipcode = ?, password = ? WHERE user_id = ?';
+    $sql = 'UPDATE users SET firstname = ?, lastname = ?, gender = ?, mail = ?, phone = ?, address = ?, city = ?, zipcode = ?, password = ? WHERE user_id = ?';
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([$data['firstname'], $data['lastname'], $data['mail'], $data['phone'], $data['address'], $data['city'], $data['zipcode'], $data['password'], $userId]);
+    $stmt->execute([$data['firstname'], $data['lastname'], $data['gender'], $data['mail'], $data['phone'], $data['address'], $data['city'], $data['zipcode'], $data['password'], $userId]);
     }
 
     public function getReservationsByUser($user_id) {

@@ -82,7 +82,6 @@
                                 <p><strong>Prix : </strong><?= htmlspecialchars($reservedCamping['price']) ; ?> €</p>
                                 <p><strong>Date de résérvation : </strong><?= htmlspecialchars($reservedCamping['reservation_date']) ; ?></p>
                                 <p><strong>Statut : </strong><?= htmlspecialchars($reservedCamping['status']) ; ?></p>
-                                <p><a href="/deleteReservation?reservation_id=<?= htmlspecialchars($reservedCamping['reservation_id']); ?>" class="delete">Supprimer</a></p>
 
                             </div>
                         <?php endforeach; ?>

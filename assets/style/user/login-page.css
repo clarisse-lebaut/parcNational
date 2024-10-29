@@ -82,19 +82,17 @@ input {
   width: 100%;
   height: 45px;
   padding: 10px;
-
   font-family: var(--font-Assistant);
   font-size: 15px;
   font-weight: 600;
   color: white;
-
   border: none;
   border-radius: 10px;
   background-color: var(--mediumblue);
   box-shadow: lightgray 0 5px 10px 0;
-
   transition: background-color 0.3s, transform 0.3s;
 }
+
 .connect-button:hover {
   background-color: var(--darkblue);
   cursor: pointer;
@@ -125,6 +123,8 @@ input {
   display: flex;
   flex-direction: row;
   width: 25%;
+  align-items: center;
+  justify-content: center;
 }
 
 .sm-connect img {
@@ -133,4 +133,24 @@ input {
 .sm-connect:hover {
   border-color: #007bff;
   background-color: #d0e7ff;
+}
+
+
+@media(max-width: 600px){
+  .login-container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    border: lightblue solid 1px;
+    font-family: var(--font-Assistant);
+  }
+  .or-connect-with {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    justify-content: center;
+    align-items: center;
+  }
 }
