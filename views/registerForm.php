@@ -23,7 +23,7 @@
           <?php echo htmlspecialchars($error); ?>
         </div>
       <?php endif; ?>
-          <form class="form" method="post" action="/parcNational/register-form" id="registerForm">
+          <form class="form" method="post" action="register-form" id="registerForm">
           
             <a href="login"><p>Déjà un compte ? Connectez-vous !</p></a>
 
