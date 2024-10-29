@@ -77,6 +77,23 @@
                 <?php endif; ?>
             </div>
         </section>
+
+        <section class="other_ressources">
+            <h2>Slider des autres sentiers</h2>
+            <div class="slider">
+                <div class="slider_elements">
+                    <?php foreach ($all_ressources as $all_ressource): ?>
+                        <div class="card_trails">
+                            <a href="ressourceDetails?id=<?php echo urlencode($all_ressource['ressource_id']); ?>">
+                                <p><?php echo htmlspecialchars($all_ressource['name']); ?></p>
+                                <img class="pic-slider" src="<?php echo htmlspecialchars($all_ressource['image']); ?>" alt="<?php echo htmlspecialchars($all_ressource['name']); ?>" width="200">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>

@@ -22,6 +22,12 @@ class RessourceModel extends Model {
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function get_ressources() {
+        $query = $this->pdo->prepare('SELECT ressource_id, name, image FROM natural_ressources'); // Ajoutez ici tous les champs nécessaires
+        $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC); // Utilisez PDO::FETCH_ASSOC pour un tableau associatif
+    }
+
     // 3. Créer une nouvelle ressource naturelle
     public function createRessource($name, $type, $location, $floraison, $description, $level, $precautions, $image) {
         $query = $this->pdo->prepare('INSERT INTO natural_ressources (name, type, location, floraison, description, level, precautions, image) 
