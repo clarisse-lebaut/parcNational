@@ -183,6 +183,10 @@ $routes = [
         'controller' => 'AdminMembershipController',
         'method' => 'viewMembership',
     ],
+    'manage_article' => [
+        'controller' => 'AdminArticleController',
+        'method' => 'manageArticles',
+    ],
     'manage_users' => [
         'controller' => 'AdminUsersController',
         'method' => 'manageUsers',
@@ -218,6 +222,10 @@ $routes = [
     'create_ship' => [
         'controller' => 'AdminAdminController',
         'method' => 'addMembership',
+    ],
+    'create_articles' => [
+        'controller' => 'AdminArticleController',
+        'method' => 'createArticle',
     ],
     'manage-favorite-trail' => [
         'controller' => 'FavoritesTrailsController',
@@ -287,7 +295,7 @@ $routes = [
     'payment' => [
         'controller' => 'PaymentController',
         'method' => 'processPayment',
-    ],
+    ]
 ];
 
 // Nettoyage et traitement de l'URL
