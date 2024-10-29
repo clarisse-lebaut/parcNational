@@ -48,4 +48,14 @@ class AdminData extends Model {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function count_articles(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM news");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public function count_ships(){
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) as total FROM membership");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
