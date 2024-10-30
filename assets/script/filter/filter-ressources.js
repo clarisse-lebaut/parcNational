@@ -57,7 +57,7 @@ function applyFilters() {
   const queryString = queryParams.join("&");
 
   // Envoie de la requête pour récupérer les données filtrées
-  fetch(`/data/data_filter_ressources.php?${queryString}`)
+  fetch(`/parcNational/data/data_filter_ressources.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -144,7 +144,7 @@ function updateRessourcesDisplay(data) {
 
 // Fonction pour récupérer tous les sentiers
 function fetchAllressources() {
-  fetch("/data/data_filter_ressources.php") // URL de récupération des données
+  fetch("/parcNational/data/data_filter_ressources.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");
@@ -179,7 +179,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("/data/data_filter_ressources.php")
+    fetch("/parcNational/data/data_filter_ressources.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");

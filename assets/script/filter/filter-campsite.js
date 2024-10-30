@@ -7,7 +7,7 @@ function getUrlId() {
 //* Attache un event listener au toggle
 const toggle = document.getElementById("toggle");
 toggle.addEventListener("change", () => {
-  fetch("/data/data_filter_campsites.php") // URL de récupération des données
+  fetch("/parcNational/data/data_filter_campsites.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");
@@ -140,7 +140,7 @@ function getStatusAlt(status) {
 
 // Fonction pour récupérer tous les sentiers
 function fetchAllressources() {
-  fetch("/data/data_filter_campsites.php") // URL de récupération des données
+  fetch("/parcNational/data/data_filter_campsites.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");

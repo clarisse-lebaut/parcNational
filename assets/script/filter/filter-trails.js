@@ -1,3 +1,10 @@
+          // <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
+          //   <img src="assets/icon/favorite-empty.svg" alt="heart icon">
+          // </a>
+          // <a href="/parcNational/manage-completed-trail?trail_id=${
+          //   item.trail_id
+          // }" class="hiking-btn"></a>
+
 //* Attache un event listener 'change' à chaque case à cocher
 const checkboxes = document.getElementsByName("tag");
 checkboxes.forEach(function (checkbox) {
@@ -53,7 +60,7 @@ function applyFilters() {
 
   const queryString = queryParams.join("&");
 
-  fetch(`/data/data_filter_trails.php?${queryString}`)
+  fetch(`/parcNational/data/data_filter_trails.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -148,19 +155,10 @@ function updateTrailDisplay(data) {
         </div>
 
         <div class="fav-btn-container">
-<<<<<<< HEAD:assets/script/filter.js
           <a href="/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
             <img src="assets/icon/favorite-fill.svg" alt="heart icon">
           </a>
           <a href="/manage-completed-trail?trail_id=${item.trail_id}" class="fav-btn">
-=======
-          <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
-            <img src="assets/icon/favorite-empty.svg" alt="heart icon">
-          </a>
-          <a href="/parcNational/manage-completed-trail?trail_id=${
-            item.trail_id
-          }" class="hiking-btn">
->>>>>>> clarisse-pre-dev:assets/script/filter/filter-trails.js
             <img src="assets/icon/hiking.svg" alt="hiking icon">
           </a>
         </div>       
@@ -231,7 +229,7 @@ function getStatusAlt(status) {
 
 // Fonction pour récupérer tous les sentiers
 function fetchAllTrails() {
-  fetch("/data/data_filter_trails.php") // URL de récupération des données
+  fetch("/parcNational/data/data_filter_trails.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");
@@ -266,7 +264,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("/data/data_filter_trails.php")
+    fetch("/parcNational/data/data_filter_trails.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");
