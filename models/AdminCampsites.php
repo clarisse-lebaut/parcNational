@@ -59,9 +59,9 @@ class ManageCampsites extends Model {
     }
 
     // Mettre à jour un camping
-    public function update_campsites($campsite_id, $name, $description, $address, $city, $zipcode) {
+    public function update_campsites($campsite_id, $name, $description, $address, $city, $zipcode,$status, $max_capacity) {
         // Construire la requête SQL
-        $sql = "UPDATE campsite SET name = :name, city = :city, address = :address, zipcode = :zipcode";
+        $sql = "UPDATE campsite SET name = :name, city = :city, address = :address, zipcode = :zipcode, status = :status, max_capacity = :max_capacity";
 
         // Ajouter la description à la requête seulement si elle est fournie
         if ($description) {
@@ -77,6 +77,8 @@ class ManageCampsites extends Model {
         $stmt->bindParam(':city', $city, PDO::PARAM_STR);
         $stmt->bindParam(':address', $address, PDO::PARAM_STR);
         $stmt->bindParam(':zipcode', $zipcode, PDO::PARAM_INT);
+        $stmt->bindParam(':status', $status, PDO::PARAM_STR);
+        $stmt->bindParam(':max_capacity', $max_capacity, PDO::PARAM_INT);
         $stmt->bindParam(':campsite_id', $campsite_id, PDO::PARAM_INT);
 
         // Lier la description seulement si elle est fournie

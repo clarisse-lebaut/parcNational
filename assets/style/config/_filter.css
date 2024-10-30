@@ -8,8 +8,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 25px;
-  margin: 25px;
+  gap: 20px;
+  padding: 20px 20px 5px 20px;
 }
 .dropdown-btn {
   border-radius: 10px;
@@ -19,14 +19,17 @@
 }
 
 .filter > button {
-  box-shadow: lightgray 0px 5px 10px 0px;
   border-radius: 10px;
   padding: 10px;
   border: none;
   background-color: var(--lmblue);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.filter > button:hover {
+  background-color: var(--mediumblue);
+  color: white;
 }
 .filter > button:active {
-  box-shadow: lightgray 0px 5px 10px 0px;
   transform: translateY(5px);
 }
 .filter > button > img {
@@ -92,8 +95,8 @@ label {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 25px;
-  margin: 25px;
+  gap: 20px;
+  padding: 5px 20px 20px 20px;
 }
 
 .tags {
@@ -114,4 +117,12 @@ label {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.close-tag {
+  transition: transform 0.3s ease; /* Ajout d'une transition pour une animation fluide */
+}
+.close-tag:hover {
+  content: url(../../icon/close-white.svg);
+  transform: rotate(90deg); /* Rotation de 180 degrés et zoom de 10% lors du survol */
 }

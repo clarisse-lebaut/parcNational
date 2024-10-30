@@ -9,6 +9,7 @@ body {
   flex-direction: column;
   gap: 20px;
   margin: 0;
+  background-color: #f8f8f8;
 }
 
 :root {

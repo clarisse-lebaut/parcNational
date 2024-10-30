@@ -1,5 +1,9 @@
 // Initialisation de la carte Leaflet
-var map = L.map("map").setView([43.2, 5.4522], 11); // Coordonnées de départ
+var map = L.map("map", {
+  center: [43.2, 5.4522], // Coordonnées de départ
+  zoom: 12, // Niveau de zoom de départ
+  scrollWheelZoom: false, // Désactive le zoom au scroll de la souris
+});
 
 // Déclaration des styles de tuiles
 var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {

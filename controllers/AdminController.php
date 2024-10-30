@@ -25,6 +25,8 @@ class AdminController extends Controller
         $campsitesCount = $this->model->count_campsites();
         $ressourcesCount = $this->model->count_ressources();
         $rapportsCount = $this->model->count_rapports();
+        $shipsCount = $this->model->count_ships();
+        $articlesCount = $this->model->count_articles();
 
         // Vérifier si les nombres ont été récupérés avec succès
         if ($userCount !== false && $trailsCount !== false) {
@@ -36,6 +38,8 @@ class AdminController extends Controller
                 'total_campsites' => $campsitesCount['total'] ?? 0,
                 'total_ressources' => $ressourcesCount['total'] ?? 0,
                 'total_rapports' => $rapportsCount['total'] ?? 0,
+                'total_ships' => $shipCount['total'] ?? 3,
+                'total_articles' => $articlesCount['total'] ?? 0
             ]);
         } else {
             echo "Erreur lors de la récupération des données.";

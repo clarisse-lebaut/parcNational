@@ -22,7 +22,7 @@ if ($campsite_id > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails du Camping</title>
-    <link rel="stylesheet" href="assets/style/campsiteDetails.css">
+    <link rel="stylesheet" href="assets/style/user/campsiteDetails.css">
     <link rel="stylesheet" href="assets/style/_global.css">
 </head>
 <body>
@@ -47,7 +47,7 @@ if ($campsite_id > 0) {
             </div>
 
             <!-- ROW STATUT -->
-            <div class="campsite-details-row campsite-details-rowicon">
+            <div class="campsite-details-row campsite-details-rowicon campsite-details-price">
                 <p id="campsite-status">
                     <?php if ($isClosed): ?>
                         <span>&#x1F534;</span> Fermé (Vacances) 
@@ -73,7 +73,7 @@ if ($campsite_id > 0) {
 
             <!-- ROW BOUTON RESERVER -->
             <?php if (!$isClosed && $availability !== 'Camping complet'): ?>
-                <div class="campsite-details-row">
+                <div class="campsite-details-row campsite-details-btn">
                 <a href="calendar?campsite_id=<?= htmlspecialchars($campsite['campsite_id']); ?>">Réserver</a>
                 </div>
             <?php endif; ?>

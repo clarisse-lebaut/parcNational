@@ -13,6 +13,7 @@
             <img src="assets/icon/whatsapp.svg" alt="Icon Whatsapp">
             <img src="assets/icon/tiktok.svg" alt="Icon TikTok">
             <img src="assets/icon/linkedin.svg" alt="Icon Linkedin">
+            <a class="top-icon" href="#"><img src="assets/icon/arrow_up.svg" alt="Icon Arrow Up"></a>
         </div>
     </section>
 
@@ -58,4 +59,14 @@
     <section class="thrid-section-footer">
         <p>© Parc National des Calanques. 2024. Tous droits réservés.</p>  
     </section>
+
+    <script>
+        document.querySelector('.top-icon').addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut et la mise à jour de l'URL
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Active le défilement fluide
+            });
+        });
+    </script>
 </nav>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style/_global-admin.css">
-    <link rel="stylesheet" href="assets/style/_header-admin.css">
+    <link rel="stylesheet" href="assets/style/config/_global-admin.css">
+    <link rel="stylesheet" href="assets/style/config/_header-admin.css">
 
     <script src="assets/script/hamb.js" defer></script>
 </head>
@@ -43,7 +43,7 @@
     <section class="data-admin">
         <div>
             <p>Modifier mon profil</p>
-            <a href=""><button><img src="assets/icon/edit.svg" alt="icon edit"></button></a>
+            <a href="admin_profil"><button class="edit_profil_btn"><img src="assets/icon/edit.svg" alt="icon edit"></button></a>
         </div>
     </section>
 

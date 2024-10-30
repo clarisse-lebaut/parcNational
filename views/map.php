@@ -6,26 +6,21 @@
     <title>Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="asset/style/user/map.css">
-    <script src="assets/script/allMap.js" defer></script>
+    <link rel="stylesheet" href="assets/style/user/map.css">
+    <script src="assets/script/map/allMap.js" defer></script>
 </head>
 <body>
     <header>
         <?php include "components/_header.php"; ?>
     </header>
     <main>
-        <h1>La Carte</h1>
-        <style>
-            #map {
-                height: 90vh; /* Ajustez en fonction de votre mise en page */
-                width: 100%;   /* Assurez-vous que la carte utilise toute la largeur */
-                box-shadow : lightgray 0 5px 10px 0; 
-            }
-            .map_container{
-                margin : 0 100px 100px 100px;
-            }            
-        </style>
-        <section class="map_container">
+        <h1 style='margin-bottom:0;'>La Carte</h1>
+        <section class="description-page">
+            <p>Retrouver tous les sentiers et tout les points de vue présent au Parc National des Calanques !</p>
+            <p></p>
+        </section>
+
+        <section class="map-container">
             <div id="map"></div>
         </section>
     </main>

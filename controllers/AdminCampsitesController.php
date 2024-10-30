@@ -77,7 +77,7 @@ class AdminCampsitesController extends Controller
                     'city' => $campsite['city'] ?? '',
                     'zipcode' => $campsite['zipcode'] ?? '',
                     'status' => $campsite['status'] ?? '',
-                    'max_capacity' => $campsite['max_capacity'] ?? 0 // Valeur par défaut
+                    'max_capacity' => $campsite['max_capacity']// Valeur par défaut
                 ];
             } else {
                 echo "Erreur : Camping non trouvé.";
@@ -92,8 +92,8 @@ class AdminCampsitesController extends Controller
             $address = $_POST['address'] ?? '';
             $city = $_POST['city'] ?? '';
             $zipcode = $_POST['zipcode'] ?? '';
-            $max_capacity = $_POST['max_capacity'] ?? 0;
             $status = $_POST['status'] ?? '';
+            $max_capacity = $_POST['max_capacity'] ?? 0;
             $errors = [];
 
             // Gérer l'image si elle est soumise
@@ -153,8 +153,8 @@ class AdminCampsitesController extends Controller
                         $address,
                         $city,
                         $zipcode,
-                        $max_capacity,
                         $status,
+                        $max_capacity,
                         $image // Ajout de l'image ici
                     );
 
@@ -166,7 +166,7 @@ class AdminCampsitesController extends Controller
                     }
                 } else {
                     // Création d'un nouveau camping
-                    if ($this->model->create_campsites($name, $description, $address, $city, $zipcode, $max_capacity, $status, $image)) {
+                    if ($this->model->create_campsites($name, $description, $address, $city, $zipcode, $status, $max_capacity, $image)) {
                         $this->redirect('manage_campsites');
                         exit;
                     } else {

@@ -19,13 +19,18 @@ class RessourceController extends Controller {
     // 2. Récupérer une ressource par ID
     public function getRessourceById($ressource_id) {
         $ressource = $this->ressourceModel->getRessourceById($ressource_id);
+        $all_ressources = $this->ressourceModel->get_ressources();  // Chargez toutes les ressources pour le slider
+        
         if ($ressource) {
-            $this->render('ressourceDetails', ['ressource' => $ressource]);  // Rendu de la vue 'ressourceDetails'
+            $this->render('ressourceDetails', [
+                'ressource' => $ressource,
+                'all_ressources' => $all_ressources // Passez all_ressources à la vue
+            ]);
         } else {
             echo "Ressource non trouvée.";
         }
     }
-    
+
     // 3. Créer une nouvelle ressource naturelle
     public function createRessource($name, $type, $location, $floraison, $description, $level, $precautions, $image) {
         if ($this->ressourceModel->createRessource($name, $type, $location, $floraison, $description, $level, $precautions, $image)) {

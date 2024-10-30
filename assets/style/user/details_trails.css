@@ -1,8 +1,14 @@
+.trails_info_container {
+  margin: 25px;
+}
+
+.trails_info_container > div > h3 {
+  text-align: left;
+}
+
 .trails_main_info {
   border-radius: 10px;
-  box-shadow: lightgray 0 5px 15px 0;
-
-  margin: 40px;
+  margin: 5px 100px 5px 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -17,11 +23,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .trail_image {
   object-fit: cover;
   border-radius: 50% 20% / 10% 40%;
+  margin-bottom: 10px;
 }
 
 .trails_infos {
@@ -98,6 +107,7 @@
   padding: 10px;
   box-shadow: lightgray 0 5px 15px 0;
   border-radius: 50% 20% / 10% 40%;
+  background-color: white;
 }
 
 .pic-slider {

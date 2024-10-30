@@ -67,3 +67,22 @@
   align-items: center;
   color: white;
 }
+
+.top-icon {
+  animation: bounce 3s infinite; /* Applique l'animation */
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0); /* Position initiale */
+  }
+  40% {
+    transform: translateY(-15px); /* Déplace l'image vers le haut */
+  }
+  60% {
+    transform: translateY(-7.5px); /* Rebond intermédiaire */
+  }
+}
