@@ -25,6 +25,6 @@ function logout()
     session_destroy();
 
     // Redirection vers la page de connexion ou d'accueil
-    header("Location: login"); // Modifier "login" par la route souhaitée
+    header("Location: /parcNational/login"); // Modifier "login" par la route souhaitée
     exit;
 }

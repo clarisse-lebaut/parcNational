@@ -114,23 +114,23 @@ h2 {
 }
 
 .card-home:nth-child(1) {
-  background-image: url("/assets/img/category_home/coves.jpg");
+  background-image: url("/parcNational/assets/img/category_home/coves.jpg");
 }
 
 .card-home:nth-child(2) {
-  background-image: url("/assets/img/category_home/ressources.png");
+  background-image: url("/parcNational/assets/img/category_home/ressources.png");
 }
 
 .card-home:nth-child(3) {
-  background-image: url("/assets/img/category_home/trails.jpg");
+  background-image: url("/parcNational/assets/img/category_home/trails.jpg");
 }
 
 .card-home:nth-child(4) {
-  background-image: url("/assets/img/category_home/campsite.png");
+  background-image: url("/parcNational/assets/img/category_home/campsite.png");
 }
 
 .card-home:nth-child(5) {
-  background-image: url("/assets/img/category_home/map.png");
+  background-image: url("/parcNational/assets/img/category_home/map.png");
 }
 
 /* Les mêmes styles communs pour toutes les cartes */
