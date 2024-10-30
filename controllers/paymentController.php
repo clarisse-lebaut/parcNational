@@ -45,7 +45,7 @@ class PaymentController {
                 session_start();
             }
             $reservationModel = new ReservationModel();
-            $user_id = 1;  // User ID statique pour l'instant
+            $user_id = $_SESSION['user_id'];
             $reservation_id = $reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price, "en attente");
             $_SESSION['reservation_id'] = $reservation_id;
     
