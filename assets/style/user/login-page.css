@@ -137,6 +137,9 @@ input {
 
 
 @media(max-width: 600px){
+  h1{
+    font-size: x-large!important;
+  }
   .login-container {
     width: 60%;
     margin: 0 auto;
@@ -152,5 +155,14 @@ input {
     width: 25%;
     justify-content: center;
     align-items: center;
+  }
+}
+@media(min-width: 601px) and (max-width: 1024px){
+  h1{
+    font-size: xx-large!important;
+  }
+  .login-container{
+    max-width: 60%;
+    min-width: 40%;
   }
 }
