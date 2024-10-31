@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de profil</title>
-    <link rel="stylesheet" href="/assets/style/user/profile_form.css">
-    <script src="/assets/script/register.js" defer></script>
+    <link rel="stylesheet" href="assets/style/user/profile_form.css">
+    <script src="assets/script/register.js" defer></script>
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
     </div>
     <?php endif; ?>
     <!--The profile form for current user's information updating -->
-    <form class="form" action="/update-profile" method="post">
+    <form class="form" action="/parcNational/update-profile" method="post">
         <section class="form_container">
             <!-- First section conteining civil data and address-->  
             <section class="civil-address">

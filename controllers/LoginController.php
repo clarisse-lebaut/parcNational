@@ -183,7 +183,7 @@ class LoginController extends Controller
                 $token = bin2hex(random_bytes(50));
                 $expiry = new DateTime('+1 hour');
                 $user->savePasswordResetToken($dbUser['user_id'], $token, $expiry->format('Y-m-d H:i:s'));
-                $resetLink = "http://parcnational/reset-password?token=$token";
+                $resetLink = "http://localhost/parcNational/reset-password?token=$token";
                 $name = $dbUser['lastname'];
                 $this->sendPasswordResetEmail($email, $resetLink, $name);
                 $this->render('forgotPassword', ['message' => 'Un lien pour réinitialiser le mot de passe a été envoyé.']);

@@ -34,7 +34,7 @@
             </p>
             <p>Que vous soyez amateur d'aventure ou à la recherche de détente, l'adhésion vous ouvre les portes à des offres exceptionnelles, telles que :</p>
                 
-            <section>
+            <section class="offert">
                 <div>
                     <p><strong>Via Ferrata</strong></p>
                     <p>Pour ceux qui aiment l'escalade et les sensations fortes, explorez les magnifiques falaises des Calanques en toute sécurité.</p>                        <a href="https://example.com/via-ferrata" target="_blank">Cliquez ici pour en savoir plus.</a><br><br>

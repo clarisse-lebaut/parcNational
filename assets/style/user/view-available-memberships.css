@@ -18,6 +18,8 @@ main > section {
 main > section > section {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 50px;
   padding: 10px;
   margin: 0 25px 0 25px;
@@ -28,7 +30,8 @@ main > section > h2 {
 }
 
 main > section > section > div {
-  width: 50%;
+  max-width: 220px;
+  min-width: 220px;
   margin: 10px;
   text-align: center;
   padding: 10px;
@@ -36,6 +39,7 @@ main > section > section > div {
   background-color: #f8f8f8;
   border: var(--darkblue) solid 1px;
 }
+
 
 /* ------------ */
 .card_ship_container {
@@ -77,4 +81,14 @@ main > section > section > div {
   padding-top: 60px;
   text-align: center;
   color: rgb(179, 64, 18);
+}
+
+/*RESPONSIVE DESIGN*/
+@media (min-width: 1480px){
+  section > p {
+    max-width: 800px;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
 }

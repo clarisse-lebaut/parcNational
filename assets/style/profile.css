@@ -2,30 +2,42 @@
 .top-container{
     background: linear-gradient(to right, #add8e6, #31a2df);
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
     flex-direction: row;
     padding: 0 5%;
 }
-
-.edit-profil{
-    background-color: var(--lmblue);
-    margin: 1% 0;
-    padding: 3%;
-    border-radius: 3%;
-    text-align: center;
+h4{
     color: var(--mediumblue);
-    font-family: var(--font-Archivo);
-    max-width: 18%;
+    background-color: var(--lmblue);
+    border-radius: 10%;
+    padding: 10px;
+}
+h4:hover{
+    background-color: #c8def4;
 }
 
-.edit-profil:hover{
-    background-color: #d0e7ff;
+.profil-header{
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.title{
+    margin: 1% 0;
 }
 
 .user-info-parent{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 400px;
+    background-color: var(--lmblue);
+    border-radius: 3%;
+    padding: 1% 2%;
+    margin-top: 1%;
+    min-height: 200px;
 }
 
 .user-info{
@@ -35,13 +47,13 @@
 }
 
 .first{
-    margin-right: 50px;
+    margin-right: 55px;
 }
 .second{
-    margin-right: 30px;
+    margin-right: 35px;
 }
 .third{
-    margin-right: 10px;
+    margin-right: 20px;
 }
 .fourth{
     margin-right: 40px;
@@ -50,13 +62,19 @@
     margin-right: 60px;
 }
 .sixt{
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .membership{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: var(--lmblue);
-    margin: 1% 0;
-    padding: 0 2%;
+    width: 400px!important;
+    min-height: 200px;
+    padding: 1% 2%;
+    margin-top: 1%;
     border-radius: 3%;
     width: auto;
     line-height: 0.6;
@@ -69,13 +87,14 @@
     display: flex;
     flex-direction: row;
     justify-content:space-around;
+    flex-wrap: wrap;
+    padding-top: 5%;
     background: linear-gradient(to right, #add8e6, #31a2df);
-    align-items:baseline;
 }
 
 .left-part{
     flex-basis: 80%;
-    margin-left: 2%;
+    max-width: 75%;
  }
  
  .reservation-container{
@@ -83,14 +102,13 @@
      flex-wrap: wrap;
      justify-content: space-around;
      gap: 10px;
-     width: 90%;
      border-radius: 2%;
+     overflow-x: scroll;
  }
 
 .title-reservation{
     display: block;
     text-align: center;
-    margin: 5% 0 3% 0;
 }
 
 .reservation-image{
@@ -101,11 +119,10 @@
     margin-bottom: 5%;
     object-fit: cover;
     transition: transform 0.5s ease;
-    
 }
 
 .reservation-image:hover{
-    transform: scale(1.4);
+    transform: scale(1.3);
 }
 
 .img-trail{
@@ -117,7 +134,6 @@
     border: 2px solid black;
     object-fit: cover;
     transition: transform 0.3s ease;
-    margin-bottom: 2%;
 }
 
 .img-trail:hover{
@@ -145,7 +161,10 @@
 }
 
 .completed-trails{
-    margin-left: 9%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
 
 .trail-item{
@@ -155,13 +174,21 @@
 
 
 .favorites-trails{
-    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     max-width: 300px;
 }
+.image-container{
+    overflow-y:scroll;
+    height: 800px;
+}
+.image-container::-webkit-scrollbar {
+    width: 8px;
+  }
 
-.favorites-trails h2{
+.favorites-title{
     white-space: nowrap;
-    margin-bottom: 15%;
     text-align: start;
 }
 
@@ -173,4 +200,45 @@
     font-family: 'Poppins', sans-serif;
     color: var(--mediumblue);
     text-align: center;
+}
+
+@media(max-width: 500px){
+
+    h1{
+        font-size: x-large!important;
+    }
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .trail-description{
+        display: none;
+    }
+
+    .user-info-right{
+        margin-right: 10px;
+    }
+    .completed-trails{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media(min-width: 501px) and (max-width: 978px){
+
+    h1{
+        font-size: xx-large!important;
+    }
+    .trail-description{
+        display: none;
+    }
+
+    .completed-trails{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

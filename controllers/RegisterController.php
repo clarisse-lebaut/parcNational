@@ -51,7 +51,7 @@ class RegisterController extends Controller
         $activationToken = bin2hex(random_bytes(50));
         $user->saveUserWithActivation($_POST, $activationToken);
 
-        $activationLink = "http://parcnational/login?token=" . $activationToken;
+        $activationLink = "http://localhost/parcNational/login?token=" . $activationToken;
         $this->sendActivationEmail($email, $activationLink);
 
         $this->render('registerForm', ['message' => 'Un email de confirmation à été envoyé. Veuillez vérifier votre boîte de réception.']);

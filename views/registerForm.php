@@ -6,7 +6,7 @@
 <title>Inscription</title>
 <link rel="stylesheet" href="assets/style/config/_global.css">
 <link rel="stylesheet" href="assets/style/user/register.css">
-<script src="/assets/script/register.js" defer></script>
+<script src="assets/script/register.js" defer></script>
 </head>
 
 <body>

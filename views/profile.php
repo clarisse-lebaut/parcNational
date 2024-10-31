@@ -14,13 +14,14 @@
     <section>
         <!-- Top section containing personal data and memberships -->
         <div class="top-container">
-            <!-- Link to update profile data -->
-            <a class="edit-profil" href="profile-form">
-                <h2>Mettre à jour les données</h2>
-            </a>
             <!-- User personal data -->
             <div class="user-info-parent">
-                <h2> Mes données personnelles</h2>
+                <div class="profil-header">
+                    <h2 class="title"> Mes données personnelles</h2>
+                    <a href="profile-form">
+                        <h4>Mettre à jour</h4>
+                    </a>
+                </div>
                 <div class="user-info">
                     <div class="user-info-left">
                         <p><strong class="first">Nom :</strong><?= htmlspecialchars($userId['lastname']??''); ?></p>
@@ -92,48 +93,52 @@
                 <!-- Completed trails section -->
                 <div class="completed-trails">
                     <h2>Mes Sentiers complétes</h2>
-                    <?php if(!empty($completedTrails)): ?>
-                        <?php foreach($completedTrails as $completedTrail): ?>
-                            <div class="trail-item">
-                                <div class="trail-image">
-                                    <a href="details_trails?id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
-                                        <img class="img-trail" src=<?= htmlspecialchars($completedTrail['image']) ?> alt="la photo de sentier">
-                                    </a>
-                                    <a href="/manage-completed-trail?trail_id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
-                                        <p class="delete">Supprimer</p>
-                                    </a>
-                                </div>
-                                <div class="trail-description">
-                                    <p class="description-text"><?= htmlspecialchars($completedTrail['name']) ?> </p>
-                                    <div class="lien-container">
+                    <div class="image-container">
+                        <?php if(!empty($completedTrails)): ?>
+                            <?php foreach($completedTrails as $completedTrail): ?>
+                                <div class="trail-item">
+                                    <div class="trail-image">
+                                        <a href="details_trails?id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
+                                            <img class="img-trail" src=<?= htmlspecialchars($completedTrail['image']) ?> alt="la photo de sentier">
+                                        </a>
+                                        <a href="/parcNational/manage-completed-trail?trail_id=<?= htmlspecialchars($completedTrail['trail_id']) ?>">
+                                            <p class="delete">Supprimer</p>
+                                        </a>
                                     </div>
-                                </div>
-                            </div>  
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p>Pas de sentiers dans le favoris</p>
-                    <?php endif; ?>
+                                    <div class="trail-description">
+                                        <p class="description-text"><?= htmlspecialchars($completedTrail['name']) ?> </p>
+                                        <div class="lien-container">
+                                        </div>
+                                    </div>
+                                </div>  
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>Pas de sentiers dans le favoris</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <!-- Favorite trails section -->
             <div class="favorites-trails">
-                <h2>Mes favoris Sentiers</h2>
-                <?php if(!empty($favoriteTrails)): ?>
-                    <?php foreach($favoriteTrails as $trail): ?>
-                        <div class="trail-image">
-                            <a href="details_trails?id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                                <img class="img-trail" src=<?= htmlspecialchars($trail['image']) ?> alt="la photo de sentier">
-                            </a>
-                            <div class="lien-container">
-                                <a href="/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
-                                    <p class="delete">Supprimer</p>
+                <h2 class="favorites-title">Mes favoris Sentiers</h2>
+                <div class="image-container">
+                    <?php if(!empty($favoriteTrails)): ?>
+                        <?php foreach($favoriteTrails as $trail): ?>
+                            <div class="trail-image">
+                                <a href="details_trails?id=<?= htmlspecialchars($trail['trail_id']) ?>">
+                                    <img class="img-trail" src=<?= htmlspecialchars($trail['image']) ?> alt="la photo de sentier">
                                 </a>
-                            </div>    
-                        </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
+                                <div class="lien-container">
+                                    <a href="/parcNational/manage-favorite-trail?trail_id=<?= htmlspecialchars($trail['trail_id']) ?>">
+                                        <p class="delete">Supprimer</p>
+                                    </a>
+                                </div>    
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                     <p>Pas de sentiers dans le favoris</p>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>
