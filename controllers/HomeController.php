@@ -9,14 +9,19 @@ class HomeController extends Controller
     // Constructeur pour initialiser le modèle
     public function __construct($table)
     {
+        parent::__construct(); // Appel au constructeur de la classe parente
         $this->newsModel = new News($table);
     }
 
     // Méthode pour afficher toutes les news dans la page d'accueil
     public function news()
     {
+        // Enregistrer la visite pour la page d'accueil uniquement
+        $this->enregistrerVisite('accueil');
+
         // Récupérer toutes les actualités
         $news = $this->newsModel->get_news();
+
         // Afficher la vue 'home' avec les données récupérées
         $this->render('home', ['news' => $news]);
     }
