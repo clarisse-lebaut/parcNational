@@ -15,33 +15,31 @@ class ReservationController extends Controller {
         $this->campsiteController = new CampsiteController();  
     }
 
-    // Créer une réservation après vérification de la disponibilité
+    //? 1: Créer réservation
     public function createReservation($user_id, $campsite_id, $start_date, $end_date, $price) {
         $availability = $this->campsiteController->checkAvailability($campsite_id);
-
+    
         if ($availability === 'Camping complet') {
-            $message = 'Désolé, ce camping est complet.';
-        } else {
-            if ($this->reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price)) {
-                $currentReservations = $this->reservationModel->getCurrentReservations($campsite_id);
-                $maxCapacity = $this->campsiteController->getMaxCapacity($campsite_id);
-
-                if ($currentReservations >= $maxCapacity) {
-                    $this->campsiteController->updateAvailability($campsite_id, 0);  // Camping complet
+            return false; // false = complet
+        } else {            // crée la réservation 
+            $reservation_id = $this->reservationModel->createReservation($user_id, $campsite_id, $start_date, $end_date, $price);
+    
+            if ($reservation_id) {
+                $current_reservations = $this->reservationModel->getCurrentReservations($campsite_id);
+                $max_capacity = $this->campsiteController->getMaxCapacity($campsite_id);
+    
+                if ($current_reservations >= $max_capacity) {
+                    $this->campsiteController->updateAvailability($campsite_id, 0); // Camping complet
                 }
-
-                $message = 'La réservation a été créée avec succès.';
+    
+                return $reservation_id; 
             } else {
-                $message = 'Erreur lors de la création de la réservation.';
+                return false; 
             }
         }
-        $this->render('reservationHistory', [  // Redirige vers l'historique
-            'reservations' => $this->reservationModel->getReservationsByUser($user_id),
-            'message' => $message
-        ]);
     }
-
-    // Récupérer toutes les réservations d'un utilisateur
+            
+    //? 2: Récupérer toutes les réservations d'un utilisateur
     public function getReservationsByUser($user_id) {
         $reservations = $this->reservationModel->getReservationsByUser($user_id);
         $status = isset($_GET['status']) ? $_GET['status'] : '';
