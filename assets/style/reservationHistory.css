@@ -1,113 +1,71 @@
-/* Style de la modale */
-.modal {
-    display: none; /* Masquer la modale par défaut */
-    position: fixed; /* Fixer la modale par rapport à la fenêtre */
-    z-index: 1000; /* Positionner la modale au-dessus des autres éléments */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fond trouble */
-    display: flex; /* Utiliser flexbox pour centrer la modale */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-}
-
-/* Contenu de la modale */
-.modal-content {
-    background-color: white;
+/* Styles généraux pour la page d'historique des réservations */
+.history-container {
     padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
-    text-align: center; /* Centrer le texte dans la modale */
+    max-width: 800px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-/* Style du texte dans la modale */
-.modal-content p {
-    font-size: 18px;
+.history-title {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 35px;
+}
+
+.history-message {
+    text-align: center;
+    color: #333;
+}
+
+/* Dernière réservation */
+.history-recap {
+    background-color: #ecf7f7;
+    padding: 15px;
     margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Boutons de la modale */
-.btn-confirm, .btn-close {
-    padding: 10px 20px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.btn-confirm {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.btn-close {
-    background-color: #f44336;
-    color: white;
-}
-
-/* Hover effect sur les boutons */
-.btn-confirm:hover {
-    background-color: #45a049;
-}
-
-.btn-close:hover {
-    background-color: #e53935;
-}
-
-/* Style général pour l'historique des réservations */
-.table-history {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.table-history th, .table-history td {
-    border: 1px solid #ddd;
-    padding: 12px;
+.history-recap-title {
+    color: #27ae60;
+    font-size: 20px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
-.table-history th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+.history-recap-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.table-history tr:nth-child(even) {
-    background-color: #f9f9f9;
+.history-recap-item {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
 }
 
-/* Style des boutons d'annulation */
-.table-history .cancel-btn {
-    background-color: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 5px;
+.history-recap-item strong {
+    color: #27ae60;
 }
 
-.table-history .cancel-btn:hover {
-    background-color: #ff1a1a;
+/* HISTORIQUE */
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-/* Message de succès ou d'erreur */
-.message {
+.history-table th, .history-table td {
     padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.history-table th {
+    background-color: #3498db;
+    color: #ffffff;
+    font-weight: bold;
 }
