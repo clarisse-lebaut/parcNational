@@ -54,6 +54,7 @@
                             <td><?= htmlspecialchars($reservation['price'] ?? 'Non disponible'); ?> €</td>
                             <td><?= htmlspecialchars($reservation['reservation_date'] ?? 'Non disponible'); ?></td>
                             <td class="history-status <?= htmlspecialchars($reservation['status']) ?>"><?= htmlspecialchars($reservation['status'] ?? 'Non disponible'); ?></td>
+                            <td><a href="download-receipt?reservation_id=<?= $reservation['reservation_id']; ?>" class="btn btn-primary">Télécharger la facture</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

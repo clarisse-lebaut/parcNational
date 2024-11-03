@@ -4,6 +4,8 @@ require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/Controller.php';
 require_once __DIR__ . '/CampsiteController.php';
 
+use Dompdf\Dompdf;
+
 class ReservationController extends Controller {
 
     private $reservationModel;
@@ -74,5 +76,40 @@ class ReservationController extends Controller {
             'message' => $message,
             'recap' => $recap
         ]);
+    }
+
+    public function downloadReceipt() {
+        if (isset($_GET['reservation_id'])) {
+            $reservationId = intval($_GET['reservation_id']);
+            $reservationModel = new ReservationModel();
+            $reservation = $reservationModel->getReservationById($reservationId);
+
+            $campsiteModel = new CampsiteModel();
+            $campsite = $campsiteModel->getCampsiteById($reservation['campsite_id']);
+
+            if ($reservation && $campsite) {
+                // contenu HTML pour le reçu
+                $html = "
+                    <h1>Reçu de réservation</h1>
+                    <p>Camping : " . htmlspecialchars($campsite['name']) . "</p>
+                    <p>Réservation du " . htmlspecialchars($reservation['start_date']) . " au " . htmlspecialchars($reservation['end_date']) . "</p>
+                    <p>Nombre de personnes : " . htmlspecialchars($reservation['num_persons']) . "</p>
+                    <p>Prix total : " . htmlspecialchars($reservation['price']) . " €</p>
+                    <p>Date de réservation : " . htmlspecialchars($reservation['reservation_date']) . "</p>
+                ";
+
+                // Initialise Dompdf
+                $dompdf = new Dompdf();
+                $dompdf->loadHtml($html);
+                $dompdf->setPaper('A4', 'portrait');
+                $dompdf->render();
+
+                $dompdf->stream("recu_reservation_" . $reservationId . ".pdf", ["Attachment" => true]);
+            } else {
+                echo "Erreur : réservation ou camping introuvable.";
+            }
+        } else {
+            echo "Erreur : identifiant de réservation manquant.";
+        }
     }
 }
