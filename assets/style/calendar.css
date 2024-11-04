@@ -2,12 +2,19 @@
     max-width: 400px;
     max-height: 400px;
 }
+.calendar-item {
+        background-color: white;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;}
 
 .calendar-form-container {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     gap: 20px;
-    margin: 20px 0;
+    justify-content: center;
 }
 
 .date-fields {
@@ -128,4 +135,10 @@
 .fc-daygrid-day-frame {
     min-height: 50px !important; /* Hauteur minimale des cellules */
     height: 50px !important; 
+}
+
+@media (max-width: 768px) {
+    .calendar-item {
+        flex: 1 1 100%;
+    }
 }

@@ -9,6 +9,19 @@ class ReservationModel extends Model {
 
     // 1. Créer une réservation
     public function createReservation($user_id, $campsite_id, $start_date, $end_date, $price, $status = "en attente") {
+        $query = $this->pdo->prepare('SELECT reservation_id FROM reservations WHERE user_id = :user_id AND campsite_id = :campsite_id AND start_date = :start_date AND end_date = :end_date AND status = "en attente"');
+        $query->bindParam(':user_id', $user_id);
+        $query->bindParam(':campsite_id', $campsite_id);
+        $query->bindParam(':start_date', $start_date);
+        $query->bindParam(':end_date', $end_date);
+        $query->execute();
+    
+        // Si une réservation similaire existe, retourner son ID pour éviter la duplication
+        if ($existingReservation = $query->fetch(PDO::FETCH_ASSOC)) {
+            return $existingReservation['reservation_id'];
+        }
+    
+        // Insérer une nouvelle réservation si aucune réservation en attente similaire n'existe
         $query = $this->pdo->prepare('INSERT INTO reservations (user_id, campsite_id, start_date, end_date, price, reservation_date, status) 
                                      VALUES (:user_id, :campsite_id, :start_date, :end_date, :price, NOW(), :status)');
         $query->bindParam(':user_id', $user_id);
@@ -17,11 +30,14 @@ class ReservationModel extends Model {
         $query->bindParam(':end_date', $end_date);
         $query->bindParam(':price', $price);
         $query->bindParam(':status', $status);
-        $query->execute();
-
-        return $this->pdo->lastInsertId(); 
+        
+        if ($query->execute()) {
+            return $this->pdo->lastInsertId();
+        } else {
+            return false;
+        }
     }
-
+            
     // 2. Mettre à jour le statut d'une réservation
     public function updateReservationStatus($reservation_id, $status) {
         $query = $this->pdo->prepare('UPDATE reservations SET status = :status WHERE reservation_id = :reservation_id');

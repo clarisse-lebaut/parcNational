@@ -20,7 +20,9 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
+            'Svg\\' => 4,
             'Stripe\\' => 7,
+            'Sabberworm\\CSS\\' => 15,
         ),
         'P' => 
         array (
@@ -28,13 +30,22 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
             'PhpOption\\' => 10,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
+        'M' => 
+        array (
+            'Masterminds\\' => 12,
+        ),
         'G' => 
         array (
             'GrahamCampbell\\ResultType\\' => 26,
         ),
+        'F' => 
+        array (
+            'FontLib\\' => 8,
+        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
+            'Dompdf\\' => 7,
             'DeepCopy\\' => 9,
         ),
     );
@@ -52,9 +63,17 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'Svg\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/php-svg-lib/src/Svg',
+        ),
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Sabberworm\\CSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
         ),
         'PhpParser\\' => 
         array (
@@ -68,13 +87,25 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
+        'Masterminds\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/masterminds/html5/src',
+        ),
         'GrahamCampbell\\ResultType\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/result-type/src',
         ),
+        'FontLib\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
+        ),
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'Dompdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
         'DeepCopy\\' => 
         array (
@@ -85,6 +116,7 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'PHPUnit\\Event\\Application\\Finished' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Finished.php',
         'PHPUnit\\Event\\Application\\FinishedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/FinishedSubscriber.php',
         'PHPUnit\\Event\\Application\\Started' => __DIR__ . '/..' . '/phpunit/phpunit/src/Event/Events/Application/Started.php',
@@ -346,7 +378,6 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         'PHPUnit\\Framework\\Attributes\\RequiresPhp' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RequiresPhp.php',
         'PHPUnit\\Framework\\Attributes\\RequiresPhpExtension' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RequiresPhpExtension.php',
         'PHPUnit\\Framework\\Attributes\\RequiresPhpunit' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RequiresPhpunit.php',
-        'PHPUnit\\Framework\\Attributes\\RequiresPhpunitExtension' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RequiresPhpunitExtension.php',
         'PHPUnit\\Framework\\Attributes\\RequiresSetting' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RequiresSetting.php',
         'PHPUnit\\Framework\\Attributes\\RunClassInSeparateProcess' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RunClassInSeparateProcess.php',
         'PHPUnit\\Framework\\Attributes\\RunInSeparateProcess' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Attributes/RunInSeparateProcess.php',
@@ -659,7 +690,6 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         'PHPUnit\\Metadata\\RequiresPhp' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RequiresPhp.php',
         'PHPUnit\\Metadata\\RequiresPhpExtension' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RequiresPhpExtension.php',
         'PHPUnit\\Metadata\\RequiresPhpunit' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RequiresPhpunit.php',
-        'PHPUnit\\Metadata\\RequiresPhpunitExtension' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RequiresPhpunitExtension.php',
         'PHPUnit\\Metadata\\RequiresSetting' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RequiresSetting.php',
         'PHPUnit\\Metadata\\RunClassInSeparateProcess' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RunClassInSeparateProcess.php',
         'PHPUnit\\Metadata\\RunInSeparateProcess' => __DIR__ . '/..' . '/phpunit/phpunit/src/Metadata/RunInSeparateProcess.php',
@@ -751,7 +781,6 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         'PHPUnit\\Runner\\TestSuiteSorter' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestSuiteSorter.php',
         'PHPUnit\\Runner\\UnsupportedPhptSectionException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Exception/UnsupportedPhptSectionException.php',
         'PHPUnit\\Runner\\Version' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/Version.php',
-        'PHPUnit\\TestRunner\\IssueFilter' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/IssueFilter.php',
         'PHPUnit\\TestRunner\\TestResult\\BeforeTestClassMethodErroredSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Subscriber/BeforeTestClassMethodErroredSubscriber.php',
         'PHPUnit\\TestRunner\\TestResult\\Collector' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Collector.php',
         'PHPUnit\\TestRunner\\TestResult\\ExecutionStartedSubscriber' => __DIR__ . '/..' . '/phpunit/phpunit/src/Runner/TestResult/Subscriber/ExecutionStartedSubscriber.php',
@@ -949,7 +978,6 @@ class ComposerStaticInite875ae8441d070d7dda5f4b47a2117aa
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveCacheTokensAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveCacheTokensAttribute.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveConversionToExceptionsAttributes' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveConversionToExceptionsAttributes.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveCoverageElementCacheDirectoryAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveCoverageElementCacheDirectoryAttribute.php',
-        'PHPUnit\\TextUI\\XmlConfiguration\\RemoveCoverageElementIncludeUncoveredFilesAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveCoverageElementIncludeUncoveredFilesAttribute.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveCoverageElementProcessUncoveredFilesAttribute' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveCoverageElementProcessUncoveredFilesAttribute.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveEmptyFilter' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveEmptyFilter.php',
         'PHPUnit\\TextUI\\XmlConfiguration\\RemoveListeners' => __DIR__ . '/..' . '/phpunit/phpunit/src/TextUI/Configuration/Xml/Migration/Migrations/RemoveListeners.php',

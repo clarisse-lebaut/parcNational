@@ -2,8 +2,13 @@
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/../controllers/ReservationController.php';
 require_once __DIR__ . '/../controllers/PaymentController.php';
-require_once __DIR__ . '/../controllers/CampsiteController.php'; 
+require_once __DIR__ . '/../controllers/CampsiteController.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $campsite_id = isset($_GET['campsite_id']) ? intval($_GET['campsite_id']) : 0;
 
 if ($campsite_id > 0) {
@@ -16,16 +21,15 @@ if ($campsite_id > 0) {
     $vacationEvents = [];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id !== null) {
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
     $num_persons = $_POST['num_persons'];
     $price = $_POST['price'];
-    $user_id = 1; 
 
     // appel paymentController; gérer la session stripe
     $paymentController = new PaymentController();
-    $paymentController->createCheckoutSession($campsite_id, $price);
+    $paymentController->createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons, $user_id);
 }
 ?>
 <!DOCTYPE html>
@@ -41,13 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<header>
-    <?php include __DIR__ . '/../components/_header.php'; ?>
-</header>
+    <header>
+        <?php include __DIR__ . '/../components/_header.php'; ?>
+    </header>
 <main>
     <section>
         <?php if ($campsite): ?>
-            <div class="title-and-image">
+            <div class="title-and-image calendar-item">
                 <h1 class="campsite-title"><?= htmlspecialchars($campsite['name']); ?></h1>
                 <div class="calendar-info" data-price-per-night="<?= htmlspecialchars($campsite['price_per_night']); ?>">
                     <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
@@ -59,10 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 
     <div class="calendar-form-container">
-        <section class="reservation-section">
+        <section class="reservation-section calendar-item">
             <h2>Réserver ce camping</h2>
-            <form action="payment.php" method="POST">
-                <div class="date-fields">
+            
+            <form action="/parcNational/payment" method="POST">
+               <div class="date-fields">
                     <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
                     <div class="date-field">
                         <label for="start_date">Du</label>
@@ -92,23 +97,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
 
-        <section>
+        <section class="calendar-item">
             <div id="calendar"></div>
         </section>
     </div>
 
 </main>
-<footer>
-    <?php include __DIR__ . '/../components/_footer.php'; ?>
-</footer>
+    <footer>
+        <?php include __DIR__ . '/../components/_footer.php'; ?>
+    </footer>
 
-<script> let vacationEvents = <?= json_encode($vacationEvents); ?>; </script>
-<!-- SCRIPTS -->
-<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
-<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
-<script src="assets/script/calendar.js"></script>
+    <script> let vacationEvents = <?= json_encode($vacationEvents); ?>; </script>
+    <!-- SCRIPTS -->
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.15/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.15/index.global.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.15/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction@6.1.15/index.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rrule/2.6.8/rrule.min.js"></script>
+    <script src="assets/script/calendar.js"></script>
 </body>
 </html>

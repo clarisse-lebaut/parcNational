@@ -15,7 +15,7 @@
 }
 
 .campsite-details-img {
-  width: 50%;
+  width: 60%;
   height: auto;
   max-height: 500px;
   object-fit: cover;
@@ -59,6 +59,7 @@
   align-items: center;
   gap: 25px;
   width: 500px;
+  max-width: 80%;
   margin: 20px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -95,4 +96,12 @@
   color: red;
   text-align: center;
   font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+
+  .campsite-details-img {
+    max-width: max-content; 
+  }
+
 }

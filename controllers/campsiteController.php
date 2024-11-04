@@ -123,4 +123,11 @@ class CampsiteController extends Controller {
             return 'Disponible';
         }
     }
+    public function getMaxCapacity($campsite_id) {
+        return $this->campsiteModel->getMaxCapacity($campsite_id);
+    }
+    public function updateAvailability($campsite_id, $availability) {
+    return $this->campsiteModel->updateAvailability($campsite_id, $availability);
+}
+
 }
