@@ -2,7 +2,8 @@
     "require": {
         "vlucas/phpdotenv": "^5.6",
         "stripe/stripe-php": "^16.1",
-        "phpmailer/phpmailer": "^6.9"
+        "phpmailer/phpmailer": "^6.9",
+        "dompdf/dompdf": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.4"

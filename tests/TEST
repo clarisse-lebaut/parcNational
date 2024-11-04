@@ -1,0 +1,24 @@
+<?php
+use PHPUnit\Framework\TestCase;
+
+require_once __DIR__ . '/../controllers/ReservationController.php';
+
+class CreateReservationTest extends TestCase
+{
+    private $reservationController;    
+    private $campsiteControllerMock; 
+ 
+    protected function setUp(): void
+    {   //! dans setUp, encore instancier, 
+        $this->campsiteControllerMock = $this->createMock(CampsiteController::class);
+        $this->reservationController = new ReservationController(); //instance réélle
+
+        // réflexion pour remplacer CampsiteController par le mock dans ReservationController
+        $campsiteControllerProperty = new ReflectionProperty(ReservationController::class, 'campsiteController');
+        $campsiteControllerProperty->setAccessible(true);
+        $campsiteControllerProperty->setValue($this->reservationController, $this->campsiteControllerMock);
+
+    }
+}
+
+

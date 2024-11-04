@@ -6,7 +6,6 @@
     <title>Confirmation de Paiement</title>
     <link rel="stylesheet" href="assets/style/_global.css">
     <link rel="stylesheet" href="assets/style/payment.css">
-    <script src="assets/script/payment.js" defer></script>
 </head>
 <body>
     <header>
@@ -26,21 +25,16 @@
 
             <div class="payment-card">
                 <h2>Ajouter un code promo</h2>
-                <form id="promo-form" method="POST">
-                    <label for="promo_code">Code promo :</label>
-                    <input type="text" id="promo_code" name="promo_code">
-                    <button type="button" id="apply-promo">Appliquer</button>
-                    <input type="hidden" id="final_price" name="price" value="<?= htmlspecialchars($price); ?>">
-                    <p id="promo_error" style="color: red;"></p>
-                </form>
+                <label for="promo_code">Code promo :</label>
+                <input type="text" id="promo_code" name="promo_code">
             </div>
 
             <form id="payment-form" action="payment" method="POST">
-            <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
+                <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
                 <input type="hidden" name="start_date" value="<?= htmlspecialchars($start_date); ?>">
                 <input type="hidden" name="end_date" value="<?= htmlspecialchars($end_date); ?>">
                 <input type="hidden" name="num_persons" value="<?= htmlspecialchars($num_persons); ?>">
-                <input type="hidden" id="final_price_input" name="price" value="<?= htmlspecialchars($price); ?>">
+                <input type="hidden" name="price" value="<?= htmlspecialchars($price); ?>">
                 <button type="submit" name="confirm_payment">Payer</button>
             </form>
         </div>

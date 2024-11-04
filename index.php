@@ -292,10 +292,19 @@ $routes = [
         'controller' => 'RessourceController',
         'method' => 'getRessourceById',
     ],
-    'payment' => [
-        'controller' => 'PaymentController',
-        'method' => 'processPayment',
-    ]
+'payment-form' => [
+    'controller' => 'PaymentController',
+    'method' => 'showPaymentForm',
+],
+
+'payment' => [
+    'controller' => 'PaymentController',
+    'method' => 'processPayment',
+],
+'download-receipt' => [
+    'controller' => 'ReservationController',
+    'method' => 'downloadReceipt',
+]
 ];
 
 // * Nettoyage et traitement de l'URL via le virutalhost
