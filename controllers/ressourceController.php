@@ -7,12 +7,15 @@ class RessourceController extends Controller {
     private $ressourceModel;
 
     public function __construct() {
+        parent::__construct();
         $this->ressourceModel = new RessourceModel();  // Instancie le modèle de ressource
     }
 
     // 1. Récupérer toutes les ressources naturelles
     public function getAllRessources() {
         $ressources = $this->ressourceModel->getAllRessources();
+        // Enregistrer la visite pour la page d'accueil uniquement
+        $this->enregistrerVisite('natural_ressources');
         $this->render('ressource', ['ressources' => $ressources]);  // Rendu de la vue 'ressource'
     }
         

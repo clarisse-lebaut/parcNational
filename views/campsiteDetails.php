@@ -39,7 +39,7 @@ if ($campsite_id > 0) {
 
             <!-- ROW IMG & ADRESSE -->
             <div class="campsite-details-row">
-                <img class="campsite-details-img" src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
+                <img class="campsite-details-img" src="../parcNational/<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>">
                 <div class="campsite-details-adress">
                     <span class="location-icon">&#x1F4CD;</span> 
                     <p><?= htmlspecialchars($campsite['address']) . ', ' . htmlspecialchars($campsite['city']) . ' ' . htmlspecialchars($campsite['zipcode']); ?></p>

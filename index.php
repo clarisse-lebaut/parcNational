@@ -167,6 +167,10 @@ $routes = [
         'controller' => 'AdminTrailsController',
         'method' => 'manageTrails',
     ],
+    'manage_visites' => [
+        'controller' => 'AdminVisitesController',
+        'method' => 'manageVisites',
+    ],
     'manage_campsites' => [
         'controller' => 'AdminCampsitesController',
         'method' => 'manageCampsites',
@@ -306,17 +310,17 @@ $routes = [
     ]
 ];
 
-// Nettoyage et traitement de l'URL
+// * Nettoyage et traitement de l'URL via le virutalhost
 // $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 // $url = trim($url, '/');
 // $url = str_replace('.php', '', $url);
-
 // $urlArray = explode('?', $url);
 
+// //* Nettoyage et traitement de l'URL via localhost/parcNational/
 $url = str_replace("/parcNational/", '', $_SERVER['REQUEST_URI']);//Removal of the string 'parkNational' from the link
 $urlArray = explode('?', $url);
 
-if (isset($routes[$urlArray[0]])) {
+if (isset($routes[$urlArray[0]])) { 
     $className = $routes[$urlArray[0]]['controller'];
     $methodName = $routes[$urlArray[0]]['method'];
 

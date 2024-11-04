@@ -125,7 +125,7 @@
                             </section>
                             <section>
                                 <?php if (!empty($calanque['image'])): ?>
-                                    <img src="../<?= htmlspecialchars($calanque['image']); ?>" alt="Image de <?= htmlspecialchars($calanque['name']); ?>">
+                                    <img src="../parcNational/<?= htmlspecialchars($calanque['image']); ?>" alt="Image de <?= htmlspecialchars($calanque['name']); ?>">
                                 <?php endif; ?>
                                 <p><?= htmlspecialchars($calanque['description']); ?></p>
                             </section>

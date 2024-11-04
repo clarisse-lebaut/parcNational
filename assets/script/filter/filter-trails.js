@@ -1,3 +1,10 @@
+          // <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
+          //   <img src="assets/icon/favorite-empty.svg" alt="heart icon">
+          // </a>
+          // <a href="/parcNational/manage-completed-trail?trail_id=${
+          //   item.trail_id
+          // }" class="hiking-btn"></a>
+
 //* Attache un event listener 'change' à chaque case à cocher
 const checkboxes = document.getElementsByName("tag");
 checkboxes.forEach(function (checkbox) {
@@ -53,7 +60,7 @@ function applyFilters() {
 
   const queryString = queryParams.join("&");
 
-  fetch(`/data/data_filter_trails.php?${queryString}`)
+  fetch(`/parcNational/data/data_filter_trails.php?${queryString}`)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok: " + response.statusText);
@@ -301,7 +308,7 @@ function removeAll() {
     });
 
     // Récupérer toutes les données et les afficher
-    fetch("/data/data_filter_trails.php")
+    fetch("/parcNational/data/data_filter_trails.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Erreur lors de la récupération des données");

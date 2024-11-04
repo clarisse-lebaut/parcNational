@@ -9,12 +9,16 @@ class CampsiteController extends Controller {
     private $reservationModel;
 
     public function __construct() {
+        parent::__construct();
         $this->campsiteModel = new CampsiteModel();
         $this->reservationModel = new ReservationModel(); 
     }
 
     // 1. Récupérer tous les campings
     public function getAllCampsites() {
+        // Enregistrer la visite pour la page d'accueil uniquement
+        $this->enregistrerVisite('campsites');
+        
         $campsites = $this->campsiteModel->getAllCampsites();
 
         // Mise à jour de la disponibilité et statut

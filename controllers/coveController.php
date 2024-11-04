@@ -6,11 +6,16 @@ class CoveController extends Controller {
     private $coveModel;
 
     public function __construct() {
-        $this->coveModel = new CoveModel();  
+        
+        parent::__construct(); // Appel au constructeur de la classe parente
+        $this->coveModel = new CoveModel();
     }
 
     // Récupérer toutes les calanques et les afficher dans la vue
     public function getAllCoves() {
+        // Enregistrer la visite pour la page d'accueil uniquement
+        $this->enregistrerVisite('coves');
+
         $calanques = $this->coveModel->getAllCoves();
         $this->render('coves', ['calanques' => $calanques]);  // Affiche les calanques dans la vue 'coves'
     }

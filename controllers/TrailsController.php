@@ -9,6 +9,7 @@ class TrailsController extends Controller
     // Constructeur pour initialiser le modèle
     public function __construct()
     {
+        parent::__construct();
         $this->trailsModel = new Trails('trails'); // Assurez-vous que le nom de la table soit correct
     }
 
@@ -16,6 +17,8 @@ class TrailsController extends Controller
     {
         // Récupérer tous les sentiers en utilisant le modèle
         $trails = $this->trailsModel->get_all_trails();
+        // Enregistrer la visite pour la page d'accueil uniquement
+        $this->enregistrerVisite('trails');
         // Afficher la vue 'trails' avec les données récupérées
         $this->render('trails', ['trails' => $trails]);
     }

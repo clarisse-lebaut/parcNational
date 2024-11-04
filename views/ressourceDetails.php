@@ -42,7 +42,7 @@
 
         <section class="ressource-details-container">
             <div class="ressource-details-row">
-                <img class="ressource-details-img" src="../<?= htmlspecialchars($ressource['image']); ?>" alt="Image de <?= htmlspecialchars($ressource['name']); ?>">
+                <img class="ressource-details-img" src="../parcNational/<?= htmlspecialchars($ressource['image']); ?>" alt="Image de <?= htmlspecialchars($ressource['name']); ?>">
             </div>
         </section>
 

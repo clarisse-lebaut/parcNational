@@ -33,7 +33,7 @@
             </a>
             
 
-            <a href="manage_admin">
+            <a href="manage_visites">
                 <div>
                     <p>Gérer les visiteurs</p>
                     <img src="assets/icon/visitor.svg" alt="icon visitors">
