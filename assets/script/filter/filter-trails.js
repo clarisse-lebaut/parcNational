@@ -146,26 +146,61 @@ function updateTrailDisplay(data) {
           <p><strong>Accéder au sentier</strong></p>
           <p>${item.acces}</p>
         </div>
-
         <div class="fav-btn-container">
-<<<<<<< HEAD:assets/script/filter.js
-          <a href="/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
+          <a href="/parcNational/manage-favorite-trail-ajax?trail_id=${item.trail_id}" class="fav-btn fav-btn-add ">
             <img src="assets/icon/favorite-fill.svg" alt="heart icon">
           </a>
-          <a href="/manage-completed-trail?trail_id=${item.trail_id}" class="fav-btn">
-=======
-          <a href="/parcNational/manage-favorite-trail?trail_id=${item.trail_id}" class="fav-btn">
-            <img src="assets/icon/favorite-empty.svg" alt="heart icon">
-          </a>
-          <a href="/parcNational/manage-completed-trail?trail_id=${
-            item.trail_id
-          }" class="hiking-btn">
->>>>>>> clarisse-pre-dev:assets/script/filter/filter-trails.js
+          <a href="/parcNational/manage-completed-trail-ajax?trail_id=${item.trail_id}" class="hiking-btn hiking-btn-add">
             <img src="assets/icon/hiking.svg" alt="hiking icon">
           </a>
         </div>       
       `;
 
+      const addFavoriteButton = card.querySelector('.fav-btn-add');
+
+      function addTrailToFavorite(e){
+        e.preventDefault()
+        fetch(addFavoriteButton.getAttribute('href'))
+        .then(function(){
+          addFavoriteButton.classList.remove('fav-btn-add');
+          addFavoriteButton.removeEventListener('click', addTrailToFavorite)
+          addFavoriteButton.addEventListener('click', deleteFavoriteButton)
+        })
+      }
+
+      function deleteFavoriteButton(e){
+        e.preventDefault()
+        fetch(addFavoriteButton.getAttribute('href'))
+        .then(function(){
+          addFavoriteButton.classList.add('fav-btn-add');
+          addFavoriteButton.removeEventListener('click', deleteFavoriteButton)
+          addFavoriteButton.addEventListener('click', addTrailToFavorite)
+        })
+      }
+
+      const addCompletedButton = card.querySelector('.hiking-btn-add');
+
+      function addTrailToCompleted(e){
+        e.preventDefault()
+        fetch(addCompletedButton.getAttribute('href'))
+        .then(function(){
+          addCompletedButton.classList.remove('hiking-btn-add');
+          addCompletedButton.removeEventListener('click', addTrailToCompleted)
+          addCompletedButton.addEventListener('click', deleteCompletedButton)
+        })
+      }
+
+      function deleteCompletedButton(e){
+        e.preventDefault()
+        fetch(addCompletedButton.getAttribute('href'))
+        .then(function(){
+          addCompletedButton.classList.add('hiking-btn-add')
+          addCompletedButton.removeEventListener('click', deleteCompletedButton)
+          addCompletedButton.addEventListener('click', addTrailToCompleted)
+        })
+      }
+
+      addFavoriteButton.addEventListener('click', addTrailToFavorite)
       resultsContainer.appendChild(card);
     });
   } else {
@@ -231,7 +266,7 @@ function getStatusAlt(status) {
 
 // Fonction pour récupérer tous les sentiers
 function fetchAllTrails() {
-  fetch("/data/data_filter_trails.php") // URL de récupération des données
+  fetch("/parcNational/data/data_filter_trails.php") // URL de récupération des données
     .then((response) => {
       if (!response.ok) {
         throw new Error("Erreur lors de la récupération des données");

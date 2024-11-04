@@ -6,7 +6,7 @@ require_once __DIR__ . '/../models/CompletedTrails.php';
 class CompletedTrailsController extends Controller{
     public function manageCompletedTrail(){
         if (isset($_SESSION['user_id'])){
-            $completedTrailsObject = new CompletedTrails('_completed_trails');
+            $completedTrailsObject = new CompletedTrails('completed_trails');
             $trailId = $_GET['trail_id'];
             $completedTrail = $completedTrailsObject->getCompletedTrail($trailId);
             if($completedTrail === FALSE){
@@ -16,6 +16,23 @@ class CompletedTrailsController extends Controller{
                 $completedTrailsObject->deleteCompletedTrail($trailId);
                 $this->redirect('profile');
             }
+        }else{
+            $this->redirect('login');
+        }
+
+    }
+
+    public function manageCompletedTrailAjax(){
+        if (isset($_SESSION['user_id'])){
+            $completedTrailsObject = new CompletedTrails('completed_trails');
+            $trailId = $_GET['trail_id'];
+            $completedTrail = $completedTrailsObject->getCompletedTrail($trailId);
+            if($completedTrail === FALSE){
+                $completedTrailsObject->addCompletedTrail($trailId);
+            }else{
+                $completedTrailsObject->deleteCompletedTrail($trailId);
+            }
+            exit;
         }else{
             $this->redirect('login');
         }

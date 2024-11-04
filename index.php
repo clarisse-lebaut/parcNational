@@ -231,6 +231,10 @@ $routes = [
         'controller' => 'FavoritesTrailsController',
         'method' => 'manageFavoriteTrail',
     ],
+    'manage-favorite-trail-ajax' => [
+        'controller' => 'FavoritesTrailsController',
+        'method' => 'manageFavoriteTrailAjax',
+    ],
     'profile' => [
         'controller' => 'ProfileController',
         'method' => 'viewProfile',
@@ -238,6 +242,10 @@ $routes = [
     'manage-completed-trail' => [
         'controller' => 'CompletedTrailsController',
         'method' => 'manageCompletedTrail',
+    ],
+    'manage-completed-trail-ajax' => [
+        'controller' => 'CompletedTrailsController',
+        'method' => 'manageCompletedTrailAjax',
     ],
     'campsite' => [
         'controller' => 'campsiteController',

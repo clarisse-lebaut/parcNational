@@ -1,4 +1,4 @@
-/*Top Caontainer*/
+/*Top Container*/
 .top-container{
     background: linear-gradient(to right, #add8e6, #31a2df);
     display: flex;
@@ -7,6 +7,7 @@
     flex-direction: row;
     padding: 0 5%;
 }
+
 h4{
     color: var(--mediumblue);
     background-color: var(--lmblue);
@@ -88,22 +89,22 @@ h4:hover{
     flex-direction: row;
     justify-content:space-around;
     flex-wrap: wrap;
-    padding-top: 5%;
     background: linear-gradient(to right, #add8e6, #31a2df);
 }
 
 .left-part{
-    flex-basis: 80%;
-    max-width: 75%;
+
+    max-width: 80%;
  }
  
  .reservation-container{
+     padding: 3%;
      display: flex;
      flex-wrap: wrap;
      justify-content: space-around;
-     gap: 10px;
-     border-radius: 2%;
+     gap: 3%;
      overflow-x: scroll;
+
  }
 
 .title-reservation{
@@ -112,11 +113,12 @@ h4:hover{
 }
 
 .reservation-image{
-    width: 300px;
+    width: 270px;
     height: 150px;
     border-radius: 3%;
     border: 2px solid black;
     margin-bottom: 5%;
+    margin-top: 2%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -172,16 +174,25 @@ h4:hover{
     align-items:flex-start;
 }
 
-
 .favorites-trails{
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 300px;
 }
+
 .image-container{
     overflow-y:scroll;
-    height: 800px;
+    height: 400px;
+    padding: 15%;
+
+}
+
+.image-complet-container{
+    overflow-y:scroll;
+    height: 400px;
+    padding: 5%;
+
 }
 .image-container::-webkit-scrollbar {
     width: 8px;
@@ -202,16 +213,20 @@ h4:hover{
     text-align: center;
 }
 
+
+/*RESPONSIVE DESIGN*/
 @media(max-width: 500px){
 
     h1{
         font-size: x-large!important;
     }
+
     .user-info{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     .trail-description{
         display: none;
     }
@@ -219,6 +234,7 @@ h4:hover{
     .user-info-right{
         margin-right: 10px;
     }
+
     .completed-trails{
         display: flex;
         flex-direction: column;
@@ -226,11 +242,13 @@ h4:hover{
         align-items: center;
     }
 }
+
 @media(min-width: 501px) and (max-width: 978px){
 
     h1{
         font-size: xx-large!important;
     }
+    
     .trail-description{
         display: none;
     }

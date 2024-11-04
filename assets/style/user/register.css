@@ -32,7 +32,6 @@
   padding: 0 30px 30px 30px;
   width: 25rem;
   text-align: center;
-
   background-color: white;
   border-radius: 10px;
   font-family: var(--font-Assistant);
@@ -164,10 +163,18 @@
   h1{
     font-size:x-large!important;
   }
+
+  .gender {
+    display: flex;
+    flex-direction: column!important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
   .civil,
   .live,
   .password {
-    width: auto;
+    width: 80%;
     border: lightblue solid 1px;
     display: flex;
     flex-direction: column;

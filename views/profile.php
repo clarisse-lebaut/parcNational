@@ -93,7 +93,7 @@
                 <!-- Completed trails section -->
                 <div class="completed-trails">
                     <h2>Mes Sentiers complétes</h2>
-                    <div class="image-container">
+                    <div class="image-complet-container">
                         <?php if(!empty($completedTrails)): ?>
                             <?php foreach($completedTrails as $completedTrail): ?>
                                 <div class="trail-item">

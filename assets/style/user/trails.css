@@ -117,3 +117,11 @@
 .hiking-btn:active {
   transform: translateY(0px);
 }
+
+.fav-btn-add{
+  opacity: 0.2;
+}
+
+.hiking-btn-add{
+  opacity: 0.2;
+}

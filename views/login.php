@@ -34,7 +34,7 @@
               <label for="inputPassword2">Mot de passe</label>
               <input type="password" name='password' class="form-control" id="inputPassword2">
           </div>
-          <h5><a class="register-text"href="forgot-password">Mot de passe oublié ?</a></h5>
+          <h5><a class="register-text" href="/forgot-password.php">Mot de passe oublié ?</a></h5>
           <div class="btn-confirmation"> 
               <button type="submit" class="connect-button">Se connecter</button>
           </div>
@@ -42,7 +42,7 @@
       </div>
       <p>Ou connectez-vous avec : </p>
       <div class="or-connect-with">
-        <a class="sm-connect" href="login-using-google" class="google-login-btn m-3">
+        <a class="sm-connect m-3" href="login-using-google">
           <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" width="20" height="20">
           Google
         </a>
@@ -63,7 +63,7 @@
       <button class="register-button">
         <p><a class="register-text" href="register">Inscription</a></p>
         <img class="register-button-img" src="assets/icon/sign-up-icon.svg" alt="icon register">
-      </button class="register-button">
+      </button>
     </div>
       <footer>
           <?php include "components/_footer.php"; ?>
