@@ -5,7 +5,6 @@ require_once __DIR__ . '/../models/ReservationModel.php';
 require_once __DIR__ . '/../models/CampsiteModel.php';
 require_once __DIR__ . '/ReservationController.php';
 
-
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
@@ -31,14 +30,6 @@ class PaymentController {
             die("Erreur : camping introuvable.");
         }
         require __DIR__ . '/../views/payment.php';
-    }
-
-    public function applyPromoCode($promo_code, $price) {
-        if ($promo_code === 'PROMO10') {
-            $new_price = $price * 0.9;
-            return ['success' => true, 'new_price' => $new_price];
-        }
-        return ['success' => false];
     }
 
     public function processPayment() {
@@ -75,7 +66,7 @@ class PaymentController {
     
             // Démarrer stripe
             if (isset($_POST['confirm_payment'])) {
-                $this->createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons);
+                $this->createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons, $promo_code);
             } else {
                 require __DIR__ . '/../views/payment.php';
             }
@@ -83,9 +74,37 @@ class PaymentController {
             echo "Erreur lors de la création de la réservation. Veuillez réessayer.";
         }
     }
+    public function applyPromoCode() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $promo_code = isset($_POST['promo_code']) ? $_POST['promo_code'] : '';
+            $price = isset($_POST['price']) ? floatval($_POST['price']) : 0;
+    
+            $response = ['success' => false];
+    
+            // Vérifiez le code promo
+            if ($promo_code === 'PROMO10') {
+                $new_price = $price * 0.9;
+                $response = [
+                    'success' => true,
+                    'new_price' => number_format($new_price, 2) // Format pour 2 décimales
+                ];
+            }
+    
+            header('Content-Type: application/json');
+            echo json_encode($response);
+            exit();
+        }
+    }
         
-    public function createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons) {
+        
+    public function createCheckoutSession($campsite_id, $price, $start_date, $end_date, $num_persons, $promo_code = null) {
         try {
+            // récupérer les id des coupons stripe
+            $discounts = [];
+            if ($promo_code === 'PROMO10') {  
+                $discounts[] = ['coupon' => 'qMeqFk1H']; 
+            }
+
             $checkout_session = Session::create([
                 'payment_method_types' => ['card'],
                 'line_items' => [[
@@ -99,6 +118,7 @@ class PaymentController {
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
+                'discounts' => $discounts,
                 'success_url' => 'http://localhost/parcNational/reservation_history?campsite_id=' . $campsite_id . '&status=success',
                 'cancel_url' => 'http://localhost/parcNational/reservation_history?campsite_id=' . $campsite_id . '&status=cancel',
             ]);
