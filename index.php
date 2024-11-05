@@ -316,7 +316,11 @@ $routes = [
 'download-receipt' => [
     'controller' => 'ReservationController',
     'method' => 'downloadReceipt',
-]
+],
+'apply-promo-code' => [ 
+        'controller' => 'PaymentController',
+        'method' => 'applyPromoCode',
+    ],
 ];
 
 // * Nettoyage et traitement de l'URL via le virutalhost
