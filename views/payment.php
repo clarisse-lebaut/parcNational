@@ -27,9 +27,9 @@
 
             <div class="payment-card">
                 <h2>Ajouter un code promo</h2>
-                <label for="promo_code">Code promo :</label>
-                <input type="text" id="promo_code" name="promo_code">
-                <button type="button" id="apply-promo-button">Appliquer le code promo</button>
+                <label for="promo_code" ></label>
+                <input type="text" id="promo_code" placeholder="Appliquez le code promo" name="promo_code">
+                <button type="button" id="apply-promo-button" class="payment-button">Appliquer</button>
                 <p id="promo-message" style="color: red;"></p> <!-- Message de feedback -->
             </div>
 
@@ -39,7 +39,7 @@
                 <input type="hidden" name="end_date" value="<?= htmlspecialchars($end_date); ?>">
                 <input type="hidden" name="num_persons" value="<?= htmlspecialchars($num_persons); ?>">
                 <input type="hidden" id="price" name="price" value="<?= htmlspecialchars($price); ?>">
-                <button type="submit" name="confirm_payment">Payer</button>
+                <button type="submit" name="confirm_payment" class="payment-button">Payer</button>
             </form>
         </div>
     </main>
