@@ -14,14 +14,16 @@
     <main>
         <h1 class="payment-title">Récapitulatif de la commande</h1>
 
-        <div class="payment-container">
-            <div class="payment-card">
-                <h2>Informations sur la réservation</h2>
-                <b><?= htmlspecialchars($campsite['name']); ?></b>
-                <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b><?= htmlspecialchars($end_date); ?></b></p>
-                <p><b><?= htmlspecialchars($num_persons); ?></b> personnes</p>
-                <p>Prix total : <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span></p>
-            </div>
+        <div class="payment-card">
+    <h2>Informations sur la réservation</h2>
+    <b><?= htmlspecialchars($campsite['name']); ?></b>
+    <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b><?= htmlspecialchars($end_date); ?></b></p>
+    <p><b><?= htmlspecialchars($num_persons); ?></b> personnes</p>
+    <p>Prix total : 
+        <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span>
+        <span id="payment-new_price" style="color: green; font-weight: bold; margin-left: 10px;"></span> 
+    </p>
+</div>
 
             <div class="payment-card">
                 <h2>Ajouter un code promo</h2>

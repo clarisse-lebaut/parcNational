@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const applyPromoButton = document.getElementById("apply-promo-button");
     const promoMessage = document.getElementById("promo-message");
     const totalPriceElement = document.getElementById("payment-total_price");
+    const newPriceElement = document.getElementById("payment-new_price");
     const priceInput = document.getElementById("price");
 
     applyPromoButton.addEventListener("click", function() {
@@ -18,13 +19,14 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                totalPriceElement.textContent = `${data.new_price} €`;
+                newPriceElement.textContent = `${data.new_price} €`;
                 priceInput.value = data.new_price;
                 promoMessage.textContent = "Code promo appliqué avec succès !";
                 promoMessage.style.color = "green";
             } else {
                 promoMessage.textContent = "Code promo invalide.";
                 promoMessage.style.color = "red";
+                newPriceElement.textContent = ''; 
             }
         })
         .catch(error => {
