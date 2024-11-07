@@ -43,6 +43,8 @@
                         <th class="price">Prix</th>
                         <th class="date">Date de réservation</th>
                         <th>Statut</th>
+                        <th>Annuler</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +56,16 @@
                             <td><?= htmlspecialchars($reservation['price'] ?? 'Non disponible'); ?> €</td>
                             <td><?= htmlspecialchars($reservation['reservation_date'] ?? 'Non disponible'); ?></td>
                             <td class="history-status <?= htmlspecialchars($reservation['status']) ?>"><?= htmlspecialchars($reservation['status'] ?? 'Non disponible'); ?></td>
-                            <td><a href="download-receipt?reservation_id=<?= $reservation['reservation_id']; ?>" class="btn btn-primary">Télécharger la facture</a></td>
+                            <td>
+                                <?php if ($reservation['status'] !== 'annulée'): ?>
+                                    <a href="cancel-reservation?reservation_id=<?= $reservation['reservation_id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette réservation ?');">
+                                        <img src="assets/icon/delete-red.svg" alt="Annuler" title="Annuler la réservation">
+                                    </a>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <a href="download-receipt?reservation_id=<?= $reservation['reservation_id']; ?>" class="btn btn-primary">Télécharger la facture</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
