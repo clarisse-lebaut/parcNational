@@ -1,39 +1,13 @@
 #calendar {
-    max-width: 400px;
-    max-height: 400px;
-}
-.calendar-item {
-        background-color: white;
-        padding: 10px;
-        margin: 10px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        text-align: center;}
-
-.calendar-form-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    max-width: 500px;
+    max-height: 600px;
 }
 
-.date-fields {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.reservation-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
-
-.date-field {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-}
-
-.persons-field {
-    margin-bottom: 20px;
-}
-
-/* Titre et image sur la même ligne */
 .title-and-image {
     display: flex;
     align-items: center;
@@ -61,7 +35,70 @@
     border-radius: 8px;
 }
 
-/*Barre d'outils */
+.calendar-and-form-container {
+    display: flex;
+    gap: 200px;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.calendar-item,
+.calendar-form-container {
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.date-field {
+    display: flex;
+    gap: 15px;
+}
+
+.date-field input,
+.persons-field input {
+    font-size: 1em;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s; 
+}
+
+.date-field input:focus,
+.persons-field input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+}
+
+/* Bouton réserver */
+.calendar-resa-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-resa-button:hover {
+    background-color: #2980b9;
+}
+
+
+/* Toolbar styles */
 .fc-toolbar {
     display: flex;
     flex-direction: row;
@@ -107,7 +144,7 @@
     background-color: #2980b9 !important; 
 }
 
-/* Couleur des événements */
+/* Event color */
 .fc-event {
     color: #ffffff !important; 
 }
@@ -127,18 +164,32 @@
 }
 
 .fc-daygrid-day.fc-day-selected {
-    background-color: #3498db !important; /* Couleur pour les jours sélectionnés */
+    background-color: #3498db !important; /* Color for selected days */
     color: #ffffff !important;
 }
 
-/* Réduire la taille des cases de jour */
+.instruction-message {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Reduce day cell size */
 .fc-daygrid-day-frame {
-    min-height: 50px !important; /* Hauteur minimale des cellules */
+    min-height: 50px !important; 
     height: 50px !important; 
 }
 
 @media (max-width: 768px) {
-    .calendar-item {
+    .calendar-item,
+    .calendar-form-container {
         flex: 1 1 100%;
+        max-width: none;
     }
+    .calendar-and-form-container {
+        gap: 50px;
+    }
+    
+    
 }
