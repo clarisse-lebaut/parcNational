@@ -34,7 +34,7 @@
               <label for="inputPassword2">Mot de passe</label>
               <input type="password" name='password' class="form-control" id="inputPassword2">
           </div>
-          <h5><a class="register-text" href="/forgot-password.php">Mot de passe oublié ?</a></h5>
+          <h5><a class="register-text" href="http://localhost/parcNational/forgot-password">Mot de passe oublié ?</a></h5>
           <div class="btn-confirmation"> 
               <button type="submit" class="connect-button">Se connecter</button>
           </div>

@@ -70,7 +70,10 @@
         <div class="bottom-container">
             <!-- Reservations section -->
             <div class="left-part">
-                <h2 class="title-reservation">Mes résérvations</h2>
+                <div class="history-link">
+                    <h2 class="title-reservation">Mes résérvations</h2>
+                    <a class="reservation-button" href="http://localhost/parcNational/reservation_history?campsite_id=1&status=success">L'histoire de résérvations</a>
+                </div>
                 <div class="reservation-container">
                     <?php if(!empty($reservedCampings)): ?>
                         <?php foreach($reservedCampings as $reservedCamping): ?>
@@ -92,7 +95,7 @@
                 </div>
                 <!-- Completed trails section -->
                 <div class="completed-trails">
-                    <h2>Mes Sentiers complétes</h2>
+                    <h2 class="trials-title">Mes Sentiers complétes</h2>
                     <div class="image-complet-container">
                         <?php if(!empty($completedTrails)): ?>
                             <?php foreach($completedTrails as $completedTrail): ?>
@@ -142,9 +145,11 @@
             </div>
         </div>
     </section>
-
     <footer>
       <?php include "components/_footer.php"; ?>
     </footer>
+    <script>
+        const userData = <?= $userData; ?>;
+    </script>
 </body>
 </html>

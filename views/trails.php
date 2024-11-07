@@ -145,4 +145,10 @@
     <footer>
         <?php include "components/_footer.php"; ?>
     </footer>
+    <script>
+        const favoriteTrailIds = <?php echo json_encode($favoriteTrailIds); ?>;
+        const completedTrailIds = <?php echo json_encode($completedTrailIds); ?>;
+        const trailsData = <?php echo json_encode($trails); ?>;
+        updateTrailDisplay(trailsData);
+    </script>
 </body>
