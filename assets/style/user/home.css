@@ -1,46 +1,63 @@
 /* ---------- */
-.hero-container {
-  background-image: url(../../img/category_home/hero.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
+@media screen and (max-width: 456px) {
+  .hero-container {
+    background-image: url(../../img/category_home/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 35px;
+  }
+}
+@media screen and (min-width: 456px) {
+  .hero-container {
+    background-image: url(../../img/category_home/hero.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .title-home {
+    position: relative; /* Permet de positionner les éléments enfants relativement */
+    width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+  }
+
+  .image-container {
+    position: relative; /* Positionnement relatif pour le conteneur de l'image */
+  }
+
+  .hero {
+    width: 100%; /* Rendre l'image responsive */
+    height: auto; /* Ajuster la hauteur automatiquement */
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    color: white; /* Couleur du texte */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+  }
 }
 
-.title-home {
-  position: relative; /* Permet de positionner les éléments enfants relativement */
-  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
-}
-
-.image-container {
-  position: relative; /* Positionnement relatif pour le conteneur de l'image */
-}
-
-.hero {
-  width: 100%; /* Rendre l'image responsive */
-  height: auto; /* Ajuster la hauteur automatiquement */
-}
-
-h2 {
-  text-align: center;
-  font-size: 35px;
-}
-
-.text-overlay {
-  position: absolute; /* Positionnement absolu pour superposer le texte */
-  top: 50%; /* Centrer verticalement */
-  left: 50%; /* Centrer horizontalement */
-  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
-  color: white; /* Couleur du texte */
-  text-align: center; /* Centrer le texte */
-  padding: 25px;
-
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-}
+/* presentation part */
 
 .presentation {
   display: flex;
@@ -50,7 +67,6 @@ h2 {
   justify-self: center;
   align-items: center;
 }
-
 .presentation-title {
   display: flex;
   width: 100%;
@@ -58,166 +74,290 @@ h2 {
   padding: 30px 0 30px 0;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  color: black;
 
   background: var(--lmblue);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(4px);
 }
-
 .presentation > div {
-  text-align: center;
+  text-align: left;
 }
-
-.presentation > article {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  width: 50%;
-}
-
-.presentation > article > div {
-  padding: 25px;
-  margin: 10px;
-
-  background: var(--lmblue);
-  box-shadow: 0 0 10px 1px rgba(131, 131, 131, 0.496);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-.presentation > article:hover > div {
-  opacity: 0.3;
-}
-.presentation > article > div:hover {
-  opacity: 1;
-  transform: scale(1.1); /* Utilise transform: scale() avec une valeur numérique */
-}
-
 .presentation > article > div > li {
   list-style: none;
   text-align: center;
 }
+@media screen and (max-width: 456px) {
+  .presentation > article {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: center;
+  }
+  .presentation > article > div {
+    padding: 25px;
+    margin: 10px;
 
-.container-category {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 35px;
-  padding: 30px;
-  gap: 10px;
+    background: var(--lmblue);
+    box-shadow: 0 0 10px 1px rgba(131, 131, 131, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+  }
+  p {
+    margin: 10px 15px 10px 15px;
+  }
 }
-.container-category > div:not(:hover) {
-  transform: scale(0.9); /* Utilise transform: scale() avec une valeur numérique */
-}
+@media screen and (min-width: 456px) {
+  .presentation > article {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    width: 50%;
+  }
+  .presentation > article > div {
+    padding: 25px;
+    margin: 10px;
 
-.card-home:nth-child(1) {
-  background-image: url("/parcNational/assets/img/category_home/coves.jpg");
-}
+    background: var(--lmblue);
+    box-shadow: 0 0 10px 1px rgba(131, 131, 131, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
 
-.card-home:nth-child(2) {
-  background-image: url("/parcNational/assets/img/category_home/ressources.png");
-}
-
-.card-home:nth-child(3) {
-  background-image: url("/parcNational/assets/img/category_home/trails.jpg");
-}
-
-.card-home:nth-child(4) {
-  background-image: url("/parcNational/assets/img/category_home/campsite.png");
-}
-
-.card-home:nth-child(5) {
-  background-image: url("/parcNational/assets/img/category_home/map.png");
-}
-
-/* Les mêmes styles communs pour toutes les cartes */
-.card-home {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  opacity: 1; /* Opacité par défaut */
-}
-
-.card-home:hover {
-  opacity: 1; /* La carte survolée garde une opacité de 1 */
-  transform: scale(1.1); /* Agrandit la carte survolée */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  .presentation > article:hover > div {
+    opacity: 0.3;
+  }
+  .presentation > article > div:hover {
+    opacity: 1;
+    transform: scale(1.1); /* Utilise transform: scale() avec une valeur numérique */
+  }
 }
 
-/* Applique cette règle à toutes les cartes dans le même parent sauf celle survolée */
-.container-category:hover .card-home:not(:hover) {
-  opacity: 0.8; /* Réduit l'opacité des autres cartes */
-  transform: scale(0.9); /* Assure que les autres cartes ne sont pas agrandies */
-}
-.card-title {
-  display: flex;
-  justify-content: center;
-  font-weight: 700;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  color: black;
+/* Category part to navigation in the webesite */
 
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+@media screen and (max-width: 456px) {
+  .container-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 35px;
+    padding: 30px;
+    gap: 25px;
+  }
+  .card-home:nth-child(1) {
+    background-image: url("/parcNational/assets/img/category_home/coves.jpg");
+  }
 
-  transition: color 0.3s ease-in-out;
-}
-.card-title:hover {
-  color: white;
-}
+  .card-home:nth-child(2) {
+    background-image: url("/parcNational/assets/img/category_home/ressources.png");
+  }
 
-.news-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  justify-content: center;
-  align-content: center;
-  gap: 20px;
-  margin: 35px;
-  padding: 30px;
-}
-.news-item {
-  border: 1px solid lightgray;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.news-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  .card-home:nth-child(3) {
+    background-image: url("/parcNational/assets/img/category_home/trails.jpg");
+  }
 
-  padding: 10px;
-  font-weight: 700;
-  font-family: var(--font-Assistant);
-  height: 50px;
-  margin: 0;
-}
-.news-datetime {
-  text-align: center;
-  font-family: var(--font-Assistant);
-  padding: 10px;
-}
-.news-pic {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  flex-grow: 1;
+  .card-home:nth-child(4) {
+    background-image: url("/parcNational/assets/img/category_home/campsite.png");
+  }
+
+  .card-home:nth-child(5) {
+    background-image: url("/parcNational/assets/img/category_home/map.png");
+  }
+  /* Les mêmes styles communs pour toutes les cartes */
+  .card-home {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 1; /* Opacité par défaut */
+  }
+  .card-title {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: black;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
 }
 
+@media screen and (min-width: 456px) {
+  .container-category {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 35px;
+    padding: 30px;
+    gap: 10px;
+  }
+  .container-category > div:not(:hover) {
+    transform: scale(0.9); /* Utilise transform: scale() avec une valeur numérique */
+  }
+
+  .card-home:nth-child(1) {
+    background-image: url("/parcNational/assets/img/category_home/coves.jpg");
+  }
+
+  .card-home:nth-child(2) {
+    background-image: url("/parcNational/assets/img/category_home/ressources.png");
+  }
+
+  .card-home:nth-child(3) {
+    background-image: url("/parcNational/assets/img/category_home/trails.jpg");
+  }
+
+  .card-home:nth-child(4) {
+    background-image: url("/parcNational/assets/img/category_home/campsite.png");
+  }
+
+  .card-home:nth-child(5) {
+    background-image: url("/parcNational/assets/img/category_home/map.png");
+  }
+
+  /* Les mêmes styles communs pour toutes les cartes */
+  .card-home {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 1; /* Opacité par défaut */
+  }
+
+  .card-home:hover {
+    opacity: 1; /* La carte survolée garde une opacité de 1 */
+    transform: scale(1.1); /* Agrandit la carte survolée */
+  }
+
+  /* Applique cette règle à toutes les cartes dans le même parent sauf celle survolée */
+  .container-category:hover .card-home:not(:hover) {
+    opacity: 0.8; /* Réduit l'opacité des autres cartes */
+    transform: scale(0.9); /* Assure que les autres cartes ne sont pas agrandies */
+  }
+  .card-title {
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    color: black;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    transition: color 0.3s ease-in-out;
+  }
+  .card-title:hover {
+    color: white;
+  }
+}
+
+/* news part in the website */
 hr {
   width: 50%;
   margin: auto;
+}
+
+@media screen and (max-width: 456px) {
+  .news-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+    margin: 25px;
+  }
+  .news-item {
+    border: 1px solid lightgray;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .news-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 10px;
+    font-weight: 700;
+    font-family: var(--font-Assistant);
+    height: 50px;
+    margin: 0;
+  }
+  .news-datetime {
+    text-align: center;
+    font-family: var(--font-Assistant);
+    padding: 10px;
+  }
+  .news-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-grow: 1;
+  }
+}
+
+@media screen and (min-width: 456px) {
+  .news-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    align-content: center;
+    gap: 20px;
+    margin: 35px;
+    padding: 30px;
+  }
+  .news-item {
+    border: 1px solid lightgray;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .news-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: 10px;
+    font-weight: 700;
+    font-family: var(--font-Assistant);
+    height: 50px;
+    margin: 0;
+  }
+  .news-datetime {
+    text-align: center;
+    font-family: var(--font-Assistant);
+    padding: 10px;
+  }
+  .news-pic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-grow: 1;
+  }
 }

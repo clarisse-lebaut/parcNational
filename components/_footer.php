@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div class="weather-container-footer">
-            <?php include 'components/_weather.php' ?>
+            <!-- <?php include 'components/_weather.php' ?> -->
         </div>
     </section>
 
