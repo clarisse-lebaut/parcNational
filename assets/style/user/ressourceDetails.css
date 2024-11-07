@@ -57,7 +57,11 @@
 }
 
 .ressource-details-description {
-  margin: 20px 100px 20px 100px;
+  margin: 20px 100px;
+  background-color: white;
+  padding: 1% 5%;
+  border-radius: 5px;
+  border: solid 1px lightgray;
 }
 
 .ressources-precaution-container {
@@ -146,4 +150,21 @@
 
 .pic-slider {
   border-radius: 50% 20% / 10% 40%;
+}
+
+@media (max-width: 768px) {
+  .ressource-details-main {
+      margin: 20px;
+      padding: 10px;
+      width: auto;
+  }
+
+  .conservation-bar-container {
+      width: 90%; 
+  }
+
+  .ressource-details-description {
+    margin: 20px;
+    padding: 10px;
+  }
 }
