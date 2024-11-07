@@ -255,10 +255,6 @@ $routes = [
         'controller' => 'campsiteController',
         'method' => 'getCampsiteById',
     ],
-    'reservationHistory' => [
-        'controller' => 'reservationController',
-        'method' => 'createReservation',
-    ],
     'update-profile' => [
         'controller' => 'ProfileController',
         'method' => 'updateProfile',
@@ -316,7 +312,16 @@ $routes = [
 'download-receipt' => [
     'controller' => 'ReservationController',
     'method' => 'downloadReceipt',
-]
+],
+'apply-promo-code' => [ 
+        'controller' => 'PaymentController',
+        'method' => 'applyPromoCode',
+    ],
+'cancel-reservation' => [
+    'controller' => 'ReservationController',
+    'method' => 'cancelReservation',
+],
+
 ];
 
 // * Nettoyage et traitement de l'URL via le virutalhost

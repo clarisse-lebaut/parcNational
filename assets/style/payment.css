@@ -27,15 +27,14 @@
     align-items: center;
 }
 
-#payment-form button,
-#promo-form button {
+.payment-button {
     width: auto; 
     padding: 10px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
+    font-size: 1.1em;
     cursor: pointer;
     margin-top: 10px;
     margin-left: auto;
@@ -44,8 +43,7 @@
     text-align: center;
 }
 
-#payment-form button:hover,
-#promo-form button:hover {
+.payment-button:hover {
     background-color: #45a049;
 }
 

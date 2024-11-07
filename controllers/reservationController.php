@@ -78,6 +78,26 @@ class ReservationController extends Controller {
         ]);
     }
 
+    //? 3 : Annuler une réservation
+    public function cancelReservation() {
+        if (isset($_GET['reservation_id'])) {
+            $reservation_id = intval($_GET['reservation_id']);
+            $success = $this->reservationModel->cancelReservation($reservation_id);
+    
+            if ($success) {
+                $message = "La réservation a été annulée avec succès.";
+            } else {
+                $message = "La réservation ne peut pas être annulée (moins de 7 jours avant la date de début).";
+            }
+        } else {
+            $message = "Identifiant de réservation manquant.";
+        }
+    
+        header("Location: reservation_history?status=cancel&message=" . urlencode($message));
+        exit();
+    }
+    
+    //? 4 : Télécharger la facture en PDF
     public function downloadReceipt() {
         if (isset($_GET['reservation_id'])) {
             $reservationId = intval($_GET['reservation_id']);
