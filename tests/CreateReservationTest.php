@@ -14,7 +14,7 @@ class CreateReservationTest extends TestCase
         $this->campsiteControllerMock = $this->createMock(CampsiteController::class); //! version simulée de campsite pour contrôler son comportement dans les tests
         $this->reservationController = new ReservationController(); //! instance réelle de ReservationController
 
-        // Utiliser la réflexion pour remplacer CampsiteController par le mock dans ReservationController
+        //- Utiliser la réflexion pour remplacer CampsiteController par le mock dans ReservationController
         $campsiteControllerProperty = new ReflectionProperty(ReservationController::class, 'campsiteController');
         $campsiteControllerProperty->setAccessible(true);
         $campsiteControllerProperty->setValue($this->reservationController, $this->campsiteControllerMock);
