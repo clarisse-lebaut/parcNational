@@ -255,10 +255,6 @@ $routes = [
         'controller' => 'campsiteController',
         'method' => 'getCampsiteById',
     ],
-    'reservationHistory' => [
-        'controller' => 'reservationController',
-        'method' => 'createReservation',
-    ],
     'update-profile' => [
         'controller' => 'ProfileController',
         'method' => 'updateProfile',
