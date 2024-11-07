@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() { 
     let calendarEl = document.getElementById('calendar');
-
     const urlParams = new URLSearchParams(window.location.search);
     const defaultColor = '#FF1473';
 
@@ -85,4 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     calendar.render();
+
+    // redirection vers le calendrier au clic du form
+    const startDateField = document.getElementById("start_date");
+    const endDateField = document.getElementById("end_date");
+
+    function scrollToCalendar() {
+        calendarEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    startDateField.addEventListener("focus", scrollToCalendar);
+    endDateField.addEventListener("focus", scrollToCalendar);
 });
