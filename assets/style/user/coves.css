@@ -1,121 +1,217 @@
-.hero-page {
-  background-image: url(../../img/category_home/coves.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
+@media screen and (max-width: 456px) {
+  .hero-container {
+    background-image: url(../../img/category_home/coves.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
 
-.title-page {
-  position: relative; /* Permet de positionner les éléments enfants relativement */
-  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
-}
+  [id="calanque-"] {
+    scroll-margin-top: 70px; /* Ajuste cette valeur en fonction de la hauteur de ton en-tête */
+  }
 
-.text-overlay {
-  position: absolute; /* Positionnement absolu pour superposer le texte */
-  top: 50%; /* Centrer verticalement */
-  left: 50%; /* Centrer horizontalement */
-  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
-  text-align: center; /* Centrer le texte */
-  padding: 25px;
+  .text-overlay {
+    color: white;
+    text-align: center;
+    margin: 0 15px 0 15px;
+  }
+  /* ----------------------- */
 
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-}
+  main > section > p {
+    text-align: left;
+  }
+  main > section > section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 20px;
+    width: 80%;
+  }
+  main > section > section > li {
+    border: solid 1px var(--lmblue);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
 
-[id^="calanque-"] {
-  scroll-margin-top: 70px; /* Ajuste cette valeur en fonction de la hauteur de ton en-tête */
-}
+  main > nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    margin: 10px;
+    text-align: center;
+    background-color: #f8f8f8;
+  }
 
-/* ----------------------- */
+  main > nav > li {
+    background-color: var(--lmblue);
+    border-radius: 5px 5px 0 0;
+    border: solid 1px transparent;
+    border-bottom: none;
+    padding: 10px;
+  }
 
-main > section > p {
-  text-align: center;
-}
-main > section > section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0 auto;
-  gap: 20px;
-  width: 80%;
-}
-main > section > section > li {
-  border: solid 1px var(--lmblue);
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-}
-main > section > section > li:hover {
-  border: solid 1px var(--darkblue);
-  border-radius: 15px;
-  background-color: white;
-}
+  main > section > div {
+    display: flex;
+    flex-direction: column;
+  }
 
-main > nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 2px;
-  margin: 10px;
-  text-align: center;
-  border-bottom: solid 1px var(--lmblue);
-  background-color: #f8f8f8;
-  box-shadow: inset 0px -5px 10px 1px lightgray;
-}
+  /* calanques cards */
+  main > section > div > article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 0;
+    border: solid 1px lightblue;
+    border-radius: 5px;
+    background-color: white;
+  }
 
-main > nav > li {
-  background-color: var(--lmblue);
-  border-radius: 5px 5px 0 0;
-  border: solid 1px transparent;
-  border-bottom: none;
-  padding: 10px;
-}
-main > nav > li:hover {
-  border: solid 1px var(--lmblue);
-  border-bottom: none;
-  background-color: white;
-  border-radius: 5px 5px 0 0;
-}
+  article > :nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-main > section > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  article > section > img {
+    width: 100%; /* Ajuster la taille de l'image si nécessaire */
+  }
 
-main > section > div > article {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
-  margin: 20px;
-  margin-top: 0;
-  border: solid 1px lightblue;
-  border-radius: 5px;
-  background-color: white;
-}
+  article > section > p {
+    text-align: left; /* Alignement du texte */
+  }
 
-article > :nth-child(2) {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: space-around;
-  align-items: center;
+  .hgroup {
+    display: flex;
+    align-items: last baseline;
+    gap: 10px;
+  }
 }
+@media screen and (min-width: 456px) {
+  .hero-page {
+    background-image: url(../../img/category_home/coves.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
 
-article > section > img {
-  width: 40%; /* Ajuster la taille de l'image si nécessaire */
-}
+  .title-page {
+    position: relative; /* Permet de positionner les éléments enfants relativement */
+    width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+  }
 
-article > section > p {
-  text-align: left; /* Alignement du texte */
-}
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
 
-.hgroup {
-  display: flex;
-  align-items: last baseline;
-  gap: 10px;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+  }
+
+  [id^="calanque-"] {
+    scroll-margin-top: 70px; /* Ajuste cette valeur en fonction de la hauteur de ton en-tête */
+  }
+
+  /* ----------------------- */
+
+  main > section > p {
+    text-align: center;
+  }
+  main > section > section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    gap: 20px;
+    width: 80%;
+  }
+  main > section > section > li {
+    border: solid 1px var(--lmblue);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  main > section > section > li:hover {
+    border: solid 1px var(--darkblue);
+    border-radius: 15px;
+    background-color: white;
+  }
+
+  main > nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2px;
+    margin: 10px;
+    text-align: center;
+    border-bottom: solid 1px var(--lmblue);
+    background-color: #f8f8f8;
+    box-shadow: inset 0px -5px 10px 1px lightgray;
+  }
+
+  main > nav > li {
+    background-color: var(--lmblue);
+    border-radius: 5px 5px 0 0;
+    border: solid 1px transparent;
+    border-bottom: none;
+    padding: 10px;
+  }
+  main > nav > li:hover {
+    border: solid 1px var(--lmblue);
+    border-bottom: none;
+    background-color: white;
+    border-radius: 5px 5px 0 0;
+  }
+
+  main > section > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main > section > div > article {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 0;
+    border: solid 1px lightblue;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  article > :nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  article > section > img {
+    width: 40%; /* Ajuster la taille de l'image si nécessaire */
+  }
+
+  article > section > p {
+    text-align: left; /* Alignement du texte */
+  }
+
+  .hgroup {
+    display: flex;
+    align-items: last baseline;
+    gap: 10px;
+  }
 }
