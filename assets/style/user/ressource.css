@@ -1,82 +1,148 @@
-.hero-page {
-  background-image: url(../../img/category_home/ressources.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
+@media screen and (max-width: 456px) {
+  .hero-page {
+    background-image: url(../../img/category_home/ressources.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .text-overlay {
+    color: white;
+    text-align: center;
+    margin: 0 15px 0 15px;
+  }
+
+  /* ----------------------- */
+
+  .ressources-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .card_ressources {
+    border: solid lightgray 1px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    text-align: center;
+    height: 25rem;
+    border-radius: 10px;
+    background-color: white;
+  }
+
+  .pic-ressources {
+    border-radius: 40% 20% / 30% 10%;
+    width: 200px;
+    border: 1px black solid;
+  }
+
+  .name_ressources > p {
+    font-size: 17px;
+    font-style: italic;
+  }
+
+  .type_ressources > p {
+    font-size: 15px;
+  }
+
+  .btn-details {
+    background-color: var(--lmblue);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all ease-in-out 0.2s;
+  }
+  .btn-details:hover {
+    background-color: var(--mediumblue);
+  }
 }
 
-.title-page {
-  position: relative; /* Permet de positionner les éléments enfants relativement */
-  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
-}
+@media screen and (min-width: 456px) {
+  .hero-page {
+    background-image: url(../../img/category_home/ressources.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+  }
 
-.text-overlay {
-  position: absolute; /* Positionnement absolu pour superposer le texte */
-  top: 50%; /* Centrer verticalement */
-  left: 50%; /* Centrer horizontalement */
-  transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
-  text-align: center; /* Centrer le texte */
-  padding: 25px;
+  .title-page {
+    position: relative; /* Permet de positionner les éléments enfants relativement */
+    width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+  }
 
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-}
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
 
-/* ----------------------- */
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+  }
 
-.ressources-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 15px;
-  margin: 20px;
-}
+  /* ----------------------- */
 
-.card_ressources {
-  border: solid lightgray 1px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  justify-content: center;
-  text-align: center;
-  height: 25rem;
-  border-radius: 10px;
-  background-color: white;
-  transition: all ease-in-out 0.3s;
-}
+  .ressources-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    margin: 20px;
+  }
 
-.pic-ressources {
-  border-radius: 40% 20% / 30% 10%;
-  width: 200px;
-  border: 1px black solid;
-}
+  .card_ressources {
+    border: solid lightgray 1px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    text-align: center;
+    height: 25rem;
+    border-radius: 10px;
+    background-color: white;
+    transition: all ease-in-out 0.3s;
+  }
 
-.card_ressources:hover {
-  box-shadow: lightgray 0 5px 15px 0;
-  background-color: #f8f8f8;
-  transform: scale(1.05);
-}
+  .pic-ressources {
+    border-radius: 40% 20% / 30% 10%;
+    width: 200px;
+    border: 1px black solid;
+  }
 
-.name_ressources > p {
-  font-size: 17px;
-  font-style: italic;
-}
+  .card_ressources:hover {
+    box-shadow: lightgray 0 5px 15px 0;
+    background-color: #f8f8f8;
+    transform: scale(1.05);
+  }
 
-.type_ressources > p {
-  font-size: 15px;
-}
+  .name_ressources > p {
+    font-size: 17px;
+    font-style: italic;
+  }
 
-.btn-details {
-  background-color: var(--lmblue);
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  transition: all ease-in-out 0.2s;
-}
-.btn-details:hover {
-  background-color: var(--mediumblue);
+  .type_ressources > p {
+    font-size: 15px;
+  }
+
+  .btn-details {
+    background-color: var(--lmblue);
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    transition: all ease-in-out 0.2s;
+  }
+  .btn-details:hover {
+    background-color: var(--mediumblue);
+  }
 }
