@@ -15,12 +15,12 @@
             <?php echo htmlspecialchars($message); ?>
         </div>
     <?php endif; ?>
-    <div class="main-container">
-        <form method="POST" action="reset-password-request">
+    <form method="POST" action="reset-password-request">
+        <div class="main-container">
             <input type="email" name="email" placeholder="Votre adres e-mail" required>
             <button type="submit">Réinitialiser le mot de passe.</button>
-        </form>
-    </div>
+        </div>
+    </form>
     <footer>
         <?php include "components/_footer.php"; ?>
     </footer>    

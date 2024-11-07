@@ -1,6 +1,8 @@
 <?php
 require_once 'Controller.php';
 require_once __DIR__ . '/../models/Trails.php';
+require_once __DIR__ . '/../models/FavoriteTrail.php';
+require_once __DIR__ . '/../models/CompletedTrails.php';
 
 class TrailsController extends Controller
 {
@@ -20,7 +22,32 @@ class TrailsController extends Controller
         // Enregistrer la visite pour la page d'accueil uniquement
         $this->enregistrerVisite('trails');
         // Afficher la vue 'trails' avec les données récupérées
-        $this->render('trails', ['trails' => $trails]);
+        if (isset($_SESSION['user_id'])) {
+
+            // Créer des objets pour les sentiers favoris et complétés
+            $favoriteTrailObject = new FavoriteTrail('favorites_trails');
+            $completedTrailObject = new CompletedTrails('completed_trails');
+
+            // Récupérer la liste des sentiers favoris et complétés de l'utilisateur
+            $favoriteTrails = $favoriteTrailObject->getFavoriteTrailByUser($_SESSION['user_id']);
+            $completedTrails = $completedTrailObject->getCompletedTrailByUser($_SESSION['user_id']);
+
+            // Extraire uniquement les identifiants de sentiers (trail_id)
+            $favoriteTrailIds = array_column($favoriteTrails, 'trail_id');
+            $completedTrailIds = array_column($completedTrails,'trail_id');
+        } else {
+
+            // Si l'utilisateur n'est pas connecté, définir des listes vides
+            $favoriteTrailIds = [];
+            $completedTrailIds = [];
+        }
+
+        // Afficher la vue 'trails' avec les données récupérées
+        $this->render('trails', [
+            'trails' => $trails,
+            'favoriteTrailIds' => $favoriteTrailIds,
+            'completedTrailIds' => $completedTrailIds
+        ]);
     }
 
     public function details_trails()

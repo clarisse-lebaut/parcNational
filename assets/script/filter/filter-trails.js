@@ -113,6 +113,9 @@ function updateTrailDisplay(data) {
       const card = document.createElement("div");
       card.className = "card_trails";
 
+      const isFavorite = favoriteTrailIds.includes(item.trail_id);
+      const isCompleted = completedTrailIds.includes(item.trail_id);
+
       card.innerHTML = `
         <div class="card_top">
           <a href="details_trails?id=${encodeURIComponent(item.trail_id)}">
@@ -154,60 +157,70 @@ function updateTrailDisplay(data) {
           <p>${item.acces}</p>
         </div>
         <div class="fav-btn-container">
-          <a href="/parcNational/manage-favorite-trail-ajax?trail_id=${item.trail_id}" class="fav-btn fav-btn-add ">
+          <a href="/parcNational/manage-favorite-trail-ajax?trail_id=${item.trail_id}" class="fav-btn ${isFavorite ? '' : 'fav-btn-add'}">
             <img src="assets/icon/favorite-fill.svg" alt="heart icon">
           </a>
-          <a href="/parcNational/manage-completed-trail-ajax?trail_id=${item.trail_id}" class="hiking-btn hiking-btn-add">
+          <a href="/parcNational/manage-completed-trail-ajax?trail_id=${item.trail_id}" class="hiking-btn ${isCompleted ? '' : 'hiking-btn-add'}">
             <img src="assets/icon/hiking.svg" alt="hiking icon">
           </a>
-        </div>       
+        </div>
       `;
+      
+      const addFavoriteButton = card.querySelector('.fav-btn');
+      const addCompletedButton = card.querySelector('.hiking-btn');
 
-      const addFavoriteButton = card.querySelector('.fav-btn-add');
-
-      function addTrailToFavorite(e){
-        e.preventDefault()
+      function addTrailToFavorite(e) {
+        e.preventDefault();
         fetch(addFavoriteButton.getAttribute('href'))
-        .then(function(){
-          addFavoriteButton.classList.remove('fav-btn-add');
-          addFavoriteButton.removeEventListener('click', addTrailToFavorite)
-          addFavoriteButton.addEventListener('click', deleteFavoriteButton)
-        })
+          .then(function () {
+            addFavoriteButton.classList.remove('fav-btn-add');
+            addFavoriteButton.removeEventListener('click', addTrailToFavorite);
+            addFavoriteButton.addEventListener('click', deleteFavoriteButton);
+          });
       }
 
-      function deleteFavoriteButton(e){
-        e.preventDefault()
+      function deleteFavoriteButton(e) {
+        e.preventDefault();
         fetch(addFavoriteButton.getAttribute('href'))
-        .then(function(){
-          addFavoriteButton.classList.add('fav-btn-add');
-          addFavoriteButton.removeEventListener('click', deleteFavoriteButton)
-          addFavoriteButton.addEventListener('click', addTrailToFavorite)
-        })
+          .then(function () {
+            addFavoriteButton.classList.add('fav-btn-add');
+            addFavoriteButton.removeEventListener('click', deleteFavoriteButton);
+            addFavoriteButton.addEventListener('click', addTrailToFavorite);
+          });
       }
 
-      const addCompletedButton = card.querySelector('.hiking-btn-add');
-
-      function addTrailToCompleted(e){
-        e.preventDefault()
+      function addTrailToCompleted(e) {
+        e.preventDefault();
         fetch(addCompletedButton.getAttribute('href'))
-        .then(function(){
-          addCompletedButton.classList.remove('hiking-btn-add');
-          addCompletedButton.removeEventListener('click', addTrailToCompleted)
-          addCompletedButton.addEventListener('click', deleteCompletedButton)
-        })
+          .then(function () {
+            addCompletedButton.classList.remove('hiking-btn-add');
+            addCompletedButton.removeEventListener('click', addTrailToCompleted);
+            addCompletedButton.addEventListener('click', deleteCompletedButton);
+          });
       }
 
-      function deleteCompletedButton(e){
-        e.preventDefault()
+      function deleteCompletedButton(e) {
+        e.preventDefault();
         fetch(addCompletedButton.getAttribute('href'))
-        .then(function(){
-          addCompletedButton.classList.add('hiking-btn-add')
-          addCompletedButton.removeEventListener('click', deleteCompletedButton)
-          addCompletedButton.addEventListener('click', addTrailToCompleted)
-        })
+          .then(function () {
+            addCompletedButton.classList.add('hiking-btn-add');
+            addCompletedButton.removeEventListener('click', deleteCompletedButton);
+            addCompletedButton.addEventListener('click', addTrailToCompleted);
+          });
       }
 
-      addFavoriteButton.addEventListener('click', addTrailToFavorite)
+      if (isFavorite) {
+        addFavoriteButton.addEventListener('click', deleteFavoriteButton);
+      } else {
+        addFavoriteButton.addEventListener('click', addTrailToFavorite);
+      }
+
+      if (isCompleted) {
+        addCompletedButton.addEventListener('click', deleteCompletedButton);
+      } else {
+        addCompletedButton.addEventListener('click', addTrailToCompleted);
+      }
+
       resultsContainer.appendChild(card);
     });
   } else {
