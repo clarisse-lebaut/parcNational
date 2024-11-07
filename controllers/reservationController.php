@@ -93,7 +93,7 @@ class ReservationController extends Controller {
             $message = "Identifiant de réservation manquant.";
         }
     
-        header("Location: reservationHistory?status=cancel&message=" . urlencode($message));
+        header("Location: reservation_history?status=cancel&message=" . urlencode($message));
         exit();
     }
     
