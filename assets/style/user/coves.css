@@ -103,7 +103,7 @@
   }
 }
 @media screen and (min-width: 456px) {
-  .hero-page {
+  .hero-container {
     background-image: url(../../img/category_home/coves.jpg);
     background-repeat: no-repeat;
     background-size: cover;
