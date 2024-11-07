@@ -11,6 +11,15 @@
     text-align: center;
     font-size: 35px;
   }
+
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
+  }
 }
 @media screen and (min-width: 456px) {
   .hero-container {
