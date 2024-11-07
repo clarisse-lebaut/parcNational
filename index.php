@@ -321,6 +321,11 @@ $routes = [
         'controller' => 'PaymentController',
         'method' => 'applyPromoCode',
     ],
+'cancel-reservation' => [
+    'controller' => 'ReservationController',
+    'method' => 'cancelReservation',
+],
+
 ];
 
 // * Nettoyage et traitement de l'URL via le virutalhost
