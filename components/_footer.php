@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div class="weather-container-footer">
-            <p>Widget Météo</p>
+            <!-- <?php include 'components/_weather.php' ?> -->
         </div>
     </section>
 

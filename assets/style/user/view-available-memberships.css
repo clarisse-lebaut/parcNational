@@ -1,87 +1,159 @@
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  width: 70%;
+@media screen and (max-width: 456px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main > section {
+    border: solid 1px var(--mediumblue);
+    padding: 10px;
+    box-shadow: lightgray 0 5px 15px 0;
+    background: linear-gradient(to right, #add8e6, #e6e6fa);
+    margin-bottom: 50px;
+  }
+
+  main > section > section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 10px;
+  }
+
+  main > section > h2 {
+    text-align: center;
+  }
+
+  main > section > section > div {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50% 20% / 10% 40%;
+    background-color: #f8f8f8;
+    border: var(--darkblue) solid 1px;
+  }
+
+  /* ------------ */
+  .card_ship_container {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin: 25px 0 50px 0;
+    perspective: 500px; /* Cela peut être appliqué ici pour le conteneur */
+  }
+
+  .card_ship {
+    background: linear-gradient(156deg, var(--lmblue), var(--mediumblue));
+    width: 220px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transition fluide */
+  }
+
+  .card_ship > form > button,
+  .card_ship > form > button > p {
+    color: black;
+  }
+
+  /* ---------- */
+
+  .message {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    text-align: center;
+    color: rgb(179, 64, 18);
+  }
 }
 
-main > section {
-  border: solid 1px var(--mediumblue);
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: lightgray 0 5px 15px 0;
-  background: linear-gradient(to right, #add8e6, #e6e6fa);
-  margin-bottom: 50px;
+@media screen and (min-width: 456px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 70%;
+  }
+
+  main > section {
+    border: solid 1px var(--mediumblue);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: lightgray 0 5px 15px 0;
+    background: linear-gradient(to right, #add8e6, #e6e6fa);
+    margin-bottom: 50px;
+  }
+
+  main > section > section {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    padding: 10px;
+    margin: 0 25px 0 25px;
+  }
+
+  main > section > h2 {
+    text-align: center;
+  }
 }
 
-main > section > section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 50px;
-  padding: 10px;
-  margin: 0 25px 0 25px;
-}
+  main > section > section > div {
+    width: 50%;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 50% 20% / 10% 40%;
+    background-color: #f8f8f8;
+    border: var(--darkblue) solid 1px;
+  }
 
-main > section > h2 {
-  text-align: center;
-}
+  /* ------------ */
+  .card_ship_container {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+    margin: 25px 0 50px 0;
+    perspective: 500px; /* Cela peut être appliqué ici pour le conteneur */
+  }
 
-main > section > section > div {
-  max-width: 220px;
-  min-width: 220px;
-  margin: 10px;
-  text-align: center;
-  padding: 10px;
-  border-radius: 50% 20% / 10% 40%;
-  background-color: #f8f8f8;
-  border: var(--darkblue) solid 1px;
-}
+  .card_ship {
+    background: linear-gradient(156deg, var(--lmblue), var(--mediumblue));
+    width: 220px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transition fluide */
+  }
 
+  .card_ship > form > button,
+  .card_ship > form > button > p {
+    color: black;
+  }
 
-/* ------------ */
-.card_ship_container {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 70px;
-  margin: 25px 0 50px 0;
-  perspective: 500px; /* Cela peut être appliqué ici pour le conteneur */
-}
+  .card_ship:hover {
+    background-color: var(--lm);
+    transform: translateY(-5px) rotateY(10deg) rotateX(5deg); /* Ajoute les rotations pour l'effet 3D */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Ombre portée */
+  }
 
-.card_ship {
-  background: linear-gradient(156deg, var(--lmblue), var(--mediumblue));
-  width: 220px;
-  padding: 15px;
-  border-radius: 10px;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Transition fluide */
-}
+  /* ---------- */
 
-.card_ship > form > button,
-.card_ship > form > button > p {
-  color: black;
-}
-
-.card_ship:hover {
-  background-color: var(--lm);
-  transform: translateY(-5px) rotateY(10deg) rotateX(5deg); /* Ajoute les rotations pour l'effet 3D */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Ombre portée */
-}
-
-/* ---------- */
-
-.message {
-  display: flex;
-  justify-content: center;
-  padding-top: 60px;
-  text-align: center;
-  color: rgb(179, 64, 18);
-}
+  .message {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    text-align: center;
+    color: rgb(179, 64, 18);
+  }
 
 /*RESPONSIVE DESIGN*/
 @media (min-width: 1480px){

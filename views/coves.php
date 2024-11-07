@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calanques de Marseille</title>
     <link rel="stylesheet" href="assets/style/user/coves.css">
-    <link rel="stylesheet" href="assets/style/_global.css">
+    <link rel="stylesheet" href="assets/style/config/_global.css">
 </head>
 <body>
     <main>
         <section>
-            <div class="hero-page">
+            <div class="hero-container">
                 <header><?php include "components/_header.php"; ?></header>    
                 <hgroup class="text-overlay">
                     <h1 class="title-page">Les Calanques de Marseille</h1>
@@ -61,7 +61,7 @@
 
         <section>
             <h2 style="text-align:center;">Comment se sont formées les Calanques ?</h2>
-            <p style="margin: 0px 150px 25px 150px;">
+            <p >
                 Les roches calcaires du Parc national sont à l’origine faites de sédiments. 
                 C’était il y a 80 millions d’années, durant le Mésozoïque, 
                 plus précisément au Jurassique et au Crétacé <i>(au temps des dinosaures !)</i>. Des 
@@ -92,7 +92,7 @@
                     </p>
                 </li>
             </section>
-            <p style="margin:25px 150px 25px 150px;">
+            <p>
                 Les périodes de glaciation du Quaternaire, il y a 1,8 million d’années, provoquent l’abaissement 
                 du niveau de la mer à -130 mètres en moyenne.
                 L’érosion des massifs calcaires littoraux s’accélère alors : 
@@ -114,7 +114,7 @@
                         <article>
                             <section>
                                 <div>
-                                    <hgroup class=".hgroup">
+                                    <hgroup class="hgroup">
                                         <h2 id="calanque-<?= $idCounter; ?>"><?= htmlspecialchars($calanque['name']); ?>,</h2>
                                         <p><i><?= htmlspecialchars($calanque['location']); ?></i></p>
                                     </hgroup>

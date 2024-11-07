@@ -1,138 +1,268 @@
-p {
-  margin: 0;
-}
-ul {
-  list-style: none; /* Supprime les puces */
-  padding: 0; /* Supprime l'indentation interne */
-  margin: 0; /* Supprime la marge externe */
+@media screen and (max-width: 456px) {
+  p {
+    margin: 0;
+  }
+  ul {
+    list-style: none; /* Supprime les puces */
+    padding: 0; /* Supprime l'indentation interne */
+    margin: 0; /* Supprime la marge externe */
+  }
+
+  /* ----- */
+  header {
+    background: linear-gradient(180deg, #9ad1ff, #f8f8f8);
+    padding: 5px 5px 0 5px;
+  }
+
+  .nav-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .nav-admin > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .name-admin {
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  #hamb,
+  #close {
+    cursor: pointer;
+  }
+  #popUpHamb {
+    display: none;
+    position: fixed; /* Hors du flux et reste en place par rapport à la fenêtre */
+    z-index: 2; /* Au-dessus des autres éléments */
+    height: 100%; /* Pleine hauteur de la fenêtre */
+    width: 100%;
+    top: 0; /* Place le popup en haut de la fenêtre */
+    left: 0; /* Place le popup à gauche de la fenêtre */
+    margin: 0;
+
+    /*? Glashporism generator */
+    background: linear-gradient(90deg, #9ad2ff6d, #f8f8f86a);
+    box-shadow: 0 5px 15px 0 lightgray;
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+
+    /* Animation settings */
+    transform: translateX(-100%); /* Cache le menu à gauche de l'écran */
+    transition: transform 0.1s ease-in-out; /* Animation de transition */
+  }
+  /* Ajoute une classe "show" pour animer le menu lorsqu'il est visible */
+  #popUpHamb.show {
+    transform: translateX(0); /* Ramène le menu à sa position normale */
+  }
+
+  header > section > nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  header > section > nav > div > img {
+    float: right;
+    padding: 10px;
+  }
+  header > section > nav > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px 25px 0 25px;
+  }
+  header > section > nav > ul > li {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  header > section > nav > ul > li > a {
+    display: block; /* Transforme le lien en élément de bloc */
+    width: 100%; /* Assure que le lien prenne 100% de la largeur du parent */
+    padding: 10px; /* Ajout d'un padding pour plus de clarté visuelle */
+    box-sizing: border-box; /* Inclut le padding et border dans la largeur */
+  }
+
+  .icon-admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  .pic-nav-admin {
+    width: 40px;
+  }
+  .data-admin {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0 0 0;
+  }
+  .data-admin > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .data-admin > div > button {
+    background-color: #ffffff00;
+    border: none;
+    cursor: pointer;
+    color: none;
+  }
+
+  /* ---------- */
+  .edit_profil_btn {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
 }
 
-/* ----- */
-header {
-  background: linear-gradient(180deg, #9ad1ff, #f8f8f8);
-  padding: 5px 5px 0 5px;
-}
+@media screen and (min-width: 456px) {
+  p {
+    margin: 0;
+  }
+  ul {
+    list-style: none; /* Supprime les puces */
+    padding: 0; /* Supprime l'indentation interne */
+    margin: 0; /* Supprime la marge externe */
+  }
 
-.nav-admin {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-admin > div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.name-admin {
-  font-size: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-#hamb,
-#close {
-  cursor: pointer;
-}
-#popUpHamb {
-  display: none;
-  position: fixed; /* Hors du flux et reste en place par rapport à la fenêtre */
-  z-index: 2; /* Au-dessus des autres éléments */
-  height: 100vh; /* Pleine hauteur de la fenêtre */
-  width: 20%;
-  top: 0; /* Place le popup en haut de la fenêtre */
-  left: 0; /* Place le popup à gauche de la fenêtre */
-  margin: 0;
+  /* ----- */
+  header {
+    background: linear-gradient(180deg, #9ad1ff, #f8f8f8);
+    padding: 5px 5px 0 5px;
+  }
 
-  /*? Glashporism generator */
-  background: linear-gradient(90deg, #9ad2ff6d, #f8f8f86a);
-  box-shadow: 0 5px 15px 0 lightgray;
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
+  .nav-admin {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-admin > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .name-admin {
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  #hamb,
+  #close {
+    cursor: pointer;
+  }
+  #popUpHamb {
+    display: none;
+    position: fixed; /* Hors du flux et reste en place par rapport à la fenêtre */
+    z-index: 2; /* Au-dessus des autres éléments */
+    height: 100vh; /* Pleine hauteur de la fenêtre */
+    width: 20%;
+    top: 0; /* Place le popup en haut de la fenêtre */
+    left: 0; /* Place le popup à gauche de la fenêtre */
+    margin: 0;
 
-  /* Animation settings */
-  transform: translateX(-100%); /* Cache le menu à gauche de l'écran */
-  transition: transform 0.5s ease-in-out; /* Animation de transition */
-}
-/* Ajoute une classe "show" pour animer le menu lorsqu'il est visible */
-#popUpHamb.show {
-  transform: translateX(0); /* Ramène le menu à sa position normale */
-}
+    /*? Glashporism generator */
+    background: linear-gradient(90deg, #9ad2ff6d, #f8f8f86a);
+    box-shadow: 0 5px 15px 0 lightgray;
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
 
-header > section > nav {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-header > section > nav > div > img {
-  float: right;
-  padding: 10px;
-}
-header > section > nav > ul {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 25px 25px 0 25px;
-}
-header > section > nav > ul > li {
-  display: flex;
-  flex-direction: row;
-  gap: 5px;
-}
-header > section > nav > ul > li > a {
-  display: block; /* Transforme le lien en élément de bloc */
-  width: 100%; /* Assure que le lien prenne 100% de la largeur du parent */
-  padding: 10px; /* Ajout d'un padding pour plus de clarté visuelle */
-  box-sizing: border-box; /* Inclut le padding et border dans la largeur */
-}
-header > section > nav > ul > li > a:hover {
-  color: var(--darkblue);
-  font-weight: 700;
-}
+    /* Animation settings */
+    transform: translateX(-100%); /* Cache le menu à gauche de l'écran */
+    transition: transform 0.5s ease-in-out; /* Animation de transition */
+  }
+  /* Ajoute une classe "show" pour animer le menu lorsqu'il est visible */
+  #popUpHamb.show {
+    transform: translateX(0); /* Ramène le menu à sa position normale */
+  }
 
-.icon-admin {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  padding: 0 20px 0 0;
-}
-.pic-nav-admin {
-  width: 40px;
-}
-.data-admin {
-  display: flex;
-  flex-direction: column;
-  padding: 10px 0 30px 0;
-}
-.data-admin > div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-}
-.data-admin > div > button {
-  background-color: #ffffff00;
-  border: none;
-  cursor: pointer;
-  color: none;
-}
+  header > section > nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  header > section > nav > div > img {
+    float: right;
+    padding: 10px;
+  }
+  header > section > nav > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px 25px 0 25px;
+  }
+  header > section > nav > ul > li {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  header > section > nav > ul > li > a {
+    display: block; /* Transforme le lien en élément de bloc */
+    width: 100%; /* Assure que le lien prenne 100% de la largeur du parent */
+    padding: 10px; /* Ajout d'un padding pour plus de clarté visuelle */
+    box-sizing: border-box; /* Inclut le padding et border dans la largeur */
+  }
+  header > section > nav > ul > li > a:hover {
+    color: var(--darkblue);
+    font-weight: 700;
+  }
 
-/* ---------- */
-.edit_profil_btn {
-  background-color: transparent;
-  border: none;
-  transition: all 0.2s ease-in-out;
-}
-.edit_profil_btn:active {
-  transform: translateY(10px);
-}
-.edit_profil_btn:hover {
-  cursor: pointer;
-}
-.edit_profil_btn > img:hover {
-  content: url("../../icon/edit-orange.svg");
+  .icon-admin {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 0 20px 0 0;
+  }
+  .pic-nav-admin {
+    width: 40px;
+  }
+  .data-admin {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0 30px 0;
+  }
+  .data-admin > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+  .data-admin > div > button {
+    background-color: #ffffff00;
+    border: none;
+    cursor: pointer;
+    color: none;
+  }
+
+  /* ---------- */
+  .edit_profil_btn {
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease-in-out;
+  }
+  .edit_profil_btn:active {
+    transform: translateY(10px);
+  }
+  .edit_profil_btn:hover {
+    cursor: pointer;
+  }
+  .edit_profil_btn > img:hover {
+    content: url("../../icon/edit-orange.svg");
+  }
 }
