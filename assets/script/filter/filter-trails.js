@@ -112,7 +112,7 @@ function updateTrailDisplay(data) {
     data.forEach((item) => {
       const card = document.createElement("div");
       card.className = "card_trails";
-
+      // Vérifie si le sentier est dans les favoris et s'il est complété
       const isFavorite = favoriteTrailIds.includes(item.trail_id);
       const isCompleted = completedTrailIds.includes(item.trail_id);
 
@@ -165,20 +165,24 @@ function updateTrailDisplay(data) {
           </a>
         </div>
       `;
-      
+      // Récupère les boutons pour gérer l'ajout aux favoris et marquer comme complété
       const addFavoriteButton = card.querySelector('.fav-btn');
       const addCompletedButton = card.querySelector('.hiking-btn');
-
+      // Fonction pour ajouter le sentier aux favoris
       function addTrailToFavorite(e) {
         e.preventDefault();
-        fetch(addFavoriteButton.getAttribute('href'))
-          .then(function () {
-            addFavoriteButton.classList.remove('fav-btn-add');
-            addFavoriteButton.removeEventListener('click', addTrailToFavorite);
-            addFavoriteButton.addEventListener('click', deleteFavoriteButton);
-          });
+        if(isLoggedIn){
+          fetch(addFavoriteButton.getAttribute('href'))
+            .then(function () {
+              addFavoriteButton.classList.remove('fav-btn-add');
+              addFavoriteButton.removeEventListener('click', addTrailToFavorite);
+              addFavoriteButton.addEventListener('click', deleteFavoriteButton);
+            });
+        }else{
+            window.location.href = '/parcNational/login';
+        }
       }
-
+      // Fonction pour retirer le sentier des favoris
       function deleteFavoriteButton(e) {
         e.preventDefault();
         fetch(addFavoriteButton.getAttribute('href'))
@@ -188,17 +192,22 @@ function updateTrailDisplay(data) {
             addFavoriteButton.addEventListener('click', addTrailToFavorite);
           });
       }
-
+      // Fonction pour marquer le sentier comme complété
       function addTrailToCompleted(e) {
         e.preventDefault();
-        fetch(addCompletedButton.getAttribute('href'))
-          .then(function () {
-            addCompletedButton.classList.remove('hiking-btn-add');
-            addCompletedButton.removeEventListener('click', addTrailToCompleted);
-            addCompletedButton.addEventListener('click', deleteCompletedButton);
-          });
+        if(isLoggedIn){
+          fetch(addCompletedButton.getAttribute('href'))
+            .then(function () {
+              addCompletedButton.classList.remove('hiking-btn-add');
+              addCompletedButton.removeEventListener('click', addTrailToCompleted);
+              addCompletedButton.addEventListener('click', deleteCompletedButton);
+            });
+        }else{
+          // Redirection vers la page de connexion si non connecté
+            window.location.href = '/parcNational/login';
+        }
       }
-
+      // Fonction pour annuler la complétion du sentier
       function deleteCompletedButton(e) {
         e.preventDefault();
         fetch(addCompletedButton.getAttribute('href'))
