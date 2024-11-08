@@ -13,26 +13,26 @@
     </header>
     <main>
         <h1 class="payment-title">Récapitulatif de la commande</h1>
+    <section class="recap-and-promo">
+        <div class="payment-card">
+         <h2>Informations sur la réservation</h2>
+            <b><?= htmlspecialchars($campsite['name']); ?></b>
+            <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b><?= htmlspecialchars($end_date); ?></b></p>
+            <p><b><?= htmlspecialchars($num_persons); ?></b> personnes</p>
+            <p>Prix total : 
+                <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span>
+                <span id="payment-new_price" style="color: green; font-weight: bold; margin-left: 10px;"></span> 
+            </p>
+        </div>
 
         <div class="payment-card">
-    <h2>Informations sur la réservation</h2>
-    <b><?= htmlspecialchars($campsite['name']); ?></b>
-    <p>Du <b><?= htmlspecialchars($start_date); ?></b> au <b><?= htmlspecialchars($end_date); ?></b></p>
-    <p><b><?= htmlspecialchars($num_persons); ?></b> personnes</p>
-    <p>Prix total : 
-        <span id="payment-total_price"><?= htmlspecialchars($price); ?> €</span>
-        <span id="payment-new_price" style="color: green; font-weight: bold; margin-left: 10px;"></span> 
-    </p>
-</div>
-
-            <div class="payment-card">
                 <h2>Ajouter un code promo</h2>
                 <label for="promo_code" ></label>
                 <input type="text" id="promo_code" placeholder="Appliquez le code promo" name="promo_code">
                 <button type="button" id="apply-promo-button" class="payment-button">Appliquer</button>
                 <p id="promo-message" style="color: red;"></p> <!-- Message de feedback -->
             </div>
-
+    </section>
             <form id="payment-form" action="payment" method="POST">
                 <input type="hidden" name="campsite_id" value="<?= $campsite_id; ?>">
                 <input type="hidden" name="start_date" value="<?= htmlspecialchars($start_date); ?>">
