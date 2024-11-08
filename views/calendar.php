@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id !== null) {
             <div class="title-and-image ">
                 <h1 class="campsite-title"><?= htmlspecialchars($campsite['name']); ?></h1>
                 <div class="calendar-info" data-price-per-night="<?= htmlspecialchars($campsite['price_per_night']); ?>">
-                    <img src="../<?= htmlspecialchars($campsite['image']); ?>" alt="Photo de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
+                <img src="<?= htmlspecialchars($campsite['image']); ?>" alt="Image de <?= htmlspecialchars($campsite['name']); ?>" class="calendar-img">
                 </div>
             </div>
         <?php else: ?>
@@ -65,15 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id !== null) {
   <h2 class="reservation-title">Réserver ce camping</h2>
 
 <div class="calendar-and-form-container">
-    <!-- Calendar Section -->
+    <!-- CALENDRIER-->
     <section class="reservation-section calendar-item">
         <p class="instruction-message">Veuillez sélectionner vos dates de séjour en les glissant sur le calendrier ci-dessous.</p>
-        <div id="calendar">
-            
-        </div>
+        <div id="calendar"> </div>
     </section>
 
-    <!-- Reservation Form Section -->
+    <!-- FORMULAIRE -->
     <div class="calendar-form-container">
         <section class="reservation-section">
             <form action="/parcNational/payment" method="POST">
