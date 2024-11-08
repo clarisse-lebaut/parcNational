@@ -15,8 +15,8 @@ class RegisterController extends Controller
         $this->render('registerForm', ['csrf_token' => $_SESSION['csrf_token']]);
     }
 
-    public function registerSaveForm()
-{   
+    public function registerSaveForm() {
+
     if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         $this->render('registerForm', ['error' => 'Token CSRF manquant.', 'csrf_token' => $_SESSION['csrf_token']]);
         return;
