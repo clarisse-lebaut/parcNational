@@ -14,11 +14,19 @@
     gap: 20px; 
     flex-wrap: wrap; 
 }
-
+.recap-and-promo {
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
 /* Pour les écrans plus petits (mobiles) : cartes empilées */
 @media (max-width: 768px) {
     .payment-card {
-        width: 100%; /* Les cartes prennent 100% de la largeur sur mobile */
+        width: 100%; 
+    }
+    .payment-title {
+        font-size: 1.2rem;
     }
 }
 
