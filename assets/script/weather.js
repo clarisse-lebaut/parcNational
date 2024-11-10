@@ -29,6 +29,15 @@ fetch(apiUrl)
     const windSpeedMaxToday = dailyForecast.windspeed_10m_max[0];
     const precipitationToday = dailyForecast.precipitation_sum[0];
 
+    // logique pour le background de la div selon le temps
+    if (precipitationToday === 0) {
+      weatherDiv.style.backgroundImage = "url('/parcNational/assets/img/weather/sunny.png')";
+    } else if (precipitationToday > 0 && precipitationToday <= 1.0) {
+      weatherDiv.style.backgroundImage = "url('/parcNational/assets/img/weather/cloudy.png')";
+    } else if (precipitationToday > 1.0) {
+      weatherDiv.style.backgroundImage = "url('/parcNational/assets/img/weather/rainy.png')";
+    }
+
     // Exemple de logique pour l'icône météo principale
     let weatherIcon;
     if (precipitationToday === 0) {

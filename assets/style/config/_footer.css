@@ -2,25 +2,26 @@
   .first-section-footer {
     background-color: var(--mediumblue);
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     color: white;
     font-weight: 700;
   }
   .title-logo-container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 15px;
+    width: 100%;
   }
   .logo-footer {
-    width: 5%;
+    width: 10%;
     border-radius: 10px;
   }
   .first-section-footer > div {
     padding: 15px;
-    width: 50%;
+    width: 100%;
   }
   .first-section-footer > div > li {
     list-style: none;
@@ -28,12 +29,12 @@
   .icon-container-footer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 15px;
   }
   .icon-container-footer > img {
-    width: 4.5%;
+    width: 5%;
   }
 
   .second-section-footer {
@@ -50,8 +51,13 @@
   .second-section-footer > div {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    text-align: center;
     gap: 25px;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
   }
   .second-section-footer > div > ul > li {
     list-style: none;
@@ -64,8 +70,7 @@
   .thrid-section-footer {
     background-color: var(--darkblue);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     color: white;
   }
 
