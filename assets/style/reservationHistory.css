@@ -69,3 +69,57 @@
     color: #ffffff;
     font-weight: bold;
 }
+
+
+/* Adapter le tableau pour mobile sans le transformer en liste */
+@media (max-width: 768px) {
+    .history-container {
+        padding: 10px;
+        max-width: 100%;
+        box-shadow: none;
+    }
+
+    .history-title {
+        font-size: 24px;
+    }
+
+    .history-recap {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .history-recap-title {
+        font-size: 18px;
+    }
+
+    .history-recap-item {
+        font-size: 14px;
+    }
+
+    .history-table {
+        width: 100%;
+        font-size: 14px;
+        overflow-x: auto; /* Pour permettre le scroll horizontal si nécessaire */
+    }
+
+    .history-table th, .history-table td {
+        padding: 8px 5px;
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap; /* Pour éviter les retours à la ligne dans les cellules */
+    }
+
+    .history-table th {
+        font-weight: bold;
+    }
+
+    .history-table td img {
+        width: 16px;
+        height: 16px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
