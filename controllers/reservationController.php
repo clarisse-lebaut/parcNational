@@ -103,22 +103,23 @@ class ReservationController extends Controller {
             $reservationId = intval($_GET['reservation_id']);
             $reservationModel = new ReservationModel();
             $reservation = $reservationModel->getReservationById($reservationId);
-
             $campsiteModel = new CampsiteModel();
             $campsite = $campsiteModel->getCampsiteById($reservation['campsite_id']);
 
             if ($reservation && $campsite) {
                 // contenu HTML pour le reçu
-                $html = "
-                    <h1>Reçu de réservation</h1>
-                    <p>Camping : " . htmlspecialchars($campsite['name']) . "</p>
-                    <p>Réservation du " . htmlspecialchars($reservation['start_date']) . " au " . htmlspecialchars($reservation['end_date']) . "</p>
-                    <p>Nombre de personnes : " . htmlspecialchars($reservation['num_persons']) . "</p>
-                    <p>Prix total : " . htmlspecialchars($reservation['price']) . " €</p>
-                    <p>Date de réservation : " . htmlspecialchars($reservation['reservation_date']) . "</p>
+                    $html = "
+                    <div style='text-align: center;'>
+                        <h1 style='font-size: 24px; color: #333;'>Reçu de réservation</h1>
+                    </div>
+                    <hr>
+                    <p><strong>Camping :</strong> " . htmlspecialchars($campsite['name']) . "</p>
+                    <p><strong>Réservation du :</strong> " . htmlspecialchars($reservation['start_date']) . " au " . htmlspecialchars($reservation['end_date']) . "</p>
+                    <p><strong>Nombre de personnes :</strong> " . htmlspecialchars($reservation['num_persons']) . "</p>
+                    <p><strong>Prix total :</strong> " . htmlspecialchars($reservation['price']) . " €</p>
+                    <p><strong>Date de réservation :</strong> " . htmlspecialchars($reservation['reservation_date']) . "</p>
                 ";
-
-                // Initialise Dompdf
+                            // Initialise Dompdf
                 $dompdf = new Dompdf();
                 $dompdf->loadHtml($html);
                 $dompdf->setPaper('A4', 'portrait');
