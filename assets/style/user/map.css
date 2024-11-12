@@ -1,0 +1,33 @@
+@media screen and (max-width: 456px) {
+  #map {
+    height: 90vh; /* Ajustez en fonction de votre mise en page */
+    width: 100%; /* Assurez-vous que la carte utilise toute la largeur */
+    box-shadow: lightgray 0 5px 10px 0;
+  }
+  .map-container {
+    margin: 0px 10px 10px 10px;
+  }
+  .description-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (min-width: 456px) {
+  #map {
+    height: 90vh; /* Ajustez en fonction de votre mise en page */
+    width: 100%; /* Assurez-vous que la carte utilise toute la largeur */
+    box-shadow: lightgray 0 5px 10px 0;
+  }
+  .map-container {
+    margin: 0px 100px 100px 100px;
+  }
+  .description-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+}

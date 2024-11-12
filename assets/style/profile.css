@@ -1,0 +1,298 @@
+/*Top Container*/
+.top-container{
+    background: linear-gradient(to right, #add8e6, #31a2df);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 3% 5% 8% 5%;
+}
+
+h4{
+    color: var(--mediumblue);
+    background-color: var(--lmblue);
+    border-radius: 10%;
+    padding: 10px;
+}
+h4:hover{
+    background-color: #c8def4;
+}
+
+.profil-header{
+    display: flex;
+    justify-content:space-between;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.title{
+    margin: 1% 0;
+}
+
+.user-info-parent{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color: var(--lmblue);
+    border-radius: 3%;
+    padding: 1% 2%;
+    margin-top: 1%;
+    min-height: 200px;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.first{
+    margin-right: 55px;
+}
+.second{
+    margin-right: 35px;
+}
+.third{
+    margin-right: 20px;
+}
+.fourth{
+    margin-right: 40px;
+}
+.fifth{
+    margin-right: 60px;
+}
+.sixt{
+    margin-right: 12px;
+}
+
+.membership{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--lmblue);
+    width: 400px!important;
+    min-height: 200px;
+    padding: 1% 2%;
+    margin-top: 1%;
+    border-radius: 3%;
+    width: auto;
+    line-height: 0.6;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Bottom Container*/
+.bottom-container{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    background: linear-gradient(to right, #add8e6, #31a2df);
+}
+
+.left-part{
+
+    width: 80%;
+ }
+
+ .reservation-container{
+     padding: 3%;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     gap: 3%;
+     overflow-x: scroll;
+
+ }
+
+.history-link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+ }
+
+ .reservation-button{
+    padding: 1%;
+    border-radius: 9%;
+    background-color: var(--lmblue);
+    margin-left: 2%;
+    color: var(--mediumblue);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+ }
+
+ .reservation-button:hover{
+    background-color: #c8def4;
+ }
+
+.reservation-image{
+    width: 270px;
+    height: 150px;
+    border-radius: 3%;
+    border: 2px solid black;
+    margin-bottom: 5%;
+    margin-top: 2%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.reservation-image:hover{
+    transform: scale(1.3);
+}
+
+.img-trail{
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 2px solid black;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.img-trail:hover{
+    transform: scale(1.3);
+}
+
+.delete{
+    width: 100%;
+    max-width: 145px;
+    max-height: 145px;
+    min-width: 145px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    padding: 5px;
+    background-color: var(--lmblue);;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.delete:hover{
+    background-color: #62a3e8;
+    transform: translateY(-2px);
+}
+
+.completed-trails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin-left: 5%;
+}
+
+.trail-item{
+    display: flex;
+    align-items:flex-start;
+}
+
+.favorites-trails{
+    margin-top: 0.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+}
+
+.trials-title{
+    margin-left: 5%;
+}
+
+.image-container{
+    overflow-y:scroll;
+    height: 400px;
+    padding: 15%;
+
+}
+
+.image-complet-container{
+    overflow-y:scroll;
+    height: 400px;
+    padding: 5%;
+
+}
+.image-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .image-container::-webkit-scrollbar-track, .image-complet-container::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+  .image-container::-webkit-scrollbar-thumb, .image-complet-container::-webkit-scrollbar-thumb {
+    background-color: var(--mediumblue);
+    border-radius: 10px;
+}
+
+.image-container::-webkit-scrollbar-thumb:hover, .image-complet-container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.favorites-title{
+    white-space: nowrap;
+    text-align: start;
+}
+
+.description-text{
+    max-width: 100%;
+    margin: 60px 20px;
+    line-height: 1.2;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    color: var(--mediumblue);
+    text-align: center;
+}
+
+
+/*RESPONSIVE DESIGN*/
+@media(max-width: 500px){
+
+    h1{
+        font-size: x-large!important;
+    }
+
+    .user-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .trail-description{
+        display: none;
+    }
+
+    .user-info-right{
+        margin-right: 10px;
+    }
+
+    .completed-trails{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media(min-width: 501px) and (max-width: 978px){
+
+    h1{
+        font-size: xx-large!important;
+    }
+    
+    .trail-description{
+        display: none;
+    }
+
+    .completed-trails{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

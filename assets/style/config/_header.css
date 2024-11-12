@@ -1,0 +1,84 @@
+@media screen and (max-width: 456px) {
+  .nav-header {
+    display: none;
+  }
+
+  /* Style par défaut du bouton hamburger - caché sur grand écran */
+  .hamburger {
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
+    color: #333;
+  }
+
+  /* Menu visible par défaut */
+  .ul-header-mobil {
+    display: flex;
+    gap: 20px;
+  }
+
+  /* Bouton hamburger devient visible */
+  .hamburger {
+    display: block;
+  }
+
+  /* Cacher le menu */
+  .ul-header-mobil {
+    display: none; /* Caché par défaut en mobile */
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 10px;
+  }
+
+  /* Style pour les éléments de liste dans le menu mobile */
+  .ul-header-mobil > li {
+    text-align: left;
+  }
+
+  /* Classe 'show' pour afficher le menu lors du clic */
+  .ul-header-mobil.show {
+    display: flex; /* Affiche le menu */
+  }
+}
+
+@media screen and (min-width: 456px) {
+  .nav-header-mobil {
+    display: none;
+  }
+  .nav-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 20px 0 rgba(137, 137, 137, 0.496);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .logo-header {
+    width: 4%;
+    margin: 0;
+  }
+  .ul-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .ul-header > li {
+    list-style: none;
+  }
+
+  a {
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+}

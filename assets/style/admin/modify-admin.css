@@ -1,0 +1,35 @@
+body {
+    height: 100vh;
+    overflow: auto; 
+  }
+
+  .board {
+    height: 50vh; 
+    overflow-y: auto;
+    margin: 20px; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead, tbody, td {
+    border: solid black 1px;
+    text-align: center;
+  }
+  .lien-ajout{
+    margin-left: 10%;
+    text-decoration: none;
+    color: blue;
+  }
+  h2{
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif; 
+    color: #2F4F4F;
+  }
+  .lien{
+    color: blue;
+  }
+  

@@ -1,0 +1,155 @@
+.hero-page {
+  background-image: url(../../img/category_home/trails.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title-page {
+  position: relative; /* Permet de positionner les éléments enfants relativement */
+  width: 100%; /* Vous pouvez ajuster la largeur selon vos besoins */
+}
+
+@media screen and (max-width: 456px) {
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
+    color: black;
+    font-weight: 700;
+  }
+}
+
+@media screen and (min-width: 456px) {
+  .text-overlay {
+    position: absolute; /* Positionnement absolu pour superposer le texte */
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Ajustement pour le centrer parfaitement */
+    text-align: center; /* Centrer le texte */
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.496);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+  }
+}
+
+/* ----------------------- */
+.order-options,
+.distance-options {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------- */
+
+@media screen and (max-width: 456px) {
+  .trails-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    margin: 40px;
+  }
+}
+
+@media screen and (min-width: 456px) {
+  .trails-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    gap: 15px;
+    margin: 40px;
+  }
+}
+
+.card_trails {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: lightgray 0 5px 10px 0;
+  position: relative; /* Ajouté pour le positionnement de .fav-btn-container */
+  padding-bottom: 60px; /* Ajoute un espace en bas pour éviter le chevauchement */
+}
+.pic-trails {
+  width: 100%;
+}
+.card_top {
+  text-align: center;
+}
+.card_details {
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
+.card_details > div > img {
+  width: 25%;
+}
+.lenght_trails,
+.difficulty_trails,
+.time_trails,
+.state_trails {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 0 5px 0 5px;
+  margin: 1px 2px 1px 2px;
+}
+
+.access {
+  padding: 0 10px 0 10px;
+}
+.fav-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  position: absolute; /* Changez la position en absolue */
+  bottom: 0; /* Positionne le conteneur au bas de la carte */
+  right: 0;
+}
+.fav-btn,
+.hiking-btn {
+  background-color: var(--lmblue);
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  border: none;
+}
+.fav-btn:hover,
+.hiking-btn:hover {
+  transform: translateY(-3px);
+  background-color: var(--mediumblue);
+}
+
+.fav-btn:hover {
+  content: url("../../icon/favorite-fill.svg");
+}
+.hiking-btn:hover {
+  content: url("../../icon/hiking_white.svg");
+}
+
+.fav-btn:active,
+.hiking-btn:active {
+  transform: translateY(0px);
+}
+
+.fav-btn-add{
+  opacity: 0.2;
+}
+
+.hiking-btn-add{
+  opacity: 0.2;
+}

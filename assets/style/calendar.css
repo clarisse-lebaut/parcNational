@@ -1,0 +1,195 @@
+#calendar {
+    max-width: 500px;
+    max-height: 600px;
+}
+
+.reservation-title {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.title-and-image {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.campsite-title {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.calendar-info {
+    display: flex;
+    align-items: center;
+}
+
+.calendar-img {
+    width: 200px; 
+    height: auto;
+    max-height: 150px; 
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.calendar-and-form-container {
+    display: flex;
+    gap: 200px;
+    justify-content: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.calendar-item,
+.calendar-form-container {
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.date-field {
+    display: flex;
+    gap: 15px;
+}
+
+.date-field input,
+.persons-field input {
+    font-size: 1em;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s; 
+}
+
+.date-field input:focus,
+.persons-field input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.2);
+}
+
+/* Bouton réserver */
+.calendar-resa-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-resa-button:hover {
+    background-color: #2980b9;
+}
+
+
+/* Toolbar styles */
+.fc-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fc-toolbar-title {
+    padding-left: 10px !important;
+    font-size: 24px !important; 
+    color: #2c3e50 !important; 
+}
+
+.fc-day-today {
+    background-color: var(--lightgreen) !important; 
+    color: #ffffff !important;
+}
+
+/* En-têtes des jours (lundi, mardi, etc.) */
+.fc .fc-col-header-cell {
+    background-color: var(--darkblue) !important;
+    color: #ecf0f1 !important; 
+    font-weight: bold !important;
+    font-size: 12px !important;
+    text-transform: capitalize;
+}
+
+.fc .fc-col-header-cell a {
+    color: #ecf0f1 !important;
+}
+
+/* Boutons de navigation */
+.fc-prev-button, .fc-next-button, .fc-today-button {
+    border: none !important;
+    padding: 8px 16px !important;
+    background-color: #3498db !important; 
+    color: #ffffff !important;
+    border-radius: 5px !important;
+    margin: 4px !important;
+}
+
+.fc-prev-button, .fc-next-button {
+    background-color: #2980b9 !important; 
+}
+
+/* Event color */
+.fc-event {
+    color: #ffffff !important; 
+}
+
+.fc {
+    font-family: 'Arial', sans-serif;
+    font-size: 15px;
+}
+
+.fc .fc-col-header-cell-cushion {
+    padding: 10px !important;
+}
+
+.fc .fc-daygrid-day-number {
+    font-size: 14px !important;
+    color: #2c3e50 !important;
+}
+
+.fc-daygrid-day.fc-day-selected {
+    background-color: #3498db !important; /* Color for selected days */
+    color: #ffffff !important;
+}
+
+.instruction-message {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Reduce day cell size */
+.fc-daygrid-day-frame {
+    min-height: 50px !important; 
+    height: 50px !important; 
+}
+
+@media (max-width: 768px) {
+    .calendar-item,
+    .calendar-form-container {
+        flex: 1 1 100%;
+        max-width: none;
+    }
+    .calendar-and-form-container {
+        gap: 50px;
+    }
+    
+    
+}

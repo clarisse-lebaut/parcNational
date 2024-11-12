@@ -1,0 +1,82 @@
+.widget {
+  width: 440px;
+  padding: 10px;
+  border-radius: 5px;
+
+  list-style: none;
+  gap: 15px;
+  flex-direction: column;
+  display: flex;
+}
+
+.weather_hr {
+  width: 100%;
+}
+
+.current_date {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.current_date > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+
+  align-items: center;
+}
+.current_weather {
+  width: 15rem;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+}
+.temperature > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.prevision {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 25px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+}
+.prevision_container_data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+  font-weight: 700;
+}
+.prevision_data {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 700;
+}
+.prevision_data > div {
+  display: flex;
+  flex-direction: row;
+}

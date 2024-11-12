@@ -1,0 +1,123 @@
+main {
+  margin: 5px 200px 25px 200px;
+}
+.pic-about {
+  width: 300px;
+}
+.section {
+  margin: 50px 0 50px 0;
+}
+
+section > div {
+  display: flex;
+  flex-direction: row;
+  gap: 35px;
+}
+.staff {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.card_staff {
+  background-color: var(--lmblue);
+  border-radius: 5px;
+  text-align: center;
+}
+.pic-staff {
+  width: 150px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 5px;
+  border: solid 1px var(--darkblue);
+  transition: all 0.3s ease-in-out;
+}
+
+.staff:has(.pic-staff:hover) .pic-staff:not(:hover) {
+  filter: blur(2px) grayscale(1);
+}
+
+.social_contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 150px 25px 150px;
+  gap: 30px;
+  padding: 20px;
+}
+.pic_social {
+  border-radius: 5px;
+  text-align: center;
+  width: 50px;
+  transition: all 0.5s ease-in-out;
+  filter: drop-shadow(0 0 0.75rem lightgray);
+}
+.pic_social:hover {
+  transform: translateY(5px);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 8px;
+}
+
+.contact-form h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.contact-form label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Conteneur pour aligner Nom et Prénom */
+.name-fields {
+  display: flex;
+  gap: 35px;
+}
+
+.name-fields input[type="text"] {
+  flex: 1;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.contact-form textarea {
+  min-height: 100px;
+}
+
+.contact-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,120 @@
+/* ----- */
+.error-message {
+    color: red;
+    display: none;
+  }
+  
+  /* ----- */
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+   
+ 
+  }
+
+  .form_container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .gender {
+    display: flex;
+    flex-direction: row!important;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.gender > div {
+    display: flex;
+    align-items: center;
+}
+
+  .civil-address,
+  .password,
+  .connect-data {
+    border: lightblue solid 1px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 30px 30px 30px;
+    width: 20rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    font-family: var(--font-Assistant);
+  }
+
+  .civil-address > div,
+  .password > div,
+  .password > div > div,
+  .connect-data > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .civil-address > div >label,
+  .password > div > label,
+  .password > div > div > label,
+  .connect-data > div > label {
+    font-weight: 700;
+  }
+  .civil-address > div > input,
+  .password > div > input,
+  .connect-data > div > input {
+    text-align: center;
+    border: none;
+    box-shadow: inset lightgray 0 5px 10px 0;
+    height: 50px;
+    font-size: 15px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 0 10px 0 10px;
+  }
+  
+  /* ----- */
+  .button {
+    border-radius: 10px;
+    border: none;
+    background-color: var(--mediumblue);
+    box-shadow: lightgray 0 5px 10px 0;
+    color: white;
+    height: 45px;
+    font-family: var(--font-Assistant);
+    font-size: 15px;
+    width: 15rem;
+    align-self: center;
+  }
+  .button:hover {
+    background-color: var(--darkblue);
+    cursor: pointer;
+    transform: translateY(5px);
+    box-shadow: lightgray 0 2.5px 5px 0;
+  }
+  .form > section > div > button:active {
+    transform: translateY(10px);
+  }
+  
+  /* ----- */
+  ::placeholder {
+    font-style: italic;
+    text-align: center;
+  }
+
+  @media(max-width: 600px){
+    h1{
+      font-size: x-large!important;
+    }
+  }
+
+  @media(min-width: 601px) and (max-width: 900px){
+    h1{
+      font-size: xx-large!important;
+    }
+  }

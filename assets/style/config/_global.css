@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dekko&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&display=swap");
+
+body {
+  margin: 0;
+  background-color: #f8f8f8;
+}
+
+:root {
+  /* groupe de coleur */
+  --lightblue: #009dec;
+  --lmblue: #1679ab5a;
+  --mediumblue: #1679ab;
+  --darkblue: #074173;
+  /* police */
+  --font-Assistant: "Assistant", sans-serif;
+  --font-Archivo: "Archivo Narrow", sans-serif;
+}
+
+h1 {
+  color: var(--darkblue);
+  font-size: 60px;
+  text-align: center;
+  font-family: var(--font-Archivo);
+}
+
+h2 {
+  color: var(--mediumblue);
+  font-family: var(--font-Archivo);
+}
+
+h3 {
+  color: var(--lightblue);
+  font-family: var(--font-Assistant);
+}
+
+label {
+  font-family: var(--font-Assistant);
+}
+
+p {
+  font-family: var(--font-Assistant);
+}
+
+div {
+  font-family: var(--font-Assistant);
+}
+
+figcaption {
+  font-family: var(--font-Assistant);
+}
+li {
+  list-style: none;
+  font-family: var(--font-Assistant);
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Style de la barre de défilement */
+::-webkit-scrollbar {
+  width: 12px; /* Largeur de la barre de défilement */
+  height: 12px; /* Hauteur de la barre de défilement horizontal */
+}
+
+/* Style de la piste */
+::-webkit-scrollbar-track {
+  background: white; /* Couleur de la piste */
+}
+
+/* Style du pouce (la partie qui se déplace) */
+::-webkit-scrollbar-thumb {
+  background: var(--darkblue); /* Couleur du pouce */
+}
+
+/* Style du pouce au survol */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Couleur au survol */
+}
+
+/* 
+#074173 --> bleu foncé
+#1679AB --> bleu médian
+#5DEBD7 --> bleu clair
+#C5FF95 --> vert clair
+*/
