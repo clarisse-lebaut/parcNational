@@ -64,6 +64,10 @@ class LoginController extends Controller
     }
 
     public function getDataFromGoogle(){
+        if(!isset($_GET['code'])){
+            error_log("La connexion annulée par l'utilisateur");
+            $this->render('login', ['error' => "La connexion annulée, veuillez réessayer la connexion" ]);
+        }
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
         $google_redirect_url = 'http://localhost/parcNational/google-login'; 
@@ -117,7 +121,11 @@ class LoginController extends Controller
     }
 
     public function loginUsingFacebook()
-    {//// This method will be triggered when Facebook redirects back to us
+    {
+        if(!isset($_GET['code'])){
+            error_log("La connexion annulée par l'utilisateur");
+            $this->render('login', ['error' => "La connexion annulée, veuillez réessayer la connexion" ]);
+        }//// This method will be triggered when Facebook redirects back to us
         $facebook_client_id = $_ENV['FACEBOOK_CLIENT_ID'];
         $facebook_client_secret = $_ENV['FACEBOOK_CLIENT_SECRET'];
         $facebook_redirect_url = 'http://localhost/parcNational/facebook-login';
