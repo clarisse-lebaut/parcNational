@@ -146,6 +146,7 @@
         <?php include "components/_footer.php"; ?>
     </footer>
     <script>
+        const isLoggedIn = <?php echo json_encode(isset($_SESSION['user_id'])); ?>;
         const favoriteTrailIds = <?php echo json_encode($favoriteTrailIds); ?>;
         const completedTrailIds = <?php echo json_encode($completedTrailIds); ?>;
         const trailsData = <?php echo json_encode($trails); ?>;
