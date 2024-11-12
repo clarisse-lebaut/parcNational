@@ -72,7 +72,7 @@
             <div class="left-part">
                 <div class="history-link">
                     <h2 class="title-reservation">Mes résérvations</h2>
-                    <a class="reservation-button" href="http://localhost/parcNational/reservation_history?campsite_id=1&status=success">L'histoire de résérvations</a>
+                    <a class="reservation-button" href="http://localhost/parcNational/reservation_history?campsite_id=1&status=success">Historique de réservations</a>
                 </div>
                 <div class="reservation-container">
                     <?php if(!empty($reservedCampings)): ?>
