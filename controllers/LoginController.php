@@ -67,6 +67,7 @@ class LoginController extends Controller
         if(!isset($_GET['code'])){
             error_log("La connexion annulée par l'utilisateur");
             $this->render('login', ['error' => "La connexion annulée, veuillez réessayer la connexion" ]);
+            exit;
         }
         $google_client_id = $_ENV['GOOGLE_CLIENT_ID'];
         $google_client_secret = $_ENV['GOOGLE_CLIENT_SECRET'];
@@ -125,6 +126,7 @@ class LoginController extends Controller
         if(!isset($_GET['code'])){
             error_log("La connexion annulée par l'utilisateur");
             $this->render('login', ['error' => "La connexion annulée, veuillez réessayer la connexion" ]);
+            exit;
         }//// This method will be triggered when Facebook redirects back to us
         $facebook_client_id = $_ENV['FACEBOOK_CLIENT_ID'];
         $facebook_client_secret = $_ENV['FACEBOOK_CLIENT_SECRET'];
